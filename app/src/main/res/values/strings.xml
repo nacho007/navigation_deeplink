@@ -4,6 +4,9 @@
     <string name="splash">SPLASH</string>
     <string name="new_card">NEW CARD</string>
     <string name="loyalty">LOYALTY</string>
+    <string name="money">MONEY</string>
+    <string name="notifications">NOTIFICATIONS</string>
+    <string name="more">MORE</string>
     <string name="tab_new_card">New card</string>
     <string name="tab_loyalty">Loyalty</string>
     <string name="tab_money">Money</string>

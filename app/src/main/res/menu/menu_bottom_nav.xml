@@ -1,26 +1,32 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/newCardFragment"
-        android:icon="@drawable/ic_face_white_24dp"
-        android:title="@string/tab_new_card" />
+        android:icon="@drawable/svg_new_card"
+        android:title="@string/tab_new_card"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/loyaltyFragment"
-        android:icon="@drawable/ic_face_white_24dp"
-        android:title="@string/tab_loyalty" />
+        android:icon="@drawable/svg_fidelity"
+        android:title="@string/tab_loyalty"
+        app:showAsAction="always" />
 
-<!--    <item-->
-<!--        android:id="@+id/item_money"-->
-<!--        android:icon="@drawable/ic_face_white_24dp"-->
-<!--        android:title="@string/tab_money" />-->
+    <item
+        android:id="@+id/moneyFragment"
+        android:icon="@drawable/svg_money"
+        android:title="@string/tab_money"
+        app:showAsAction="always" />
 
-<!--    <item-->
-<!--        android:id="@+id/item_notifications"-->
-<!--        android:icon="@drawable/ic_face_white_24dp"-->
-<!--        android:title="@string/tab_notifications" />-->
+    <item
+        android:id="@+id/notificationsFragment"
+        android:icon="@drawable/svg_notifications"
+        android:title="@string/tab_notifications"
+        app:showAsAction="always" />
 
-<!--    <item-->
-<!--        android:id="@+id/item_more"-->
-<!--        android:icon="@drawable/ic_face_white_24dp"-->
-<!--        android:title="@string/tab_more" />-->
+    <item
+        android:id="@+id/moreFragment"
+        android:icon="@drawable/svg_more"
+        android:title="@string/tab_more"
+        app:showAsAction="always"/>
 </menu>

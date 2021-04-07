@@ -13,5 +13,17 @@
         android:id="@+id/loyaltyFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.LoyaltyFragment"
         tools:layout="@layout/fragment_loyalty" />
+    <fragment
+        android:id="@+id/moneyFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.MoneyFragment"
+        tools:layout="@layout/fragment_money" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.NotificationsFragment"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.MoreFragment"
+        tools:layout="@layout/fragment_more" />
 
 </navigation>
