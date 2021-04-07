@@ -3,4 +3,10 @@
     <string name="welcome">Welcome %1s</string>
     <string name="splash">SPLASH</string>
     <string name="new_card">NEW CARD</string>
+    <string name="loyalty">LOYALTY</string>
+    <string name="tab_new_card">New card</string>
+    <string name="tab_loyalty">Loyalty</string>
+    <string name="tab_money">Money</string>
+    <string name="tab_notifications">Notifications</string>
+    <string name="tab_more">More</string>
 </resources>

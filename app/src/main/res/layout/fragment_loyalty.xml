@@ -7,10 +7,9 @@
     android:background="@color/color_24">
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_card"
+        android:text="@string/loyalty"
         android:fontFamily="sans-serif-medium"
         android:textSize="36sp"
         android:textColor="@color/color_2"

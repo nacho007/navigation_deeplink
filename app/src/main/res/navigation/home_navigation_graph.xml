@@ -9,5 +9,9 @@
         android:id="@+id/newCardFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.NewCardFragment"
         tools:layout="@layout/fragment_new_card" />
+    <fragment
+        android:id="@+id/loyaltyFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.LoyaltyFragment"
+        tools:layout="@layout/fragment_loyalty" />
 
 </navigation>
