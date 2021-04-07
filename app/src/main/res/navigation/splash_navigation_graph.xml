@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/fragmentOther"
-        android:name="com.test.androiddevelopersexample.ui.fragments.other.FragmentOther"
+        android:name="com.test.androiddevelopersexample.ui.fragments.splash.SplashFragment"
         android:label="FragmentOther"
-        tools:layout="@layout/fragment_other" />
+        tools:layout="@layout/fragment_splash" />
 
 </navigation>
