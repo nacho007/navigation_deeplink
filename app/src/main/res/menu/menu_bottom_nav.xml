@@ -4,29 +4,29 @@
         android:id="@+id/newCardFragment"
         android:icon="@drawable/svg_new_card"
         android:title="@string/tab_new_card"
-        app:showAsAction="always" />
+        app:labelVisibilityMode="labeled" />
 
     <item
         android:id="@+id/loyaltyFragment"
         android:icon="@drawable/svg_fidelity"
         android:title="@string/tab_loyalty"
-        app:showAsAction="always" />
+        app:labelVisibilityMode="labeled" />
 
     <item
         android:id="@+id/moneyFragment"
         android:icon="@drawable/svg_money"
         android:title="@string/tab_money"
-        app:showAsAction="always" />
+        app:labelVisibilityMode="labeled" />
 
     <item
         android:id="@+id/notificationsFragment"
         android:icon="@drawable/svg_notifications"
         android:title="@string/tab_notifications"
-        app:showAsAction="always" />
+        app:labelVisibilityMode="labeled" />
 
     <item
         android:id="@+id/moreFragment"
         android:icon="@drawable/svg_more"
         android:title="@string/tab_more"
-        app:showAsAction="always"/>
+        app:labelVisibilityMode="labeled"/>
 </menu>

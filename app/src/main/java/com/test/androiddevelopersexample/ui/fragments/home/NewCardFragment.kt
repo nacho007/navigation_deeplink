@@ -10,7 +10,7 @@ import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
 
 class NewCardFragment : FragmentBase() {
 
-    override var screenTag = "SplashFragment"
+    override var screenTag = "NewCardFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
