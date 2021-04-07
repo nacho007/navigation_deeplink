@@ -19,7 +19,7 @@ class CheckoutFragment : FragmentBase() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment_loyalty, container, false)
+        return inflater.inflate(R.layout.fragment_checkout, container, false)
     }
 
 }
