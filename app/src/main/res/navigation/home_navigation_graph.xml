@@ -3,101 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/newCardFragment">
 
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.splash.SplashFragment2"
-        android:label="splash_fragment"
-        tools:layout="@layout/splash_fragment">
-        <action
-            android:id="@+id/action_splashFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_splashFragment_to_bottomNavigationFragment"
-            app:destination="@id/details_page_fragment_2" />
-        <action
-            android:id="@+id/action_splashFragment_to_activityOther2"
-            app:destination="@id/activityOther2" />
-    </fragment>
+        android:id="@+id/newCardFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.NewCardFragment"
+        tools:layout="@layout/fragment_new_card" />
 
-    <fragment
-        android:id="@+id/details_page_fragment_2"
-        android:name="com.test.androiddevelopersexample.ui.fragments.pager.BottomNavigationFragment"
-        android:label="fragment_bottom_navigation"
-        tools:layout="@layout/fragment_bottom_navigation">
-        <action
-            android:id="@+id/action_details_page_fragment_2_to_collectionDemoFragment"
-            app:destination="@id/collectionDemoFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/collectionDemoFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.pager.CollectionDemoFragment"
-        tools:layout="@layout/collection_demo_fragment" />
-    <activity
-        android:id="@+id/activityOther2"
-        android:name="com.test.androiddevelopersexample.ui.activities.SplashActivity"
-        android:label="ActivityOther" />
-
-
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.login.LoginFragment"
-        android:label="login_fragment"
-        tools:layout="@layout/login_fragment">
-        <action
-            android:id="@+id/action_loginFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_registration"
-            app:destination="@id/navigation5"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/fade_out">
-            <argument
-                android:name="register_text"
-                android:defaultValue="Hola" />
-        </action>
-    </fragment>
-
-
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.profile.ProfileFragment"
-        android:label="profile_fragment"
-        app:enterAnim="@anim/nav_default_enter_anim"
-        app:exitAnim="@anim/nav_default_exit_anim"
-        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-        app:popExitAnim="@anim/nav_default_pop_exit_anim"
-        tools:layout="@layout/profile_fragment" />
-
-    <navigation
-        android:id="@+id/navigation5"
-        app:startDestination="@id/enterUserProfileFragment">
-        <fragment
-            android:id="@+id/chooseUserPasswordFragment"
-            android:name="com.test.androiddevelopersexample.ui.fragments.register.ChooseUserPasswordFragment"
-            android:label="chose_user_password_fragment"
-            tools:layout="@layout/choose_user_password_fragment">
-            <deepLink
-                android:id="@+id/deepLink"
-                app:uri="https://www.google.com" />
-            <deepLink
-                android:id="@+id/deepLink2"
-                app:uri="apcmobile://new-card" />
-        </fragment>
-        <fragment
-            android:id="@+id/enterUserProfileFragment"
-            android:name="com.test.androiddevelopersexample.ui.fragments.register.EnterProfileDataFragment"
-            android:label="enter_user_profile_fragment"
-            tools:layout="@layout/enter_profile_data_fragment">
-            <action
-                android:id="@+id/action_thirdFragment_to_forthFragment"
-                app:destination="@id/chooseUserPasswordFragment" />
-            <argument
-                android:name="register_text"
-                app:argType="string" />
-        </fragment>
-    </navigation>
 </navigation>

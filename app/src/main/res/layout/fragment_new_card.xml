@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_5">
+    android:background="@color/color_24">
 
-
-    <Button
-        android:id="@+id/buttonNavigateToViewPager"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ViewPager"
+        android:text="@string/new_card"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="36sp"
+        android:textColor="@color/color_8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

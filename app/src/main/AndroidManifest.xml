@@ -22,7 +22,7 @@
 
         </activity>
 
-        <activity android:name=".ui.activities.StartActivity">
+        <activity android:name=".ui.activities.HomeActivity">
             <nav-graph android:value="@navigation/home_navigation_graph" />
             <!--            <intent-filter>-->
             <!--                <action android:name="android.intent.action.MAIN" />-->
