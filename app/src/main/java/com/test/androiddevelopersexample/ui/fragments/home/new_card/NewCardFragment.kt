@@ -1,12 +1,14 @@
-package com.test.androiddevelopersexample.ui.fragments.home
+package com.test.androiddevelopersexample.ui.fragments.home.new_card
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
+import kotlinx.android.synthetic.main.fragment_new_card.*
 
 class NewCardFragment : FragmentBase() {
 
@@ -20,9 +22,16 @@ class NewCardFragment : FragmentBase() {
         return inflater.inflate(R.layout.fragment_new_card, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        button.setOnClickListener {
+            val action = NewCardFragmentDirections.actionNewCardFragmentToNewCardNavGraph()
+            findNavController().navigate(action)
+        }
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
 //        buttonViewProfile?.setOnClickListener {
 //            val destination = ActivityNavigator(requireContext()).createDestination()
 //                .setIntent(Intent(requireContext(), SplashActivity::class.java))

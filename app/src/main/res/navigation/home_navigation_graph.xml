@@ -7,8 +7,12 @@
 
     <fragment
         android:id="@+id/newCardFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.NewCardFragment"
-        tools:layout="@layout/fragment_new_card" />
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.NewCardFragment"
+        tools:layout="@layout/fragment_new_card">
+        <action
+            android:id="@+id/action_newCardFragment_to_newCardNavGraph"
+            app:destination="@id/newCardNavGraph" />
+    </fragment>
     <fragment
         android:id="@+id/loyaltyFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.LoyaltyFragment"
@@ -25,5 +29,7 @@
         android:id="@+id/moreFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.MoreFragment"
         tools:layout="@layout/fragment_more" />
+
+    <include app:graph="@navigation/new_card_navigation_graph" />
 
 </navigation>

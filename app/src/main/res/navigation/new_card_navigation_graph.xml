@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/newCardNavGraph"
+    app:startDestination="@id/paymentMethodFragment">
+
+    <fragment
+        android:id="@+id/paymentMethodFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.PaymentMethodFragment"
+        tools:layout="@layout/fragment_payment_method">
+
+        <action
+            android:id="@+id/action_paymentMethodFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.CheckoutFragment"
+        tools:layout="@layout/fragment_checkout" />
+
+</navigation>
