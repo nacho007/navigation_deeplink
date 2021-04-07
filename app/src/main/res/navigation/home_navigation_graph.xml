@@ -36,7 +36,7 @@
         tools:layout="@layout/collection_demo_fragment" />
     <activity
         android:id="@+id/activityOther2"
-        android:name="com.test.androiddevelopersexample.ui.activities.ActivityOther"
+        android:name="com.test.androiddevelopersexample.ui.activities.SplashActivity"
         android:label="ActivityOther" />
 
 

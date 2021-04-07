@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_other.*
 /**
  * Created by ignaciodeandreisdenis on 10/15/20.
  */
-class ActivityOther : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -12,8 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".ui.activities.SplashActivity">
+            <nav-graph android:value="@navigation/splash_navigation_graph" />
+        </activity>
+
         <activity android:name=".ui.activities.StartActivity">
-            <nav-graph android:value="@navigation/nav_graph" />
+            <nav-graph android:value="@navigation/home_navigation_graph" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -29,9 +34,6 @@
 
         </activity>
 
-        <activity android:name=".ui.activities.ActivityOther">
-            <nav-graph android:value="@navigation/other_graph" />
-        </activity>
     </application>
 
 </manifest>
