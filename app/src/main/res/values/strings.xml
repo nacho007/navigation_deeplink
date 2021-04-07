@@ -12,4 +12,10 @@
     <string name="tab_money">Money</string>
     <string name="tab_notifications">Notifications</string>
     <string name="tab_more">More</string>
+
+<!--    <string name="tab_new_card">บัตรใหม่</string>-->
+<!--    <string name="tab_loyalty">ความภักดี</string>-->
+<!--    <string name="tab_money">เงิน</string>-->
+<!--    <string name="tab_notifications">การแจ้งเตือน</string>-->
+<!--    <string name="tab_more">เพิ่มเติม</string>-->
 </resources>
