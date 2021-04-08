@@ -19,6 +19,6 @@ class MoneyFragment : FragmentBase() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment_more, container, false)
+        return inflater.inflate(R.layout.fragment_money, container, false)
     }
 }
