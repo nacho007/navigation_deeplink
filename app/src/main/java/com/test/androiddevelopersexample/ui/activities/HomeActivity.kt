@@ -9,6 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.test.androiddevelopersexample.R
 import kotlinx.android.synthetic.main.activity_home.*
+import java.io.Serializable
 
 /**
  * Created by ignaciodeandreisdenis on 7/22/20.
@@ -50,7 +51,9 @@ class HomeActivity : AppCompatActivity() {
             .setupWithNavController(navController)
 
         if (intent.data != null) {
-            Log.e("HomeActivity", "DeepLink Home onCreate")
+            if (intent.data.toString().contains("app://payment-methods")) {
+                PaymentMethodsActivity.getCallingIntent(this, DeepLink.CheckOut(22))
+            }
         }
     }
 
@@ -60,6 +63,14 @@ class HomeActivity : AppCompatActivity() {
         badge.backgroundColor = ContextCompat.getColor(this, R.color.color_2)
         badge.badgeTextColor = ContextCompat.getColor(this, R.color.color_white)
         badge.number = quantity
+    }
+
+    companion object {
+        const val DEEP_LINK = "deep_link"
+    }
+
+    sealed class DeepLink : Serializable {
+        data class CheckOut(val id: Int) : DeepLink()
     }
 
     override fun onBackPressed() {

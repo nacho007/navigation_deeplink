@@ -22,7 +22,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter android:label="deeplinks">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -33,7 +32,10 @@
                     android:host="payment-methods"
                     android:scheme="app" />
             </intent-filter>
+        </activity>
 
+        <activity android:name=".ui.activities.PaymentMethodsActivity">
+            <nav-graph android:value="@navigation/payment_methods_navigation_graph" />
         </activity>
 
         <activity
