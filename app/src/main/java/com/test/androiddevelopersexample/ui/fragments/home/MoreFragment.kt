@@ -9,6 +9,7 @@ import com.test.androiddevelopersexample.ui.activities.HomeActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.fragment_money.*
+import kotlinx.android.synthetic.main.fragment_more.*
 
 /**
  * Created by ignaciodeandreisdenis on 4/7/21.
@@ -22,13 +23,13 @@ class MoreFragment : FragmentBase() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment_money, container, false)
+        return inflater.inflate(R.layout.fragment_more, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btb_generate_badge.setOnClickListener {
+        btn_generate_badge.setOnClickListener {
             (activity as HomeActivity).createBadges(R.id.newCardFragment, 2)
             (activity as HomeActivity).createBadges(R.id.loyaltyFragment, 3)
         }
