@@ -54,7 +54,6 @@ class HomeActivity : AppCompatActivity() {
 
         if (intent.data != null) {
             if (intent.data.toString().contains("app://payment-methods")) {
-                startActivity(PaymentMethodsActivity.getCallingIntent(this, DeepLink.CheckOut(22)))
                 val data = intent.data
                 if (data != null) {
                     if (data.toString().contains("app://payment-methods")) {
