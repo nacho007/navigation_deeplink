@@ -51,27 +51,23 @@ class HomeActivity : AppCompatActivity() {
         findViewById<BottomNavigationView>(R.id.bottom_nav)
             .setupWithNavController(navController)
 
+
         if (intent.data != null) {
             if (intent.data.toString().contains("app://payment-methods")) {
                 startActivity(PaymentMethodsActivity.getCallingIntent(this, DeepLink.CheckOut(22)))
-            }
-        } else if (intent?.extras != null) {
-            val map: HashMap<Any?, Any?> = HashMap()
-
-            val ks: Set<String>? = intent.extras?.keySet()
-            val iterator = ks?.iterator()
-
-            while (iterator?.hasNext() == true) {
-                val key = iterator.next()
-
-                try {
-                    map[key] = intent.extras?.getString(key)
-                } catch (exception: Exception) {
-                    exception.printStackTrace()
+                val data = intent.data
+                if (data != null) {
+                    if (data.toString().contains("app://payment-methods")) {
+                        val id = data.getQueryParameter("id") ?: "0"
+                        startActivity(
+                            PaymentMethodsActivity.getCallingIntent(
+                                this,
+                                DeepLink.CheckOut(id.toInt())
+                            )
+                        )
+                    }
                 }
             }
-
-//            startActivity(PaymentMethodsActivity.getCallingIntent(this, DeepLink.CheckOut(22)))
         }
     }
 
