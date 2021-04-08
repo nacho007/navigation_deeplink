@@ -16,14 +16,14 @@ class PaymentMethodsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_methods)
 
-        val deepLink = intent.getSerializableExtra(DEEP_LINK) as DeepLink?
+        val deepLink = intent.getSerializableExtra(DEEP_LINK) as HomeActivity.DeepLink?
         deepLink?.let {
             findNavController(R.id.fragment).navigate(R.id.checkoutFragment)
         }
     }
 
     companion object {
-        fun getCallingIntent(context: Context, deepLink: DeepLink? ): Intent {
+        fun getCallingIntent(context: Context, deepLink: HomeActivity.DeepLink? ): Intent {
             return Intent(context, PaymentMethodsActivity::class.java).apply {
                 deepLink?.let {
                     putExtra(DEEP_LINK, deepLink)

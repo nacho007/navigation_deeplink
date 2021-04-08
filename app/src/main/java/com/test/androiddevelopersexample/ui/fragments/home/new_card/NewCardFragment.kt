@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.ui.activities.DeepLink
+import com.test.androiddevelopersexample.ui.activities.HomeActivity
 import com.test.androiddevelopersexample.ui.activities.PaymentMethodsActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
 import kotlinx.android.synthetic.main.fragment_new_card.*
@@ -25,7 +25,7 @@ class NewCardFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         button.setOnClickListener {
-            startActivity(PaymentMethodsActivity.getCallingIntent(requireActivity(), DeepLink.CheckOut(22)))
+            startActivity(PaymentMethodsActivity.getCallingIntent(requireActivity(), HomeActivity.DeepLink.CheckOut(22)))
         }
     }
 

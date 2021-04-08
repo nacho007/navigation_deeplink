@@ -49,6 +49,12 @@ class HomeActivity : AppCompatActivity() {
 
         findViewById<BottomNavigationView>(R.id.bottom_nav)
             .setupWithNavController(navController)
+
+        if (intent.data != null) {
+            if (intent.data.toString().contains("app://payment-methods")) {
+                PaymentMethodsActivity.getCallingIntent(this, DeepLink.CheckOut(22))
+            }
+        }
     }
 
     fun createBadges(id: Int, quantity: Int, visible: Boolean = true) {
@@ -62,8 +68,13 @@ class HomeActivity : AppCompatActivity() {
     companion object {
         const val DEEP_LINK = "deep_link"
     }
-}
 
-sealed class DeepLink: Serializable {
-    data class CheckOut(val id: Int): DeepLink()
+    sealed class DeepLink : Serializable {
+        data class CheckOut(val id: Int) : DeepLink()
+    }
+
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+    }
+
 }
