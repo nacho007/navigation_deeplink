@@ -48,6 +48,11 @@ class HomeActivity : AppCompatActivity() {
 
         findViewById<BottomNavigationView>(R.id.bottom_nav)
             .setupWithNavController(navController)
+
+        if (intent.data != null) {
+            Log.e("Deeplink", "Deeplink")
+        }
+
     }
 
     fun createBadges(id: Int, quantity: Int, visible: Boolean = true) {
@@ -57,4 +62,9 @@ class HomeActivity : AppCompatActivity() {
         badge.badgeTextColor = ContextCompat.getColor(this, R.color.color_white)
         badge.number = quantity
     }
+
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+    }
+
 }

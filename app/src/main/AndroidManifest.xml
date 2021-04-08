@@ -13,30 +13,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.activities.SplashActivity">
+        <activity
+            android:name=".ui.activities.SplashActivity"
+            android:launchMode="singleTop">
             <nav-graph android:value="@navigation/splash_navigation_graph" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+            <intent-filter android:label="deeplinks">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="payment-methods"
+                    android:scheme="app" />
+            </intent-filter>
+
         </activity>
 
-        <activity android:name=".ui.activities.HomeActivity">
+        <activity
+            android:name=".ui.activities.HomeActivity"
+            android:launchMode="singleTop">
             <nav-graph android:value="@navigation/home_navigation_graph" />
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-
-            <!--                <action android:name="android.intent.action.VIEW" />-->
-
-            <!--                <data-->
-            <!--                    android:host="new-card"-->
-            <!--                    android:scheme="apcmobile" />-->
-
-            <!--                <category android:name="android.intent.category.DEFAULT" />-->
-            <!--            </intent-filter>-->
-
         </activity>
 
     </application>
