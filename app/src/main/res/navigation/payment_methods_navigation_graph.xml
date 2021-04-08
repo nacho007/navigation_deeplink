@@ -18,6 +18,13 @@
     <fragment
         android:id="@+id/checkoutFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.CheckoutFragment"
-        tools:layout="@layout/fragment_checkout" />
+        tools:layout="@layout/fragment_checkout">
+
+        <argument
+            android:name="id"
+            app:argType="integer"
+            app:nullable="false" />
+
+    </fragment>
 
 </navigation>

@@ -52,7 +52,7 @@ class HomeActivity : AppCompatActivity() {
 
         if (intent.data != null) {
             if (intent.data.toString().contains("app://payment-methods")) {
-                PaymentMethodsActivity.getCallingIntent(this, DeepLink.CheckOut(22))
+                startActivity(PaymentMethodsActivity.getCallingIntent(this, DeepLink.CheckOut(22)))
             }
         }
     }

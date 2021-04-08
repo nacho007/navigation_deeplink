@@ -12,13 +12,17 @@ import com.test.androiddevelopersexample.ui.activities.HomeActivity.Companion.DE
  * Created by ignaciodeandreisdenis on 7/22/20.
  */
 class PaymentMethodsActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_methods)
 
         val deepLink = intent.getSerializableExtra(DEEP_LINK) as HomeActivity.DeepLink?
         deepLink?.let {
-            findNavController(R.id.fragment).navigate(R.id.checkoutFragment)
+            val args = Bundle().apply {
+                putInt("id", (deepLink as HomeActivity.DeepLink.CheckOut).id)
+            }
+            findNavController(R.id.fragment).navigate(R.id.checkoutFragment, args)
         }
     }
 
