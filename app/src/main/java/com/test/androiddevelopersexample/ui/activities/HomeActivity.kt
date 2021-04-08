@@ -56,11 +56,6 @@ class HomeActivity : AppCompatActivity() {
         processDeepLink(intent)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        Log.e("ds", "sd")
-    }
-
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         processDeepLink(intent)
@@ -79,8 +74,7 @@ class HomeActivity : AppCompatActivity() {
                     .setArguments(args)
                     .createPendingIntent()
 
-                val intentSender = pendingIntent.intentSender
-                startIntentSenderForResult(intentSender, 1, null, 0, 0, 0)
+                pendingIntent.send()
             }
         }
     }
