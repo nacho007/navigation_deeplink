@@ -50,9 +50,8 @@ class HomeActivity : AppCompatActivity() {
             .setupWithNavController(navController)
 
         if (intent.data != null) {
-            Log.e("Deeplink", "Deeplink")
+            Log.e("HomeActivity", "DeepLink Home onCreate")
         }
-
     }
 
     fun createBadges(id: Int, quantity: Int, visible: Boolean = true) {

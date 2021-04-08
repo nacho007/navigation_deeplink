@@ -16,13 +16,23 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
     }
 
-    fun navigateToHome() {
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+
+        //TODO check if can navigate!!
+        if (intent?.data != null) {
+            navigateToHome(intent)
+        } else {
+            navigateToHome()
+        }
+    }
+
+    fun navigateToHome(intent: Intent = this.intent) {
         Intent(this, HomeActivity::class.java).apply {
             this.data = intent.data
             this.putExtras(extras ?: Bundle())
-            this.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            this.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(this)
-            finish()
             overridePendingTransition(0, 0)
         }
     }

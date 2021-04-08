@@ -15,7 +15,7 @@
 
         <activity
             android:name=".ui.activities.SplashActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTask">
             <nav-graph android:value="@navigation/splash_navigation_graph" />
 
             <intent-filter>
