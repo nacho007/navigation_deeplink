@@ -1,5 +1,6 @@
 package com.test.androiddevelopersexample.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -52,9 +53,30 @@ class HomeActivity : AppCompatActivity() {
 
         if (intent.data != null) {
             if (intent.data.toString().contains("app://payment-methods")) {
-                PaymentMethodsActivity.getCallingIntent(this, DeepLink.CheckOut(22))
+                startActivity(PaymentMethodsActivity.getCallingIntent(this, DeepLink.CheckOut(22)))
             }
+        } else if (intent?.extras != null) {
+            val map: HashMap<Any?, Any?> = HashMap()
+
+            val ks: Set<String>? = intent.extras?.keySet()
+            val iterator = ks?.iterator()
+
+            while (iterator?.hasNext() == true) {
+                val key = iterator.next()
+
+                try {
+                    map[key] = intent.extras?.getString(key)
+                } catch (exception: Exception) {
+                    exception.printStackTrace()
+                }
+            }
+
+//            startActivity(PaymentMethodsActivity.getCallingIntent(this, DeepLink.CheckOut(22)))
         }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
     }
 
     fun createBadges(id: Int, quantity: Int, visible: Boolean = true) {
