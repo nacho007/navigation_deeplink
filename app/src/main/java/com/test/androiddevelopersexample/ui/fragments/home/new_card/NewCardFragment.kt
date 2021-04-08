@@ -26,7 +26,7 @@ class NewCardFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         button.setOnClickListener {
-            val action = NewCardFragmentDirections.actionNewCardFragmentToNewCardNavGraph()
+            val action = NewCardFragmentDirections.actionNewCardFragmentToActivityPaymentMethods()
             findNavController().navigate(action)
         }
     }

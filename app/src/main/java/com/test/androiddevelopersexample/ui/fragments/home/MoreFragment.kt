@@ -53,14 +53,13 @@ class MoreFragment : FragmentBase() {
 
             val pendingIntent = NavDeepLinkBuilder(requireContext())
                 .setGraph(R.navigation.home_navigation_graph)
-                .setDestination(R.id.moneyFragment)
+                .setDestination(R.id.activityPaymentMethods)
                 .setArguments(args)
                 .createPendingIntent()
 
             createNotification(requireContext(), "Title", "Body", pendingIntent, notificationId)
         }
     }
-
 
     private fun createNotification(
         context: Context,
