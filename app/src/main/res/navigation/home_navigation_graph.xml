@@ -30,6 +30,6 @@
         android:name="com.test.androiddevelopersexample.ui.fragments.home.MoreFragment"
         tools:layout="@layout/fragment_more" />
 
-    <include app:graph="@navigation/new_card_navigation_graph" />
+    <include app:graph="@navigation/payment_methods_navigation_graph" />
 
 </navigation>
