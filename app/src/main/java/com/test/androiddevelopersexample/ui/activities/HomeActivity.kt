@@ -50,9 +50,11 @@ class HomeActivity : AppCompatActivity() {
         findViewById<BottomNavigationView>(R.id.bottom_nav)
             .setupWithNavController(navController)
 
-        if (intent.data != null) {
-            if (intent.data.toString().contains("app://payment-methods")) {
-                startActivity(PaymentMethodsActivity.getCallingIntent(this, DeepLink.CheckOut(22)))
+        val data = intent.data
+        if (data != null) {
+            if (data.toString().contains("app://payment-methods")) {
+                val id = data.getQueryParameter("id") ?: "0"
+                startActivity(PaymentMethodsActivity.getCallingIntent(this, DeepLink.CheckOut(id.toInt())))
             }
         }
     }
