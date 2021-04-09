@@ -8,11 +8,9 @@ import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -20,11 +18,13 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : AppCompatActivity() {
 
+    var showBottomNavigation: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        showBottomNavigationMenu(false)
+        showBottomNavigationMenu(showBottomNavigation)
 
         val navController = findNavController(R.id.fragment)
 
@@ -56,11 +56,11 @@ class MainActivity : AppCompatActivity() {
 
         if (intent?.data != null) {
             Log.e("Data", "Data ${intent.data.toString()}")
-            showBottomNavigationMenu(true)
         }
     }
 
     fun showBottomNavigationMenu(show: Boolean) {
+        showBottomNavigation = show
         bottom_nav?.visibility = VISIBLE.takeIf { show } ?: GONE
     }
 

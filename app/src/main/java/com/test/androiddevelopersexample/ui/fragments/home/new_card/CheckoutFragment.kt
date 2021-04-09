@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
-import kotlinx.android.synthetic.main.fragment_checkout.*
 
 /**
  * Created by ignaciodeandreisdenis on 4/7/21.

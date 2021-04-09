@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.ui.activities.MainActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
 import kotlinx.android.synthetic.main.fragment_notifications.*
