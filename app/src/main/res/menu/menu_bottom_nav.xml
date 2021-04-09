@@ -3,25 +3,29 @@
         android:id="@+id/newCardFragment"
         android:icon="@drawable/svg_new_card"
         android:title="@string/tab_new_card"
-         />
+        android:menuCategory="secondary" />
 
     <item
         android:id="@+id/loyaltyFragment"
         android:icon="@drawable/svg_fidelity"
-        android:title="@string/tab_loyalty"/>
+        android:menuCategory="secondary"
+        android:title="@string/tab_loyalty" />
 
     <item
         android:id="@+id/moneyFragment"
         android:icon="@drawable/svg_money"
+        android:menuCategory="secondary"
         android:title="@string/tab_money" />
 
     <item
         android:id="@+id/notificationsFragment"
         android:icon="@drawable/svg_notifications"
-        android:title="@string/tab_notifications"/>
+        android:menuCategory="secondary"
+        android:title="@string/tab_notifications" />
 
     <item
         android:id="@+id/moreFragment"
         android:icon="@drawable/svg_more"
-        android:title="@string/tab_more"/>
+        android:menuCategory="secondary"
+        android:title="@string/tab_more" />
 </menu>

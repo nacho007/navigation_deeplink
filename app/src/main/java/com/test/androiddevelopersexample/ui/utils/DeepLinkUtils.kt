@@ -3,7 +3,6 @@ package com.test.androiddevelopersexample.ui.utils
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
 import android.os.Build
 import android.os.Bundle

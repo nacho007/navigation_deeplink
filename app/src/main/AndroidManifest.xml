@@ -13,9 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".ui.activities.MainActivity"
-            android:launchMode="singleTop">
+        <activity android:name=".ui.activities.MainActivity">
             <nav-graph android:value="@navigation/main_navigation_graph" />
 
             <intent-filter>
@@ -25,12 +23,28 @@
             <intent-filter android:label="deeplinks">
                 <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="money"
+                    android:scheme="app" />
 
                 <data
                     android:host="loyalty"
                     android:scheme="app" />
+                <data
+                    android:host="more"
+                    android:scheme="app" />
+
+                <data
+                    android:host="notifications"
+                    android:scheme="app" />
+
+                <data
+                    android:host="newcard"
+                    android:scheme="app" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
             </intent-filter>
         </activity>
 

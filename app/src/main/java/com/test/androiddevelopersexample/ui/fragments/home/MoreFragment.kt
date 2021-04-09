@@ -21,7 +21,6 @@ class MoreFragment : FragmentBase() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        (activity as MainActivity).showBottomNavigationMenu(true)
         return inflater.inflate(R.layout.fragment_more, container, false)
     }
 

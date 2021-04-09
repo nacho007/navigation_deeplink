@@ -10,22 +10,15 @@
         android:name="com.test.androiddevelopersexample.ui.fragments.main.MainFragment"
         tools:layout="@layout/fragment_main">
 
-<!--        <action-->
-<!--            android:id="@+id/action_mainFragment_to_home_graph"-->
-<!--            app:destination="@id/home_graph"-->
-<!--            app:popUpTo="@+id/mainFragment"-->
-<!--            app:popUpToInclusive="true" />-->
         <action
             android:id="@+id/action_mainFragment_to_navigationHome"
             app:destination="@id/home_navigation"
             app:popUpTo="@+id/mainFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
 
     </fragment>
 
-    <!--    <include app:graph="@navigation/home_navigation_graph" />-->
     <include app:graph="@navigation/splash_navigation_graph" />
-
 
     <navigation
         android:id="@+id/home_navigation"
@@ -37,6 +30,9 @@
             <action
                 android:id="@+id/action_newCardFragment_to_checkoutFragment2"
                 app:destination="@id/checkoutFragment2" />
+            <deepLink
+                android:id="@+id/deepLink5"
+                app:uri="app://newcard" />
         </fragment>
         <fragment
             android:id="@+id/checkoutFragment2"
@@ -50,7 +46,14 @@
         <fragment
             android:id="@+id/moreFragment"
             android:name="com.test.androiddevelopersexample.ui.fragments.home.MoreFragment"
-            tools:layout="@layout/fragment_more" />
+            tools:layout="@layout/fragment_more">
+            <deepLink
+                android:id="@+id/deepLink2"
+                app:uri="app://more" />
+            <action
+                android:id="@+id/action_moreFragment_to_checkoutFragment2"
+                app:destination="@id/checkoutFragment2" />
+        </fragment>
         <fragment
             android:id="@+id/loyaltyFragment"
             android:name="com.test.androiddevelopersexample.ui.fragments.home.LoyaltyFragment"
@@ -65,11 +68,19 @@
         <fragment
             android:id="@+id/notificationsFragment"
             android:name="com.test.androiddevelopersexample.ui.fragments.home.NotificationsFragment"
-            tools:layout="@layout/fragment_notifications" />
+            tools:layout="@layout/fragment_notifications">
+            <deepLink
+                android:id="@+id/deepLink4"
+                app:uri="app://notifications" />
+        </fragment>
         <fragment
             android:id="@+id/moneyFragment"
             android:name="com.test.androiddevelopersexample.ui.fragments.home.MoneyFragment"
-            tools:layout="@layout/fragment_money" />
+            tools:layout="@layout/fragment_money">
+            <deepLink
+                android:id="@+id/deepLink3"
+                app:uri="app://money" />
+        </fragment>
     </navigation>
 
 </navigation>
