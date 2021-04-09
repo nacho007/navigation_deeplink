@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.ui.activities.HomeActivity
-import com.test.androiddevelopersexample.ui.activities.PaymentMethodsActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
 import kotlinx.android.synthetic.main.fragment_new_card.*
 

@@ -5,11 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View.GONE
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
-import androidx.navigation.NavDeepLinkBuilder
-import androidx.navigation.NavDeepLinkRequest
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.test.androiddevelopersexample.R
@@ -54,25 +51,7 @@ class MainActivity : AppCompatActivity() {
             .setupWithNavController(navController)
 
         if (intent?.data != null) {
-
-            val request = NavDeepLinkRequest.Builder
-                .fromUri("app://loyalty".toUri())
-                .build()
-
-            findNavController(R.id.fragment).navigate(request)
-
-//            if (intent.data.toString().contains("app://payment-methods")) {
-
-//                val args = Bundle()
-//                args.putString("arg", "app:loyalty")
-
-//                val pendingIntent = NavDeepLinkBuilder(this)
-//                    .setComponentName(MainActivity::class.java)
-//                    .setGraph(R.navigation.home_navigation_graph)
-//                    .setDestination(R.id.activityPaymentMethods)
-//                    .setArguments(args)
-//                    .createPendingIntent()
-//                pendingIntent.send()
+            Log.e("Data", "Data")
         }
 
     }
@@ -81,25 +60,16 @@ class MainActivity : AppCompatActivity() {
         super.onNewIntent(intent)
 
         if (intent?.data != null) {
-
-            val request = NavDeepLinkRequest.Builder
-                .fromUri("app://loyalty".toUri())
-                .build()
-
-            findNavController(R.id.fragment).navigate(request)
-            if (intent.data.toString().contains("app://payment-methods")) {
-
-                val args = Bundle()
-                args.putString("arg", "MyArg")
-
-//                val pendingIntent = NavDeepLinkBuilder(this)
-//                    .setComponentName(HomeActivity::class.java)
-//                    .setGraph(R.navigation.home_navigation_graph)
-//                    .setDestination(R.id.activityPaymentMethods)
-//                    .setArguments(args)
-//                    .createPendingIntent()
-//                pendingIntent.send()
-            }
+            Log.e("Data", "Data")
         }
     }
+
+    fun createBadges(id: Int, quantity: Int, visible: Boolean = true) {
+        val badge = bottom_nav.getOrCreateBadge(id)
+        badge.isVisible = visible
+        badge.backgroundColor = ContextCompat.getColor(this, R.color.color_2)
+        badge.badgeTextColor = ContextCompat.getColor(this, R.color.color_white)
+        badge.number = quantity
+    }
+
 }

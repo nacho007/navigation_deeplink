@@ -34,18 +34,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activities.SplashActivity">
-            <nav-graph android:value="@navigation/splash_navigation_graph" />
-        </activity>
-
-        <activity android:name=".ui.activities.HomeActivity">
-            <nav-graph android:value="@navigation/home_navigation_graph" />
-        </activity>
-
-        <activity android:name=".ui.activities.PaymentMethodsActivity">
-            <nav-graph android:value="@navigation/payment_methods_navigation_graph" />
-        </activity>
-
     </application>
 
 </manifest>

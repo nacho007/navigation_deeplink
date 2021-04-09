@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.mian
+package com.test.androiddevelopersexample.ui.fragments.main
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -13,10 +13,8 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import androidx.navigation.NavDeepLinkBuilder
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.ui.activities.HomeActivity
 import com.test.androiddevelopersexample.ui.activities.MainActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
 import kotlinx.android.synthetic.main.activity_main.*

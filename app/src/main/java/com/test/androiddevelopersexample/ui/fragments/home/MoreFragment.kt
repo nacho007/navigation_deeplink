@@ -12,12 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import androidx.navigation.NavDeepLinkBuilder
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.ui.activities.HomeActivity
+import com.test.androiddevelopersexample.ui.activities.MainActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.fragment_money.*
 import kotlinx.android.synthetic.main.fragment_more.*
 import java.util.*
 
@@ -40,8 +37,8 @@ class MoreFragment : FragmentBase() {
         super.onViewCreated(view, savedInstanceState)
 
         btn_generate_badge.setOnClickListener {
-            (activity as HomeActivity).createBadges(R.id.newCardFragment, 2)
-            (activity as HomeActivity).createBadges(R.id.loyaltyFragment, 3)
+            (activity as MainActivity).createBadges(R.id.newCardFragment, 2)
+            (activity as MainActivity).createBadges(R.id.loyaltyFragment, 3)
         }
 
         btn_generate_notification.setOnClickListener {
