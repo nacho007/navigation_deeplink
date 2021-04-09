@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.home
+package com.test.androiddevelopersexample.ui.fragments.mian
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -9,49 +9,51 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavDeepLinkBuilder
+import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.ui.activities.HomeActivity
+import com.test.androiddevelopersexample.ui.activities.MainActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.fragment_money.*
-import kotlinx.android.synthetic.main.fragment_more.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_main.*
 import java.util.*
 
 /**
- * Created by ignaciodeandreisdenis on 4/7/21.
+ * Created by ignaciodeandreisdenis on 4/8/21.
  */
-class MoreFragment : FragmentBase() {
+class MainFragment : FragmentBase() {
 
-    override var screenTag = "MoreFragment"
+    override var screenTag = "MainFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment_more, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        btn_generate_badge.setOnClickListener {
-            (activity as HomeActivity).createBadges(R.id.newCardFragment, 2)
-            (activity as HomeActivity).createBadges(R.id.loyaltyFragment, 3)
+        btn_go_home.setOnClickListener {
+            (activity as MainActivity).bottom_nav.visibility = VISIBLE
+            val action = MainFragmentDirections.actionMainFragmentToHomeGraph()
+            findNavController().navigate(action)
         }
 
-        btn_generate_notification.setOnClickListener {
-
+        btn_deeplink.setOnClickListener {
             val notificationId = getRandomNumber()
 
             val args = Bundle()
             args.putString("arg", "MyArg")
 
 //            val pendingIntent = NavDeepLinkBuilder(requireContext())
+//                .setComponentName(MainActivity::class.java)
 //                .setGraph(R.navigation.home_navigation_graph)
 //                .setDestination(R.id.activityPaymentMethods)
 //                .setArguments(args)

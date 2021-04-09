@@ -1,11 +1,9 @@
 package com.test.androiddevelopersexample.ui.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.navigation.NavDeepLinkBuilder
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -52,31 +50,6 @@ class HomeActivity : AppCompatActivity() {
 
         findViewById<BottomNavigationView>(R.id.bottom_nav)
             .setupWithNavController(navController)
-
-        processDeepLink(intent)
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        processDeepLink(intent)
-    }
-
-    private fun processDeepLink(intent: Intent?) {
-        if (intent?.data != null) {
-            if (intent.data.toString().contains("app://payment-methods")) {
-
-                val args = Bundle()
-                args.putString("arg", "MyArg")
-
-                val pendingIntent = NavDeepLinkBuilder(this)
-                    .setGraph(R.navigation.home_navigation_graph)
-                    .setDestination(R.id.activityPaymentMethods)
-                    .setArguments(args)
-                    .createPendingIntent()
-
-                pendingIntent.send()
-            }
-        }
     }
 
     fun createBadges(id: Int, quantity: Int, visible: Boolean = true) {

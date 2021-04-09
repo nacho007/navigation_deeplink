@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.mian.MainFragment"
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/action_mainFragment_to_home_graph"
+            app:destination="@id/home_graph"
+            app:popUpTo="@+id/mainFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <include app:graph="@navigation/home_navigation_graph" />
+    <include app:graph="@navigation/splash_navigation_graph" />
+
+</navigation>

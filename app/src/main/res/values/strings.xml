@@ -16,9 +16,8 @@
     <string name="generate_badges">Generate Badges</string>
     <string name="generate_notification">Generate Notification</string>
 
-<!--    <string name="tab_new_card">บัตรใหม่</string>-->
-<!--    <string name="tab_loyalty">ความภักดี</string>-->
-<!--    <string name="tab_money">เงิน</string>-->
-<!--    <string name="tab_notifications">การแจ้งเตือน</string>-->
-<!--    <string name="tab_more">เพิ่มเติม</string>-->
+    <string name="main">MAIN</string>
+    <string name="deeplink">DEEPLINK</string>
+    <string name="home">HOME</string>
+
 </resources>

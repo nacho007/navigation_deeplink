@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/home_graph"
     app:startDestination="@id/newCardFragment">
 
     <fragment
@@ -10,13 +10,20 @@
         android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.NewCardFragment"
         tools:layout="@layout/fragment_new_card">
         <action
-            android:id="@+id/action_newCardFragment_to_activityPaymentMethods"
-            app:destination="@id/activityPaymentMethods" />
+            android:id="@+id/action_newCardFragment_to_newCardNavGraph"
+            app:destination="@id/newCardNavGraph" />
     </fragment>
     <fragment
         android:id="@+id/loyaltyFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.LoyaltyFragment"
-        tools:layout="@layout/fragment_loyalty" />
+        tools:layout="@layout/fragment_loyalty">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="app://loyalty" />
+        <action
+            android:id="@+id/action_loyaltyFragment_to_checkoutFragment2"
+            app:destination="@id/checkoutFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/moneyFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.MoneyFragment"
@@ -30,9 +37,15 @@
         android:name="com.test.androiddevelopersexample.ui.fragments.home.MoreFragment"
         tools:layout="@layout/fragment_more" />
 
-    <activity
-        android:id="@+id/activityPaymentMethods"
-        android:name="com.test.androiddevelopersexample.ui.activities.PaymentMethodsActivity"
-        tools:layout="@layout/fragment_payment_method"/>
+    <fragment
+        android:id="@+id/checkoutFragment2"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.CheckoutFragment"
+        tools:layout="@layout/fragment_checkout" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            app:nullable="false" />
+    </fragment>
+    <include app:graph="@navigation/payment_methods_navigation_graph" />
 
 </navigation>
