@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
-import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
+import com.test.androiddevelopersexample.ui.activities.MainActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
+import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
 import kotlinx.android.synthetic.main.fragment_notifications.*
 
 /**
@@ -30,10 +30,7 @@ class NotificationsFragment : FragmentBase() {
         super.onViewCreated(view, savedInstanceState)
 
         tv_notifications.setOnClickListener {
-            val request = NavDeepLinkRequest.Builder
-                .fromUri("app://loyalty".toUri())
-                .build()
-            findNavController().navigate(request)
+            findNavController().navigate(DeepLinkUtils.deepLinkLoyalty())
         }
     }
 }

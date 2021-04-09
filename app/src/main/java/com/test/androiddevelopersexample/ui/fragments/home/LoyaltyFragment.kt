@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
+import com.test.androiddevelopersexample.ui.activities.MainActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
 import kotlinx.android.synthetic.main.fragment_loyalty.*
 
@@ -27,8 +28,6 @@ class LoyaltyFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tv_loyalty.setOnClickListener {
-//               val action = PaymentMethodFragmentDirections.actionPaymentMethodFragmentToCheckoutFragment(55)
-//            findNavController().navigate(action)
             val action = LoyaltyFragmentDirections.actionLoyaltyFragmentToCheckoutFragment2(55)
             findNavController().navigate(action)
         }

@@ -20,10 +20,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_deeplink"
+        android:id="@+id/btn_generate_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/deeplink"
+        android:text="@string/generate_notification"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,5 +37,5 @@
         android:text="@string/home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_deeplink" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_generate_notification" />
 </androidx.constraintlayout.widget.ConstraintLayout>
