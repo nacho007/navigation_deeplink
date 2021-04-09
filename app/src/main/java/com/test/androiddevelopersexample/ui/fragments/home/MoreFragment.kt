@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.ui.activities.MainActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
@@ -30,6 +31,10 @@ class MoreFragment : FragmentBase() {
         btn_generate_badge.setOnClickListener {
             (activity as MainActivity).createBadges(R.id.newCardFragment, 2)
             (activity as MainActivity).createBadges(R.id.loyaltyFragment, 3)
+        }
+
+        btn_logout.setOnClickListener {
+            findNavController().navigate(R.id.action_moreFragment_to_mainFragment)
         }
     }
 
