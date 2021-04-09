@@ -27,7 +27,7 @@ class CheckoutFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tv_id.text = "Id: " + args.id
+//        tv_id.text = "Id: " + args.id
     }
 
 }

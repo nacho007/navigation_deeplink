@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         if (intent?.data != null) {
             Log.e("Data", "Data ${intent.data.toString()}")
             showBottomNavigationMenu(true)
-            findNavController(R.id.fragment).navigate(DeepLinkUtils.createDeepLink(intent.data.toString()))
+            navController.navigate(DeepLinkUtils.createDeepLink(intent.data.toString()))
         }
     }
 

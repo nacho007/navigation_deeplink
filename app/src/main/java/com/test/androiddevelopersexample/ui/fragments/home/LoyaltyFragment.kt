@@ -28,7 +28,7 @@ class LoyaltyFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tv_loyalty.setOnClickListener {
-            val action = LoyaltyFragmentDirections.actionLoyaltyFragmentToCheckoutFragment2(55)
+            val action = LoyaltyFragmentDirections.actionLoyaltyFragmentToCheckoutFragment2("55")
             findNavController().navigate(action)
         }
     }

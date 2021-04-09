@@ -10,15 +10,66 @@
         android:name="com.test.androiddevelopersexample.ui.fragments.main.MainFragment"
         tools:layout="@layout/fragment_main">
 
+<!--        <action-->
+<!--            android:id="@+id/action_mainFragment_to_home_graph"-->
+<!--            app:destination="@id/home_graph"-->
+<!--            app:popUpTo="@+id/mainFragment"-->
+<!--            app:popUpToInclusive="true" />-->
         <action
-            android:id="@+id/action_mainFragment_to_home_graph"
-            app:destination="@id/home_graph"
+            android:id="@+id/action_mainFragment_to_navigationHome"
+            app:destination="@id/home_navigation"
             app:popUpTo="@+id/mainFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"/>
 
     </fragment>
 
-    <include app:graph="@navigation/home_navigation_graph" />
+    <!--    <include app:graph="@navigation/home_navigation_graph" />-->
     <include app:graph="@navigation/splash_navigation_graph" />
+
+
+    <navigation
+        android:id="@+id/home_navigation"
+        app:startDestination="@id/newCardFragment">
+        <fragment
+            android:id="@+id/newCardFragment"
+            android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.NewCardFragment"
+            tools:layout="@layout/fragment_new_card">
+            <action
+                android:id="@+id/action_newCardFragment_to_checkoutFragment2"
+                app:destination="@id/checkoutFragment2" />
+        </fragment>
+        <fragment
+            android:id="@+id/checkoutFragment2"
+            android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.CheckoutFragment"
+            tools:layout="@layout/fragment_checkout">
+            <argument
+                android:name="id"
+                app:argType="string"
+                app:nullable="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/moreFragment"
+            android:name="com.test.androiddevelopersexample.ui.fragments.home.MoreFragment"
+            tools:layout="@layout/fragment_more" />
+        <fragment
+            android:id="@+id/loyaltyFragment"
+            android:name="com.test.androiddevelopersexample.ui.fragments.home.LoyaltyFragment"
+            tools:layout="@layout/fragment_loyalty">
+            <deepLink
+                android:id="@+id/deepLink"
+                app:uri="app://loyalty" />
+            <action
+                android:id="@+id/action_loyaltyFragment_to_checkoutFragment2"
+                app:destination="@id/checkoutFragment2" />
+        </fragment>
+        <fragment
+            android:id="@+id/notificationsFragment"
+            android:name="com.test.androiddevelopersexample.ui.fragments.home.NotificationsFragment"
+            tools:layout="@layout/fragment_notifications" />
+        <fragment
+            android:id="@+id/moneyFragment"
+            android:name="com.test.androiddevelopersexample.ui.fragments.home.MoneyFragment"
+            tools:layout="@layout/fragment_money" />
+    </navigation>
 
 </navigation>
