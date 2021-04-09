@@ -19,5 +19,6 @@
     <string name="main">MAIN</string>
     <string name="deeplink">DEEPLINK</string>
     <string name="home">HOME</string>
+    <string name="logout">LOGOUT</string>
 
 </resources>
