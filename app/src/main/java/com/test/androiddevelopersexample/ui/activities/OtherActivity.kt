@@ -15,9 +15,11 @@ class OtherActivity : AppCompatActivity() {
 
         val mainIntent = Intent(this, MainActivity::class.java)
         mainIntent.data = intent.data
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        mainIntent.flags =
+            Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NO_ANIMATION
         startActivity(mainIntent)
         finish()
         overridePendingTransition(0, 0)
     }
+
 }

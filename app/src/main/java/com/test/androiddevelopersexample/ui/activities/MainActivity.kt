@@ -8,6 +8,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -54,12 +55,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        process(navController)
+
+        if (intent?.data != null) {
+            Log.e("Data create", "Data ${intent.data.toString()}")
+        }
+
+        findViewById<BottomNavigationView>(R.id.bottom_nav)
+            .setupWithNavController(navController)
+    }
+
+    private fun process(navController: NavController) {
         //Setup the navGraph for this activity
         val myNavHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragment) as NavHostFragment
 
         val inflater = myNavHostFragment.navController.navInflater
-
 
         val sharedPref = getSharedPreferences(
             getString(R.string.preferences), Context.MODE_PRIVATE
@@ -67,8 +78,7 @@ class MainActivity : AppCompatActivity() {
 
         val isLogged = sharedPref?.getBoolean(getString(R.string.is_logged), false)
 
-        if (intent?.data != null || isLogged == true) {
-            Log.e("Data create", "Data ${intent.data.toString()}")
+        if (isLogged == true) {
             val graph = inflater.inflate(R.navigation.home_navigation_graph)
             navController.graph = graph
             showBottomNavigation = true
@@ -77,9 +87,6 @@ class MainActivity : AppCompatActivity() {
             val graph = inflater.inflate(R.navigation.login_navigation_graph)
             navController.graph = graph
         }
-
-        findViewById<BottomNavigationView>(R.id.bottom_nav)
-            .setupWithNavController(navController)
     }
 
     fun showBottomNavigationMenu(show: Boolean) {

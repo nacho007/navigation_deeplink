@@ -34,18 +34,15 @@
                 <data
                     android:host="money"
                     android:scheme="app" />
-
                 <data
                     android:host="loyalty"
                     android:scheme="app" />
                 <data
                     android:host="more"
                     android:scheme="app" />
-
                 <data
                     android:host="notifications"
                     android:scheme="app" />
-
                 <data
                     android:host="newcard"
                     android:scheme="app" />
