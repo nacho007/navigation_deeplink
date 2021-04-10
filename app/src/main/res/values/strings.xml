@@ -22,5 +22,7 @@
     <string name="login">LOGIN</string>
     <string name="register">REGISTER</string>
     <string name="logout">LOGOUT</string>
+    <string name="preferences">preferences</string>
+    <string name="is_logged">is_logged</string>
 
 </resources>

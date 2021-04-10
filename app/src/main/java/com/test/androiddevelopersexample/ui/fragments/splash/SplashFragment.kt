@@ -1,5 +1,6 @@
 package com.test.androiddevelopersexample.ui.fragments.splash
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +34,16 @@ class SplashFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+        val sharedPref = activity?.getSharedPreferences(
+            getString(R.string.preferences), Context.MODE_PRIVATE
+        )
+
+        val isLogged = sharedPref?.getBoolean(getString(R.string.is_logged), false)
+
+        if (isLogged == true) {
+            findNavController().navigate(R.id.action_splashFragment_to_navigationHome)
+        } else {
+            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+        }
     }
 }

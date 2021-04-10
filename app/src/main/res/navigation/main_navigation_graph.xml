@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_splash">
 
         <action
-            android:id="@+id/action_mainFragment_to_navigationHome"
+            android:id="@+id/action_splashFragment_to_navigationHome"
             app:destination="@id/home_navigation"
             app:popUpTo="@+id/splashFragment"
             app:popUpToInclusive="true" />
@@ -107,6 +107,11 @@
             android:name="com.test.androiddevelopersexample.ui.fragments.register.RegisterFragment"
             android:label="RegisterFragment"
             tools:layout="@layout/fragment_register" />
+        <action
+            android:id="@+id/action_global_home_navigation"
+            app:destination="@id/home_navigation"
+            app:popUpTo="@+id/loginFragment"
+            app:popUpToInclusive="true" />
     </navigation>
 
 </navigation>
