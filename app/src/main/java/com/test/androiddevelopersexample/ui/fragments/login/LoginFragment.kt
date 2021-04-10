@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
+import com.test.androiddevelopersexample.ui.utils.NavGraphHelper
 import kotlinx.android.synthetic.main.fragment_login.*
 
 /**
@@ -28,12 +29,12 @@ class LoginFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn_register.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        btn_login.setOnClickListener {
+            NavGraphHelper.setGraph(requireActivity(), R.navigation.home_navigation_graph)
         }
 
-        btn_login.setOnClickListener {
-            findNavController().navigate(R.id.action_global_home_navigation)
+        btn_register.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
         btn_generate_notification.setOnClickListener {

@@ -31,7 +31,7 @@ object DeepLinkUtils {
 
         val pendingIntent = NavDeepLinkBuilder(context)
             .setComponentName(MainActivity::class.java)
-            .setGraph(R.navigation.main_navigation_graph)
+            .setGraph(R.navigation.home_navigation_graph)
             .setDestination(R.id.loyaltyFragment)
             .setArguments(args)
             .createPendingIntent()

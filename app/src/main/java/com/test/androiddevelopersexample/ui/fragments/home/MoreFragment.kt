@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.ui.activities.MainActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
+import com.test.androiddevelopersexample.ui.utils.NavGraphHelper
 import kotlinx.android.synthetic.main.fragment_more.*
 
 /**
@@ -41,11 +41,8 @@ class MoreFragment : FragmentBase() {
 
             sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), false)?.apply()
 
-            if (activity?.intent?.data != null) {
-                findNavController().navigate(R.id.action_moreFragment_to_mainFragment2)
-            } else {
-                findNavController().navigate(R.id.action_moreFragment_to_mainFragment)
-            }
+            (activity as MainActivity).showBottomNavigationMenu(false)
+            NavGraphHelper.setGraph(requireActivity(), R.navigation.login_navigation_graph)
         }
     }
 

@@ -23,7 +23,7 @@ open class FragmentBase : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.e("onCreateView", screenTag)
+//        Log.e("onCreateView", screenTag)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
