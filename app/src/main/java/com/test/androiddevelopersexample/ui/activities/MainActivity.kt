@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if (!isTaskRoot) finish()
+
         showBottomNavigationMenu(showBottomNavigation)
 
         val navController = findNavController(R.id.fragment)
@@ -55,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             .setupWithNavController(navController)
 
         if (intent?.data != null) {
-            Log.e("Data", "Data ${intent.data.toString()}")
+            Log.e("Data create", "Data ${intent.data.toString()}")
         }
     }
 
@@ -68,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         super.onNewIntent(intent)
 
         if (intent?.data != null) {
-            Log.e("Data", "Data ${intent.data.toString()}")
+            Log.e("Data new intent", "Data ${intent.data.toString()}")
         }
     }
 

@@ -2,6 +2,7 @@ package com.test.androiddevelopersexample.ui.fragments.splash
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,20 +31,25 @@ class SplashFragment : FragmentBase() {
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sharedPref = activity?.getSharedPreferences(
-            getString(R.string.preferences), Context.MODE_PRIVATE
-        )
+        //TODO detect if coming from deeplink and if has backstack
 
-        val isLogged = sharedPref?.getBoolean(getString(R.string.is_logged), false)
+        if (activity?.intent?.data.toString().contains("app://").not()) {
+            Log.e("Entering", "true")
 
-        if (isLogged == true) {
-            findNavController().navigate(R.id.action_splashFragment_to_navigationHome)
-        } else {
-            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+            val sharedPref = activity?.getSharedPreferences(
+                getString(R.string.preferences), Context.MODE_PRIVATE
+            )
+
+            val isLogged = sharedPref?.getBoolean(getString(R.string.is_logged), false)
+
+            if (isLogged == true) {
+                findNavController().navigate(R.id.action_splashFragment_to_navigationHome)
+            } else {
+                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+            }
         }
     }
 }
