@@ -71,6 +71,8 @@ class MainActivity : AppCompatActivity() {
             Log.e("Data create", "Data ${intent.data.toString()}")
             val graph = inflater.inflate(R.navigation.home_navigation_graph)
             navController.graph = graph
+            showBottomNavigation = true
+            showBottomNavigationMenu(showBottomNavigation)
         } else {
             val graph = inflater.inflate(R.navigation.login_navigation_graph)
             navController.graph = graph

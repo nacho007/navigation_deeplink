@@ -21,7 +21,14 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter android:label="deeplinks">
+
+        </activity>
+
+        <activity
+            android:name=".ui.activities.OtherActivity"
+            android:launchMode="singleTop">
+
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <data
@@ -47,6 +54,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
             </intent-filter>
+
         </activity>
 
     </application>
