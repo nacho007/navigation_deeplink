@@ -8,11 +8,16 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.splash.SplashFragment"
-        tools:layout="@layout/fragment_main">
+        tools:layout="@layout/fragment_splash">
 
         <action
             android:id="@+id/action_mainFragment_to_navigationHome"
             app:destination="@id/home_navigation"
+            app:popUpTo="@+id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/login_navigation"
             app:popUpTo="@+id/splashFragment"
             app:popUpToInclusive="true" />
 
@@ -84,6 +89,24 @@
                 android:id="@+id/deepLink3"
                 app:uri="app://money" />
         </fragment>
+    </navigation>
+    <navigation
+        android:id="@+id/login_navigation"
+        app:startDestination="@id/loginFragment">
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.test.androiddevelopersexample.ui.fragments.login.LoginFragment"
+            android:label="LoginFragment"
+            tools:layout="@layout/fragment_login">
+            <action
+                android:id="@+id/action_loginFragment_to_registerFragment"
+                app:destination="@id/registerFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/registerFragment"
+            android:name="com.test.androiddevelopersexample.ui.fragments.register.RegisterFragment"
+            android:label="RegisterFragment"
+            tools:layout="@layout/fragment_register" />
     </navigation>
 
 </navigation>

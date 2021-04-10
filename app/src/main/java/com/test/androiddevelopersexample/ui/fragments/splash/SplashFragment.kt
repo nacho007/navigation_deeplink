@@ -1,13 +1,13 @@
 package com.test.androiddevelopersexample.ui.fragments.splash
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.ui.activities.MainActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
-import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
-import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
  * Created by ignaciodeandreisdenis on 4/8/21.
@@ -26,17 +26,13 @@ class SplashFragment : FragmentBase() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_splash, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        btn_go_home.setOnClickListener {
-//            findNavController().navigate(R.id.action_mainFragment_to_navigationHome)
-//        }
-//
-//        btn_generate_notification.setOnClickListener {
-//            DeepLinkUtils.createNotification(requireContext(), "Title", "Body")
-//        }
+
+        findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
     }
 }

@@ -20,6 +20,7 @@
     <string name="deeplink">DEEPLINK</string>
     <string name="home">HOME</string>
     <string name="login">LOGIN</string>
+    <string name="register">REGISTER</string>
     <string name="logout">LOGOUT</string>
 
 </resources>
