@@ -14,6 +14,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.test.androiddevelopersexample.R
+import com.test.androiddevelopersexample.ui.utils.NavGraphHelper
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        Log.e("onCreate", "MainActivity")
 
         showBottomNavigationMenu(showBottomNavigation)
 
@@ -79,13 +82,17 @@ class MainActivity : AppCompatActivity() {
         val isLogged = sharedPref?.getBoolean(getString(R.string.is_logged), false)
 
         if (isLogged == true) {
-            val graph = inflater.inflate(R.navigation.home_navigation_graph)
-            navController.graph = graph
+            NavGraphHelper.setGraph(
+                this,
+                R.navigation.home_navigation_graph
+            )
             showBottomNavigation = true
             showBottomNavigationMenu(showBottomNavigation)
         } else {
-            val graph = inflater.inflate(R.navigation.login_navigation_graph)
-            navController.graph = graph
+            NavGraphHelper.setGraph(
+                this,
+                R.navigation.login_navigation_graph
+            )
         }
     }
 

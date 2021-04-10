@@ -12,6 +12,9 @@ import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
 import com.test.androiddevelopersexample.ui.utils.NavGraphHelper
 import kotlinx.android.synthetic.main.fragment_login.*
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by ignaciodeandreisdenis on 4/10/21.
@@ -40,7 +43,10 @@ class LoginFragment : FragmentBase() {
 
             sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), true)?.apply()
 
-            NavGraphHelper.setGraph(requireActivity(), R.navigation.home_navigation_graph)
+            NavGraphHelper.setGraph(
+                requireActivity(),
+                R.navigation.home_navigation_graph
+            )
         }
 
         btn_register.setOnClickListener {
@@ -48,7 +54,10 @@ class LoginFragment : FragmentBase() {
         }
 
         btn_generate_notification.setOnClickListener {
-            DeepLinkUtils.createNotification(requireContext(), "Title", "Body")
+            val executor: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
+            executor.schedule({
+                DeepLinkUtils.createNotification(requireContext(), "Title", "Body")
+            }, 2000.toLong(), TimeUnit.MILLISECONDS)
         }
 
     }

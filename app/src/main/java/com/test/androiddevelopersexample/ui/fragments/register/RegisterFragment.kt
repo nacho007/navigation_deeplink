@@ -37,7 +37,10 @@ class RegisterFragment : FragmentBase() {
             )
 
             sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), true)?.apply()
-            NavGraphHelper.setGraph(requireActivity(), R.navigation.home_navigation_graph)
+            NavGraphHelper.setGraph(
+                requireActivity(),
+                R.navigation.home_navigation_graph
+            )
         }
     }
 }
