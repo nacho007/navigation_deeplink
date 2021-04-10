@@ -1,5 +1,6 @@
 package com.test.androiddevelopersexample.ui.fragments.home.new_card
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,12 @@ class NewCardFragment : FragmentBase() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity as MainActivity).showBottomNavigationMenu(true)
+
+        val sharedPref = activity?.getSharedPreferences(
+            getString(R.string.preferences), Context.MODE_PRIVATE
+        )
+
+        sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), true)?.apply()
     }
 
     override fun onCreateView(

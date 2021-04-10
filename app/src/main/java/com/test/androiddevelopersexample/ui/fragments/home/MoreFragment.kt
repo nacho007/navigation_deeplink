@@ -1,5 +1,6 @@
 package com.test.androiddevelopersexample.ui.fragments.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +35,11 @@ class MoreFragment : FragmentBase() {
         }
 
         btn_logout.setOnClickListener {
+            val sharedPref = activity?.getSharedPreferences(
+                getString(R.string.preferences), Context.MODE_PRIVATE
+            )
+
+            sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), false)?.apply()
             findNavController().navigate(R.id.action_moreFragment_to_mainFragment)
         }
     }
