@@ -46,7 +46,7 @@ class NewCardFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         button.setOnClickListener {
-            findNavController().navigate(R.id.action_loyaltyFragment_to_checkoutFragment2)
+            findNavController().navigate(R.id.action_newCardFragment_to_checkoutFragment2)
         }
     }
 }

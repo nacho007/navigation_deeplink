@@ -32,5 +32,14 @@ open class FragmentBase : Fragment() {
         Log.e("onDestroy", screenTag)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+//        Log.e("onDestroyView", screenTag)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+//        Log.e("onDetach", screenTag)
+    }
 
 }

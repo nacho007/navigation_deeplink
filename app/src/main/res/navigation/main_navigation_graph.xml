@@ -13,13 +13,11 @@
         <action
             android:id="@+id/action_splashFragment_to_navigationHome"
             app:destination="@id/home_navigation"
-            app:launchSingleTop="true"
             app:popUpTo="@+id/splashFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/login_navigation"
-            app:launchSingleTop="true"
             app:popUpTo="@+id/splashFragment"
             app:popUpToInclusive="true" />
 
@@ -62,6 +60,12 @@
                 android:id="@+id/action_moreFragment_to_mainFragment"
                 app:destination="@id/main_navigation_graph"
                 app:popUpTo="@+id/newCardFragment"
+                app:popUpToInclusive="true" />
+
+            <action
+                android:id="@+id/action_moreFragment_to_mainFragment2"
+                app:destination="@id/main_navigation_graph"
+                app:popUpTo="@+id/splashFragment"
                 app:popUpToInclusive="true" />
         </fragment>
         <fragment

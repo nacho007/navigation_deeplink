@@ -40,7 +40,12 @@ class MoreFragment : FragmentBase() {
             )
 
             sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), false)?.apply()
-            findNavController().navigate(R.id.action_moreFragment_to_mainFragment)
+
+            if (activity?.intent?.data != null) {
+                findNavController().navigate(R.id.action_moreFragment_to_mainFragment2)
+            } else {
+                findNavController().navigate(R.id.action_moreFragment_to_mainFragment)
+            }
         }
     }
 

@@ -34,22 +34,19 @@ class SplashFragment : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO detect if coming from deeplink and if has backstack
+        Log.e("Conditional", "Resolving...")
 
-        if (activity?.intent?.data.toString().contains("app://").not()) {
-            Log.e("Entering", "true")
+        val sharedPref = activity?.getSharedPreferences(
+            getString(R.string.preferences), Context.MODE_PRIVATE
+        )
 
-            val sharedPref = activity?.getSharedPreferences(
-                getString(R.string.preferences), Context.MODE_PRIVATE
-            )
+        val isLogged = sharedPref?.getBoolean(getString(R.string.is_logged), false)
 
-            val isLogged = sharedPref?.getBoolean(getString(R.string.is_logged), false)
-
-            if (isLogged == true) {
-                findNavController().navigate(R.id.action_splashFragment_to_navigationHome)
-            } else {
-                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
-            }
+        if (isLogged == true) {
+            findNavController().navigate(R.id.action_splashFragment_to_navigationHome)
+        } else {
+            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
         }
     }
+
 }
