@@ -3,22 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.main.MainFragment"
+        android:id="@+id/splashFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.splash.SplashFragment"
         tools:layout="@layout/fragment_main">
 
         <action
             android:id="@+id/action_mainFragment_to_navigationHome"
             app:destination="@id/home_navigation"
-            app:popUpTo="@+id/mainFragment"
+            app:popUpTo="@+id/splashFragment"
             app:popUpToInclusive="true" />
 
     </fragment>
-
-    <include app:graph="@navigation/splash_navigation_graph" />
 
     <navigation
         android:id="@+id/home_navigation"

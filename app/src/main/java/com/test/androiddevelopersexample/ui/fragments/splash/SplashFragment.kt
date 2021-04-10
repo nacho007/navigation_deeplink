@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.main
+package com.test.androiddevelopersexample.ui.fragments.splash
 
 import android.os.Bundle
 import android.view.*
@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 /**
  * Created by ignaciodeandreisdenis on 4/8/21.
  */
-class MainFragment : FragmentBase() {
+class SplashFragment : FragmentBase() {
 
     override var screenTag = "MainFragment"
 
@@ -31,12 +31,12 @@ class MainFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btn_go_home.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_navigationHome)
-        }
-
-        btn_generate_notification.setOnClickListener {
-            DeepLinkUtils.createNotification(requireContext(), "Title", "Body")
-        }
+//        btn_go_home.setOnClickListener {
+//            findNavController().navigate(R.id.action_mainFragment_to_navigationHome)
+//        }
+//
+//        btn_generate_notification.setOnClickListener {
+//            DeepLinkUtils.createNotification(requireContext(), "Title", "Body")
+//        }
     }
 }
