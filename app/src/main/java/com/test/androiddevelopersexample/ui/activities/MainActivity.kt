@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -21,15 +20,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 /**
  * Created by ignaciodeandreisdenis on 4/8/21.
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+
+    override var screenTag = "MainActivity"
 
     var showBottomNavigation: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        Log.e("onCreate", "MainActivity")
 
         showBottomNavigationMenu(showBottomNavigation)
 
@@ -105,7 +104,6 @@ class MainActivity : AppCompatActivity() {
         super.onNewIntent(intent)
 
         if (intent?.data != null) {
-            Log.e("Data new intent", "Data ${intent.data.toString()}")
             findNavController(R.id.fragment).handleDeepLink(intent)
         }
     }

@@ -2,16 +2,16 @@ package com.test.androiddevelopersexample.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 
 /**
  * Created by ignaciodeandreisdenis on 4/10/21.
  */
-class OtherActivity : AppCompatActivity() {
+class OtherActivity : BaseActivity() {
+
+    override var screenTag = "OtherActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.e("onCreate", "OtherActivity")
 
         val mainIntent = Intent(this, MainActivity::class.java)
         mainIntent.data = intent.data
