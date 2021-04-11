@@ -14,5 +14,4 @@ class AstroCoinsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_astro_coins)
     }
-
 }

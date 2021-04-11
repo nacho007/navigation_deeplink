@@ -12,7 +12,7 @@ import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
  */
 class AstroCoinsFragment : FragmentBase() {
 
-    override var screenTag = "LoginFragment"
+    override var screenTag = "AstroCoinsFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

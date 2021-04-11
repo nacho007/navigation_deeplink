@@ -72,4 +72,10 @@
             android:id="@+id/deepLinkCheckout"
             app:uri="app://checkout?id={id}" />
     </fragment>
+
+    <activity
+        android:id="@+id/activityAstroCoins"
+        android:name="com.test.androiddevelopersexample.ui.activities.AstroCoinsActivity"
+        android:label="ActivityAStroCoins"
+        tools:layout="@layout/activity_astro_coins"/>
 </navigation>

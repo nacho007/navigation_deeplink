@@ -1,11 +1,15 @@
 package com.test.androiddevelopersexample.ui.fragments.home
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.test.androiddevelopersexample.R
+import com.test.androiddevelopersexample.ui.activities.AstroCoinsActivity
 import com.test.androiddevelopersexample.ui.activities.MainActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
@@ -38,6 +42,11 @@ class MoreFragment : FragmentBase() {
             (activity as MainActivity).createBadges(R.id.loyaltyFragment, 3)
         }
 
+        btn_astro_coins.setOnClickListener {
+            val intent = Intent(activity, AstroCoinsActivity::class.java)
+            startActivityForResult(intent, 666)
+        }
+
         btn_generate_notifications.setOnClickListener {
             val executor: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
             executor.schedule({
@@ -57,6 +66,14 @@ class MoreFragment : FragmentBase() {
                 requireActivity(),
                 R.navigation.login_navigation_graph
             )
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK && requestCode == 666) {
+            Log.e(screenTag, "onActivityResult")
         }
     }
 
