@@ -68,5 +68,8 @@
             android:name="id"
             app:argType="integer"
             app:nullable="false" />
+        <deepLink
+            android:id="@+id/deepLinkCheckout"
+            app:uri="app://checkout?id={id}" />
     </fragment>
 </navigation>

@@ -13,8 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".ui.activities.MainActivity">
+        <activity android:name=".ui.activities.MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,26 +22,28 @@
 
         </activity>
 
-        <activity
-            android:name=".ui.activities.OtherActivity">
+        <activity android:name=".ui.activities.OtherActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <data
-                    android:host="money"
+                    android:host="newcard"
                     android:scheme="app" />
                 <data
                     android:host="loyalty"
                     android:scheme="app" />
                 <data
-                    android:host="more"
+                    android:host="money"
                     android:scheme="app" />
                 <data
                     android:host="notifications"
                     android:scheme="app" />
                 <data
-                    android:host="newcard"
+                    android:host="more"
+                    android:scheme="app" />
+                <data
+                    android:host="checkout"
                     android:scheme="app" />
 
                 <category android:name="android.intent.category.DEFAULT" />
