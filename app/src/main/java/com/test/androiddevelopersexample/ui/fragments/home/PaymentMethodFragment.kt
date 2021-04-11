@@ -28,11 +28,11 @@ class PaymentMethodFragment : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        button.setOnClickListener {
-            val action =
-                PaymentMethodFragmentDirections.actionPaymentMethodFragmentToCheckoutFragment(55)
-            findNavController().navigate(action)
-        }
+//        button.setOnClickListener {
+//            val action =
+//                PaymentMethodFragmentDirections.actionPaymentMethodFragmentToCheckoutFragment(55)
+//            findNavController().navigate(action)
+//        }
     }
 
 }

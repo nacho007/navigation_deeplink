@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
@@ -13,6 +13,9 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+
+        android.buildFeatures.dataBinding true
+        android.buildFeatures.viewBinding true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

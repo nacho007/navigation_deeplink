@@ -30,4 +30,15 @@
     <color name="color_24">#9E9E9E</color>
     <color name="color_25">#607D8B</color>
     <color name="color_26">#000000</color>
+
+    <color name="color_black">#000000</color>
+    <color name="color_light_gray">#c9c9c9</color>
+    <color name="color_dark_gray">#848E94</color>
+    <color name="color_gray_opaque">#EBEBEB</color>
+
+    <color name="color_toolbar_text">@color/color_black</color>
+    <color name="color_toolbar_hint">@color/color_light_gray</color>
+    <color name="color_toolbar_highlighted">@color/color_dark_gray</color>
+    <color name="color_toolbar_background">@color/color_gray_opaque</color>
+
 </resources>
