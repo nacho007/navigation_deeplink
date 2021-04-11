@@ -3,7 +3,6 @@ package com.test.androiddevelopersexample.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import com.test.androiddevelopersexample.databinding.ActivityDeepLinkBinding
-import com.test.androiddevelopersexample.databinding.ActivityMainBinding
 
 /**
  * Created by ignaciodeandreisdenis on 4/10/21.
