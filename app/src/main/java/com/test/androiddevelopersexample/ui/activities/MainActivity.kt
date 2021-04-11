@@ -15,6 +15,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.ui.utils.NavGraphHelper
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -57,8 +60,6 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        process(navController)
-
         if (intent?.data != null) {
             Log.e("Data create", "Data ${intent.data.toString()}")
         }
@@ -67,13 +68,7 @@ class MainActivity : BaseActivity() {
             .setupWithNavController(navController)
     }
 
-    private fun process(navController: NavController) {
-        //Setup the navGraph for this activity
-        val myNavHostFragment = supportFragmentManager
-            .findFragmentById(R.id.fragment) as NavHostFragment
-
-        val inflater = myNavHostFragment.navController.navInflater
-
+    fun process() {
         val sharedPref = getSharedPreferences(
             getString(R.string.preferences), Context.MODE_PRIVATE
         )
