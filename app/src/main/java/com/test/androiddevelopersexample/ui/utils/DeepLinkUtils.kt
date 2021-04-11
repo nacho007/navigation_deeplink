@@ -27,12 +27,12 @@ object DeepLinkUtils {
         val notificationId = getRandomNumber()
 
         val args = Bundle()
-        args.putString("arg", "MyArg")
+        args.putInt("id", 7)
 
         val pendingIntent = NavDeepLinkBuilder(context)
             .setComponentName(MainActivity::class.java)
             .setGraph(R.navigation.home_navigation_graph)
-            .setDestination(R.id.loyaltyFragment)
+            .setDestination(R.id.checkoutFragment)
             .setArguments(args)
             .createPendingIntent()
 
