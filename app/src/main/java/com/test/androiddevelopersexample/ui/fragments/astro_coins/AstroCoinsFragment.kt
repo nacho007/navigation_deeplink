@@ -1,8 +1,8 @@
 package com.test.androiddevelopersexample.ui.fragments.astro_coins
 
 import android.os.Bundle
+import android.view.View
 import com.test.androiddevelopersexample.databinding.FragmentAstroCoinsBinding
-import com.test.androiddevelopersexample.ui.activities.MainActivity
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 
 /**
@@ -13,8 +13,11 @@ class AstroCoinsFragment : BaseFragment<FragmentAstroCoinsBinding>() {
     override var screenTag = "AstroCoinsFragment"
     override val binding by lazy { FragmentAstroCoinsBinding.inflate(layoutInflater) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (activity as MainActivity).showBottomNavigationMenu(false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.apply {
+            setNavigation(ablToolbar.toolbar)
+        }
     }
 }

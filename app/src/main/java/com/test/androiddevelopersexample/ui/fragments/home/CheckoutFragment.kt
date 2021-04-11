@@ -22,7 +22,10 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tvId.text = "Id: " + args.id
+        binding.apply {
+            setNavigation(ablToolbar.toolbar)
+            tvId.text = "Id: " + args.id
+        }
     }
 
 }

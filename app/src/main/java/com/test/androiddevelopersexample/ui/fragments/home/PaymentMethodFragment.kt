@@ -18,10 +18,14 @@ class PaymentMethodFragment : BaseFragment<FragmentPaymentMethodBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnPaymentMethods.setOnClickListener {
-            val action =
-                PaymentMethodFragmentDirections.actionPaymentMethodFragmentToCheckoutFragment(55)
-            findNavController().navigate(action)
+
+        binding.apply {
+            setNavigation(ablToolbar.toolbar)
+            btnPaymentMethods.setOnClickListener {
+                val action =
+                    PaymentMethodFragmentDirections.actionPaymentMethodFragmentToCheckoutFragment(55)
+                findNavController().navigate(action)
+            }
         }
     }
 
