@@ -14,7 +14,7 @@ class PaymentMethodFragment : BaseFragment<FragmentPaymentMethodBinding>() {
     override var screenTag = "PaymentMethodFragment"
     override val binding by lazy { FragmentPaymentMethodBinding.inflate(layoutInflater) }
 
-    override var showBottomNavigation = true
+    override var showBottomNavigation = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

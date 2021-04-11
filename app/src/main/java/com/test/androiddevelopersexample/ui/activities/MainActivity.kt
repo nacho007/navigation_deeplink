@@ -56,6 +56,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         if (intent?.data != null) {
             Log.e("Data create", "Data ${intent.data.toString()}")
+
         }
 
         binding.bottomNav.setupWithNavController(navController)

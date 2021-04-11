@@ -15,7 +15,7 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>() {
     override var screenTag = "CheckoutFragment"
     override val binding by lazy { FragmentCheckoutBinding.inflate(layoutInflater) }
 
-    override var showBottomNavigation = true
+    override var showBottomNavigation = false
 
     private val args: CheckoutFragmentArgs by navArgs()
 
