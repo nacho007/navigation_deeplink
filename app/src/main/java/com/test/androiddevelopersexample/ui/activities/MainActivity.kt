@@ -22,6 +22,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     var showBottomNavigation: Boolean = false
     override val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    var deepLink = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +57,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         if (intent?.data != null) {
             Log.e("Data create", "Data ${intent.data.toString()}")
-
+            deepLink = true
         }
 
         binding.bottomNav.setupWithNavController(navController)
@@ -74,8 +75,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 this,
                 R.navigation.home_navigation_graph
             )
-            showBottomNavigation = true
-            showBottomNavigationMenu(showBottomNavigation)
         } else {
             NavGraphHelper.setGraph(
                 this,

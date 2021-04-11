@@ -22,6 +22,7 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     open var screenTag = "BaseFragment"
     protected abstract val binding: T?
     open var showBottomNavigation = false
+    var fromDeepLink = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +51,9 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     fun setNavigation(toolbar: Toolbar, fragmentId: Int) {
         toolbar.setNavigationIcon(R.drawable.svg_back_arrow)
         toolbar.setNavigationOnClickListener { view ->
-            if (activity?.intent?.data != null) {
+
+            if ((activity as MainActivity).deepLink) {
+                (activity as MainActivity).deepLink = false
                 val navOptions = NavOptions.Builder()
                     .setPopUpTo(fragmentId, true)
                     .build()
