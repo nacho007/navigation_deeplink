@@ -1,26 +1,16 @@
 package com.test.androiddevelopersexample.ui.fragments.home
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
+import com.test.androiddevelopersexample.databinding.FragmentLoyaltyBinding
+import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 
 /**
  * Created by ignaciodeandreisdenis on 4/7/21.
  */
-class LoyaltyFragment : FragmentBase() {
+class LoyaltyFragment : BaseFragment<FragmentLoyaltyBinding>() {
 
     override var screenTag = "LoyaltyFragment"
+    override val binding by lazy { FragmentLoyaltyBinding.inflate(layoutInflater) }
 
     override var showBottomNavigation = true
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment_loyalty, container, false)
-    }
 }

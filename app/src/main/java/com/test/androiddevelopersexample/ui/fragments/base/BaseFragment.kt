@@ -6,14 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 import com.test.androiddevelopersexample.ui.activities.MainActivity
 
 /**
  * Created by ignaciodeandreisdenis on 7/24/20.
  */
-open class FragmentBase : Fragment() {
+abstract class BaseFragment<T : ViewBinding> : Fragment() {
 
-    open var screenTag = "FragmentBase"
+    open var screenTag = "BaseFragment"
+    protected abstract val binding: T?
     open var showBottomNavigation = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +29,7 @@ open class FragmentBase : Fragment() {
     ): View? {
         Log.e(screenTag, "onCreateView")
         (activity as MainActivity).showBottomNavigationMenu(showBottomNavigation)
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return binding?.root
     }
 
     override fun onDestroy() {

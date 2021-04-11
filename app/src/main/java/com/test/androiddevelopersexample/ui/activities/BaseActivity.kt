@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
 
 /**
  * Created by ignaciodeandreisdenis on 4/11/21.
  */
-open class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
+    protected abstract val binding: T
     open var screenTag = "BaseActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {

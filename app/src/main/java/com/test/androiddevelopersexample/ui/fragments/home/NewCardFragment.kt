@@ -1,30 +1,23 @@
 package com.test.androiddevelopersexample.ui.fragments.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentNewCardBinding
-import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
+import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 
-class NewCardFragment : FragmentBase() {
+class NewCardFragment : BaseFragment<FragmentNewCardBinding>() {
 
     override var screenTag = "NewCardFragment"
+    override val binding by lazy { FragmentNewCardBinding.inflate(layoutInflater) }
 
     override var showBottomNavigation = true
 
-    val binding by lazy { FragmentNewCardBinding.inflate(layoutInflater) }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment_new_card, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.btnNewCard.setOnClickListener {
+            findNavController().navigate(R.id.action_newCardFragment_to_paymentMethodFragment)
+        }
     }
 }

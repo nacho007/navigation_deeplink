@@ -9,12 +9,12 @@ object NavGraphHelper {
 
     fun setGraph(activity: FragmentActivity?, graphId: Int) {
         val myNavHostFragment = activity?.supportFragmentManager
-            ?.findFragmentById(R.id.fragment) as NavHostFragment
+            ?.findFragmentById(R.id.fragmentNavHost) as NavHostFragment
 
         val inflater = myNavHostFragment.navController.navInflater
 
         val graph = inflater.inflate(graphId)
-        val navController = activity.findNavController(R.id.fragment)
+        val navController = activity.findNavController(R.id.fragmentNavHost)
         navController.graph = graph
     }
 }

@@ -2,16 +2,14 @@ package com.test.androiddevelopersexample.ui.fragments.home
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
+import com.test.androiddevelopersexample.databinding.FragmentMoreBinding
 import com.test.androiddevelopersexample.ui.activities.MainActivity
-import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
+import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
 import com.test.androiddevelopersexample.ui.utils.NavGraphHelper
-import kotlinx.android.synthetic.main.fragment_more.*
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
@@ -19,43 +17,36 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by ignaciodeandreisdenis on 4/7/21.
  */
-class MoreFragment : FragmentBase() {
+class MoreFragment : BaseFragment<FragmentMoreBinding>() {
 
     override var screenTag = "MoreFragment"
+    override val binding by lazy { FragmentMoreBinding.inflate(layoutInflater) }
 
     override var showBottomNavigation = true
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment_more, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn_generate_badge.setOnClickListener {
+        binding.btnGenerateBadge.setOnClickListener {
             (activity as MainActivity).createBadges(R.id.newCardFragment, 2)
             (activity as MainActivity).createBadges(R.id.loyaltyFragment, 3)
         }
 
-        btn_astro_coins.setOnClickListener {
+        binding.btnAstroCoins.setOnClickListener {
             findNavController().navigate(R.id.action_moreFragment_to_astroCoinsFragment)
 
 //            val intent = Intent(activity, AstroCoinsActivity::class.java)
 //            startActivityForResult(intent, 666)
         }
 
-        btn_generate_notifications.setOnClickListener {
+        binding.btnGenerateNotifications.setOnClickListener {
             val executor: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
             executor.schedule({
                 DeepLinkUtils.createNotification(requireContext(), "Title", "Body")
             }, 2000.toLong(), TimeUnit.MILLISECONDS)
         }
 
-        btn_logout.setOnClickListener {
+        binding.btnLogout.setOnClickListener {
             val sharedPref = activity?.getSharedPreferences(
                 getString(R.string.preferences), Context.MODE_PRIVATE
             )

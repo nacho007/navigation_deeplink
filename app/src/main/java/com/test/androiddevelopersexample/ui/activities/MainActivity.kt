@@ -1,7 +1,6 @@
 package com.test.androiddevelopersexample.ui.activities
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View.GONE
@@ -9,28 +8,28 @@ import android.view.View.VISIBLE
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.test.androiddevelopersexample.R
+import com.test.androiddevelopersexample.databinding.ActivityMainBinding
 import com.test.androiddevelopersexample.ui.utils.NavGraphHelper
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 /**
  * Created by ignaciodeandreisdenis on 4/8/21.
  */
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override var screenTag = "MainActivity"
 
     var showBottomNavigation: Boolean = false
+    override val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
         showBottomNavigationMenu(showBottomNavigation)
 
-        val navController = findNavController(R.id.fragment)
+        val navController = findNavController(R.id.fragmentNavHost)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -59,8 +58,7 @@ class MainActivity : BaseActivity() {
             Log.e("Data create", "Data ${intent.data.toString()}")
         }
 
-        findViewById<BottomNavigationView>(R.id.bottom_nav)
-            .setupWithNavController(navController)
+        binding.bottomNav.setupWithNavController(navController)
     }
 
     fun process() {
@@ -87,23 +85,14 @@ class MainActivity : BaseActivity() {
 
     fun showBottomNavigationMenu(show: Boolean) {
         showBottomNavigation = show
-        bottom_nav?.visibility = VISIBLE.takeIf { show } ?: GONE
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-
-        if (intent?.data != null) {
-            findNavController(R.id.fragment).handleDeepLink(intent)
-        }
+        binding.bottomNav.visibility = VISIBLE.takeIf { show } ?: GONE
     }
 
     fun createBadges(id: Int, quantity: Int, visible: Boolean = true) {
-        val badge = bottom_nav.getOrCreateBadge(id)
+        val badge = binding.bottomNav.getOrCreateBadge(id)
         badge.isVisible = visible
         badge.backgroundColor = ContextCompat.getColor(this, R.color.color_2)
         badge.badgeTextColor = ContextCompat.getColor(this, R.color.color_white)
         badge.number = quantity
     }
-
 }

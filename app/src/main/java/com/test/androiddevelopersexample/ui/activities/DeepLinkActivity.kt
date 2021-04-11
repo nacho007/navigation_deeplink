@@ -2,13 +2,20 @@ package com.test.androiddevelopersexample.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import com.test.androiddevelopersexample.databinding.ActivityDeepLinkBinding
+import com.test.androiddevelopersexample.databinding.ActivityMainBinding
 
 /**
  * Created by ignaciodeandreisdenis on 4/10/21.
  */
-class DeepLinkActivity : BaseActivity() {
+class DeepLinkActivity : BaseActivity<ActivityDeepLinkBinding>() {
 
     override var screenTag = "DeepLinkActivity"
+    override val binding: ActivityDeepLinkBinding by lazy {
+        ActivityDeepLinkBinding.inflate(
+            layoutInflater
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
