@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/astro_coins_navigation_graph"
+    app:startDestination="@id/astroCoinsFragment">
+
+    <fragment
+        android:id="@+id/astroCoinsFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.astro_coins.AstroCoinsFragment"
+        android:label="AstroCoinsFragment"
+        tools:layout="@layout/fragment_astro_coins" />
+</navigation>

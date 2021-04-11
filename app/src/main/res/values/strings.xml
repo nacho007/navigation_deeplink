@@ -24,5 +24,6 @@
     <string name="logout">LOGOUT</string>
     <string name="preferences">preferences</string>
     <string name="is_logged">is_logged</string>
+    <string name="astro_coins">ASTROCOINS</string>
 
 </resources>

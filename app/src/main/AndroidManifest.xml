@@ -22,7 +22,7 @@
 
         </activity>
 
-        <activity android:name=".ui.activities.OtherActivity">
+        <activity android:name=".ui.activities.DeepLinkActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

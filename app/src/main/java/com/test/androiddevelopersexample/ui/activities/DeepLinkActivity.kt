@@ -6,7 +6,7 @@ import android.os.Bundle
 /**
  * Created by ignaciodeandreisdenis on 4/10/21.
  */
-class OtherActivity : BaseActivity() {
+class DeepLinkActivity : BaseActivity() {
 
     override var screenTag = "OtherActivity"
 
