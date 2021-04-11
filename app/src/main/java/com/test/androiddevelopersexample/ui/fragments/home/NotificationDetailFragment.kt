@@ -3,6 +3,7 @@ package com.test.androiddevelopersexample.ui.fragments.home
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentNotificationDetailBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
@@ -21,10 +22,10 @@ class NotificationDetailFragment : BaseFragment<FragmentNotificationDetailBindin
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            setNavigation(ablToolbar.toolbar)
+            setNavigation(ablToolbar.toolbar, R.id.notificationsFragment)
 
             tvNotifications.setOnClickListener {
-                findNavController().navigate(DeepLinkUtils.deepLinkLoyalty())
+                findNavController().navigate(DeepLinkUtils.createDeepLink("app://checkout?id=909"))
             }
         }
     }

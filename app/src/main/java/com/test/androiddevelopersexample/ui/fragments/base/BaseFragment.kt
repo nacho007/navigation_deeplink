@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.viewbinding.ViewBinding
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.ui.activities.MainActivity
+
 
 /**
  * Created by ignaciodeandreisdenis on 7/24/20.
@@ -45,10 +47,17 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         Log.e(screenTag, "onDestroyView")
     }
 
-    fun setNavigation(toolbar: Toolbar) {
+    fun setNavigation(toolbar: Toolbar, fragmentId: Int) {
         toolbar.setNavigationIcon(R.drawable.svg_back_arrow)
         toolbar.setNavigationOnClickListener { view ->
-            view.findNavController().navigateUp()
+            if (activity?.intent?.data != null) {
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(fragmentId, true)
+                    .build()
+                view.findNavController().navigate(R.id.newCardFragment, null, navOptions)
+            } else {
+                view.findNavController().navigateUp()
+            }
         }
     }
 }

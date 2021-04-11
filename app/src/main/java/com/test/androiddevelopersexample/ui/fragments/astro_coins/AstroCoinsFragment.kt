@@ -2,6 +2,7 @@ package com.test.androiddevelopersexample.ui.fragments.astro_coins
 
 import android.os.Bundle
 import android.view.View
+import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentAstroCoinsBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 
@@ -17,7 +18,7 @@ class AstroCoinsFragment : BaseFragment<FragmentAstroCoinsBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            setNavigation(ablToolbar.toolbar)
+            setNavigation(ablToolbar.toolbar, R.id.astroCoinsFragment)
         }
     }
 }

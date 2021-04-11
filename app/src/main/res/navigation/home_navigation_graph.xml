@@ -14,10 +14,10 @@
         <action
             android:id="@+id/action_newCardFragment_to_paymentMethodFragment"
             app:destination="@id/paymentMethodFragment"
-            app:enterAnim="@anim/slide_in_right_animation"
-            app:exitAnim="@anim/slide_out_left_animation"
-            app:popEnterAnim="@anim/slide_in_left_animation"
-            app:popExitAnim="@anim/slide_out_right_animation" />
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit" />
     </fragment>
     <fragment
         android:id="@+id/loyaltyFragment"
@@ -47,10 +47,10 @@
         <action
             android:id="@+id/action_notificationsFragment_to_notificationDetailFragment"
             app:destination="@id/notificationDetailFragment"
-            app:enterAnim="@anim/slide_in_right_animation"
-            app:exitAnim="@anim/slide_out_left_animation"
-            app:popEnterAnim="@anim/slide_in_left_animation"
-            app:popExitAnim="@anim/slide_out_right_animation" />
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <fragment
@@ -63,10 +63,10 @@
         <action
             android:id="@+id/action_moreFragment_to_astroCoinsFragment"
             app:destination="@id/astroCoinsFragment"
-            app:enterAnim="@anim/slide_in_right_animation"
-            app:exitAnim="@anim/slide_out_left_animation"
-            app:popEnterAnim="@anim/slide_in_left_animation"
-            app:popExitAnim="@anim/slide_out_right_animation" />
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/paymentMethodFragment"
@@ -79,7 +79,7 @@
             app:enterAnim="@anim/slide_in_right_animation"
             app:exitAnim="@anim/slide_out_left_animation"
             app:popEnterAnim="@anim/slide_in_left_animation"
-            app:popExitAnim="@anim/slide_out_right_animation"/>
+            app:popExitAnim="@anim/slide_out_right_animation" />
     </fragment>
     <fragment
         android:id="@+id/checkoutFragment"
@@ -108,5 +108,9 @@
         android:id="@+id/notificationDetailFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.NotificationDetailFragment"
         android:label="NotificationDetailFragment"
-        tools:layout="@layout/fragment_notification_detail" />
+        tools:layout="@layout/fragment_notification_detail">
+        <deepLink
+            android:id="@+id/deepLinkNotificationDetail"
+            app:uri="app://notification_detail" />
+    </fragment>
 </navigation>

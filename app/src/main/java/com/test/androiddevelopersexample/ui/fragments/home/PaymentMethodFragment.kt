@@ -3,6 +3,7 @@ package com.test.androiddevelopersexample.ui.fragments.home
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentPaymentMethodBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 
@@ -20,7 +21,7 @@ class PaymentMethodFragment : BaseFragment<FragmentPaymentMethodBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            setNavigation(ablToolbar.toolbar)
+            setNavigation(ablToolbar.toolbar, R.id.paymentMethodFragment)
             btnPaymentMethods.setOnClickListener {
                 val action =
                     PaymentMethodFragmentDirections.actionPaymentMethodFragmentToCheckoutFragment(55)

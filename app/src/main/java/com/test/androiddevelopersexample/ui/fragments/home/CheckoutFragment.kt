@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
+import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentCheckoutBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 
@@ -23,7 +24,7 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            setNavigation(ablToolbar.toolbar)
+            setNavigation(ablToolbar.toolbar, R.id.checkoutFragment)
             tvId.text = "Id: " + args.id
         }
     }
