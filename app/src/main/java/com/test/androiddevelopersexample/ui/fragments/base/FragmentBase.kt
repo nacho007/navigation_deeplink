@@ -23,7 +23,7 @@ open class FragmentBase : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        Log.e("onCreateView", screenTag)
+        Log.e("onCreateView", screenTag)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -34,7 +34,7 @@ open class FragmentBase : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-//        Log.e("onDestroyView", screenTag)
+        Log.e("onDestroyView", screenTag)
     }
 
     override fun onDetach() {
