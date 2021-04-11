@@ -40,6 +40,9 @@
         <deepLink
             android:id="@+id/deepLinkNotifications"
             app:uri="app://notifications" />
+        <action
+            android:id="@+id/action_notificationsFragment_to_notificationDetailFragment"
+            app:destination="@id/notificationDetailFragment" />
     </fragment>
 
     <fragment
@@ -76,16 +79,6 @@
             app:uri="app://checkout?id={id}" />
     </fragment>
 
-    <!--    <activity-->
-    <!--        android:id="@+id/activityAstroCoins"-->
-    <!--        android:name="com.test.androiddevelopersexample.ui.activities.AstroCoinsActivity"-->
-    <!--        android:label="ActivityAStroCoins"-->
-    <!--        tools:layout="@layout/activity_astro_coins">-->
-    <!--        <deepLink-->
-    <!--            android:id="@+id/deepLink"-->
-    <!--            app:uri="app://astro_coins" />-->
-    <!--    </activity>-->
-
     <fragment
         android:id="@+id/astroCoinsFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.astro_coins.AstroCoinsFragment"
@@ -95,4 +88,9 @@
             android:id="@+id/deepLink"
             app:uri="app://astro_coins" />
     </fragment>
+    <fragment
+        android:id="@+id/notificationDetailFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.NotificationDetailFragment"
+        android:label="NotificationDetailFragment"
+        tools:layout="@layout/fragment_notification_detail" />
 </navigation>

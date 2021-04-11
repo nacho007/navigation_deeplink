@@ -6,6 +6,7 @@
     <string name="loyalty">LOYALTY</string>
     <string name="money">MONEY</string>
     <string name="notifications">NOTIFICATIONS</string>
+    <string name="notification_detail">NOTIFICATION DETAIL</string>
     <string name="more">MORE</string>
     <string name="tab_new_card">New card</string>
     <string name="tab_loyalty">Loyalty</string>
@@ -27,6 +28,9 @@
     <string name="astro_coins">ASTROCOINS</string>
     <string name="payment_methods">PAYMENT METHODS</string>
     <string name="checkout">CHECKOUT</string>
+    <string name="deep_link_to_loyalty">Deep Link To Loyalty</string>
+    <string name="go_to_detail">Notification Detail</string>
+
 
 
 </resources>
