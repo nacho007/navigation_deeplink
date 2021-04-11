@@ -8,58 +8,60 @@
         android:id="@+id/newCardFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.NewCardFragment"
         tools:layout="@layout/fragment_new_card">
-        <action
-            android:id="@+id/action_newCardFragment_to_checkoutFragment2"
-            app:destination="@id/checkoutFragment2" />
         <deepLink
-            android:id="@+id/deepLink5"
+            android:id="@+id/deepLinkNewCard"
             app:uri="app://newcard" />
-    </fragment>
-    <fragment
-        android:id="@+id/checkoutFragment2"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.CheckoutFragment"
-        tools:layout="@layout/fragment_checkout">
-        <argument
-            android:name="id"
-            app:argType="string"
-            app:nullable="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/moreFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.MoreFragment"
-        tools:layout="@layout/fragment_more">
-        <deepLink
-            android:id="@+id/deepLink2"
-            app:uri="app://more" />
         <action
-            android:id="@+id/action_moreFragment_to_checkoutFragment2"
-            app:destination="@id/checkoutFragment2" />
+            android:id="@+id/action_newCardFragment_to_paymentMethodFragment"
+            app:destination="@id/paymentMethodFragment" />
     </fragment>
     <fragment
         android:id="@+id/loyaltyFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.LoyaltyFragment"
         tools:layout="@layout/fragment_loyalty">
         <deepLink
-            android:id="@+id/deepLink"
+            android:id="@+id/deepLinkLoyalty"
             app:uri="app://loyalty" />
-        <action
-            android:id="@+id/action_loyaltyFragment_to_checkoutFragment2"
-            app:destination="@id/checkoutFragment2" />
     </fragment>
-    <fragment
-        android:id="@+id/notificationsFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.NotificationsFragment"
-        tools:layout="@layout/fragment_notifications">
-        <deepLink
-            android:id="@+id/deepLink4"
-            app:uri="app://notifications" />
-    </fragment>
+
     <fragment
         android:id="@+id/moneyFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.MoneyFragment"
         tools:layout="@layout/fragment_money">
         <deepLink
-            android:id="@+id/deepLink3"
+            android:id="@+id/deepLinkMoney"
             app:uri="app://money" />
     </fragment>
+
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.NotificationsFragment"
+        tools:layout="@layout/fragment_notifications">
+        <deepLink
+            android:id="@+id/deepLinkNotifications"
+            app:uri="app://notifications" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.MoreFragment"
+        tools:layout="@layout/fragment_more">
+        <deepLink
+            android:id="@+id/deepLinkMore"
+            app:uri="app://more" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentMethodFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.PaymentMethodFragment"
+        android:label="PaymentMethodFragment"
+        tools:layout="@layout/fragment_payment_method">
+        <action
+            android:id="@+id/action_paymentMethodFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.CheckoutFragment"
+        android:label="CheckoutFragment"
+        tools:layout="@layout/fragment_checkout" />
 </navigation>
