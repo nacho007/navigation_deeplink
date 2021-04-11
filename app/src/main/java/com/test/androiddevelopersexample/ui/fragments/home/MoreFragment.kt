@@ -1,15 +1,12 @@
 package com.test.androiddevelopersexample.ui.fragments.home
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.ui.activities.AstroCoinsActivity
 import com.test.androiddevelopersexample.ui.activities.MainActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
@@ -25,6 +22,8 @@ import java.util.concurrent.TimeUnit
 class MoreFragment : FragmentBase() {
 
     override var screenTag = "MoreFragment"
+
+    override var showBottomNavigation = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +42,10 @@ class MoreFragment : FragmentBase() {
         }
 
         btn_astro_coins.setOnClickListener {
-            val intent = Intent(activity, AstroCoinsActivity::class.java)
-            startActivityForResult(intent, 666)
+            findNavController().navigate(R.id.action_moreFragment_to_astroCoinsFragment)
+
+//            val intent = Intent(activity, AstroCoinsActivity::class.java)
+//            startActivityForResult(intent, 666)
         }
 
         btn_generate_notifications.setOnClickListener {
@@ -69,12 +70,12 @@ class MoreFragment : FragmentBase() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode == Activity.RESULT_OK && requestCode == 666) {
-            Log.e(screenTag, "onActivityResult")
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        if (resultCode == Activity.RESULT_OK && requestCode == 666) {
+//            Log.e(screenTag, "onActivityResult")
+//        }
+//    }
 
 }

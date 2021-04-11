@@ -14,6 +14,8 @@ class LoyaltyFragment : FragmentBase() {
 
     override var screenTag = "LoyaltyFragment"
 
+    override var showBottomNavigation = true
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

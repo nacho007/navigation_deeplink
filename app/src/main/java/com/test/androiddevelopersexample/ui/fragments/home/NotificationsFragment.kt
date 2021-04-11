@@ -17,6 +17,8 @@ class NotificationsFragment : FragmentBase() {
 
     override var screenTag = "NotificationsFragment"
 
+    override var showBottomNavigation = true
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

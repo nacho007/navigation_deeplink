@@ -6,7 +6,7 @@
     app:startDestination="@id/newCardFragment">
     <fragment
         android:id="@+id/newCardFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.NewCardFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.NewCardFragment"
         tools:layout="@layout/fragment_new_card">
         <deepLink
             android:id="@+id/deepLinkNewCard"
@@ -49,10 +49,13 @@
         <deepLink
             android:id="@+id/deepLinkMore"
             app:uri="app://more" />
+        <action
+            android:id="@+id/action_moreFragment_to_astroCoinsFragment"
+            app:destination="@id/astroCoinsFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentMethodFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.PaymentMethodFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.PaymentMethodFragment"
         android:label="PaymentMethodFragment"
         tools:layout="@layout/fragment_payment_method">
         <action
@@ -61,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/checkoutFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.new_card.CheckoutFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.home.CheckoutFragment"
         android:label="CheckoutFragment"
         tools:layout="@layout/fragment_checkout">
         <argument
@@ -73,13 +76,23 @@
             app:uri="app://checkout?id={id}" />
     </fragment>
 
-    <activity
-        android:id="@+id/activityAstroCoins"
-        android:name="com.test.androiddevelopersexample.ui.activities.AstroCoinsActivity"
-        android:label="ActivityAStroCoins"
-        tools:layout="@layout/activity_astro_coins">
+    <!--    <activity-->
+    <!--        android:id="@+id/activityAstroCoins"-->
+    <!--        android:name="com.test.androiddevelopersexample.ui.activities.AstroCoinsActivity"-->
+    <!--        android:label="ActivityAStroCoins"-->
+    <!--        tools:layout="@layout/activity_astro_coins">-->
+    <!--        <deepLink-->
+    <!--            android:id="@+id/deepLink"-->
+    <!--            app:uri="app://astro_coins" />-->
+    <!--    </activity>-->
+
+    <fragment
+        android:id="@+id/astroCoinsFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.astro_coins.AstroCoinsFragment"
+        android:label="AstroCoinsFragment"
+        tools:layout="@layout/fragment_astro_coins">
         <deepLink
             android:id="@+id/deepLink"
             app:uri="app://astro_coins" />
-    </activity>
+    </fragment>
 </navigation>

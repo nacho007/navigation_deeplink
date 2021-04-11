@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.test.androiddevelopersexample.R
+import com.test.androiddevelopersexample.ui.activities.MainActivity
 import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
 
 /**
@@ -13,6 +14,11 @@ import com.test.androiddevelopersexample.ui.fragments.base.FragmentBase
 class AstroCoinsFragment : FragmentBase() {
 
     override var screenTag = "AstroCoinsFragment"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as MainActivity).showBottomNavigationMenu(false)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

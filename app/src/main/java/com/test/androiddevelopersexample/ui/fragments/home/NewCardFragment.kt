@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.home.new_card
+package com.test.androiddevelopersexample.ui.fragments.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.fragment_new_card.*
 class NewCardFragment : FragmentBase() {
 
     override var screenTag = "NewCardFragment"
+
+    override var showBottomNavigation = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

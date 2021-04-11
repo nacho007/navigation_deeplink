@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.test.androiddevelopersexample.ui.activities.MainActivity
 
 /**
  * Created by ignaciodeandreisdenis on 7/24/20.
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment
 open class FragmentBase : Fragment() {
 
     open var screenTag = "FragmentBase"
+    open var showBottomNavigation = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +26,7 @@ open class FragmentBase : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.e(screenTag, "onCreateView")
+        (activity as MainActivity).showBottomNavigationMenu(showBottomNavigation)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

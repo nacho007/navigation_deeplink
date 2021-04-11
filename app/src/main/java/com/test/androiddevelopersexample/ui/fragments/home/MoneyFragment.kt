@@ -14,6 +14,8 @@ class MoneyFragment : FragmentBase() {
 
     override var screenTag = "MoneyFragment"
 
+    override var showBottomNavigation = true
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
