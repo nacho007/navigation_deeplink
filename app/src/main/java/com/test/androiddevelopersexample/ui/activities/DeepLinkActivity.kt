@@ -8,7 +8,7 @@ import android.os.Bundle
  */
 class DeepLinkActivity : BaseActivity() {
 
-    override var screenTag = "OtherActivity"
+    override var screenTag = "DeepLinkActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

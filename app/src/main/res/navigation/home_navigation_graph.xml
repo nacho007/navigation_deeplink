@@ -77,5 +77,9 @@
         android:id="@+id/activityAstroCoins"
         android:name="com.test.androiddevelopersexample.ui.activities.AstroCoinsActivity"
         android:label="ActivityAStroCoins"
-        tools:layout="@layout/activity_astro_coins"/>
+        tools:layout="@layout/activity_astro_coins">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="app://astro_coins" />
+    </activity>
 </navigation>

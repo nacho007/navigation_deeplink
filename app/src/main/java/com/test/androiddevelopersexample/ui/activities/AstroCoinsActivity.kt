@@ -1,5 +1,7 @@
 package com.test.androiddevelopersexample.ui.activities
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import com.test.androiddevelopersexample.R
 
@@ -13,5 +15,11 @@ class AstroCoinsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_astro_coins)
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent()
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 }

@@ -45,6 +45,9 @@
                 <data
                     android:host="checkout"
                     android:scheme="app" />
+                <data
+                    android:host="astro_coins"
+                    android:scheme="app" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />

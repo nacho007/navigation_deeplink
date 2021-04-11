@@ -24,4 +24,9 @@ open class BaseActivity : AppCompatActivity() {
             Log.e(screenTag, "onNewIntent ${intent.data.toString()}")
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e(screenTag, "onDestroy")
+    }
 }
