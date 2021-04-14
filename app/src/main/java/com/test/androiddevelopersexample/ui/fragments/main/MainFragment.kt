@@ -1,6 +1,7 @@
 package com.test.androiddevelopersexample.ui.fragments.main
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.test.androiddevelopersexample.databinding.FragmentMainBinding
@@ -23,5 +24,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         executor.execute {
             (activity as MainActivity).process()
         }
+
+//        val handler = Handler()
+//        handler.postDelayed(Runnable { (activity as MainActivity).process() }, 2000)
     }
 }

@@ -34,9 +34,6 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>() {
 
         binding.btnAstroCoins.setOnClickListener {
             findNavController().navigate(R.id.action_moreFragment_to_astroCoinsFragment)
-
-//            val intent = Intent(activity, AstroCoinsActivity::class.java)
-//            startActivityForResult(intent, 666)
         }
 
         binding.btnGenerateNotifications.setOnClickListener {
@@ -60,13 +57,4 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>() {
             )
         }
     }
-
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//
-//        if (resultCode == Activity.RESULT_OK && requestCode == 666) {
-//            Log.e(screenTag, "onActivityResult")
-//        }
-//    }
-
 }

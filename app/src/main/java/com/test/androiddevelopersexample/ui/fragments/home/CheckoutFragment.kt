@@ -2,7 +2,10 @@ package com.test.androiddevelopersexample.ui.fragments.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentCheckoutBinding
@@ -26,6 +29,16 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>() {
         binding.apply {
             setNavigation(ablToolbar.toolbar, R.id.checkoutFragment)
             tvId.text = "Id: " + args.id
+
+            // Step 1. Listen for fragment results
+            setFragmentResultListener("REQUEST_KEY") { key, bundle ->
+                // read from the bundle
+                Log.e(screenTag, "onResultFragment")
+            }
+
+            tvId.setOnClickListener {
+                findNavController().navigate(R.id.action_checkoutFragment_to_kyc_navigation)
+            }
         }
     }
 

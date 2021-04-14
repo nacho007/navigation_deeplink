@@ -8,7 +8,7 @@
         android:background="@color/color_24"
         android:animateLayoutChanges="true">
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentNavHost"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"

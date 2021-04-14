@@ -13,11 +13,7 @@
             app:uri="app://newcard" />
         <action
             android:id="@+id/action_newCardFragment_to_paymentMethodFragment"
-            app:destination="@id/paymentMethodFragment"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit"
-            app:popEnterAnim="@anim/fragment_open_enter"
-            app:popExitAnim="@anim/fragment_open_exit" />
+            app:destination="@id/paymentMethodFragment" />
     </fragment>
     <fragment
         android:id="@+id/loyaltyFragment"
@@ -46,11 +42,7 @@
             app:uri="app://notifications" />
         <action
             android:id="@+id/action_notificationsFragment_to_notificationDetailFragment"
-            app:destination="@id/notificationDetailFragment"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_open_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
+            app:destination="@id/notificationDetailFragment"/>
     </fragment>
 
     <fragment
@@ -62,11 +54,7 @@
             app:uri="app://more" />
         <action
             android:id="@+id/action_moreFragment_to_astroCoinsFragment"
-            app:destination="@id/astroCoinsFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_close_exit"
-            app:popEnterAnim="@anim/fragment_open_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
+            app:destination="@id/astroCoinsFragment"/>
     </fragment>
     <fragment
         android:id="@+id/paymentMethodFragment"
@@ -93,6 +81,9 @@
         <deepLink
             android:id="@+id/deepLinkCheckout"
             app:uri="app://checkout?id={id}" />
+        <action
+            android:id="@+id/action_checkoutFragment_to_kyc_navigation"
+            app:destination="@id/kyc_navigation" />
     </fragment>
 
     <fragment
@@ -113,4 +104,5 @@
             android:id="@+id/deepLinkNotificationDetail"
             app:uri="app://notification_detail" />
     </fragment>
+    <include app:graph="@navigation/kyc_navigation" />
 </navigation>
