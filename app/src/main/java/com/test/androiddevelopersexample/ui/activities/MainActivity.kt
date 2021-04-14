@@ -6,13 +6,11 @@ import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.core.content.ContextCompat
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.ActivityMainBinding
 import com.test.androiddevelopersexample.ui.utils.NavGraphHelper
-import java.lang.Exception
 
 
 /**
@@ -32,9 +30,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         showBottomNavigationMenu(showBottomNavigation)
 
-//        val navController = findNavController(R.id.fragmentNavHost)
-
-        val navController = (supportFragmentManager.findFragmentById(R.id.fragmentNavHost) as NavHostFragment).navController
+        val navController =
+            (supportFragmentManager.findFragmentById(R.id.fragmentNavHost) as NavHostFragment).navController
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -89,12 +86,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     fun showBottomNavigationMenu(show: Boolean) {
         showBottomNavigation = show
-//        try {
-            binding.bottomNav.visibility = VISIBLE.takeIf { show } ?: GONE
-//        } catch (ex: Exception) {
-//            ex.printStackTrace()
-//        }
-
+        binding.bottomNav.visibility = VISIBLE.takeIf { show } ?: GONE
     }
 
     fun createBadges(id: Int, quantity: Int, visible: Boolean = true) {
