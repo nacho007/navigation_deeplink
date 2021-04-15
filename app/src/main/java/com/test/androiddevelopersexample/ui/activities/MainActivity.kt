@@ -30,10 +30,26 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         showBottomNavigationMenu(showBottomNavigation)
 
-        val navController =
-            (supportFragmentManager.findFragmentById(R.id.fragmentNavHost) as NavHostFragment).navController
+        val myNavHostFragment = supportFragmentManager
+            .findFragmentById(R.id.fragmentNavHost) as NavHostFragment
+        val inflater = myNavHostFragment.navController.navInflater
 
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+
+        val sharedPref = getSharedPreferences(
+            getString(R.string.preferences), Context.MODE_PRIVATE
+        )
+
+        val isLogged = sharedPref?.getBoolean(getString(R.string.is_logged), false)
+
+        val graph = if (isLogged == true) {
+            inflater.inflate(R.navigation.home_navigation_graph)
+        } else {
+            inflater.inflate(R.navigation.main_navigation_graph)
+        }
+
+        myNavHostFragment.navController.graph = graph
+
+        myNavHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.newCardFragment -> {
                     Log.e("Menu", getString(R.string.tab_new_card))
@@ -61,7 +77,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             deepLink = true
         }
 
-        binding.bottomNav.setupWithNavController(navController)
+        binding.bottomNav.setupWithNavController(myNavHostFragment.navController)
     }
 
     fun process() {
