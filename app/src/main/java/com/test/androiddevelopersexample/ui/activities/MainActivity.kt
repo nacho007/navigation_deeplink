@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.test.androiddevelopersexample.R
@@ -24,6 +25,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     var deepLink = false
 
+    var graphId: Int = 0
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("graphId", graphId)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -32,22 +40,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         val myNavHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentNavHost) as NavHostFragment
+
         val inflater = myNavHostFragment.navController.navInflater
 
+        graphId = savedInstanceState?.getInt("graphId") ?: 0
+        val currentGraph: NavGraph
 
-        val sharedPref = getSharedPreferences(
-            getString(R.string.preferences), Context.MODE_PRIVATE
-        )
-
-        val isLogged = sharedPref?.getBoolean(getString(R.string.is_logged), false)
-
-        val graph = if (isLogged == true) {
-            inflater.inflate(R.navigation.home_navigation_graph)
+        if (graphId != 0) {
+            currentGraph = inflater.inflate(graphId)
         } else {
-            inflater.inflate(R.navigation.main_navigation_graph)
+            currentGraph = inflater.inflate(R.navigation.main_navigation_graph)
+            graphId = R.navigation.main_navigation_graph
         }
 
-        myNavHostFragment.navController.graph = graph
+        myNavHostFragment.navController.graph = currentGraph
 
         myNavHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -88,11 +94,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val isLogged = sharedPref?.getBoolean(getString(R.string.is_logged), false)
 
         if (isLogged == true) {
+            graphId = R.navigation.home_navigation_graph
             NavGraphHelper.setGraph(
                 this,
                 R.navigation.home_navigation_graph
             )
         } else {
+            graphId = R.navigation.login_navigation_graph
             NavGraphHelper.setGraph(
                 this,
                 R.navigation.login_navigation_graph
