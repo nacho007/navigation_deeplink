@@ -26,6 +26,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         }
 
 //        val handler = Handler()
-//        handler.postDelayed(Runnable { (activity as MainActivity).process() }, 2000)
+//        handler.postDelayed(Runnable { (activity as MainActivity).process() }, 5000)
     }
 }

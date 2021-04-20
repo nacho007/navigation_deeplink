@@ -40,7 +40,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>() {
             val executor: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
             executor.schedule({
                 DeepLinkUtils.createNotification(requireContext(), "Title", "Body")
-            }, 2000.toLong(), TimeUnit.MILLISECONDS)
+            }, 3000.toLong(), TimeUnit.MILLISECONDS)
         }
 
         binding.btnLogout.setOnClickListener {

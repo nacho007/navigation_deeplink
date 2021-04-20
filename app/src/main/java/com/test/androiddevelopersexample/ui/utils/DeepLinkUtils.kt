@@ -32,7 +32,7 @@ object DeepLinkUtils {
         val pendingIntent = NavDeepLinkBuilder(context)
             .setComponentName(MainActivity::class.java)
             .setGraph(R.navigation.home_navigation_graph)
-            .setDestination(R.id.checkoutFragment)
+            .setDestination(R.id.moreFragment)
             .setArguments(args)
             .createPendingIntent()
 

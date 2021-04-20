@@ -49,9 +49,6 @@
         android:id="@+id/moreFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.MoreFragment"
         tools:layout="@layout/fragment_more">
-        <deepLink
-            android:id="@+id/deepLinkMore"
-            app:uri="app://more" />
         <action
             android:id="@+id/action_moreFragment_to_astroCoinsFragment"
             app:destination="@id/astroCoinsFragment"/>

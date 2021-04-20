@@ -39,9 +39,9 @@
                 <data
                     android:host="notifications"
                     android:scheme="app" />
-                <data
-                    android:host="more"
-                    android:scheme="app" />
+<!--                <data-->
+<!--                    android:host="more"-->
+<!--                    android:scheme="app" />-->
                 <data
                     android:host="checkout"
                     android:scheme="app" />
