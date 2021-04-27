@@ -7,10 +7,9 @@ import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentNewCardBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 
-class NewCardFragment : BaseFragment<FragmentNewCardBinding>() {
+class NewCardFragment : BaseFragment<FragmentNewCardBinding>(FragmentNewCardBinding::inflate) {
 
     override var screenTag = "NewCardFragment"
-    override val binding by lazy { FragmentNewCardBinding.inflate(layoutInflater) }
 
     override var showBottomNavigation = true
 

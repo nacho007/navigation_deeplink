@@ -12,10 +12,9 @@ import com.test.androiddevelopersexample.ui.utils.NavGraphHelper
 /**
  * Created by ignaciodeandreisdenis on 4/10/21.
  */
-class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
+class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
 
     override var screenTag = "RegisterFragment"
-    override val binding by lazy { FragmentRegisterBinding.inflate(layoutInflater) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

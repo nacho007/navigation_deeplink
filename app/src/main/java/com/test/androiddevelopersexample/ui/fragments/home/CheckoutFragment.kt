@@ -14,10 +14,9 @@ import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 /**
  * Created by ignaciodeandreisdenis on 4/7/21.
  */
-class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>() {
+class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(FragmentCheckoutBinding::inflate) {
 
     override var screenTag = "CheckoutFragment"
-    override val binding by lazy { FragmentCheckoutBinding.inflate(layoutInflater) }
 
     override var showBottomNavigation = false
 

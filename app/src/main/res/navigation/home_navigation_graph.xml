@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigation"
-    app:startDestination="@id/newCardFragment">
+    app:startDestination="@id/moneyFragment">
     <fragment
         android:id="@+id/newCardFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.NewCardFragment"
@@ -26,11 +26,14 @@
 
     <fragment
         android:id="@+id/moneyFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.MoneyFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.money.MoneyFragment"
         tools:layout="@layout/fragment_money">
         <deepLink
             android:id="@+id/deepLinkMoney"
             app:uri="app://money" />
+        <action
+            android:id="@+id/action_moneyFragment_to_walletFragment"
+            app:destination="@id/walletFragment" />
     </fragment>
 
     <fragment
@@ -102,4 +105,9 @@
             app:uri="app://notification_detail" />
     </fragment>
     <include app:graph="@navigation/kyc_navigation" />
+    <fragment
+        android:id="@+id/walletFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.money.WalletFragment"
+        android:label="WalletFragment"
+        tools:layout="@layout/fragment_wallet"/>
 </navigation>

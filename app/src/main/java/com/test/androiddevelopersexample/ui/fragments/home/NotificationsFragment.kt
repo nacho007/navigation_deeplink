@@ -11,10 +11,9 @@ import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
 /**
  * Created by ignaciodeandreisdenis on 4/7/21.
  */
-class NotificationsFragment : BaseFragment<FragmentNotificationsBinding>() {
+class NotificationsFragment : BaseFragment<FragmentNotificationsBinding>(FragmentNotificationsBinding::inflate) {
 
     override var screenTag = "NotificationsFragment"
-    override val binding by lazy { FragmentNotificationsBinding.inflate(layoutInflater) }
 
     override var showBottomNavigation = true
 
@@ -23,7 +22,11 @@ class NotificationsFragment : BaseFragment<FragmentNotificationsBinding>() {
 
         binding.apply {
             btnDeepLink.setOnClickListener {
-                findNavController().navigate(DeepLinkUtils.deepLinkLoyalty())
+                try {
+                    findNavController().navigate(DeepLinkUtils.deepLinkLoyalty())
+                } catch (exception: Exception) {
+                    exception.printStackTrace()
+                }
             }
 
             btnNavigateToDetail.setOnClickListener {

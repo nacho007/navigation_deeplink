@@ -10,10 +10,9 @@ import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 /**
  * Created by ignaciodeandreisdenis on 4/7/21.
  */
-class PaymentMethodFragment : BaseFragment<FragmentPaymentMethodBinding>() {
+class PaymentMethodFragment : BaseFragment<FragmentPaymentMethodBinding>(FragmentPaymentMethodBinding::inflate) {
 
     override var screenTag = "PaymentMethodFragment"
-    override val binding by lazy { FragmentPaymentMethodBinding.inflate(layoutInflater) }
 
     override var showBottomNavigation = false
 

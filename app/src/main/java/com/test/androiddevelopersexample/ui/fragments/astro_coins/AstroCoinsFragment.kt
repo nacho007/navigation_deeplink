@@ -9,10 +9,9 @@ import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 /**
  * Created by ignaciodeandreisdenis on 4/11/21.
  */
-class AstroCoinsFragment : BaseFragment<FragmentAstroCoinsBinding>() {
+class AstroCoinsFragment : BaseFragment<FragmentAstroCoinsBinding>(FragmentAstroCoinsBinding::inflate) {
 
     override var screenTag = "AstroCoinsFragment"
-    override val binding by lazy { FragmentAstroCoinsBinding.inflate(layoutInflater) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

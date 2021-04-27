@@ -6,10 +6,9 @@ import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 /**
  * Created by ignaciodeandreisdenis on 4/7/21.
  */
-class LoyaltyFragment : BaseFragment<FragmentLoyaltyBinding>() {
+class LoyaltyFragment : BaseFragment<FragmentLoyaltyBinding>(FragmentLoyaltyBinding::inflate) {
 
     override var screenTag = "LoyaltyFragment"
-    override val binding by lazy { FragmentLoyaltyBinding.inflate(layoutInflater) }
 
     override var showBottomNavigation = true
 

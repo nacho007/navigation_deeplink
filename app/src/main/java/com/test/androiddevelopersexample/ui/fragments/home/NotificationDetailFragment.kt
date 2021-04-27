@@ -11,10 +11,9 @@ import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
 /**
  * Created by ignaciodeandreisdenis on 4/11/21.
  */
-class NotificationDetailFragment : BaseFragment<FragmentNotificationDetailBinding>() {
+class NotificationDetailFragment : BaseFragment<FragmentNotificationDetailBinding>(FragmentNotificationDetailBinding::inflate) {
 
     override var screenTag = "NotificationDetailFragment"
-    override val binding by lazy { FragmentNotificationDetailBinding.inflate(layoutInflater) }
 
     override var showBottomNavigation = false
 

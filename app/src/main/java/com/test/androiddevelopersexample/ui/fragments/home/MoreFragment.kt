@@ -17,10 +17,9 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by ignaciodeandreisdenis on 4/7/21.
  */
-class MoreFragment : BaseFragment<FragmentMoreBinding>() {
+class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::inflate) {
 
     override var screenTag = "MoreFragment"
-    override val binding by lazy { FragmentMoreBinding.inflate(layoutInflater) }
 
     override var showBottomNavigation = true
 

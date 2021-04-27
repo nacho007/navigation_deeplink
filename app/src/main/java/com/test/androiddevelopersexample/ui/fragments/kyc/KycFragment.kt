@@ -11,10 +11,9 @@ import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 /**
  * Created by ignaciodeandreisdenis on 4/14/21.
  */
-class KycFragment : BaseFragment<FragmentKycBinding>() {
+class KycFragment : BaseFragment<FragmentKycBinding>(FragmentKycBinding::inflate) {
 
     override var screenTag = "KycFragment"
-    override val binding by lazy { FragmentKycBinding.inflate(layoutInflater) }
 
     override var showBottomNavigation = false
 

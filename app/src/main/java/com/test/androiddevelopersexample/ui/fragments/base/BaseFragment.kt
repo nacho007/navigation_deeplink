@@ -17,10 +17,13 @@ import com.test.androiddevelopersexample.ui.activities.MainActivity
 /**
  * Created by ignaciodeandreisdenis on 7/24/20.
  */
-abstract class BaseFragment<T : ViewBinding> : Fragment() {
+typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
+
+abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) : Fragment() {
 
     open var screenTag = "BaseFragment"
-    protected abstract val binding: T?
+    private var _binding: VB? = null
+    protected val binding get() = _binding!!
     open var showBottomNavigation = false
     var fromDeepLink = false
 
@@ -35,7 +38,8 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     ): View? {
         Log.e(screenTag, "onCreateView")
         (activity as MainActivity).showBottomNavigationMenu(showBottomNavigation)
-        return binding?.root
+        _binding = inflate.invoke(inflater, container, false)
+        return binding.root
     }
 
     override fun onDestroy() {

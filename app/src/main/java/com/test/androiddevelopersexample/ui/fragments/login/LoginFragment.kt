@@ -17,10 +17,9 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by ignaciodeandreisdenis on 4/10/21.
  */
-class LoginFragment : BaseFragment<FragmentLoginBinding>() {
+class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
     override var screenTag = "LoginFragment"
-    override val binding by lazy { FragmentLoginBinding.inflate(layoutInflater) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
