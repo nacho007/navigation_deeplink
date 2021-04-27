@@ -25,18 +25,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/moneyFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.money.MoneyFragment"
-        tools:layout="@layout/fragment_money">
-        <deepLink
-            android:id="@+id/deepLinkMoney"
-            app:uri="app://money" />
-        <action
-            android:id="@+id/action_moneyFragment_to_walletFragment"
-            app:destination="@id/walletFragment" />
-    </fragment>
-
-    <fragment
         android:id="@+id/notificationsFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.NotificationsFragment"
         tools:layout="@layout/fragment_notifications">
@@ -45,7 +33,7 @@
             app:uri="app://notifications" />
         <action
             android:id="@+id/action_notificationsFragment_to_notificationDetailFragment"
-            app:destination="@id/notificationDetailFragment"/>
+            app:destination="@id/notificationDetailFragment" />
     </fragment>
 
     <fragment
@@ -54,7 +42,7 @@
         tools:layout="@layout/fragment_more">
         <action
             android:id="@+id/action_moreFragment_to_astroCoinsFragment"
-            app:destination="@id/astroCoinsFragment"/>
+            app:destination="@id/astroCoinsFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentMethodFragment"
@@ -109,5 +97,26 @@
         android:id="@+id/walletFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.money.WalletFragment"
         android:label="WalletFragment"
-        tools:layout="@layout/fragment_wallet"/>
+        tools:layout="@layout/fragment_wallet" />
+    <fragment
+        android:id="@+id/cardsFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.money.CardsFragment"
+        android:label="CardsFragment"
+        tools:layout="@layout/fragment_cards" />
+    <fragment
+        android:id="@+id/moneyFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.money.MoneyFragment"
+        android:label="MoneyFragment"
+        tools:layout="@layout/fragment_money">
+        <action
+            android:id="@+id/action_moneyFragment_to_walletFragment"
+            app:destination="@id/walletFragment"
+            app:popUpTo="@id/moneyFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_moneyFragment_to_cardsFragment"
+            app:destination="@id/cardsFragment"
+            app:popUpTo="@id/moneyFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>

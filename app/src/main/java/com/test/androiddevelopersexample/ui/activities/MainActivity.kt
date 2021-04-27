@@ -3,6 +3,7 @@ package com.test.androiddevelopersexample.ui.activities
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.core.content.ContextCompat
@@ -63,7 +64,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 R.id.loyaltyFragment -> {
                     Log.e("Menu", getString(R.string.tab_loyalty))
                 }
-                R.id.moneyFragment -> {
+                R.id.walletFragment -> {
+                    Log.e("Menu", getString(R.string.tab_money))
+                }
+                R.id.cardsFragment -> {
                     Log.e("Menu", getString(R.string.tab_money))
                 }
                 R.id.notificationsFragment -> {
@@ -84,6 +88,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
 
         binding.bottomNav.setupWithNavController(myNavHostFragment.navController)
+    }
+
+    fun setMenu(menuToInflate: Int) {
+        binding.bottomNav.apply {
+            menu.add(Menu.NONE, R.id.cardsFragment, 30, R.string.tab_money)
+            menu.findItem(R.id.cardsFragment).setIcon(R.drawable.svg_money)
+        }
     }
 
     fun process() {

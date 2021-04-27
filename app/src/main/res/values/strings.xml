@@ -6,6 +6,7 @@
     <string name="loyalty">LOYALTY</string>
     <string name="money">MONEY</string>
     <string name="wallet">WALLET</string>
+    <string name="cards">CARDS</string>
     <string name="notifications">NOTIFICATIONS</string>
     <string name="notification_detail">NOTIFICATION DETAIL</string>
     <string name="more">MORE</string>

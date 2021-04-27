@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/bottom_group_card">
+        <item
+            android:id="@+id/cardsFragment"
+            android:icon="@drawable/svg_money"
+            android:menuCategory="secondary"
+            android:title="@string/tab_money" />
+
+    </group>
+</menu>
