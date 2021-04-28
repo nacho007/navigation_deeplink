@@ -12,14 +12,6 @@
         android:orderInCategory="20"
         android:title="@string/tab_loyalty" />
 
-    <!--        <group android:id="@+id/nav_refer" />-->
-
-    <!--    <item-->
-    <!--        android:id="@+id/walletFragment"-->
-    <!--        android:icon="@drawable/svg_money"-->
-    <!--        android:menuCategory="secondary"-->
-    <!--        android:title="@string/tab_money" />-->
-
     <item
         android:id="@+id/notificationsFragment"
         android:icon="@drawable/svg_notifications"

@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.ActivityMainBinding
 import com.test.androiddevelopersexample.ui.utils.NavGraphHelper
+import java.lang.reflect.Field
 
 
 /**
@@ -87,13 +88,35 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             deepLink = true
         }
 
+//        try {
+//            val menuView = view.getChildAt(0)
+//
+//            val shiftingMode: Field = menuView.getClass().getDeclaredField("mShiftingMode")
+//            shiftingMode.setAccessible(true)
+//            shiftingMode.setBoolean(menuView, false)
+//            shiftingMode.setAccessible(false)
+//            for (i in 0 until menuView.getChildCount()) {
+//                val item = menuView.getChildAt(i)
+//                item.setShiftingMode(false)
+//                // set once again checked value, so view will be updated
+//                item.setChecked(item.itemData.isChecked)
+//            }
+//        } catch (e: NoSuchFieldException) {
+//            Log.e("BNVHelper", "Unable to get shift mode field", e)
+//        } catch (e: IllegalAccessException) {
+//            Log.e("BNVHelper", "Unable to change value of shift mode", e)
+//        }
+
         binding.bottomNav.setupWithNavController(myNavHostFragment.navController)
     }
 
-    fun setMenu(menuToInflate: Int) {
+    fun setMenu(fragment: Int, fragmentToRemove: Int? = null) {
         binding.bottomNav.apply {
-            menu.add(Menu.NONE, R.id.cardsFragment, 30, R.string.tab_money)
-            menu.findItem(R.id.cardsFragment).setIcon(R.drawable.svg_money)
+            fragmentToRemove?.let {
+                menu.removeItem(it)
+            }
+
+            menu.add(Menu.NONE, fragment, 30, R.string.tab_money).setIcon(R.drawable.svg_money)
         }
     }
 

@@ -97,12 +97,24 @@
         android:id="@+id/walletFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.money.WalletFragment"
         android:label="WalletFragment"
-        tools:layout="@layout/fragment_wallet" />
+        tools:layout="@layout/fragment_wallet">
+        <action
+            android:id="@+id/action_walletFragment_to_cardsFragment"
+            app:destination="@id/cardsFragment"
+            app:popUpTo="@id/walletFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/cardsFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.money.CardsFragment"
         android:label="CardsFragment"
-        tools:layout="@layout/fragment_cards" />
+        tools:layout="@layout/fragment_cards">
+        <action
+            android:id="@+id/action_cardsFragment_to_walletFragment"
+            app:destination="@id/walletFragment"
+            app:popUpTo="@id/cardsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/moneyFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.money.MoneyFragment"
@@ -117,6 +129,6 @@
             android:id="@+id/action_moneyFragment_to_cardsFragment"
             app:destination="@id/cardsFragment"
             app:popUpTo="@id/moneyFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

@@ -19,12 +19,13 @@ class MoneyFragment : BaseFragment<FragmentMoneyBinding>(FragmentMoneyBinding::i
         super.onViewCreated(view, savedInstanceState)
         binding.textView2.setOnClickListener {
 
-            val hola = true
+            val hola = false
 
             if (hola) {
-                (activity as MainActivity).setMenu(0)
+                (activity as MainActivity).setMenu(R.id.cardsFragment)
                 findNavController().navigate(R.id.action_moneyFragment_to_cardsFragment)
             } else {
+                (activity as MainActivity).setMenu(R.id.walletFragment)
                 findNavController().navigate(R.id.action_moneyFragment_to_walletFragment)
             }
         }
