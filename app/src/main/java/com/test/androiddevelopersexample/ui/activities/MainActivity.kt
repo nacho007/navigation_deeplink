@@ -2,6 +2,7 @@ package com.test.androiddevelopersexample.ui.activities
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.Menu
 import android.view.View.GONE
@@ -13,7 +14,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.ActivityMainBinding
 import com.test.androiddevelopersexample.ui.utils.NavGraphHelper
-import java.lang.reflect.Field
 
 
 /**
@@ -37,6 +37,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.bottomNav2.visibility = GONE
+        binding.bottomNav2.selectedItemId = R.id.auxFragment
 
         showBottomNavigationMenu(showBottomNavigation)
 
@@ -88,30 +91,31 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             deepLink = true
         }
 
-//        try {
-//            val menuView = view.getChildAt(0)
-//
-//            val shiftingMode: Field = menuView.getClass().getDeclaredField("mShiftingMode")
-//            shiftingMode.setAccessible(true)
-//            shiftingMode.setBoolean(menuView, false)
-//            shiftingMode.setAccessible(false)
-//            for (i in 0 until menuView.getChildCount()) {
-//                val item = menuView.getChildAt(i)
-//                item.setShiftingMode(false)
-//                // set once again checked value, so view will be updated
-//                item.setChecked(item.itemData.isChecked)
-//            }
-//        } catch (e: NoSuchFieldException) {
-//            Log.e("BNVHelper", "Unable to get shift mode field", e)
-//        } catch (e: IllegalAccessException) {
-//            Log.e("BNVHelper", "Unable to change value of shift mode", e)
-//        }
-
         binding.bottomNav.setupWithNavController(myNavHostFragment.navController)
     }
 
     fun setMenu(fragment: Int, fragmentToRemove: Int? = null) {
+        if (fragmentToRemove == null) {
+            addMenu(fragment, fragmentToRemove)
+        } else {
+            binding.bottomNav2.visibility = VISIBLE
+            binding.bottomNav.visibility = GONE
+
+            Handler().postDelayed({
+                addMenu(fragment, fragmentToRemove)
+                binding.bottomNav.selectedItemId = fragment
+            }, 100)
+
+            Handler().postDelayed({
+                binding.bottomNav2.visibility = GONE
+                binding.bottomNav.visibility = VISIBLE
+            }, 200)
+        }
+    }
+
+    fun addMenu(fragment: Int, fragmentToRemove: Int? = null) {
         binding.bottomNav.apply {
+
             fragmentToRemove?.let {
                 menu.removeItem(it)
             }

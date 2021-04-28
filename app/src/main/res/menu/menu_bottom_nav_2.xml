@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/newCardFragment"
+        android:icon="@drawable/svg_new_card"
+        android:title="@string/tab_new_card"
+        android:orderInCategory="10" />
+
+    <item
+        android:id="@+id/loyaltyFragment"
+        android:icon="@drawable/svg_fidelity"
+        android:orderInCategory="20"
+        android:title="@string/tab_loyalty" />
+
+    <item
+        android:id="@+id/auxFragment"
+        android:icon="@drawable/svg_money"
+        android:orderInCategory="30"
+        android:title="@string/tab_money" />
+
+    <item
+        android:id="@+id/notificationsFragment"
+        android:icon="@drawable/svg_notifications"
+        android:orderInCategory="40"
+        android:title="@string/tab_notifications" />
+
+    <item
+        android:id="@+id/moreFragment"
+        android:icon="@drawable/svg_more"
+        android:orderInCategory="50"
+        android:title="@string/tab_more" />
+</menu>
