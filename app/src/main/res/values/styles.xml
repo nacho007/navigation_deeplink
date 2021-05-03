@@ -2,11 +2,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/color_2</item>
-        <item name="colorPrimaryDark">@color/color_5</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@drawable/shape_splash_background</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="colorPrimary">@color/color_red</item>
+        <item name="colorPrimaryDark">@color/color_black</item>
+        <item name="colorAccent">@color/color_accent</item>
     </style>
 
     <style name="BottomNavigationView.InActive" parent="@style/TextAppearance.AppCompat.Caption">
@@ -15,6 +13,24 @@
 
     <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="ErrorTextInputStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_size_1</item>
+        <item name="android:textColor">@color/color_text_error</item>
+    </style>
+
+    <style name="HintTextInputStyle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/color_text_field_description</item>
+        <item name="android:textColorHint">@color/color_input_hint</item>
+        <item name="android:textSize">@dimen/text_size_2</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxStrokeColor">@color/color_input_text</item>
+        <item name="boxBackgroundColor">@color/color_balloon</item>
+        <item name="android:textColorHint">@color/color_text_field_description</item>
+        <item name="android:textSize">@dimen/text_size_3</item>
     </style>
 
 </resources>

@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_8">
+        android:background="@color/color_view_background">
 
         <include
             android:id="@+id/abl_toolbar"

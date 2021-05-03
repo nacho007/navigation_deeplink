@@ -4,6 +4,14 @@
     <dimen name="splash_logo_width">250dp</dimen>
     <dimen name="splash_logo_height">78dp</dimen>
 
+    <dimen name="text_size_0">12sp</dimen>
+    <dimen name="text_size_1">14sp</dimen>
+    <dimen name="text_size_2">16sp</dimen>
+    <dimen name="text_size_3">18sp</dimen>
+    <dimen name="text_size_4">20sp</dimen>
+    <dimen name="text_size_5">22sp</dimen>
+    <dimen name="text_size_6">28sp</dimen>
+    <dimen name="text_size_7">32sp</dimen>
 <!--    <dimen name="design_bottom_navigation_text_size" tools:override="true">2sp</dimen>-->
 <!--    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">2sp</dimen>-->
 </resources>

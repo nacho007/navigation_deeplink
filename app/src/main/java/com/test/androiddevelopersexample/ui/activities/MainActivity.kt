@@ -154,7 +154,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     fun createBadges(id: Int, quantity: Int, visible: Boolean = true) {
         val badge = binding.bottomNav.getOrCreateBadge(id)
         badge.isVisible = visible
-        badge.backgroundColor = ContextCompat.getColor(this, R.color.color_2)
+        badge.backgroundColor = ContextCompat.getColor(this, R.color.color_red)
         badge.badgeTextColor = ContextCompat.getColor(this, R.color.color_white)
         badge.number = quantity
     }

@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_24">
+        android:background="@color/color_view_background">
 
         <include
             android:id="@+id/abl_toolbar"
@@ -24,7 +24,7 @@
             android:text="@string/notifications"
             android:fontFamily="sans-serif-medium"
             android:textSize="36sp"
-            android:textColor="@color/color_2"
+            android:textColor="@color/color_red"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -52,7 +52,7 @@ object DeepLinkUtils {
                 .setChannelId(CHANNEL_ID)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
-                .setColor(ContextCompat.getColor(context, R.color.color_2))
+                .setColor(ContextCompat.getColor(context, R.color.color_red))
                 .build()
 
             mNotificationManager.createNotificationChannel(mChannel)
@@ -65,7 +65,7 @@ object DeepLinkUtils {
                 .setContentTitle(title)
                 .setContentText(body)
                 .setStyle(NotificationCompat.BigTextStyle().bigText(body)).color =
-                ContextCompat.getColor(context, R.color.color_2)
+                ContextCompat.getColor(context, R.color.color_red)
 
             builder.setContentIntent(pendingIntent)
             mNotificationManager.notify(notificationId, builder.build())
