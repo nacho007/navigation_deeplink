@@ -22,9 +22,9 @@ class PaymentMethodFragment : BaseFragment<FragmentPaymentMethodBinding>(Fragmen
         binding.apply {
             setNavigation(ablToolbar.toolbar, R.id.paymentMethodFragment)
             btnPaymentMethods.setOnClickListener {
-                val action =
-                    PaymentMethodFragmentDirections.actionPaymentMethodFragmentToCheckoutFragment(55)
-                findNavController().navigate(action)
+//                val action =
+//                    PaymentMethodFragmentDirections.actionPaymentMethodFragmentToCheckoutFragment(55)
+//                findNavController().navigate(action)
             }
         }
     }

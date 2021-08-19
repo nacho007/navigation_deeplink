@@ -35,7 +35,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
             NavGraphHelper.setGraph(
                 requireActivity(),
-                R.navigation.home_navigation_graph
+                R.navigation.home_navigation_graph,
+                R.id.moneyFragment
             )
         }
 

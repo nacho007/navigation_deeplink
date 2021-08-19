@@ -31,7 +31,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt("graphId", graphId)
+        outState.putInt("graphId", 1)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,14 +51,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         graphId = savedInstanceState?.getInt("graphId") ?: 0
         val currentGraph: NavGraph
 
-        if (graphId != 0) {
-            currentGraph = inflater.inflate(graphId)
-        } else {
+        if (graphId != 1) {
             currentGraph = inflater.inflate(R.navigation.main_navigation_graph)
-            graphId = R.navigation.main_navigation_graph
+            myNavHostFragment.navController.graph = currentGraph
         }
-
-        myNavHostFragment.navController.graph = currentGraph
 
         myNavHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -125,25 +121,25 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     fun process() {
-        val sharedPref = getSharedPreferences(
-            getString(R.string.preferences), Context.MODE_PRIVATE
-        )
-
-        val isLogged = sharedPref?.getBoolean(getString(R.string.is_logged), false)
-
-        if (isLogged == true) {
-            graphId = R.navigation.home_navigation_graph
-            NavGraphHelper.setGraph(
-                this,
-                R.navigation.home_navigation_graph
-            )
-        } else {
+//        val sharedPref = getSharedPreferences(
+//            getString(R.string.preferences), Context.MODE_PRIVATE
+//        )
+//
+//        val isLogged = sharedPref?.getBoolean(getString(R.string.is_logged), false)
+//
+//        if (isLogged == true) {
+//            graphId = R.navigation.home_navigation_graph
+//            NavGraphHelper.setGraph(
+//                this,
+//                R.navigation.home_navigation_graph
+//            )
+//        } else {
             graphId = R.navigation.login_navigation_graph
             NavGraphHelper.setGraph(
                 this,
                 R.navigation.login_navigation_graph
             )
-        }
+//        }
     }
 
     fun showBottomNavigationMenu(show: Boolean) {

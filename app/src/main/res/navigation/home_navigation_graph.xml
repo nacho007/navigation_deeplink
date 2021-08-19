@@ -62,16 +62,16 @@
         android:name="com.test.androiddevelopersexample.ui.fragments.home.CheckoutFragment"
         android:label="CheckoutFragment"
         tools:layout="@layout/fragment_checkout">
-        <argument
-            android:name="id"
-            app:argType="integer"
-            app:nullable="false" />
-        <deepLink
-            android:id="@+id/deepLinkCheckout"
-            app:uri="app://checkout?id={id}" />
-        <action
-            android:id="@+id/action_checkoutFragment_to_kyc_navigation"
-            app:destination="@id/kyc_navigation" />
+<!--        <argument-->
+<!--            android:name="id"-->
+<!--            app:argType="integer"-->
+<!--            app:nullable="false" />-->
+<!--        <deepLink-->
+<!--            android:id="@+id/deepLinkCheckout"-->
+<!--            app:uri="app://checkout?id={id}" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_checkoutFragment_to_kyc_navigation"-->
+<!--            app:destination="@id/kyc_navigation" />-->
     </fragment>
 
     <fragment

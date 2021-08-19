@@ -16,7 +16,7 @@ object NavGraphHelper {
         val graph = inflater.inflate(graphId)
 
         if (startDestination != 0) {
-            graph.startDestination = startDestination
+            graph.setStartDestination(startDestination)
         }
 
         val navController = activity.findNavController(R.id.fragmentNavHost)
