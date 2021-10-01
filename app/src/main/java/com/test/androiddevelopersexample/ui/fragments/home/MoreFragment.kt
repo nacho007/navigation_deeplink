@@ -6,10 +6,9 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentMoreBinding
-import com.test.androiddevelopersexample.ui.activities.MainActivity
+import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
-import com.test.androiddevelopersexample.ui.utils.NavGraphHelper
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
@@ -27,8 +26,8 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnGenerateBadge.setOnClickListener {
-            (activity as MainActivity).createBadges(R.id.newCardFragment, 2)
-            (activity as MainActivity).createBadges(R.id.loyaltyFragment, 3)
+            (activity as NavigationActivity).createBadges(R.id.newCardFragment, 2)
+            (activity as NavigationActivity).createBadges(R.id.loyaltyFragment, 3)
         }
 
         binding.btnAstroCoins.setOnClickListener {
@@ -49,11 +48,8 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
 
             sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), false)?.apply()
 
-            (activity as MainActivity).showBottomNavigationMenu(false)
-            NavGraphHelper.setGraph(
-                requireActivity(),
-                R.navigation.login_navigation_graph
-            )
+            (activity as NavigationActivity).showBottomNavigationMenu(false)
+
         }
     }
 }

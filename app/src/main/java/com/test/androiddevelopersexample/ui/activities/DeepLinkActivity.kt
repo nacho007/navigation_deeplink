@@ -19,7 +19,7 @@ class DeepLinkActivity : BaseActivity<ActivityDeepLinkBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val mainIntent = Intent(this, MainActivity::class.java)
+        val mainIntent = Intent(this, NavigationActivity::class.java)
         mainIntent.data = intent.data
         mainIntent.flags =
             Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NO_ANIMATION

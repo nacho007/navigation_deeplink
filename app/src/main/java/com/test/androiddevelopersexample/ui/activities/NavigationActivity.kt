@@ -1,10 +1,7 @@
 package com.test.androiddevelopersexample.ui.activities
 
-import android.content.Context
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import android.view.Menu
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.core.content.ContextCompat
@@ -12,19 +9,18 @@ import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.databinding.ActivityMainBinding
-import com.test.androiddevelopersexample.ui.utils.NavGraphHelper
+import com.test.androiddevelopersexample.databinding.ActivityNavigationBinding
 
 
 /**
  * Created by ignaciodeandreisdenis on 4/8/21.
  */
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
 
     override var screenTag = "MainActivity"
 
     var showBottomNavigation: Boolean = false
-    override val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    override val binding: ActivityNavigationBinding by lazy { ActivityNavigationBinding.inflate(layoutInflater) }
     var deepLink = false
 
     var graphId: Int = 0
@@ -38,9 +34,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.bottomNav2.visibility = GONE
-        binding.bottomNav2.selectedItemId = R.id.auxFragment
-
         showBottomNavigationMenu(showBottomNavigation)
 
         val myNavHostFragment = supportFragmentManager
@@ -52,7 +45,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val currentGraph: NavGraph
 
         if (graphId != 1) {
-            currentGraph = inflater.inflate(R.navigation.main_navigation_graph)
+            currentGraph = inflater.inflate(R.navigation.navigation_home)
             myNavHostFragment.navController.graph = currentGraph
         }
 
@@ -64,10 +57,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 R.id.loyaltyFragment -> {
                     Log.e("Menu", getString(R.string.tab_loyalty))
                 }
-                R.id.walletFragment -> {
-                    Log.e("Menu", getString(R.string.tab_money))
-                }
-                R.id.cardsFragment -> {
+                R.id.moneyFragment -> {
                     Log.e("Menu", getString(R.string.tab_money))
                 }
                 R.id.notificationsFragment -> {
@@ -88,58 +78,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
 
         binding.bottomNav.setupWithNavController(myNavHostFragment.navController)
-    }
-
-    fun setMenu(fragment: Int, fragmentToRemove: Int? = null) {
-        if (fragmentToRemove == null) {
-            addMenu(fragment, fragmentToRemove)
-        } else {
-            binding.bottomNav2.visibility = VISIBLE
-            binding.bottomNav.visibility = GONE
-
-            Handler().postDelayed({
-                addMenu(fragment, fragmentToRemove)
-                binding.bottomNav.selectedItemId = fragment
-            }, 100)
-
-            Handler().postDelayed({
-                binding.bottomNav2.visibility = GONE
-                binding.bottomNav.visibility = VISIBLE
-            }, 200)
-        }
-    }
-
-    fun addMenu(fragment: Int, fragmentToRemove: Int? = null) {
-        binding.bottomNav.apply {
-
-            fragmentToRemove?.let {
-                menu.removeItem(it)
-            }
-
-            menu.add(Menu.NONE, fragment, 30, R.string.tab_money).setIcon(R.drawable.svg_money)
-        }
-    }
-
-    fun process() {
-//        val sharedPref = getSharedPreferences(
-//            getString(R.string.preferences), Context.MODE_PRIVATE
-//        )
-//
-//        val isLogged = sharedPref?.getBoolean(getString(R.string.is_logged), false)
-//
-//        if (isLogged == true) {
-//            graphId = R.navigation.home_navigation_graph
-//            NavGraphHelper.setGraph(
-//                this,
-//                R.navigation.home_navigation_graph
-//            )
-//        } else {
-            graphId = R.navigation.login_navigation_graph
-            NavGraphHelper.setGraph(
-                this,
-                R.navigation.login_navigation_graph
-            )
-//        }
     }
 
     fun showBottomNavigationMenu(show: Boolean) {

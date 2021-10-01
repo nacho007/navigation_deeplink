@@ -3,7 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigation"
-    app:startDestination="@id/moneyFragment">
+    app:startDestination="@id/initFragment">
+
+    <fragment
+        android:id="@+id/initFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.main.InitFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_initFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@+id/initFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_initFragment_to_moneyFragment"
+            app:destination="@id/moneyFragment"
+            app:popUpTo="@id/initFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.login.LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_moneyFragment"
+            app:destination="@id/moneyFragment"
+            app:popUpTo="@+id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.register.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_moneyFragment"
+            app:destination="@id/moneyFragment"
+            app:popUpTo="@id/home_navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+
     <fragment
         android:id="@+id/newCardFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.NewCardFragment"
@@ -61,18 +106,7 @@
         android:id="@+id/checkoutFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.CheckoutFragment"
         android:label="CheckoutFragment"
-        tools:layout="@layout/fragment_checkout">
-<!--        <argument-->
-<!--            android:name="id"-->
-<!--            app:argType="integer"-->
-<!--            app:nullable="false" />-->
-<!--        <deepLink-->
-<!--            android:id="@+id/deepLinkCheckout"-->
-<!--            app:uri="app://checkout?id={id}" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_checkoutFragment_to_kyc_navigation"-->
-<!--            app:destination="@id/kyc_navigation" />-->
-    </fragment>
+        tools:layout="@layout/fragment_checkout"></fragment>
 
     <fragment
         android:id="@+id/astroCoinsFragment"
@@ -92,43 +126,11 @@
             android:id="@+id/deepLinkNotificationDetail"
             app:uri="app://notification_detail" />
     </fragment>
-    <include app:graph="@navigation/kyc_navigation" />
-    <fragment
-        android:id="@+id/walletFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.money.WalletFragment"
-        android:label="WalletFragment"
-        tools:layout="@layout/fragment_wallet">
-        <action
-            android:id="@+id/action_walletFragment_to_cardsFragment"
-            app:destination="@id/cardsFragment"
-            app:popUpTo="@id/walletFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/cardsFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.money.CardsFragment"
-        android:label="CardsFragment"
-        tools:layout="@layout/fragment_cards">
-        <action
-            android:id="@+id/action_cardsFragment_to_walletFragment"
-            app:destination="@id/walletFragment"
-            app:popUpTo="@id/cardsFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
+
     <fragment
         android:id="@+id/moneyFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.money.MoneyFragment"
         android:label="MoneyFragment"
-        tools:layout="@layout/fragment_money">
-        <action
-            android:id="@+id/action_moneyFragment_to_walletFragment"
-            app:destination="@id/walletFragment"
-            app:popUpTo="@id/moneyFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_moneyFragment_to_cardsFragment"
-            app:destination="@id/cardsFragment"
-            app:popUpTo="@id/moneyFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
+        tools:layout="@layout/fragment_money" />
+
 </navigation>

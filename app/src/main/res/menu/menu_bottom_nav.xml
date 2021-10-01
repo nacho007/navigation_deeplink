@@ -13,6 +13,12 @@
         android:title="@string/tab_loyalty" />
 
     <item
+        android:id="@+id/moneyFragment"
+        android:icon="@drawable/svg_money"
+        android:orderInCategory="20"
+        android:title="@string/tab_money" />
+
+    <item
         android:id="@+id/notificationsFragment"
         android:icon="@drawable/svg_notifications"
         android:orderInCategory="40"

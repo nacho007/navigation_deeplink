@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.activities.MainActivity">
+        <activity android:name=".ui.activities.NavigationActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,9 +39,6 @@
                 <data
                     android:host="notifications"
                     android:scheme="app" />
-<!--                <data-->
-<!--                    android:host="more"-->
-<!--                    android:scheme="app" />-->
                 <data
                     android:host="checkout"
                     android:scheme="app" />
@@ -59,8 +56,6 @@
             </intent-filter>
 
         </activity>
-
-        <activity android:name=".ui.activities.AstroCoinsActivity" />
 
     </application>
 

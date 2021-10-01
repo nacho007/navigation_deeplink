@@ -11,7 +11,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.viewbinding.ViewBinding
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.ui.activities.MainActivity
+import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 
 
 /**
@@ -37,7 +37,7 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
         savedInstanceState: Bundle?
     ): View? {
         Log.e(screenTag, "onCreateView")
-        (activity as MainActivity).showBottomNavigationMenu(showBottomNavigation)
+        (activity as NavigationActivity).showBottomNavigationMenu(showBottomNavigation)
         _binding = inflate.invoke(inflater, container, false)
         return binding.root
     }
@@ -56,8 +56,8 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
         toolbar.setNavigationIcon(R.drawable.svg_back_arrow)
         toolbar.setNavigationOnClickListener { view ->
 
-            if ((activity as MainActivity).deepLink) {
-                (activity as MainActivity).deepLink = false
+            if ((activity as NavigationActivity).deepLink) {
+                (activity as NavigationActivity).deepLink = false
                 val navOptions = NavOptions.Builder()
                     .setPopUpTo(fragmentId, true)
                     .build()

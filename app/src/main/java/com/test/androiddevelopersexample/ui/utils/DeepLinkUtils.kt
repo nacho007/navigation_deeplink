@@ -12,7 +12,7 @@ import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkBuilder
 import androidx.navigation.NavDeepLinkRequest
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.ui.activities.MainActivity
+import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 import java.util.*
 
 object DeepLinkUtils {
@@ -30,8 +30,8 @@ object DeepLinkUtils {
         args.putInt("id", 7)
 
         val pendingIntent = NavDeepLinkBuilder(context)
-            .setComponentName(MainActivity::class.java)
-            .setGraph(R.navigation.home_navigation_graph)
+            .setComponentName(NavigationActivity::class.java)
+            .setGraph(R.navigation.navigation_home)
             .setDestination(R.id.moreFragment)
             .setArguments(args)
             .createPendingIntent()
