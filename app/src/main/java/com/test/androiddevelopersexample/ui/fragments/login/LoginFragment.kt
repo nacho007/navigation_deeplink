@@ -32,6 +32,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             )
 
             sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), true)?.apply()
+
+            findNavController().graph.startDestination = R.id.moneyFragment
             navigate(R.id.action_loginFragment_to_moneyFragment)
         }
 

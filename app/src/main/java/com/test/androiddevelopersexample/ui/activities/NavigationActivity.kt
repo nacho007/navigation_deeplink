@@ -21,13 +21,13 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
 
     var showBottomNavigation: Boolean = false
     override val binding: ActivityNavigationBinding by lazy { ActivityNavigationBinding.inflate(layoutInflater) }
-    var deepLink = false
 
-    var graphId: Int = 0
+    private lateinit var myNavHostFragment: NavHostFragment
+    var deepLink = false
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt("graphId", 1)
+        outState.putInt(START_DESTINATION, myNavHostFragment.navController.graph.startDestination)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,17 +36,11 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
 
         showBottomNavigationMenu(showBottomNavigation)
 
-        val myNavHostFragment = supportFragmentManager
+        myNavHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentNavHost) as NavHostFragment
 
-        val inflater = myNavHostFragment.navController.navInflater
-
-        graphId = savedInstanceState?.getInt("graphId") ?: 0
-        val currentGraph: NavGraph
-
-        if (graphId != 1) {
-            currentGraph = inflater.inflate(R.navigation.navigation_home)
-            myNavHostFragment.navController.graph = currentGraph
+        savedInstanceState?.getInt(START_DESTINATION)?.let {
+            myNavHostFragment.navController.graph.startDestination = it
         }
 
         myNavHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -91,5 +85,9 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
         badge.backgroundColor = ContextCompat.getColor(this, R.color.color_red)
         badge.badgeTextColor = ContextCompat.getColor(this, R.color.color_white)
         badge.number = quantity
+    }
+
+    companion object {
+        const val START_DESTINATION = "start_destination"
     }
 }
