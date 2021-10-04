@@ -1,5 +1,6 @@
 package com.test.androiddevelopersexample.ui.fragments.main
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -25,6 +26,19 @@ class InitFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         super.onViewCreated(view, savedInstanceState)
 
         val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({ navigate(R.id.action_initFragment_to_loginFragment) }, 5000)
+        handler.postDelayed(
+            {
+                val sharedPref = activity?.getSharedPreferences(
+                    getString(R.string.preferences), Context.MODE_PRIVATE
+                )
+
+                if (sharedPref?.getBoolean(getString(R.string.is_logged), false) == true) {
+                    navigate(R.id.action_initFragment_to_moneyFragment)
+                } else {
+                    navigate(R.id.action_initFragment_to_loginFragment)
+                }
+
+            }, 5000
+        )
     }
 }
