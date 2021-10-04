@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/initFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.main.InitFragment"
-        android:label="MainFragment"
+        android:label="InitFragment"
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_initFragment_to_loginFragment"

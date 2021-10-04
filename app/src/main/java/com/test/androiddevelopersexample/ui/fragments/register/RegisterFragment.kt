@@ -3,6 +3,7 @@ package com.test.androiddevelopersexample.ui.fragments.register
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentRegisterBinding
 import com.test.androiddevelopersexample.ui.activities.NavigationActivity
@@ -29,6 +30,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), true)?.apply()
 
             navigate(R.id.action_registerFragment_to_moneyFragment)
+            findNavController().graph.startDestination = R.id.moneyFragment
         }
     }
 }

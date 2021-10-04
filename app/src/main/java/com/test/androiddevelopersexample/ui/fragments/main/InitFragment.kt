@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentMainBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
@@ -34,6 +35,7 @@ class InitFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
                 if (sharedPref?.getBoolean(getString(R.string.is_logged), false) == true) {
                     navigate(R.id.action_initFragment_to_moneyFragment)
+                    findNavController().graph.startDestination = R.id.moneyFragment
                 } else {
                     navigate(R.id.action_initFragment_to_loginFragment)
                 }
