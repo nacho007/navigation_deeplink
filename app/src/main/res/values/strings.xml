@@ -26,6 +26,8 @@
     <string name="login">LOGIN</string>
     <string name="register">REGISTER</string>
     <string name="logout">LOGOUT</string>
+    <string name="help_center">HELP CENTER</string>
+    <string name="article">ARTICLE</string>
     <string name="preferences">preferences</string>
     <string name="is_logged">is_logged</string>
     <string name="astro_coins">ASTROCOINS</string>

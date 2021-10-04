@@ -14,7 +14,7 @@
             android:text="@string/register"
             android:fontFamily="serif"
             android:textSize="36sp"
-            android:textColor="@color/cardview_light_background"
+            android:textColor="@color/color_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

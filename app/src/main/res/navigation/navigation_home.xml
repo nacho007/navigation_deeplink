@@ -88,6 +88,9 @@
         <action
             android:id="@+id/action_moreFragment_to_astroCoinsFragment"
             app:destination="@id/astroCoinsFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_fragmentHelpCenter"
+            app:destination="@id/helpCenter" />
     </fragment>
     <fragment
         android:id="@+id/paymentMethodFragment"
@@ -106,7 +109,7 @@
         android:id="@+id/checkoutFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.home.CheckoutFragment"
         android:label="CheckoutFragment"
-        tools:layout="@layout/fragment_checkout"></fragment>
+        tools:layout="@layout/fragment_checkout" />
 
     <fragment
         android:id="@+id/astroCoinsFragment"
@@ -132,5 +135,22 @@
         android:name="com.test.androiddevelopersexample.ui.fragments.money.MoneyFragment"
         android:label="MoneyFragment"
         tools:layout="@layout/fragment_money" />
+
+    <navigation
+        android:id="@+id/helpCenter"
+        app:startDestination="@id/fragmentHelpCenter">
+        <fragment
+            android:id="@+id/fragmentHelpCenter"
+            android:name="com.test.androiddevelopersexample.ui.fragments.help_center.FragmentHelpCenter"
+            android:label="FragmentHelpCenter">
+            <action
+                android:id="@+id/action_fragmentHelpCenter_to_articleFragment"
+                app:destination="@id/articleFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/articleFragment"
+            android:name="com.test.androiddevelopersexample.ui.fragments.help_center.ArticleFragment"
+            android:label="ArticleFragment" />
+    </navigation>
 
 </navigation>

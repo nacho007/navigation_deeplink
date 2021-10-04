@@ -9,6 +9,7 @@ import com.test.androiddevelopersexample.databinding.FragmentMoreBinding
 import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
+import com.test.androiddevelopersexample.ui.utils.navigate
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
@@ -25,31 +26,39 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnGenerateBadge.setOnClickListener {
-            (activity as NavigationActivity).createBadges(R.id.newCardFragment, 2)
-            (activity as NavigationActivity).createBadges(R.id.loyaltyFragment, 3)
+        binding.apply {
+            btnGenerateBadge.setOnClickListener {
+                (activity as NavigationActivity).createBadges(R.id.newCardFragment, 2)
+                (activity as NavigationActivity).createBadges(R.id.loyaltyFragment, 3)
+            }
+
+            btnAstroCoins.setOnClickListener {
+                findNavController().navigate(R.id.action_moreFragment_to_astroCoinsFragment)
+            }
+
+            btnGenerateNotifications.setOnClickListener {
+                val executor: ScheduledExecutorService =
+                    Executors.newSingleThreadScheduledExecutor()
+                executor.schedule({
+                    DeepLinkUtils.createNotification(requireContext(), "Title", "Body")
+                }, 3000.toLong(), TimeUnit.MILLISECONDS)
+            }
+
+            btnHelpCenter.setOnClickListener {
+                navigate(R.id.action_moreFragment_to_fragmentHelpCenter)
+            }
+
+            btnLogout.setOnClickListener {
+                val sharedPref = activity?.getSharedPreferences(
+                    getString(R.string.preferences), Context.MODE_PRIVATE
+                )
+
+                sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), false)?.apply()
+
+                (activity as NavigationActivity).showBottomNavigationMenu(false)
+
+            }
         }
 
-        binding.btnAstroCoins.setOnClickListener {
-            findNavController().navigate(R.id.action_moreFragment_to_astroCoinsFragment)
-        }
-
-        binding.btnGenerateNotifications.setOnClickListener {
-            val executor: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
-            executor.schedule({
-                DeepLinkUtils.createNotification(requireContext(), "Title", "Body")
-            }, 3000.toLong(), TimeUnit.MILLISECONDS)
-        }
-
-        binding.btnLogout.setOnClickListener {
-            val sharedPref = activity?.getSharedPreferences(
-                getString(R.string.preferences), Context.MODE_PRIVATE
-            )
-
-            sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), false)?.apply()
-
-            (activity as NavigationActivity).showBottomNavigationMenu(false)
-
-        }
     }
 }
