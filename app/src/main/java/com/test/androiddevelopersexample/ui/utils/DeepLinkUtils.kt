@@ -18,6 +18,7 @@ import java.util.*
 object DeepLinkUtils {
 
     const val CHANNEL_ID = "astropay_channel"
+    const val PUSH_TYPE = "type"
 
     fun createNotification(
         context: Context,
@@ -28,11 +29,12 @@ object DeepLinkUtils {
 
         val args = Bundle()
         args.putInt("id", 7)
+        args.putString(PUSH_TYPE, "PushType")
 
         val pendingIntent = NavDeepLinkBuilder(context)
             .setComponentName(NavigationActivity::class.java)
             .setGraph(R.navigation.navigation_home)
-            .setDestination(R.id.moreFragment)
+            .setDestination(R.id.articleFragment)
             .setArguments(args)
             .createPendingIntent()
 

@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.ActivityNavigationBinding
+import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils.PUSH_TYPE
 
 
 /**
@@ -75,6 +76,11 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
         if (intent?.data != null) {
             Log.e("Data create", "Data ${intent.data.toString()}")
             deepLink = true
+        }
+
+        if (intent?.extras != null) {
+            val pushType = intent?.extras?.get(PUSH_TYPE)
+            Log.e("Data create", "push $pushType")
         }
 
         binding.bottomNav.setupWithNavController(navHostFragment.navController)

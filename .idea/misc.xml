@@ -10,6 +10,8 @@
         <entry key="app/src/main/res/layout/fragment_help_center.xml" value="0.3640625" />
         <entry key="app/src/main/res/layout/fragment_money.xml" value="0.3640625" />
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.3640625" />
+        <entry key="app/src/main/res/layout/fragment_notification_detail.xml" value="0.2703125" />
+        <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.2703125" />
       </map>
     </option>

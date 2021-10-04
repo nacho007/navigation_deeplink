@@ -23,8 +23,12 @@ class NotificationDetailFragment : BaseFragment<FragmentNotificationDetailBindin
         binding.apply {
             setNavigation(ablToolbar.toolbar, R.id.notificationsFragment)
 
-            tvNotifications.setOnClickListener {
-                findNavController().navigate(DeepLinkUtils.createDeepLink("app://checkout?id=909"))
+            btnDeepLink.setOnClickListener {
+                try {
+                    findNavController().navigate(DeepLinkUtils.deepLinkLoyalty())
+                } catch (exception: Exception) {
+                    exception.printStackTrace()
+                }
             }
         }
     }

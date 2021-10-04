@@ -21,13 +21,24 @@
             android:id="@+id/tv_notifications"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/notification_detail"
             android:fontFamily="sans-serif-medium"
-            android:textSize="36sp"
+            android:layout_marginTop="26dp"
+            android:text="@string/notification_detail"
             android:textColor="@color/color_red"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/abl_toolbar" />
+
+        <Button
+            android:id="@+id/btn_deep_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/deep_link_to_loyalty"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_notifications" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
