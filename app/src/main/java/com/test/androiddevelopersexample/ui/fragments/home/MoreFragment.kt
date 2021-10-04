@@ -56,7 +56,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                 sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), false)?.apply()
 
                 (activity as NavigationActivity).showBottomNavigationMenu(false)
-
+                (activity as NavigationActivity).logOut()
             }
         }
 

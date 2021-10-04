@@ -6,7 +6,9 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavGraph
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.ActivityNavigationBinding
@@ -20,14 +22,18 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
     override var screenTag = "MainActivity"
 
     var showBottomNavigation: Boolean = false
-    override val binding: ActivityNavigationBinding by lazy { ActivityNavigationBinding.inflate(layoutInflater) }
+    override val binding: ActivityNavigationBinding by lazy {
+        ActivityNavigationBinding.inflate(
+            layoutInflater
+        )
+    }
 
-    private lateinit var myNavHostFragment: NavHostFragment
+    private lateinit var navHostFragment: NavHostFragment
     var deepLink = false
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(START_DESTINATION, myNavHostFragment.navController.graph.startDestination)
+        outState.putInt(START_DESTINATION, navHostFragment.navController.graph.startDestination)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,14 +42,14 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
 
         showBottomNavigationMenu(showBottomNavigation)
 
-        myNavHostFragment = supportFragmentManager
+        navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentNavHost) as NavHostFragment
 
         savedInstanceState?.getInt(START_DESTINATION)?.let {
-            myNavHostFragment.navController.graph.startDestination = it
+            navHostFragment.navController.graph.startDestination = it
         }
 
-        myNavHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
+        navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.newCardFragment -> {
                     Log.e("Menu", getString(R.string.tab_new_card))
@@ -71,7 +77,7 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
             deepLink = true
         }
 
-        binding.bottomNav.setupWithNavController(myNavHostFragment.navController)
+        binding.bottomNav.setupWithNavController(navHostFragment.navController)
     }
 
     fun showBottomNavigationMenu(show: Boolean) {
@@ -82,6 +88,29 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
     fun createBadges(id: Int, quantity: Int, visible: Boolean = true) {
         val badge = binding.bottomNav.getOrCreateBadge(id)
         badge.isVisible = visible
+        badge.backgroundColor = ContextCompat.getColor(this, R.color.color_red)
+        badge.badgeTextColor = ContextCompat.getColor(this, R.color.color_white)
+        badge.number = quantity
+    }
+
+    fun logOut() {
+        setBadges(R.id.notificationsFragment, 0)
+        setBadges(R.id.moreFragment, 0)
+        intent?.data = null
+        intent?.replaceExtras(null)
+        navigateToLogin()
+    }
+
+    private fun navigateToLogin() {
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.home_navigation, true)
+            .build()
+        navHostFragment.findNavController().navigate(R.id.initFragment, null, navOptions)
+    }
+
+    fun setBadges(id: Int, quantity: Int) {
+        val badge = binding.bottomNav.getOrCreateBadge(id)
+        badge.isVisible = quantity > 0
         badge.backgroundColor = ContextCompat.getColor(this, R.color.color_red)
         badge.badgeTextColor = ContextCompat.getColor(this, R.color.color_white)
         badge.number = quantity
