@@ -18,6 +18,10 @@ class FragmentHelpCenter :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.apply {
+            setNavigation(ablToolbar.toolbar, R.id.fragmentHelpCenter)
+        }
+
         binding.btnGoToArticle.setOnClickListener {
             navigate(R.id.action_fragmentHelpCenter_to_articleFragment)
         }

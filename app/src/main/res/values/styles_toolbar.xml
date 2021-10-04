@@ -3,10 +3,10 @@
 
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <!-- android:textColorPrimary is the color of the title text in the Toolbar  -->
-        <item name="android:textColorPrimary">@color/color_accent</item>
+        <item name="android:textColorPrimary">@color/color_black</item>
 
-        <item name="android:background">@color/color_accent</item>
-        <item name="android:itemBackground">@color/color_accent</item>
+        <item name="android:background">@color/color_balloon</item>
+        <item name="android:itemBackground">@color/color_balloon</item>
 
         <item name="android:textColorHint">@color/color_accent</item>
         <!-- actionMenuTextColor is the color of the text of action (menu) items  -->
@@ -23,7 +23,7 @@
 
     <!-- This configures the styles for the title within the Toolbar  -->
     <style name="Toolbar.TitleText" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textColor">@color/color_accent</item>
+        <item name="android:textColor">@color/color_black</item>
     </style>
 
     <style name="ConsolidateToolbarTheme" parent="ToolbarTheme">

@@ -85,7 +85,7 @@ object DeepLinkUtils {
 
     fun deepLinkLoyalty(): NavDeepLinkRequest {
         return NavDeepLinkRequest.Builder
-            .fromUri("app://noexist".toUri())
+            .fromUri("app://loyalty".toUri())
             .build()
     }
 }

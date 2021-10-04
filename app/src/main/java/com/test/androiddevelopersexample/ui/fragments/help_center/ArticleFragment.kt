@@ -2,6 +2,7 @@ package com.test.androiddevelopersexample.ui.fragments.help_center
 
 import android.os.Bundle
 import android.view.View
+import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentArticleBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 
@@ -14,6 +15,10 @@ class ArticleFragment : BaseFragment<FragmentArticleBinding>(FragmentArticleBind
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.apply {
+            setNavigation(ablToolbar.toolbar, R.id.articleFragment)
+        }
     }
 
 }

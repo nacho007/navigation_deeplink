@@ -55,16 +55,7 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
     fun setNavigation(toolbar: Toolbar, fragmentId: Int) {
         toolbar.setNavigationIcon(R.drawable.svg_back_arrow)
         toolbar.setNavigationOnClickListener { view ->
-
-            if ((activity as NavigationActivity).deepLink) {
-                (activity as NavigationActivity).deepLink = false
-                val navOptions = NavOptions.Builder()
-                    .setPopUpTo(fragmentId, true)
-                    .build()
-                view.findNavController().navigate(R.id.newCardFragment, null, navOptions)
-            } else {
-                view.findNavController().navigateUp()
-            }
+            view.findNavController().navigateUp()
         }
     }
 }
