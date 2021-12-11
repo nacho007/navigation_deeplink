@@ -35,7 +35,7 @@
     <string name="checkout">CHECKOUT</string>
     <string name="deep_link_to_loyalty">Deep Link To Loyalty</string>
     <string name="go_to_detail">Notification Detail</string>
-
+    <string name="viewpager">VIEWPAGER</string>
 
 
 </resources>

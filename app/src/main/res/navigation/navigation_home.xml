@@ -134,7 +134,11 @@
         android:id="@+id/moneyFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.money.MoneyFragment"
         android:label="MoneyFragment"
-        tools:layout="@layout/fragment_money" />
+        tools:layout="@layout/fragment_money" >
+        <action
+            android:id="@+id/action_moneyFragment_to_fragmentViewPager"
+            app:destination="@id/fragmentViewPager" />
+    </fragment>
 
     <navigation
         android:id="@+id/helpCenter"
@@ -152,5 +156,10 @@
             android:name="com.test.androiddevelopersexample.ui.fragments.help_center.ArticleFragment"
             android:label="ArticleFragment" />
     </navigation>
+    <fragment
+        android:id="@+id/fragmentViewPager"
+        android:name="com.test.androiddevelopersexample.ui.fragments.viewpager.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_viewpager" />
 
 </navigation>

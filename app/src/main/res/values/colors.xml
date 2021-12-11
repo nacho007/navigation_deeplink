@@ -64,6 +64,9 @@
     <color name="color_green_3">#dbffdb</color>
     <color name="color_green_4">#1A30d130</color>
 
+    <color name="color_tab_indicator_background">@color/color_gray_7</color>
+    <color name="color_dot_indicator">@color/color_gray_4</color>
+    <color name="color_dot_indicator_unselected">@color/color_gray_3</color>
 
     <!--ONFIDO-->
     <color name="onfidoColorPrimary">@color/color_accent</color>
