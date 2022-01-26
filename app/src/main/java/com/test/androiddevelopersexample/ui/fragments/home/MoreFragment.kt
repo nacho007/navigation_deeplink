@@ -58,6 +58,10 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                 (activity as NavigationActivity).showBottomNavigationMenu(false)
                 (activity as NavigationActivity).logOut()
             }
+
+            btnSwipe.setOnClickListener {
+                navigate(R.id.action_moreFragment_to_swipeFragment)
+            }
         }
 
     }

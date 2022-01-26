@@ -19,6 +19,7 @@
 
     <string name="generate_badges">Generate Badges</string>
     <string name="generate_notification">Generate Notification</string>
+    <string name="image_content_description" translatable="false">No content description</string>
 
     <string name="main">MAIN</string>
     <string name="deeplink">DEEPLINK</string>
@@ -36,6 +37,7 @@
     <string name="deep_link_to_loyalty">Deep Link To Loyalty</string>
     <string name="go_to_detail">Notification Detail</string>
     <string name="viewpager">VIEWPAGER</string>
+    <string name="swipe">SWIPE</string>
 
 
 </resources>

@@ -4,9 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/selector_tab_indicator_dot.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/drawable/shape_balloon_middle_rect_selector.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/drawable/shape_card_tab_layout.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/drawable/shape_divider_list_item.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/drawable/svg_camera.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/activity_deep_link.xml" value="0.15489130434782608" />
         <entry key="app/src/main/res/layout/app_bar_layout.xml" value="0.2703125" />
+        <entry key="app/src/main/res/layout/country_item_view.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/fragment_article.xml" value="0.3640625" />
         <entry key="app/src/main/res/layout/fragment_astro_coins.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/fragment_collection_object.xml" value="0.2703125" />
@@ -16,7 +20,9 @@
         <entry key="app/src/main/res/layout/fragment_notification_detail.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.2703125" />
+        <entry key="app/src/main/res/layout/fragment_swipe.xml" value="0.10616438356164383" />
         <entry key="app/src/main/res/layout/fragment_viewpager.xml" value="0.335" />
+        <entry key="app/src/main/res/xml/countries.xml" value="0.2703125" />
       </map>
     </option>
   </component>

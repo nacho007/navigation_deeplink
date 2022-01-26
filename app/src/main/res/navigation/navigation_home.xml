@@ -91,6 +91,9 @@
         <action
             android:id="@+id/action_moreFragment_to_fragmentHelpCenter"
             app:destination="@id/helpCenter" />
+        <action
+            android:id="@+id/action_moreFragment_to_swipeFragment"
+            app:destination="@id/swipeFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentMethodFragment"
@@ -161,5 +164,10 @@
         android:name="com.test.androiddevelopersexample.ui.fragments.viewpager.ViewPagerFragment"
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_viewpager" />
+    <fragment
+        android:id="@+id/swipeFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.swipe.SwipeFragment"
+        android:label="SwipeFragment"
+        tools:layout="@layout/fragment_swipe"/>
 
 </navigation>
