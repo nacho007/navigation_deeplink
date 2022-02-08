@@ -1,5 +1,6 @@
 package com.test.androiddevelopersexample.ui.fragments.base
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -56,6 +57,33 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
         toolbar.setNavigationIcon(R.drawable.svg_back_arrow)
         toolbar.setNavigationOnClickListener { view ->
             view.findNavController().navigateUp()
+        }
+    }
+
+    var isKeyboardShowing = false
+
+    fun setKeyBoardListener() {
+        binding.apply {
+            with(root.viewTreeObserver) {
+                addOnGlobalLayoutListener {
+                    val r = Rect()
+                    root.getWindowVisibleDisplayFrame(r)
+                    val screenHeight = root.height
+                    val keypadHeight = screenHeight - r.bottom
+
+                    if (keypadHeight > screenHeight * 0.15) {
+                        if (!isKeyboardShowing) {
+                            isKeyboardShowing = true
+                            Log.e(screenTag, "Keyboard opened!")
+                        }
+                    } else {
+                        if (isKeyboardShowing) {
+                            isKeyboardShowing = false
+                            Log.e(screenTag, "Keyboard closed")
+                        }
+                    }
+                }
+            }
         }
     }
 }
