@@ -7,21 +7,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.databinding.FragmentSwipeBinding
+import com.test.androiddevelopersexample.databinding.FragmentSwipeCustomBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.utils.SimpleDividerItemDecoration
 import com.test.androiddevelopersexample.ui.utils.Utils
-import com.test.androiddevelopersexample.ui.utils.navigate
 import com.test.androiddevelopersexample.ui.utils.setOnSingleItemClickListener
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 
 /**
- * Created by ignaciodeandreisdenis on 26/1/22.
+ * Created by ignaciodeandreisdenis on 27/1/22.
  */
-class SwipeFragment : BaseFragment<FragmentSwipeBinding>(FragmentSwipeBinding::inflate) {
+class SwipeCustomFragment :
+    BaseFragment<FragmentSwipeCustomBinding>(FragmentSwipeCustomBinding::inflate) {
 
-    override var screenTag = "SwipeFragment"
+    override var screenTag = "FragmentSwipeCustomBinding"
 
     override var showBottomNavigation: Boolean = false
 
@@ -32,13 +32,7 @@ class SwipeFragment : BaseFragment<FragmentSwipeBinding>(FragmentSwipeBinding::i
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            swipeListBtn.setOnClickListener {
-                navigate(R.id.action_swipeFragment_to_swipeFragmentList)
-            }
 
-            swipeCustomBtn.setOnClickListener {
-                navigate(R.id.action_swipeFragment_to_swipeFragmentCustom)
-            }
         }
     }
 }

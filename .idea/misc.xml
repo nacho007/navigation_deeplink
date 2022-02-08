@@ -20,7 +20,9 @@
         <entry key="app/src/main/res/layout/fragment_notification_detail.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.2703125" />
-        <entry key="app/src/main/res/layout/fragment_swipe.xml" value="0.10616438356164383" />
+        <entry key="app/src/main/res/layout/fragment_swipe.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_swipe_custom.xml" value="0.2703125" />
+        <entry key="app/src/main/res/layout/fragment_swipe_list.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/fragment_viewpager.xml" value="0.335" />
         <entry key="app/src/main/res/xml/countries.xml" value="0.2703125" />
       </map>

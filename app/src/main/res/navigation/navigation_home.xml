@@ -137,7 +137,7 @@
         android:id="@+id/moneyFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.money.MoneyFragment"
         android:label="MoneyFragment"
-        tools:layout="@layout/fragment_money" >
+        tools:layout="@layout/fragment_money">
         <action
             android:id="@+id/action_moneyFragment_to_fragmentViewPager"
             app:destination="@id/fragmentViewPager" />
@@ -168,6 +168,25 @@
         android:id="@+id/swipeFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.swipe.SwipeFragment"
         android:label="SwipeFragment"
-        tools:layout="@layout/fragment_swipe"/>
+        tools:layout="@layout/fragment_swipe">
+        <action
+            android:id="@+id/action_swipeFragment_to_swipeFragmentList"
+            app:destination="@id/swipeFragmentList" />
+        <action
+            android:id="@+id/action_swipeFragment_to_swipeFragmentCustom"
+            app:destination="@id/swipeFragmentCustom" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/swipeFragmentList"
+        android:name="com.test.androiddevelopersexample.ui.fragments.swipe.SwipeListFragment"
+        android:label="SwipeListFragment"
+        tools:layout="@layout/fragment_swipe_list" />
+
+    <fragment
+        android:id="@+id/swipeFragmentCustom"
+        android:name="com.test.androiddevelopersexample.ui.fragments.swipe.SwipeCustomFragment"
+        android:label="SwipeCustomFragment"
+        tools:layout="@layout/fragment_swipe_custom" />
 
 </navigation>
