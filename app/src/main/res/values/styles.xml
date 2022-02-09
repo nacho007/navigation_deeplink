@@ -5,6 +5,8 @@
         <item name="colorPrimary">@color/color_red</item>
         <item name="colorPrimaryDark">@color/color_black</item>
         <item name="colorAccent">@color/color_accent</item>
+        <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
+        <item name="editTextStyle">@style/Widget.AppCompat.EditText.BasicEditText</item>
     </style>
 
     <style name="BottomNavigationView.InActive" parent="@style/TextAppearance.AppCompat.Caption">
@@ -31,6 +33,35 @@
         <item name="boxBackgroundColor">@color/color_balloon</item>
         <item name="android:textColorHint">@color/color_text_field_description</item>
         <item name="android:textSize">@dimen/text_size_3</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/color_text_pressed</item>
+        <item name="errorTextAppearance">@color/color_text_error</item>
+        <item name="hintTextColor">@color/color_text</item>
+        <item name="boxStrokeColor">@color/selector_text_input_layout_box_stroke_color</item>
+        <item name="boxBackgroundColor">@color/color_balloon</item>
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.AppTheme.TextInputEditText.OutlinedBox
+        </item>
+    </style>
+
+    <style name="ThemeOverlay.AppTheme.TextInputEditText.OutlinedBox" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="colorControlActivated">@color/color_text</item>
+        <item name="android:textColorPrimary">@color/color_text</item>
+    </style>
+
+    <style name="ExposedDropdownMenu" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:textColorHint">@color/color_text_pressed</item>
+        <item name="hintTextColor">@color/color_text</item>
+        <item name="boxStrokeColor">@color/selector_text_input_layout_box_stroke_color</item>
+        <item name="boxBackgroundColor">@color/color_balloon</item>
+        <item name="endIconTint">@color/color_text_pressed</item>
+    </style>
+
+    <style name="Widget.AppCompat.EditText.BasicEditText">
+        <item name="android:textColor">@color/color_input_text</item>
+        <item name="android:textColorHint">@color/color_input_hint</item>
     </style>
 
 </resources>

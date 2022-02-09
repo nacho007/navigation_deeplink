@@ -51,7 +51,7 @@ class SwipeListFragment : BaseFragment<FragmentSwipeListBinding>(FragmentSwipeLi
             }
         }
 
-        val json = Utils.loadJSONFromAsset(requireContext(), "countries2.json")
+        val json = Utils.loadJSONFromAsset(requireContext(), "countries.json")
 
         val gSon = GsonBuilder().serializeNulls().create()
         val type = object : TypeToken<MockCountries>() {

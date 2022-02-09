@@ -41,5 +41,8 @@
     <string name="swipe">SWIPE</string>
     <string name="change_state">Change State</string>
 
+    <string name="mobile_search_for_a_contact">"Search for a contact"</string>
+    <string name="mobile_transfer">"Transfer"</string>
+    <string name="mobile_new_number">"New number"</string>
 
 </resources>
