@@ -33,7 +33,13 @@ class SwipeFragment : BaseFragment<FragmentSwipeBinding>(FragmentSwipeBinding::i
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            setKeyBoardListener()
+            setKeyBoardListener { keyboardOpen ->
+                if (keyboardOpen) {
+                    Log.e(screenTag, "Keyboard opened!")
+                } else {
+                    Log.e(screenTag, "Keyboard closed")
+                }
+            }
 
             swipeListBtn.setOnClickListener {
                 navigate(R.id.action_swipeFragment_to_swipeFragmentList)

@@ -6,9 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.viewbinding.ViewBinding
 import com.test.androiddevelopersexample.R
@@ -28,9 +28,12 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
     open var showBottomNavigation = false
     var fromDeepLink = false
 
+    private var screenHeight: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.e(screenTag, "onCreate")
+        screenHeight = resources.displayMetrics.heightPixels
     }
 
     override fun onCreateView(
@@ -50,6 +53,7 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
 
     override fun onDestroyView() {
         super.onDestroyView()
+        removeListener = true
         Log.e(screenTag, "onDestroyView")
     }
 
@@ -60,29 +64,37 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
         }
     }
 
-    var isKeyboardShowing = false
+    private var isKeyboardShowing = false
+    private var removeListener = false
 
-    fun setKeyBoardListener() {
+    fun setKeyBoardListener(callback: (Boolean) -> Unit) {
         binding.apply {
             with(root.viewTreeObserver) {
-                addOnGlobalLayoutListener {
-                    val r = Rect()
-                    root.getWindowVisibleDisplayFrame(r)
-                    val screenHeight = root.height
-                    val keypadHeight = screenHeight - r.bottom
+                addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+                    override fun onGlobalLayout() {
+                        Log.e(screenTag, "onGlobalLayout()")
 
-                    if (keypadHeight > screenHeight * 0.15) {
-                        if (!isKeyboardShowing) {
-                            isKeyboardShowing = true
-                            Log.e(screenTag, "Keyboard opened!")
+                        if (removeListener) {
+                            removeOnGlobalLayoutListener(this)
                         }
-                    } else {
-                        if (isKeyboardShowing) {
-                            isKeyboardShowing = false
-                            Log.e(screenTag, "Keyboard closed")
+
+                        val r = Rect()
+                        root.getWindowVisibleDisplayFrame(r)
+                        val keypadHeight = screenHeight - r.bottom
+
+                        if (keypadHeight > screenHeight * 0.15) {
+                            if (!isKeyboardShowing) {
+                                isKeyboardShowing = true
+                                callback(true)
+                            }
+                        } else {
+                            if (isKeyboardShowing) {
+                                isKeyboardShowing = false
+                                callback(false)
+                            }
                         }
                     }
-                }
+                })
             }
         }
     }
