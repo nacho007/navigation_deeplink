@@ -7,6 +7,7 @@
     <string name="money">MONEY</string>
     <string name="wallet">WALLET</string>
     <string name="cards">CARDS</string>
+    <string name="phone">PHONE</string>
     <string name="notifications">NOTIFICATIONS</string>
     <string name="notification_detail">NOTIFICATION DETAIL</string>
     <string name="more">MORE</string>
@@ -18,7 +19,7 @@
     <string name="mobile_first_name">"First Name"</string>
 
     <string name="generate_badges">Generate Badges</string>
-    <string name="generate_notification">Generate Notification</string>
+    <string name="generate_notification">Bottom Sheet</string>
     <string name="image_content_description" translatable="false">No content description</string>
 
     <string name="main">MAIN</string>
@@ -38,6 +39,7 @@
     <string name="go_to_detail">Notification Detail</string>
     <string name="viewpager">VIEWPAGER</string>
     <string name="swipe">SWIPE</string>
+    <string name="change_state">Change State</string>
 
 
 </resources>
