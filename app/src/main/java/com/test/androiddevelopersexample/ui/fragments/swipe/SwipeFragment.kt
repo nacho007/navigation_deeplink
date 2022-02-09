@@ -25,22 +25,10 @@ class SwipeFragment : BaseFragment<FragmentSwipeBinding>(FragmentSwipeBinding::i
 
     override var showBottomNavigation: Boolean = false
 
-    private var countryAdapter = GroupAdapter<GroupieViewHolder>()
-    private var countriesViewList = emptyList<CountryItemView>()
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            setKeyBoardListener { keyboardOpen ->
-                if (keyboardOpen) {
-                    Log.e(screenTag, "Keyboard opened!")
-                } else {
-                    Log.e(screenTag, "Keyboard closed")
-                }
-            }
-
             swipeListBtn.setOnClickListener {
                 navigate(R.id.action_swipeFragment_to_swipeFragmentList)
             }

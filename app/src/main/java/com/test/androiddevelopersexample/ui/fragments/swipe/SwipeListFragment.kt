@@ -1,25 +1,27 @@
 package com.test.androiddevelopersexample.ui.fragments.swipe
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.databinding.FragmentSwipeBinding
 import com.test.androiddevelopersexample.databinding.FragmentSwipeListBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.utils.SimpleDividerItemDecoration
 import com.test.androiddevelopersexample.ui.utils.Utils
 import com.test.androiddevelopersexample.ui.utils.setOnSingleItemClickListener
+import com.test.androiddevelopersexample.ui.utils.show
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 
 /**
  * Created by ignaciodeandreisdenis on 27/1/22.
  */
-class SwipeListFragment : BaseFragment<FragmentSwipeListBinding>(FragmentSwipeListBinding::inflate) {
+class SwipeListFragment :
+    BaseFragment<FragmentSwipeListBinding>(FragmentSwipeListBinding::inflate) {
 
     override var screenTag = "SwipeListFragment"
 
@@ -32,6 +34,16 @@ class SwipeListFragment : BaseFragment<FragmentSwipeListBinding>(FragmentSwipeLi
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
+            setKeyBoardListener { keyboardOpen ->
+                if (keyboardOpen) {
+                    fabManualTransfer.show(false)
+                    Log.e(screenTag, "Keyboard opened!")
+                } else {
+                    fabManualTransfer.show(true)
+                    Log.e(screenTag, "Keyboard closed")
+                }
+            }
+
             rvCountries.apply {
                 adapter = countryAdapter.apply {
                     setOnSingleItemClickListener { item, _ ->
