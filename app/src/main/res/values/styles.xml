@@ -1,10 +1,11 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/color_red</item>
         <item name="colorPrimaryDark">@color/color_black</item>
         <item name="colorAccent">@color/color_accent</item>
+        <item name="appBarLayoutStyle">@style/AppBarLayoutTheme</item>
         <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
         <item name="editTextStyle">@style/Widget.AppCompat.EditText.BasicEditText</item>
     </style>
@@ -62,6 +63,10 @@
     <style name="Widget.AppCompat.EditText.BasicEditText">
         <item name="android:textColor">@color/color_input_text</item>
         <item name="android:textColorHint">@color/color_input_hint</item>
+    </style>
+
+    <style name="AppBarLayoutTheme" parent="@style/Widget.Design.AppBarLayout">
+        <item name="elevation">0dp</item>
     </style>
 
 </resources>

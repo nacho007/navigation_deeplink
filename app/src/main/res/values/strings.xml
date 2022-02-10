@@ -44,5 +44,7 @@
     <string name="mobile_search_for_a_contact">"Search for a contact"</string>
     <string name="mobile_transfer">"Transfer"</string>
     <string name="mobile_new_number">"New number"</string>
+    <string name="mobile_transfer_1">"Transfer UYU 1000 to:"</string>
+    <string name="mobile_transfer_2">"Choose who to send the money to"</string>
 
 </resources>

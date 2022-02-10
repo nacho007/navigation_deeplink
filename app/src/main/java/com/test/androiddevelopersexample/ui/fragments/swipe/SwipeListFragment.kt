@@ -16,6 +16,10 @@ import com.test.androiddevelopersexample.ui.utils.setOnSingleItemClickListener
 import com.test.androiddevelopersexample.ui.utils.show
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
+import kotlin.math.abs
+
 
 /**
  * Created by ignaciodeandreisdenis on 27/1/22.
@@ -34,6 +38,18 @@ class SwipeListFragment :
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
+            setNavigation(ablToolbar.toolbar, R.id.swipeFragmentList)
+
+            etSearch.setOnClickListener {
+                ablToolbar.abl.setExpanded(false)
+            }
+
+            etSearch.setOnFocusChangeListener { view, b ->
+                if (b) {
+                    ablToolbar.abl.setExpanded(false)
+                }
+            }
+
             setKeyBoardListener { keyboardOpen ->
                 if (keyboardOpen) {
                     fabManualTransfer.show(false)

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/crl_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_view_background"
@@ -13,7 +14,7 @@
 
         <include
             android:id="@+id/abl_toolbar"
-            layout="@layout/app_bar_layout"
+            layout="@layout/app_bar_layout_transfer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
