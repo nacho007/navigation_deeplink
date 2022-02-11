@@ -47,9 +47,5 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 DeepLinkUtils.createNotification(requireContext(), "Title", "Body")
             }, 3000.toLong(), TimeUnit.MILLISECONDS)
         }
-
-        binding.btnBottomSheet.setOnClickListener {
-            navigate(R.id.action_loginFragment_to_phoneBottomSheet)
-        }
     }
 }

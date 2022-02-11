@@ -34,9 +34,7 @@
             app:destination="@id/moneyFragment"
             app:popUpTo="@+id/loginFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_loginFragment_to_phoneBottomSheet"
-            app:destination="@id/phoneBottomSheet" />
+
     </fragment>
 
     <fragment
@@ -97,6 +95,9 @@
         <action
             android:id="@+id/action_moreFragment_to_swipeFragment"
             app:destination="@id/swipeFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_phoneBottomSheet"
+            app:destination="@id/phoneBottomSheet" />
     </fragment>
     <fragment
         android:id="@+id/paymentMethodFragment"
@@ -196,6 +197,6 @@
         android:id="@+id/phoneBottomSheet"
         android:name="com.test.androiddevelopersexample.ui.bottom_sheets.PhoneBottomSheet"
         android:label="PhoneBottomSheet"
-        tools:layout="@layout/fragment_loyalty" />
+        tools:layout="@layout/bottom_sheet_phone" />
 
 </navigation>

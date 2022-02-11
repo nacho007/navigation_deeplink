@@ -62,6 +62,11 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
             btnSwipe.setOnClickListener {
                 navigate(R.id.action_moreFragment_to_swipeFragment)
             }
+
+            btnBottomSheet.setOnClickListener {
+                navigate(R.id.action_moreFragment_to_phoneBottomSheet)
+            }
+
         }
 
     }
