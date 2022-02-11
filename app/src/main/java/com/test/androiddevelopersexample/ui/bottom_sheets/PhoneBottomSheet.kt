@@ -12,10 +12,10 @@ class PhoneBottomSheet : BaseBottomSheet<BottomSheetPhoneBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
-        binding.apply { 
-            btnChangeState.setOnClickListener {
-                when(dialog.behavior.state) {
+
+        binding.apply {
+            btnBs.setOnClickListener {
+                when (dialog.behavior.state) {
                     BottomSheetBehavior.STATE_HALF_EXPANDED -> {
                         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
                     }
