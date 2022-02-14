@@ -10,6 +10,12 @@
         <item name="editTextStyle">@style/Widget.AppCompat.EditText.BasicEditText</item>
     </style>
 
+    <style name="DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
     <style name="BottomNavigationView.InActive" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">12sp</item>
     </style>

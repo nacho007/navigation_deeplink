@@ -41,5 +41,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_bs" />
 
+        <Button
+            android:id="@+id/btn_bs2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bottom_sheet"
+            android:layout_margin="@dimen/margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_bs" />
+
+        <EditText
+            android:id="@+id/et_bs2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            android:hint="@string/bottom_sheet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_bs2" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -35,20 +35,20 @@ abstract class BaseBottomSheet<VB : ViewBinding>(
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-        dialog.setOnShowListener {
-            val bottomSheet =
-                dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout
-            bottomSheet.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
-            //bottomSheet.setBackgroundResource(R.drawable.shape_balloon_top_dialog_web_view)
-
-            BottomSheetBehavior.from(bottomSheet).apply {
-                isFitToContents = false
-                peekHeight = 0
-                state = initialBehaviorState
-                skipCollapsed = true
-                setHideable(true)
-            }
-        }
+//        dialog.setOnShowListener {
+//            val bottomSheet =
+//                dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout
+//            bottomSheet.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
+//            //bottomSheet.setBackgroundResource(R.drawable.shape_balloon_top_dialog_web_view)
+//
+//            BottomSheetBehavior.from(bottomSheet).apply {
+//                isFitToContents = true
+//                peekHeight = 0
+//                state = initialBehaviorState
+//                skipCollapsed = true
+//                setHideable(true)
+//            }
+//        }
 
         return dialog
     }
