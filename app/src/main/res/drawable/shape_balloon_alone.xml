@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@color/color_balloon_pressed" />
+            <corners android:radius="@dimen/shape_balloon_border_radius" />
+        </shape>
+    </item>
+    <item android:bottom="@dimen/shape_balloon_bottom">
+        <shape>
+            <solid android:color="@color/color_balloon" />
+            <corners android:radius="@dimen/shape_balloon_border_radius" />
+        </shape>
+    </item>
+</layer-list>

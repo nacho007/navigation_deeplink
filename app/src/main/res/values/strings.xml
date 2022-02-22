@@ -57,4 +57,6 @@
     <string name="mobile_add_phone_number_manually">"Add phone number manually"</string>
     <string name="mobile_permission_cant_continue">"We can't proceed without your permission"</string>
 
+    <string name="mobile_recents">"Recents"</string>
+
 </resources>

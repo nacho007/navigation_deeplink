@@ -5,10 +5,18 @@
       <map>
         <entry key="../../../layout/custom_preview.xml" value="0.3765625" />
         <entry key="app/src/main/res/drawable/selector_tab_indicator_dot.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/drawable/shape_balloon_alone.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/shape_balloon_alone_selector.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/shape_balloon_bottom_selector.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/shape_balloon_middle_rect_selector.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/drawable/shape_balloon_top_selector.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/shape_card_tab_layout.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/drawable/shape_divider_list_item.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/drawable/shape_user_avatar_background.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/svg_bank_deposit.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/svg_camera.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/drawable/svg_loading_cube.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/svg_none.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/svg_plus_red.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/activity_deep_link.xml" value="0.15489130434782608" />
         <entry key="app/src/main/res/layout/app_bar_layout.xml" value="0.20809248554913296" />
@@ -30,6 +38,7 @@
         <entry key="app/src/main/res/layout/fragment_swipe_custom.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/fragment_swipe_list.xml" value="0.46422182468694095" />
         <entry key="app/src/main/res/layout/fragment_viewpager.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/transfer_contact_item.xml" value="0.2703125" />
         <entry key="app/src/main/res/xml/countries.xml" value="0.2703125" />
       </map>
     </option>
