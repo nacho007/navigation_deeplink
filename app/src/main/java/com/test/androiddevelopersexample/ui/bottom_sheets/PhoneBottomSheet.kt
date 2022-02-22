@@ -22,25 +22,7 @@ class PhoneBottomSheet : BaseBottomSheet<BottomSheetPhoneBinding>(
 
         binding.apply {
 
-            etBs.setOnFocusChangeListener { view, b ->
-                if(b){
-                    dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-                }
-            }
 
-//            btnBs.setOnClickListener {
-//                when (dialog.behavior.state) {
-//                    BottomSheetBehavior.STATE_HALF_EXPANDED -> {
-//                        dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-//                    }
-//                    BottomSheetBehavior.STATE_EXPANDED -> {
-//                        dialog.behavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
-//                    }
-//                    else -> {
-//                        // Nothing to do here
-//                    }
-//                }
-//            }
         }
     }
 }
