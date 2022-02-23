@@ -44,7 +44,9 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
         savedInstanceState: Bundle?
     ): View? {
         Log.e(screenTag, "onCreateView")
-        (activity as NavigationActivity).showBottomNavigationMenu(showBottomNavigation)
+        if (activity is NavigationActivity) {
+            (activity as NavigationActivity).showBottomNavigationMenu(showBottomNavigation)
+        }
         _binding = inflate.invoke(inflater, container, false)
         return binding.root
     }
