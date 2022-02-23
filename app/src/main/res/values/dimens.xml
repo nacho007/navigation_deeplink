@@ -2,6 +2,7 @@
 <resources>
 
     <dimen name="margin">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
     <dimen name="padding">16dp</dimen>
     <dimen name="icon_size">24dp</dimen>
     <dimen name="margin_medium">8dp</dimen>
@@ -20,6 +21,11 @@
     <dimen name="text_size_5">22sp</dimen>
     <dimen name="text_size_6">28sp</dimen>
     <dimen name="text_size_7">32sp</dimen>
-<!--    <dimen name="design_bottom_navigation_text_size" tools:override="true">2sp</dimen>-->
-<!--    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">2sp</dimen>-->
+
+    <dimen name="shape_balloon_border_radius">8dp</dimen>
+    <dimen name="shape_balloon_bottom">2dp</dimen>
+
+    <dimen name="user_photo_small_size">55dp</dimen>
+    <dimen name="astropay_user_icon_small_size">20dp</dimen>
+
 </resources>

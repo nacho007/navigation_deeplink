@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_container"
+    tools:background="@drawable/shape_balloon_alone"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl_container"
+        android:layout_width="@dimen/user_photo_small_size"
+        android:layout_height="@dimen/user_photo_small_size"
+        android:layout_margin="@dimen/margin_small"
+        app:layout_constraintBottom_toTopOf="@id/v_divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_image"
+            android:layout_width="@dimen/user_photo_small_size"
+            android:layout_height="@dimen/user_photo_small_size"
+            android:background="@drawable/shape_user_avatar_background"
+            android:src="@mipmap/user_avatar"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_astropay"
+            android:src="@mipmap/astropay_contact"
+            android:layout_width="@dimen/astropay_user_icon_small_size"
+            android:layout_height="@dimen/astropay_user_icon_small_size"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:contentDescription="@string/image_content_description" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/rl_container"
+        app:layout_constraintLeft_toRightOf="@id/rl_container"
+        app:layout_constraintRight_toLeftOf="@id/tv_recent"
+        app:layout_constraintTop_toTopOf="@id/rl_container">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/tv_name_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            tools:visibility="gone"
+            android:fontFamily="@font/semibold"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:text="1234" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_recent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/ll_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ll_container"
+        android:textSize="@dimen/text_size_1"
+        android:textColor="@color/color_text_description"
+        android:layout_marginEnd="@dimen/margin"
+        android:text="@string/mobile_recents" />
+
+    <View
+        android:id="@+id/v_divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/color_list_item_divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rl_container" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

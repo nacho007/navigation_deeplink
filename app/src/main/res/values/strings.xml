@@ -48,4 +48,15 @@
     <string name="mobile_transfer_1">"Transfer UYU 1000 to:"</string>
     <string name="mobile_transfer_2">"Choose who to send the money to"</string>
 
+    <string name="contacts_with_coil">Contacts With Coil</string>
+    <string name="mobile_contacts">Contacts</string>
+
+    <string name="mobile_we_cant_show_your_contact_list">"We can\'t show your contact list because we don\'t have access to it"</string>
+    <string name="mobile_allow_access_to_contacts">"Allow access to contacts"</string>
+    <string name="mobile_you_can_still_transfer_card">"You can still transfer your card by adding a phone number manually"</string>
+    <string name="mobile_add_phone_number_manually">"Add phone number manually"</string>
+    <string name="mobile_permission_cant_continue">"We can't proceed without your permission"</string>
+
+    <string name="mobile_recents">"Recents"</string>
+
 </resources>

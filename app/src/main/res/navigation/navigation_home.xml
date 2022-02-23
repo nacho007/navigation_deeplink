@@ -98,6 +98,9 @@
         <action
             android:id="@+id/action_moreFragment_to_phoneBottomSheet"
             app:destination="@id/phoneBottomSheet" />
+        <action
+            android:id="@+id/action_moreFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentMethodFragment"
@@ -198,5 +201,10 @@
         android:name="com.test.androiddevelopersexample.ui.bottom_sheets.PhoneBottomSheet"
         android:label="PhoneBottomSheet"
         tools:layout="@layout/bottom_sheet_phone" />
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.contacts.ContactsFragment"
+        android:label="ContactsFragment"
+        tools:layout="@layout/fragment_contacts"/>
 
 </navigation>

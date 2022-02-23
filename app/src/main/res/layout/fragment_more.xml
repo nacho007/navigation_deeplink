@@ -37,6 +37,12 @@
                 android:textSize="36sp" />
 
             <Button
+                android:id="@+id/btn_contacts_with_coil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/contacts_with_coil" />
+
+            <Button
                 android:id="@+id/btn_generate_badge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

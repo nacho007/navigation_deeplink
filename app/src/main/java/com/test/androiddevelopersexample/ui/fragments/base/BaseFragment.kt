@@ -1,5 +1,6 @@
 package com.test.androiddevelopersexample.ui.fragments.base
 
+import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.viewbinding.ViewBinding
@@ -99,5 +102,19 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
                 })
             }
         }
+    }
+
+    protected fun checkPermissionGranted(permission: String): Boolean =
+        ContextCompat.checkSelfPermission(
+            requireContext(),
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
+
+    protected fun weCantContinueToast() {
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.mobile_permission_cant_continue),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

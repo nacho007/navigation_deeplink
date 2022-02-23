@@ -27,6 +27,11 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
+
+            btnContactsWithCoil.setOnClickListener {
+                findNavController().navigate(R.id.action_moreFragment_to_contactsFragment)
+            }
+
             btnGenerateBadge.setOnClickListener {
                 (activity as NavigationActivity).createBadges(R.id.newCardFragment, 2)
                 (activity as NavigationActivity).createBadges(R.id.loyaltyFragment, 3)
