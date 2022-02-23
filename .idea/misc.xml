@@ -27,6 +27,7 @@
         <entry key="app/src/main/res/layout/fragment_astro_coins.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/fragment_collection_object.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/fragment_contacts.xml" value="0.2703125" />
+        <entry key="app/src/main/res/layout/fragment_custom_component.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/fragment_help_center.xml" value="0.3640625" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.3640625" />
         <entry key="app/src/main/res/layout/fragment_money.xml" value="0.335" />
@@ -38,6 +39,7 @@
         <entry key="app/src/main/res/layout/fragment_swipe_custom.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/fragment_swipe_list.xml" value="0.46422182468694095" />
         <entry key="app/src/main/res/layout/fragment_viewpager.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/layout_phone_number.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/transfer_contact_item.xml" value="0.2703125" />
         <entry key="app/src/main/res/xml/countries.xml" value="0.2703125" />
       </map>

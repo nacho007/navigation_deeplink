@@ -28,6 +28,10 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
 
         binding.apply {
 
+            btnCustomComponent.setOnClickListener {
+                findNavController().navigate(R.id.action_moreFragment_to_fragmentCustomComponent)
+            }
+
             btnContactsWithCoil.setOnClickListener {
                 findNavController().navigate(R.id.action_moreFragment_to_contactsFragment)
             }

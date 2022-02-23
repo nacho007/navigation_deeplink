@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Carousel">
+        <attr name="itemsCount" format="integer" />
+        <attr name="selectedItem" format="integer" />
+
+        <!-- Max theta angle. Theta angle used for calculate distance between items.-->
+        <attr name="maxThetaAngle" format="float" />
+        <attr name="minAlpha" format="integer" />
+        <attr name="minQuantity" format="integer" />
+        <attr name="maxQuantity" format="integer" />
+        <attr name="maxScrollingVelocity" format="integer" />
+        <attr name="maxScrollingDistance" format="integer" />
+        <attr name="scrollToFlingUncertaintyTimeout" format="integer" />
+        <attr name="animationDuration" format="integer" />
+        <attr name="panel_height" format="dimension" />
+        <attr name="panel_width" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="CircularProgressButton">
+        <attr name="cpb_selectorIdle" format="reference" />
+        <attr name="cpb_selectorComplete" format="reference" />
+        <attr name="cpb_selectorError" format="reference" />
+        <attr name="cpb_textComplete" format="string" />
+        <attr name="cpb_textIdle" format="string" />
+        <attr name="cpb_textError" format="string" />
+        <attr name="cpb_textProgress" format="string" />
+        <attr name="cpb_colorProgress" format="color" />
+        <attr name="cpb_colorIndicator" format="color" />
+        <attr name="cpb_colorIndicatorBackground" format="color" />
+        <attr name="cpb_iconError" format="reference" />
+        <attr name="cpb_iconComplete" format="reference" />
+        <attr name="cpb_cornerRadius" format="dimension" />
+        <attr name="cpb_paddingProgress" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="PhoneNumberLayout">
+        <attr name="phone_number_prefix" format="string" />
+        <attr name="phone_number_prefix_color" format="integer" />
+        <attr name="phone_number" format="string" />
+        <attr name="phone_number_hint" format="string" />
+        <attr name="phone_number_color" format="integer" />
+        <attr name="phone_number_hint_color" format="integer" />
+        <attr name="phone_country_flag_tint" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="MessageViewLayout">
+        <attr name="message" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="WalletActionButton">
+        <attr name="wab_text" format="string" />
+        <attr name="wab_icon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BalanceButton">
+        <attr name="bb_icon" format="reference" />
+        <attr name="bb_currency" format="string" />
+        <attr name="bb_amount" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="SettingView">
+        <attr name="settingsPosition" format="enum">
+            <enum name="single" value="0" />
+            <enum name="top" value="1" />
+            <enum name="middle" value="2" />
+            <enum name="bottom" value="3" />
+        </attr>
+        <attr name="settingsMode" format="enum">
+            <enum name="none" value="0" />
+            <enum name="check" value="1" />
+            <enum name="icon" value="2" />
+            <enum name="arrow" value="3" />
+        </attr>
+        <attr name="settingsTitle" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="CardView">
+        <attr name="show_card_gift_icon" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CardSmallView">
+        <attr name="amount_card_small_text_size" format="reference" />
+        <attr name="currency_card_small_text_size" format="reference" />
+        <attr name="set_card_small_currency" format="string" />
+        <attr name="set_card_small_amount" format="string" />
+        <attr name="show_card_small_logo" format="boolean" />
+        <attr name="show_card_small_gift_icon" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="GiftCardView">
+        <attr name="amount_gift_card_text_size" format="reference" />
+        <attr name="currency_gift_card_text_size" format="reference" />
+        <attr name="set_gift_card_currency" format="string" />
+        <attr name="set_gift_card_amount" format="string" />
+        <attr name="show_gift_card_badge" format="boolean" />
+        <attr name="show_gift_card_out_of_stock" format="boolean" />
+        <attr name="show_gift_card_flag" format="boolean" />
+        <attr name="show_gift_card_currency_amount" format="boolean" />
+        <attr name="set_gift_card_flag_image" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="AmountItemBlackView">
+        <attr name="show_logo" format="boolean" />
+        <attr name="set_currency" format="string" />
+        <attr name="set_amount" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="SegmentedControl">
+        <attr name="segment_control_mock" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomMenu">
+        <attr name="custom_menu_icon" format="reference" />
+        <attr name="custom_menu_notification_quantity" format="string" />
+        <attr name="show_custom_menu_notification_badge" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomPaymentMethodView">
+        <attr name="payment_method_image" format="reference" />
+        <attr name="payment_method_name" format="string" />
+        <attr name="show_payment_method_loyalty" format="boolean" />
+        <attr name="show_payment_information" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomCheckOutView">
+        <attr name="custom_checkout_type" format="enum">
+            <enum name="APC" value="0" />
+            <enum name="GIFT_CARD" value="1" />
+            <enum name="WALLET" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CustomProfileCompletionView">
+        <attr name="percentage" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomLastPurchaseItem">
+        <attr name="data" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="BalanceContainer">
+        <attr name="balance_container_type" format="enum">
+            <enum name="WALLET" value="0" />
+            <enum name="CRYPTO" value="1" />
+        </attr>
+    </declare-styleable>
+
+</resources>

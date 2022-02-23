@@ -49,6 +49,7 @@
     <string name="mobile_transfer_2">"Choose who to send the money to"</string>
 
     <string name="contacts_with_coil">Contacts With Coil</string>
+    <string name="custom_component">Custom Component</string>
     <string name="mobile_contacts">Contacts</string>
 
     <string name="mobile_we_cant_show_your_contact_list">"We can\'t show your contact list because we don\'t have access to it"</string>
@@ -58,5 +59,6 @@
     <string name="mobile_permission_cant_continue">"We can't proceed without your permission"</string>
 
     <string name="mobile_recents">"Recents"</string>
+    <string name="two_values" translatable="false">%1$s %2$s</string>
 
 </resources>

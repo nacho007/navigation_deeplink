@@ -101,6 +101,9 @@
         <action
             android:id="@+id/action_moreFragment_to_contactsFragment"
             app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_fragmentCustomComponent"
+            app:destination="@id/fragmentCustomComponent" />
     </fragment>
     <fragment
         android:id="@+id/paymentMethodFragment"
@@ -206,5 +209,10 @@
         android:name="com.test.androiddevelopersexample.ui.fragments.contacts.ContactsFragment"
         android:label="ContactsFragment"
         tools:layout="@layout/fragment_contacts"/>
+    <fragment
+        android:id="@+id/fragmentCustomComponent"
+        android:name="com.test.androiddevelopersexample.ui.fragments.custom.FragmentCustomComponent"
+        android:label="FragmentCustomComponent"
+        tools:layout="@layout/fragment_custom_component"/>
 
 </navigation>

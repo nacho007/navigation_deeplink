@@ -5,7 +5,12 @@ import android.net.Uri
 import android.widget.ImageView
 import coil.imageLoader
 import coil.request.ImageRequest
+import com.squareup.picasso.Picasso
 import com.test.androiddevelopersexample.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 object ImageHelper {
 
@@ -18,19 +23,33 @@ object ImageHelper {
     ) {
         when (imageProvider) {
             is ImageProvider.Coil -> {
+
+//                val data = when {
+//                    path.isNullOrEmpty() -> placeHolderType.resource
+//                    else -> getFormattedPath(imageExtension, path)
+//                }
+//                Picasso.get().load(data.toString()).into(imageView)
+
                 val imageLoader = imageProvider.context.imageLoader
 
                 val data = when {
                     path.isNullOrEmpty() -> placeHolderType.resource
-                    else -> getFormattedPath(imageExtension, path)
+                    else -> Uri.parse(getFormattedPath(imageExtension, path))
                 }
 
                 val request = ImageRequest.Builder(imageProvider.context)
                     .data(data)
-                    .crossfade(true)
+                    .crossfade(false)
                     .target(imageView)
                     .placeholder(placeHolderType.resource)
                     .build()
+
+//                val scope = CoroutineScope(Job() + Dispatchers.Main)
+//
+//                scope.launch {
+//                    // New coroutine that can call suspend functions
+//                    imageLoader.enqueue(request)
+//                }
                 imageLoader.enqueue(request)
             }
         }
