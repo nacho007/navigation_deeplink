@@ -25,7 +25,7 @@ class MoneyFragment : BaseFragment<FragmentMoneyBinding>(FragmentMoneyBinding::i
             }
         }
 
-        binding.textView2.setOnClickListener {
+        binding.title.setOnClickListener {
 
         }
     }
