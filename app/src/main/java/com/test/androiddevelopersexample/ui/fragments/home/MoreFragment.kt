@@ -3,11 +3,20 @@ package com.test.androiddevelopersexample.ui.fragments.home
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.MaterialTheme
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentMoreBinding
 import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
+import com.test.androiddevelopersexample.ui.fragments.custom.IconButton
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
 import com.test.androiddevelopersexample.ui.utils.navigate
 import java.util.concurrent.Executors
@@ -28,55 +37,120 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
 
         binding.apply {
 
-            btnCustomComponent.setOnClickListener {
-                findNavController().navigate(R.id.action_moreFragment_to_fragmentCustomComponent)
-            }
-
-            btnContactsWithCoil.setOnClickListener {
-                findNavController().navigate(R.id.action_moreFragment_to_contactsFragment)
-            }
-
-            btnGenerateBadge.setOnClickListener {
-                (activity as NavigationActivity).createBadges(R.id.newCardFragment, 2)
-                (activity as NavigationActivity).createBadges(R.id.loyaltyFragment, 3)
-            }
-
-            btnAstroCoins.setOnClickListener {
-                findNavController().navigate(R.id.action_moreFragment_to_astroCoinsFragment)
-            }
-
-            btnGenerateNotifications.setOnClickListener {
-                val executor: ScheduledExecutorService =
-                    Executors.newSingleThreadScheduledExecutor()
-                executor.schedule({
-                    DeepLinkUtils.createNotification(requireContext(), "Title", "Body")
-                }, 3000.toLong(), TimeUnit.MILLISECONDS)
-            }
-
-            btnHelpCenter.setOnClickListener {
-                navigate(R.id.action_moreFragment_to_fragmentHelpCenter)
-            }
-
-            btnLogout.setOnClickListener {
-                val sharedPref = activity?.getSharedPreferences(
-                    getString(R.string.preferences), Context.MODE_PRIVATE
-                )
-
-                sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), false)?.apply()
-
-                (activity as NavigationActivity).showBottomNavigationMenu(false)
-                (activity as NavigationActivity).logOut()
-            }
-
-            btnSwipe.setOnClickListener {
-                navigate(R.id.action_moreFragment_to_swipeFragment)
-            }
-
-            btnBottomSheet.setOnClickListener {
-                navigate(R.id.action_moreFragment_to_phoneBottomSheet)
+            buttonsContainer.setContent {
+                MaterialTheme {
+                    LazyColumn(modifier = Modifier.padding(horizontal = 16.dp)) {
+                        item {
+                            Spacer(modifier = Modifier.height(16.dp))
+                            customComponentButton()
+                            coilButton()
+                            badgesButton()
+                            astrocoinsButton()
+                            notificationButton()
+                            bottomSheetButton()
+                            helpCenterButton()
+                            logoutButton()
+                            swipeButton()
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
+                    }
+                }
             }
 
         }
 
+    }
+
+    @Composable
+    private fun swipeButton() {
+        IconButton(text = R.string.swipe, action = {
+            navigate(R.id.action_moreFragment_to_swipeFragment)
+        })
+    }
+
+    @Composable
+    private fun logoutButton() {
+        IconButton(text = R.string.logout, action = {
+            val sharedPref = activity?.getSharedPreferences(
+                getString(R.string.preferences), Context.MODE_PRIVATE
+            )
+
+            sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), false)
+                ?.apply()
+
+            (activity as NavigationActivity).showBottomNavigationMenu(false)
+            (activity as NavigationActivity).logOut()
+        })
+    }
+
+    @Composable
+    private fun helpCenterButton() {
+        IconButton(text = R.string.help_center, action = {
+            navigate(R.id.action_moreFragment_to_fragmentHelpCenter)
+        })
+    }
+
+    @Composable
+    private fun bottomSheetButton() {
+        IconButton(text = R.string.bottom_sheet, action = {
+            navigate(R.id.action_moreFragment_to_phoneBottomSheet)
+        })
+    }
+
+    @Composable
+    private fun notificationButton() {
+        IconButton(text = R.string.generate_notification, action = {
+            val executor: ScheduledExecutorService =
+                Executors.newSingleThreadScheduledExecutor()
+            executor.schedule({
+                DeepLinkUtils.createNotification(
+                    requireContext(),
+                    "Title",
+                    "Body"
+                )
+            }, 3000.toLong(), TimeUnit.MILLISECONDS)
+        })
+    }
+
+    @Composable
+    private fun astrocoinsButton() {
+        IconButton(text = R.string.astro_coins, action = {
+            findNavController().navigate(R.id.action_moreFragment_to_astroCoinsFragment)
+        })
+    }
+
+    @Composable
+    private fun badgesButton() {
+        IconButton(
+            text = R.string.generate_badges, action = {
+                (activity as NavigationActivity).createBadges(
+                    R.id.newCardFragment,
+                    2
+                )
+                (activity as NavigationActivity).createBadges(
+                    R.id.loyaltyFragment,
+                    3
+                )
+            },
+            enabled = false
+        )
+    }
+
+    @Composable
+    private fun coilButton() {
+        var isNew by remember { mutableStateOf(true) }
+        IconButton(text = R.string.contacts_with_coil, isNew = isNew, action = {
+            isNew = false
+            findNavController().navigate(R.id.action_moreFragment_to_contactsFragment)
+        })
+    }
+
+    @Composable
+    private fun customComponentButton() {
+        IconButton(text = R.string.custom_component, action = {
+            findNavController().navigate(
+                R.id.action_moreFragment_to_fragmentCustomComponent
+            )
+        })
     }
 }

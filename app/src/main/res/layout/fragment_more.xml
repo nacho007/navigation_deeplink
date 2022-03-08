@@ -17,80 +17,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:myTitle="@{@string/more}" />
 
-        <LinearLayout
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/buttons_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:gravity="top|center"
-            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/abl_toolbar">
+            app:layout_constraintTop_toBottomOf="@id/abl_toolbar" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/more"
-                android:textColor="@color/color_red"
-                android:textSize="36sp" />
-
-            <Button
-                android:id="@+id/btn_custom_component"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/custom_component" />
-
-            <Button
-                android:id="@+id/btn_contacts_with_coil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/contacts_with_coil" />
-
-            <Button
-                android:id="@+id/btn_generate_badge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/generate_badges" />
-
-            <Button
-                android:id="@+id/btn_astro_coins"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/astro_coins" />
-
-            <Button
-                android:id="@+id/btn_generate_notifications"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/generate_notification" />
-
-
-            <Button
-                android:id="@+id/btn_bottom_sheet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/bottom_sheet" />
-
-            <Button
-                android:id="@+id/btn_help_center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/help_center" />
-
-            <Button
-                android:id="@+id/btn_logout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/logout" />
-
-            <Button
-                android:id="@+id/btn_swipe"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/swipe" />
-
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

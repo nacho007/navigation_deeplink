@@ -59,6 +59,7 @@
     <string name="mobile_permission_cant_continue">"We can't proceed without your permission"</string>
 
     <string name="mobile_recents">"Recents"</string>
+    <string name="mobile_new">"new"</string>
     <string name="two_values" translatable="false">%1$s %2$s</string>
 
 </resources>
