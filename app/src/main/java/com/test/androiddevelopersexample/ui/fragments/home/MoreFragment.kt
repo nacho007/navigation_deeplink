@@ -42,15 +42,15 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                     LazyColumn(modifier = Modifier.padding(horizontal = 16.dp)) {
                         item {
                             Spacer(modifier = Modifier.height(16.dp))
-                            customComponentButton()
-                            coilButton()
-                            badgesButton()
-                            astrocoinsButton()
-                            notificationButton()
-                            bottomSheetButton()
-                            helpCenterButton()
-                            logoutButton()
-                            swipeButton()
+                            CustomComponentButton()
+                            CoilButton()
+                            BadgesButton()
+                            AstrocoinsButton()
+                            NotificationButton()
+                            BottomSheetButton()
+                            HelpCenterButton()
+                            LogoutButton()
+                            SwipeButton()
                             Spacer(modifier = Modifier.height(16.dp))
                         }
                     }
@@ -62,14 +62,14 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
     }
 
     @Composable
-    private fun swipeButton() {
+    private fun SwipeButton() {
         IconButton(text = R.string.swipe, action = {
             navigate(R.id.action_moreFragment_to_swipeFragment)
         })
     }
 
     @Composable
-    private fun logoutButton() {
+    private fun LogoutButton() {
         IconButton(text = R.string.logout, action = {
             val sharedPref = activity?.getSharedPreferences(
                 getString(R.string.preferences), Context.MODE_PRIVATE
@@ -84,21 +84,21 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
     }
 
     @Composable
-    private fun helpCenterButton() {
+    private fun HelpCenterButton() {
         IconButton(text = R.string.help_center, action = {
             navigate(R.id.action_moreFragment_to_fragmentHelpCenter)
         })
     }
 
     @Composable
-    private fun bottomSheetButton() {
+    private fun BottomSheetButton() {
         IconButton(text = R.string.bottom_sheet, action = {
             navigate(R.id.action_moreFragment_to_phoneBottomSheet)
         })
     }
 
     @Composable
-    private fun notificationButton() {
+    private fun NotificationButton() {
         IconButton(text = R.string.generate_notification, action = {
             val executor: ScheduledExecutorService =
                 Executors.newSingleThreadScheduledExecutor()
@@ -113,14 +113,14 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
     }
 
     @Composable
-    private fun astrocoinsButton() {
+    private fun AstrocoinsButton() {
         IconButton(text = R.string.astro_coins, action = {
             findNavController().navigate(R.id.action_moreFragment_to_astroCoinsFragment)
         })
     }
 
     @Composable
-    private fun badgesButton() {
+    private fun BadgesButton() {
         IconButton(
             text = R.string.generate_badges, action = {
                 (activity as NavigationActivity).createBadges(
@@ -137,7 +137,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
     }
 
     @Composable
-    private fun coilButton() {
+    private fun CoilButton() {
         var isNew by remember { mutableStateOf(true) }
         IconButton(text = R.string.contacts_with_coil, isNew = isNew, action = {
             isNew = false
@@ -146,7 +146,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
     }
 
     @Composable
-    private fun customComponentButton() {
+    private fun CustomComponentButton() {
         IconButton(text = R.string.custom_component, action = {
             findNavController().navigate(
                 R.id.action_moreFragment_to_fragmentCustomComponent
