@@ -46,6 +46,10 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
         navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentNavHost) as NavHostFragment
 
+        savedInstanceState?.getInt(START_DESTINATION)?.let {
+            navHostFragment.navController.graph.setStartDestination(it)
+        }
+
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.newCardFragment -> Log.v("Bottom Navigation", getString(R.string.tab_new_card))
@@ -74,6 +78,11 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
         }
 
         binding.bottomNav.setupWithNavController(navHostFragment.navController)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(START_DESTINATION, navHostFragment.navController.graph.startDestinationId)
     }
 
     fun showBottomNavigationMenu(show: Boolean) {
