@@ -32,11 +32,6 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
     private lateinit var navHostFragment: NavHostFragment
     var deepLink = false
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt(START_DESTINATION, navHostFragment.navController.graph.startDestination)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -45,10 +40,6 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
 
         navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentNavHost) as NavHostFragment
-
-        savedInstanceState?.getInt(START_DESTINATION)?.let {
-            navHostFragment.navController.graph.startDestination = it
-        }
 
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {

@@ -35,7 +35,6 @@ class InitFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
                 if (sharedPref?.getBoolean(getString(R.string.is_logged), false) == true) {
                     navigate(R.id.action_initFragment_to_moneyFragment)
-                    findNavController().graph.startDestination = R.id.moneyFragment
                 } else {
                     navigate(R.id.action_initFragment_to_loginFragment)
                 }

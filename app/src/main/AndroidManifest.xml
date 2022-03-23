@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".ui.activities.NavigationActivity"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,9 +25,10 @@
 
         </activity>
 
-        <activity android:name=".ui.activities.DeepLinkActivity">
+        <activity android:name=".ui.activities.DeepLinkActivity"
+            android:exported="true">
 
-            <intent-filter>
+            <intent-filter >
                 <action android:name="android.intent.action.VIEW" />
 
                 <data
@@ -47,7 +49,6 @@
                 <data
                     android:host="astro_coins"
                     android:scheme="app" />
-
                 <data
                     android:host="notification_detail"
                     android:scheme="app" />

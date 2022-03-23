@@ -30,7 +30,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             sharedPref?.edit()?.putBoolean(getString(R.string.is_logged), true)?.apply()
 
             navigate(R.id.action_registerFragment_to_moneyFragment)
-            findNavController().graph.startDestination = R.id.moneyFragment
         }
     }
 }
