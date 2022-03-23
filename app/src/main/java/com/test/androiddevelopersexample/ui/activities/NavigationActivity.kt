@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.ActivityNavigationBinding
+import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils.DEEP_LINK_SIGN_UP
 import com.test.androiddevelopersexample.ui.utils.PushNotificationUtils.PUSH_TYPE
 
 
@@ -30,7 +31,11 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
     }
 
     private lateinit var navHostFragment: NavHostFragment
-    var deepLink = false
+
+    var deepLinkUnLogged = false
+    var deepLinkLogged = false
+
+    var pushData = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,33 +48,27 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
 
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.newCardFragment -> {
-                    Log.e("Menu", getString(R.string.tab_new_card))
-                }
-                R.id.loyaltyFragment -> {
-                    Log.e("Menu", getString(R.string.tab_loyalty))
-                }
-                R.id.moneyFragment -> {
-                    Log.e("Menu", getString(R.string.tab_money))
-                }
-                R.id.notificationsFragment -> {
-                    Log.e(
-                        "Menu",
-                        getString(R.string.tab_notifications)
-                    )
-                }
-                R.id.moreFragment -> {
-                    Log.e("Menu", getString(R.string.tab_more))
-                }
+                R.id.newCardFragment -> Log.v("Bottom Navigation", getString(R.string.tab_new_card))
+                R.id.loyaltyFragment -> Log.v("Bottom Navigation", getString(R.string.tab_loyalty))
+                R.id.moneyFragment -> Log.v("Bottom Navigation", getString(R.string.tab_money))
+                R.id.notificationsFragment -> Log.v(
+                    "Bottom Navigation",
+                    getString(R.string.tab_notifications)
+                )
+                R.id.moreFragment -> Log.v("Bottom Navigation", getString(R.string.tab_more))
             }
         }
 
         if (intent?.data != null) {
             Log.e("Data create", "Data ${intent.data.toString()}")
-            deepLink = true
+            when {
+                intent?.data.toString().contains(DEEP_LINK_SIGN_UP) -> deepLinkUnLogged = true
+                else -> deepLinkLogged = true
+            }
         }
 
-        if (intent?.extras != null) {
+        if (intent?.extras != null && intent?.extras?.containsKey(PUSH_TYPE) == true) {
+            pushData = true
             val pushType = intent?.extras?.get(PUSH_TYPE)
             Log.e("Data create", "push $pushType")
         }

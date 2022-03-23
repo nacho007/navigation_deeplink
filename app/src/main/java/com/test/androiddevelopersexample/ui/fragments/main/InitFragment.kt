@@ -9,7 +9,9 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentMainBinding
+import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
+import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
 import com.test.androiddevelopersexample.ui.utils.navigate
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -34,12 +36,37 @@ class InitFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                 )
 
                 if (sharedPref?.getBoolean(getString(R.string.is_logged), false) == true) {
+                    (activity as NavigationActivity).deepLinkUnLogged = false
+
                     navigate(R.id.action_initFragment_to_moneyFragment)
+                    findNavController().graph.setStartDestination(R.id.moneyFragment)
+                    checkDeepLinks()
                 } else {
+                    (activity as NavigationActivity).deepLinkLogged = false
                     navigate(R.id.action_initFragment_to_loginFragment)
                 }
 
             }, 1500
         )
+    }
+
+    private fun checkDeepLinks() {
+        when {
+            //PUSH NOTIFICATION IN BACKGROUND
+            (activity as NavigationActivity).pushData -> {
+                DeepLinkUtils.processPushData(
+                    activity?.intent?.extras
+                        ?: Bundle()
+                ).let { navDeepLinkRequest ->
+                    if (navDeepLinkRequest != null) {
+                        findNavController().navigate(navDeepLinkRequest)
+                    }
+                }
+            }
+            else -> {
+                activity?.intent?.data = null
+                activity?.intent?.replaceExtras(null)
+            }
+        }
     }
 }

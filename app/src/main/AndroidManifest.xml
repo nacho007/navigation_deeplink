@@ -32,26 +32,17 @@
                 <action android:name="android.intent.action.VIEW" />
 
                 <data
-                    android:host="newcard"
-                    android:scheme="app" />
+                    android:host="@string/deeplink_signup"
+                    android:scheme="@string/scheme" />
                 <data
-                    android:host="loyalty"
-                    android:scheme="app" />
+                    android:host="@string/deeplink_loyalty"
+                    android:scheme="@string/scheme" />
                 <data
-                    android:host="money"
-                    android:scheme="app" />
+                    android:host="@string/deeplink_money"
+                    android:scheme="@string/scheme" />
                 <data
-                    android:host="notifications"
-                    android:scheme="app" />
-                <data
-                    android:host="checkout"
-                    android:scheme="app" />
-                <data
-                    android:host="astro_coins"
-                    android:scheme="app" />
-                <data
-                    android:host="notification_detail"
-                    android:scheme="app" />
+                    android:host="@string/deeplink_article"
+                    android:scheme="@string/scheme" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />

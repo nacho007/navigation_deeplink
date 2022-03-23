@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidDevelopersExample</string>
+    <string name="app_name">Navigation DeepLink</string>
     <string name="welcome">Welcome %1s</string>
     <string name="splash">SPLASH</string>
     <string name="new_card">NEW CARD</string>
@@ -61,5 +61,13 @@
     <string name="mobile_recents">"Recents"</string>
     <string name="mobile_new">"new"</string>
     <string name="two_values" translatable="false">%1$s %2$s</string>
+
+    //DeepLinks
+    <string name="scheme" translatable="false">app</string>
+
+    <string name="deeplink_signup">signup</string>
+    <string name="deeplink_article">article</string>
+    <string name="deeplink_money">money</string>
+    <string name="deeplink_loyalty">loyalty</string>
 
 </resources>

@@ -159,7 +159,8 @@
         <fragment
             android:id="@+id/fragmentHelpCenter"
             android:name="com.test.androiddevelopersexample.ui.fragments.help_center.FragmentHelpCenter"
-            android:label="FragmentHelpCenter">
+            android:label="FragmentHelpCenter"
+            tools:layout="@layout/fragment_help_center">
             <action
                 android:id="@+id/action_fragmentHelpCenter_to_articleFragment"
                 app:destination="@id/articleFragment" />
@@ -167,7 +168,12 @@
         <fragment
             android:id="@+id/articleFragment"
             android:name="com.test.androiddevelopersexample.ui.fragments.help_center.ArticleFragment"
-            android:label="ArticleFragment" />
+            android:label="ArticleFragment"
+            tools:layout="@layout/fragment_article">
+            <deepLink
+                android:id="@+id/deepLinkArticle"
+                app:uri="app://article" />
+        </fragment>
     </navigation>
     <fragment
         android:id="@+id/fragmentViewPager"
@@ -208,11 +214,11 @@
         android:id="@+id/contactsFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.contacts.ContactsFragment"
         android:label="ContactsFragment"
-        tools:layout="@layout/fragment_contacts"/>
+        tools:layout="@layout/fragment_contacts" />
     <fragment
         android:id="@+id/fragmentCustomComponent"
         android:name="com.test.androiddevelopersexample.ui.fragments.custom.FragmentCustomComponent"
         android:label="FragmentCustomComponent"
-        tools:layout="@layout/fragment_custom_component"/>
+        tools:layout="@layout/fragment_custom_component" />
 
 </navigation>
