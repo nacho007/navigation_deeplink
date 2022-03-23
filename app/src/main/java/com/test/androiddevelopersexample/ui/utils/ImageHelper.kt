@@ -23,13 +23,6 @@ object ImageHelper {
     ) {
         when (imageProvider) {
             is ImageProvider.Coil -> {
-
-//                val data = when {
-//                    path.isNullOrEmpty() -> placeHolderType.resource
-//                    else -> getFormattedPath(imageExtension, path)
-//                }
-//                Picasso.get().load(data.toString()).into(imageView)
-
                 val imageLoader = imageProvider.context.imageLoader
 
                 val data = when {
