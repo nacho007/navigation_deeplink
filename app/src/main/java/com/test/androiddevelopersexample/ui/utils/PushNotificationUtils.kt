@@ -1,0 +1,74 @@
+package com.test.androiddevelopersexample.ui.utils
+
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
+import android.os.Bundle
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
+import androidx.navigation.NavDeepLinkBuilder
+import com.test.androiddevelopersexample.R
+import com.test.androiddevelopersexample.ui.activities.NavigationActivity
+
+object PushNotificationUtils {
+
+    const val CHANNEL_ID = "astropay_channel"
+    const val PUSH_TYPE = "type"
+
+    fun createNotification(
+        context: Context,
+        title: String,
+        body: String
+    ) {
+        val notificationId = Utils.getRandomNumber()
+
+        val args = Bundle()
+        args.putInt("id", 7)
+        args.putString(PUSH_TYPE, "PushType")
+
+        val pendingIntent = NavDeepLinkBuilder(context)
+            .setComponentName(NavigationActivity::class.java)
+            .setGraph(R.navigation.navigation_home)
+            .setDestination(R.id.articleFragment)
+            .setArguments(args)
+            .createPendingIntent()
+
+        val mNotificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val mChannel =
+                NotificationChannel(CHANNEL_ID, context.getString(R.string.app_name), importance)
+
+            val notification = Notification.Builder(context, CHANNEL_ID)
+                .setStyle(Notification.BigTextStyle())
+                .setContentTitle(title)
+                .setContentText(body)
+                .setSmallIcon(R.mipmap.astropay_icon_notification)
+                .setChannelId(CHANNEL_ID)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent)
+                .setColor(ContextCompat.getColor(context, R.color.color_red))
+                .build()
+
+            mNotificationManager.createNotificationChannel(mChannel)
+            mNotificationManager.notify(notificationId, notification)
+        } else {
+            val builder = NotificationCompat.Builder(context)
+
+            builder.setAutoCancel(true)
+            builder.setSmallIcon(R.mipmap.astropay_icon_notification)
+                .setContentTitle(title)
+                .setContentText(body)
+                .setStyle(NotificationCompat.BigTextStyle().bigText(body)).color =
+                ContextCompat.getColor(context, R.color.color_red)
+
+            builder.setContentIntent(pendingIntent)
+            mNotificationManager.notify(notificationId, builder.build())
+        }
+    }
+
+}

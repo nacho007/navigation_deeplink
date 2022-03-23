@@ -9,6 +9,7 @@ import com.test.androiddevelopersexample.databinding.FragmentLoginBinding
 import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
+import com.test.androiddevelopersexample.ui.utils.PushNotificationUtils
 import com.test.androiddevelopersexample.ui.utils.navigate
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
@@ -43,7 +44,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         binding.btnGenerateNotification.setOnClickListener {
             val executor: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
             executor.schedule({
-                DeepLinkUtils.createNotification(requireContext(), "Title", "Body")
+                PushNotificationUtils.createNotification(requireContext(), "Title", "Body")
             }, 3000.toLong(), TimeUnit.MILLISECONDS)
         }
     }

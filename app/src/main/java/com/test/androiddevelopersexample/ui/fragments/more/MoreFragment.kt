@@ -18,6 +18,7 @@ import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.custom.IconButton
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
+import com.test.androiddevelopersexample.ui.utils.PushNotificationUtils
 import com.test.androiddevelopersexample.ui.utils.navigate
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
@@ -103,7 +104,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
             val executor: ScheduledExecutorService =
                 Executors.newSingleThreadScheduledExecutor()
             executor.schedule({
-                DeepLinkUtils.createNotification(
+                PushNotificationUtils.createNotification(
                     requireContext(),
                     "Title",
                     "Body"

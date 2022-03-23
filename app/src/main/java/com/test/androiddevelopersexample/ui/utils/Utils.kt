@@ -3,6 +3,7 @@ package com.test.androiddevelopersexample.ui.utils
 import android.content.Context
 import java.io.IOException
 import java.nio.charset.StandardCharsets
+import java.util.*
 
 object Utils {
     fun loadJSONFromAsset(context: Context, fileName: String?): String? {
@@ -17,5 +18,10 @@ object Utils {
             ex.printStackTrace()
             return null
         }
+    }
+
+    fun getRandomNumber(): Int {
+        val random = Random()
+        return random.nextInt(9999 - 1000) + 1000
     }
 }

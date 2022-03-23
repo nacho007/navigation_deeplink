@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.ActivityNavigationBinding
-import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils.PUSH_TYPE
+import com.test.androiddevelopersexample.ui.utils.PushNotificationUtils.PUSH_TYPE
 
 
 /**
