@@ -19,7 +19,9 @@
     <string name="mobile_first_name">"First Name"</string>
 
     <string name="generate_badges">Generate Badges</string>
-    <string name="generate_notification">Generate Notifications</string>
+    <string name="generate_push_notification_loyalty">Push Loyalty</string>
+    <string name="generate_push_notification_article">Push Article</string>
+
     <string name="image_content_description" translatable="false">No content description</string>
 
     <string name="main">MAIN</string>

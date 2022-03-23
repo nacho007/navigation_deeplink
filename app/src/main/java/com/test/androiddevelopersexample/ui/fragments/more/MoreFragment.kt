@@ -17,7 +17,6 @@ import com.test.androiddevelopersexample.databinding.FragmentMoreBinding
 import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.custom.IconButton
-import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
 import com.test.androiddevelopersexample.ui.utils.PushNotificationUtils
 import com.test.androiddevelopersexample.ui.utils.navigate
 import java.util.concurrent.Executors
@@ -47,7 +46,8 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                             CoilButton()
                             BadgesButton()
                             AstrocoinsButton()
-                            NotificationButton()
+                            NotificationLoyaltyButton()
+                            NotificationArticleButton()
                             BottomSheetButton()
                             HelpCenterButton()
                             LogoutButton()
@@ -99,17 +99,32 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
     }
 
     @Composable
-    private fun NotificationButton() {
-        IconButton(text = R.string.generate_notification, action = {
+    private fun NotificationLoyaltyButton() {
+        IconButton(text = R.string.generate_push_notification_loyalty, action = {
             val executor: ScheduledExecutorService =
                 Executors.newSingleThreadScheduledExecutor()
             executor.schedule({
-                PushNotificationUtils.createNotification(
+                PushNotificationUtils.createTradePushLoyalty(
                     requireContext(),
-                    "Title",
-                    "Body"
+                    "Loyalty Title",
+                    "Loyalty Body"
                 )
-            }, 3000.toLong(), TimeUnit.MILLISECONDS)
+            }, 1500.toLong(), TimeUnit.MILLISECONDS)
+        })
+    }
+
+    @Composable
+    private fun NotificationArticleButton() {
+        IconButton(text = R.string.generate_push_notification_article, action = {
+            val executor: ScheduledExecutorService =
+                Executors.newSingleThreadScheduledExecutor()
+            executor.schedule({
+                PushNotificationUtils.createTradePushArticle(
+                    requireContext(),
+                    "Article title",
+                    "Article Body"
+                )
+            }, 1500.toLong(), TimeUnit.MILLISECONDS)
         })
     }
 

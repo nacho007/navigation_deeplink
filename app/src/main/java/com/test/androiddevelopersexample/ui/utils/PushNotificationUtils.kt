@@ -3,6 +3,7 @@ package com.test.androiddevelopersexample.ui.utils
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -11,29 +12,61 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.NavDeepLinkBuilder
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.ui.activities.NavigationActivity
+import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils.PUSH_ARTICLE
+import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils.PUSH_LOYALTY
+import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils.PUSH_TYPE
 
 object PushNotificationUtils {
 
-    const val CHANNEL_ID = "astropay_channel"
-    const val PUSH_TYPE = "type"
+    private const val CHANNEL_ID = "astropay_channel"
+
+    fun createTradePushLoyalty(context: Context, title: String, body: String) {
+        val args = Bundle()
+        args.putString(PUSH_TYPE, PUSH_LOYALTY)
+
+        val pendingIntent = createPendingIntent(
+            context,
+            R.navigation.navigation_home,
+            R.id.loyaltyFragment,
+            args
+        )
+        createNotification(context, title, body, pendingIntent)
+    }
+
+    fun createTradePushArticle(context: Context, title: String, body: String) {
+        val args = Bundle()
+        args.putString(PUSH_TYPE, PUSH_ARTICLE)
+
+        val pendingIntent = createPendingIntent(
+            context,
+            R.navigation.navigation_home,
+            R.id.articleFragment,
+            args
+        )
+        createNotification(context, title, body, pendingIntent)
+    }
+
+    private fun createPendingIntent(
+        context: Context,
+        graph: Int,
+        destination: Int,
+        args: Bundle? = null
+    ): PendingIntent {
+        return NavDeepLinkBuilder(context)
+            .setComponentName(NavigationActivity::class.java)
+            .setGraph(graph)
+            .setDestination(destination)
+            .setArguments(args)
+            .createPendingIntent()
+    }
 
     fun createNotification(
         context: Context,
         title: String,
-        body: String
+        body: String,
+        resultPendingIntent: PendingIntent?
     ) {
         val notificationId = Utils.getRandomNumber()
-
-        val args = Bundle()
-        args.putInt("id", 7)
-        args.putString(PUSH_TYPE, "PushType")
-
-        val pendingIntent = NavDeepLinkBuilder(context)
-            .setComponentName(NavigationActivity::class.java)
-            .setGraph(R.navigation.navigation_home)
-            .setDestination(R.id.articleFragment)
-            .setArguments(args)
-            .createPendingIntent()
 
         val mNotificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -50,7 +83,7 @@ object PushNotificationUtils {
                 .setSmallIcon(R.mipmap.astropay_icon_notification)
                 .setChannelId(CHANNEL_ID)
                 .setAutoCancel(true)
-                .setContentIntent(pendingIntent)
+                .setContentIntent(resultPendingIntent)
                 .setColor(ContextCompat.getColor(context, R.color.color_red))
                 .build()
 
@@ -66,9 +99,8 @@ object PushNotificationUtils {
                 .setStyle(NotificationCompat.BigTextStyle().bigText(body)).color =
                 ContextCompat.getColor(context, R.color.color_red)
 
-            builder.setContentIntent(pendingIntent)
+            builder.setContentIntent(resultPendingIntent)
             mNotificationManager.notify(notificationId, builder.build())
         }
     }
-
 }

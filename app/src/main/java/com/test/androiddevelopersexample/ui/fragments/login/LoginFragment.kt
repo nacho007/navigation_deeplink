@@ -3,6 +3,7 @@ package com.test.androiddevelopersexample.ui.fragments.login
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentLoginBinding
@@ -44,8 +45,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         binding.btnGenerateNotification.setOnClickListener {
             val executor: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
             executor.schedule({
-                PushNotificationUtils.createNotification(requireContext(), "Title", "Body")
-            }, 3000.toLong(), TimeUnit.MILLISECONDS)
+                Toast.makeText(requireContext(), "Not implemented", Toast.LENGTH_SHORT).show()
+            }, 1500.toLong(), TimeUnit.MILLISECONDS)
         }
     }
 }

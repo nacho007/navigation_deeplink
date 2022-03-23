@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.core.content.ContextCompat
-import androidx.navigation.NavGraph
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -13,7 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.ActivityNavigationBinding
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils.DEEP_LINK_SIGN_UP
-import com.test.androiddevelopersexample.ui.utils.PushNotificationUtils.PUSH_TYPE
+import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils.PUSH_TYPE
 
 
 /**
