@@ -1,12 +1,8 @@
-package com.test.androiddevelopersexample.ui.fragments.home
+package com.test.androiddevelopersexample.ui.fragments.checkout
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.fragment.app.setFragmentResultListener
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentCheckoutBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment

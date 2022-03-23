@@ -52,7 +52,7 @@
 
     <fragment
         android:id="@+id/newCardFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.NewCardFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.new_card.NewCardFragment"
         tools:layout="@layout/fragment_new_card">
         <deepLink
             android:id="@+id/deepLinkNewCard"
@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/loyaltyFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.LoyaltyFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.loyalty.LoyaltyFragment"
         tools:layout="@layout/fragment_loyalty">
         <deepLink
             android:id="@+id/deepLinkLoyalty"
@@ -72,7 +72,7 @@
 
     <fragment
         android:id="@+id/notificationsFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.NotificationsFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.notification_center.NotificationsFragment"
         tools:layout="@layout/fragment_notifications">
         <deepLink
             android:id="@+id/deepLinkNotifications"
@@ -84,7 +84,7 @@
 
     <fragment
         android:id="@+id/moreFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.MoreFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.more.MoreFragment"
         tools:layout="@layout/fragment_more">
         <action
             android:id="@+id/action_moreFragment_to_astroCoinsFragment"
@@ -107,7 +107,7 @@
     </fragment>
     <fragment
         android:id="@+id/paymentMethodFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.PaymentMethodFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.payment_methods.PaymentMethodFragment"
         android:label="PaymentMethodFragment"
         tools:layout="@layout/fragment_payment_method">
         <action
@@ -120,7 +120,7 @@
     </fragment>
     <fragment
         android:id="@+id/checkoutFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.CheckoutFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.checkout.CheckoutFragment"
         android:label="CheckoutFragment"
         tools:layout="@layout/fragment_checkout" />
 
@@ -135,7 +135,7 @@
     </fragment>
     <fragment
         android:id="@+id/notificationDetailFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.home.NotificationDetailFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.notification_center.NotificationDetailFragment"
         android:label="NotificationDetailFragment"
         tools:layout="@layout/fragment_notification_detail">
         <deepLink

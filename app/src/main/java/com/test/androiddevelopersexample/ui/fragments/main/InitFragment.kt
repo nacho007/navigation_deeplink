@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit
  */
 class InitFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
-    override var screenTag = "MainFragment"
+    override var screenTag = "InitFragment"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

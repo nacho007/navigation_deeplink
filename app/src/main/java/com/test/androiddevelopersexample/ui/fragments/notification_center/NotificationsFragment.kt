@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.home
+package com.test.androiddevelopersexample.ui.fragments.notification_center
 
 import android.os.Bundle
 import android.view.View

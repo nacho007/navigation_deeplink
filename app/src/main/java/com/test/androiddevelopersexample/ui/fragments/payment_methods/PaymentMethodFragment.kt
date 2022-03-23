@@ -1,8 +1,7 @@
-package com.test.androiddevelopersexample.ui.fragments.home
+package com.test.androiddevelopersexample.ui.fragments.payment_methods
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentPaymentMethodBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment

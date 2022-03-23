@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.home
+package com.test.androiddevelopersexample.ui.fragments.loyalty
 
 import com.test.androiddevelopersexample.databinding.FragmentLoyaltyBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
