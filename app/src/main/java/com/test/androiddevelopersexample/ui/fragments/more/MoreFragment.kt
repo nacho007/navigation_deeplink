@@ -109,7 +109,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                     "Loyalty Title",
                     "Loyalty Body"
                 )
-            }, 1500.toLong(), TimeUnit.MILLISECONDS)
+            }, 3000.toLong(), TimeUnit.MILLISECONDS)
         })
     }
 

@@ -20,7 +20,7 @@ object DeepLinkUtils {
             .build()
     }
 
-    fun deepLinkArticle(): NavDeepLinkRequest {
+    private fun deepLinkArticle(): NavDeepLinkRequest {
         return NavDeepLinkRequest.Builder
             .fromUri(DEEP_LINK_ARTICLE.toUri())
             .build()

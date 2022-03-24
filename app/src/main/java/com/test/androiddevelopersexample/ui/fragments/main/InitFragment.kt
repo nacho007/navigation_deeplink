@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,7 @@ import com.test.androiddevelopersexample.databinding.FragmentMainBinding
 import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils
+import com.test.androiddevelopersexample.ui.utils.PushNotificationUtils.IS_PUSH
 import com.test.androiddevelopersexample.ui.utils.navigate
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -25,29 +27,43 @@ class InitFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
     override var screenTag = "InitFragment"
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed(
-            {
-                val sharedPref = activity?.getSharedPreferences(
-                    getString(R.string.preferences), Context.MODE_PRIVATE
-                )
+        if (arguments?.getBoolean(IS_PUSH) == true) {
+            Log.e(screenTag, "1")
+            navigate()
+        } else {
+            Log.e(screenTag, "2")
 
-                if (sharedPref?.getBoolean(getString(R.string.is_logged), false) == true) {
-                    (activity as NavigationActivity).deepLinkUnLogged = false
+            val handler = Handler(Looper.getMainLooper())
+            handler.postDelayed(
+                {
+                    val sharedPref = activity?.getSharedPreferences(
+                        getString(R.string.preferences), Context.MODE_PRIVATE
+                    )
 
-                    navigate(R.id.action_initFragment_to_moneyFragment)
-                    findNavController().graph.setStartDestination(R.id.moneyFragment)
-                    checkDeepLinks()
-                } else {
-                    (activity as NavigationActivity).deepLinkLogged = false
-                    navigate(R.id.action_initFragment_to_loginFragment)
-                }
+                    if (sharedPref?.getBoolean(getString(R.string.is_logged), false) == true) {
+                        navigate()
+                    } else {
+                        (activity as NavigationActivity).deepLinkLogged = false
+                        navigate(R.id.action_initFragment_to_loginFragment)
+                    }
 
-            }, 1500
-        )
+                }, 3500
+            )
+        }
+    }
+
+    private fun navigate(){
+        (activity as NavigationActivity).deepLinkUnLogged = false
+        navigate(R.id.action_initFragment_to_moneyFragment)
+        findNavController().graph.setStartDestination(R.id.moneyFragment)
+        checkDeepLinks()
     }
 
     private fun checkDeepLinks() {

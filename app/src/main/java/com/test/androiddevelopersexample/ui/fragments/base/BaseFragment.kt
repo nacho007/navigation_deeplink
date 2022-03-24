@@ -39,11 +39,16 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
         screenHeight = resources.displayMetrics.heightPixels
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.e(screenTag, "onViewCreated")
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.e(screenTag, "onCreateView")
+//        Log.e(screenTag, "onCreateView")
         if (activity is NavigationActivity) {
             (activity as NavigationActivity).showBottomNavigationMenu(showBottomNavigation)
         }

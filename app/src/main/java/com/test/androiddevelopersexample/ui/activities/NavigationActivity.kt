@@ -70,6 +70,15 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
             }
         }
 
+        if (intent?.extras != null) {
+            val bundle = intent.extras
+            if (bundle != null) {
+                for (key in bundle.keySet()) {
+//                    Log.e(screenTag, key + " : " + if (bundle[key] != null) bundle[key] else "NULL")
+                }
+            }
+        }
+
         if (intent?.extras != null && intent?.extras?.containsKey(PUSH_TYPE) == true) {
             pushData = true
             val pushType = intent?.extras?.get(PUSH_TYPE)
