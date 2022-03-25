@@ -52,6 +52,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                             HelpCenterButton()
                             LogoutButton()
                             SwipeButton()
+                            OnBoardingComposeButton()
                             Spacer(modifier = Modifier.height(16.dp))
                         }
                     }
@@ -60,6 +61,13 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
 
         }
 
+    }
+
+    @Composable
+    private fun OnBoardingComposeButton() {
+        IconButton(text = R.string.onboarding_compose, action = {
+            findNavController().navigate(R.id.action_moreFragment_to_OnBoardingFragment)
+        })
     }
 
     @Composable

@@ -104,6 +104,9 @@
         <action
             android:id="@+id/action_moreFragment_to_fragmentCustomComponent"
             app:destination="@id/fragmentCustomComponent" />
+        <action
+            android:id="@+id/action_moreFragment_to_OnBoardingFragment"
+            app:destination="@id/onBoardingFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentMethodFragment"
@@ -133,6 +136,11 @@
             android:id="@+id/deepLink"
             app:uri="app://astro_coins" />
     </fragment>
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.compose.OnBoardingFragment"
+        android:label="OnBoardingFragment"
+        tools:layout="@layout/fragment_astro_coins" />
     <fragment
         android:id="@+id/notificationDetailFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.notification_center.NotificationDetailFragment"
