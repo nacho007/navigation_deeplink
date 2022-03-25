@@ -34,11 +34,20 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "PROJECT_ID", '"mock-app-5ec60"'
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -81,6 +90,9 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.2.1')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-messaging'
+
+    implementation "io.grpc:grpc-okhttp:1.32.2"
+    implementation 'com.google.auth:google-auth-library-oauth2-http:0.17.1'
 
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
