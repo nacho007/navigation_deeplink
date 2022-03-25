@@ -72,19 +72,23 @@ object Messaging {
      */
     @Throws(IOException::class)
     fun sendMessage(context: Context, fcmMessage: JsonObject) {
-        val connection = getConnection(context)
-        connection.doOutput = true
-        val outputStream = DataOutputStream(connection.outputStream)
-        outputStream.writeBytes(fcmMessage.toString())
-        outputStream.flush()
-        outputStream.close()
-        val responseCode = connection.responseCode
-        if (responseCode == 200) {
-            val response = inputStreamToString(connection.inputStream)
-            Log.e(TAG, response)
-        } else {
-            val response = inputStreamToString(connection.errorStream)
-            Log.e(TAG, response)
+        try {
+            val connection = getConnection(context)
+            connection.doOutput = true
+            val outputStream = DataOutputStream(connection.outputStream)
+            outputStream.writeBytes(fcmMessage.toString())
+            outputStream.flush()
+            outputStream.close()
+            val responseCode = connection.responseCode
+            if (responseCode == 200) {
+                val response = inputStreamToString(connection.inputStream)
+                Log.e(TAG, response)
+            } else {
+                val response = inputStreamToString(connection.errorStream)
+                Log.e(TAG, response)
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
         }
     }
 
