@@ -73,4 +73,8 @@
     <string name="deeplink_money">money</string>
     <string name="deeplink_loyalty">loyalty</string>
 
+    <string name="mobile_terms_and_conditions">"Terms and Conditions"</string>
+    <string name="mobile_privacy_policy">"Privacy Policy"</string>
+    <string name="mobile_terms_and_conditions_privacy_policy">"I agree to the %s and that I have read the %s"</string>
+
 </resources>

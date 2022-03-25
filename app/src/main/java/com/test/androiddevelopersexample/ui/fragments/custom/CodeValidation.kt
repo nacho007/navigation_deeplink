@@ -48,7 +48,7 @@ fun CodeValidation(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(vertical = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         repeat(passcodeLength) { index ->
