@@ -54,13 +54,6 @@ object PushNotificationUtils {
         destination: Int,
         args: Bundle? = null
     ): PendingIntent {
-//        return NavDeepLinkBuilder(context)
-//            .setComponentName(NavigationActivity::class.java)
-//            .setGraph(graph)
-//            .addDestination(R.id.initFragment, bundleOf(IS_PUSH to true))
-//            .addDestination(destination)
-//            .setArguments(args)
-//            .createPendingIntent()
         return NavDeepLinkBuilder(context)
             .setComponentName(NavigationActivity::class.java)
             .setGraph(graph)
