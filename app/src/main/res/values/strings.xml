@@ -36,6 +36,7 @@
     <string name="is_logged">is_logged</string>
     <string name="astro_coins">ASTROCOINS</string>
     <string name="onboarding_compose">OnBoarding Compose</string>
+    <string name="cards_list">Cards List</string>
     <string name="payment_methods">PAYMENT METHODS</string>
     <string name="checkout">CHECKOUT</string>
     <string name="deep_link_to_loyalty">Deep Link To Loyalty</string>
