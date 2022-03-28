@@ -12,16 +12,26 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import com.test.androiddevelopersexample.R
+import com.test.androiddevelopersexample.constants.FIREBASE_TOKEN
 import com.test.androiddevelopersexample.databinding.FragmentMoreBinding
 import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.custom.IconButton
+import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils.PUSH_LOYALTY
+import com.test.androiddevelopersexample.ui.utils.Messaging
 import com.test.androiddevelopersexample.ui.utils.PushNotificationUtils
 import com.test.androiddevelopersexample.ui.utils.navigate
+import com.test.androiddevelopersexample.ui.utils.showToast
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * Created by ignaciodeandreisdenis on 4/7/21.
@@ -116,22 +126,27 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
 
     @Composable
     private fun NotificationLoyaltyButton() {
+        val coroutineScope = rememberCoroutineScope()
+
         IconButton(text = R.string.generate_push_notification_loyalty, action = {
-            val executor: ScheduledExecutorService =
-                Executors.newSingleThreadScheduledExecutor()
-            executor.schedule({
-                PushNotificationUtils.createTradePushLoyalty(
-                    requireContext(),
-                    "Loyalty Title",
-                    "Loyalty Body"
+            coroutineScope.launch {
+                invoke(
+                    NotificationType.Loyalty(
+                        text = "",
+                        title = "Loyalty title",
+                        type = PUSH_LOYALTY,
+                        body = "Loyalty Body"
+                    )
                 )
-            }, 3000.toLong(), TimeUnit.MILLISECONDS)
+            }
         })
     }
 
     @Composable
     private fun NotificationArticleButton() {
         IconButton(text = R.string.generate_push_notification_article, action = {
+
+
             val executor: ScheduledExecutorService =
                 Executors.newSingleThreadScheduledExecutor()
             executor.schedule({
@@ -141,6 +156,8 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                     "Article Body"
                 )
             }, 1500.toLong(), TimeUnit.MILLISECONDS)
+
+
         })
     }
 
@@ -184,5 +201,82 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                 R.id.action_moreFragment_to_fragmentCustomComponent
             )
         })
+    }
+
+
+    suspend operator fun invoke(type: NotificationType) {
+        val pushNotificationData = when (type) {
+            is NotificationType.Loyalty -> {
+                PushNotification.Message.Data(
+                    type = type.type
+                )
+            }
+        }
+
+        val pushNotification = generatePushNotification(type, pushNotificationData)
+        scheduleMessage(JsonParser().parse(Gson().toJson(pushNotification)).asJsonObject)
+    }
+
+    private fun generatePushNotification(
+        type: NotificationType,
+        data: PushNotification.Message.Data?
+    ): PushNotification {
+        return PushNotification(
+            PushNotification.Message(
+                requireActivity().getSharedPreferences(
+                    getString(R.string.preferences), Context.MODE_PRIVATE
+                ).getString(FIREBASE_TOKEN, ""),
+                PushNotification.Message.Notification(type.title, type.body),
+                data
+            )
+        )
+    }
+
+    private fun scheduleMessage(notification: JsonObject) {
+        val executor: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
+        executor.schedule({
+            Messaging.sendMessage(requireContext(), notification)
+        }, PUSH_DEV_OPT_DELAY, TimeUnit.MILLISECONDS)
+        showToast(PUSH_TIME_TOAST_TEXT, binding.root)
+    }
+
+    sealed class NotificationType {
+        abstract val text: String
+        abstract val title: String
+        abstract val body: String
+        abstract val type: String
+
+        data class Loyalty(
+            override val text: String = "Text",
+            override val title: String = "Loyalty title",
+            override val body: String = "Loyalty body",
+            override val type: String = "LOYALTY"
+        ) : NotificationType()
+    }
+
+    data class PushNotification(
+        val message: Message,
+    ) {
+        data class Message(
+            val token: String?,
+            val notification: Notification,
+            val data: Data?
+        ) {
+            data class Notification(
+                val title: String,
+                val body: String
+            )
+
+            data class Data(
+                val type: String,
+            )
+        }
+    }
+
+    companion object {
+        private const val SCREEN_NAME = "DEVELOPER_OPTIONS"
+        private const val PUSH_DEV_OPT_DELAY = 3000L
+        private const val PUSH_TIME_TOAST_TEXT = "Push will be sent in 3 seconds"
+        private const val DIALOG = 103
     }
 }
