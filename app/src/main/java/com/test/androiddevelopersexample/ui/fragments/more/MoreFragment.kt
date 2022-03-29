@@ -64,6 +64,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                             LogoutButton()
                             SwipeButton()
                             OnBoardingComposeButton()
+                            CardsComposeButton()
                             Spacer(modifier = Modifier.height(16.dp))
                         }
                     }
@@ -78,6 +79,13 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
     private fun OnBoardingComposeButton() {
         ComposeIconButton(text = stringResource(id = R.string.onboarding_compose), action = {
             findNavController().navigate(R.id.action_moreFragment_to_OnBoardingFragment)
+        })
+    }
+
+    @Composable
+    private fun CardsComposeButton() {
+        IconButton(text = R.string.cards_list, action = {
+            findNavController().navigate(R.id.action_moreFragment_to_cardsListFragment)
         })
     }
 
