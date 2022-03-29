@@ -1,10 +1,20 @@
 package com.test.androiddevelopersexample.ui.fragments.custom
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -14,10 +24,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -40,6 +52,13 @@ fun CreatePassword(
             hasError = isValidPassword.not() && password.isNotEmpty()
         )
         Spacer(modifier = Modifier.height(16.dp))
+        AnimatedVisibility(
+            visible = password.isNotEmpty(),
+            enter = fadeIn()
+        ) {
+            PasswordStrength(password)
+            Spacer(modifier = Modifier.height(16.dp))
+        }
         RepeatPasswordTextField(
             value = confirmPassword,
             onValueChange = onConfirmPasswordChange,
@@ -97,14 +116,10 @@ private fun PasswordTextField(
         Text(
             modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp),
             text = "Debe contener de 8 a 20 caracteres",
-            fontSize = 10.sp,
+            fontSize = 12.sp,
             color = if (hasError) Color.Red else Color.Black
         )
     }
-}
-
-private fun isValidPassword(password: String): Boolean {
-    return password.length in 8..20 || password.isEmpty()
 }
 
 @Composable
@@ -112,8 +127,7 @@ private fun RepeatPasswordTextField(
     value: String,
     onValueChange: (text: String) -> Unit,
     labelText: String = "Repite tu contraseña",
-    hasError: Boolean = false,
-//    validate: (isValid: Boolean) -> Unit
+    hasError: Boolean = false
 ) {
     val showPassword = remember { mutableStateOf(false) }
 
@@ -144,4 +158,62 @@ private fun RepeatPasswordTextField(
             }
         },
     )
+}
+
+@Composable
+private fun PasswordStrength(pass: String) {
+    val strength = calculateStrength(pass)
+    Column(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Box(
+            modifier = Modifier
+                .clip(shape = RoundedCornerShape(4.dp))
+        ) {
+            LinearProgressIndicator(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(10.dp),
+                backgroundColor = Color.LightGray,
+                color = strength.color,
+                progress = strength.percentage
+            )
+        }
+        Text(
+            modifier = Modifier
+                .padding(4.dp),
+            text = strength.text,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.SemiBold
+        )
+    }
+
+}
+
+private fun calculateStrength(password: String): StrengthLevel {
+    var sawDigit = false
+    var sawSpecial = false
+
+
+    for (element in password) {
+        if (!sawSpecial && !Character.isLetterOrDigit(element)) {
+            sawSpecial = true
+        } else {
+            if (!sawDigit && Character.isDigit(element)) {
+                sawDigit = true
+            }
+        }
+    }
+
+    return when {
+        password.length > 11 && sawDigit && sawSpecial.not() -> StrengthLevel.MEDIUM
+        password.length > 14 && sawDigit && sawSpecial -> StrengthLevel.STRONG
+        else -> StrengthLevel.WEAK
+    }
+}
+
+enum class StrengthLevel(val text: String, val color: Color, val percentage: Float) {
+    WEAK("Weak", Color.Red, .33f),
+    MEDIUM("Medium", Color.Yellow, .66f),
+    STRONG("Strong", Color.Green, 1f)
 }

@@ -29,7 +29,7 @@ fun OnBoardingProgressBar(
             LinearProgressIndicator(
                 modifier = Modifier
                     .width(80.dp)
-                    .height(8.dp),
+                    .height(10.dp),
                 backgroundColor = Color.LightGray,
                 color = Color.Red,
                 progress = calculateProgress(currentStep, steps)

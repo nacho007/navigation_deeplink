@@ -84,7 +84,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
 
     @Composable
     private fun CardsComposeButton() {
-        IconButton(text = R.string.cards_list, action = {
+        ComposeIconButton(text = stringResource(R.string.cards_list), action = {
             findNavController().navigate(R.id.action_moreFragment_to_cardsListFragment)
         })
     }
