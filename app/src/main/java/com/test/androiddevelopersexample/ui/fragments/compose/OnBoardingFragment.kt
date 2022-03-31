@@ -11,12 +11,14 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
+import androidx.compose.material.Checkbox
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,6 +35,7 @@ import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.custom.CodeValidation
 import com.test.androiddevelopersexample.ui.fragments.custom.CreatePassword
 import com.test.androiddevelopersexample.ui.fragments.custom.OnBoardingProgressBar
+import com.test.androiddevelopersexample.ui.fragments.custom.PhoneNumberTextField
 
 class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBinding::inflate) {
 
@@ -106,8 +109,10 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
             ) {
                 Text(text = "VALIDATE")
             }
-//            Spacer(modifier = Modifier.height(16.dp))
-//            TextTermsAndConditions(context = context)
+            Spacer(modifier = Modifier.height(16.dp))
+            PhoneNumberTextField()
+            Spacer(modifier = Modifier.height(16.dp))
+            TermsCheckBox(context = context)
 
             Spacer(modifier = Modifier.height(16.dp))
             CreatePassword(
@@ -142,7 +147,27 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
 }
 
 @Composable
-fun TextTermsAndConditions(context: Context) {
+fun TermsCheckBox(context: Context) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        val isChecked = remember { mutableStateOf(false) }
+
+        Checkbox(
+            checked = isChecked.value,
+            onCheckedChange = { isChecked.value = it }
+        )
+        TextTermsAndConditions(context) {
+            isChecked.value = isChecked.value.not()
+        }
+    }
+}
+
+@Composable
+private fun TextTermsAndConditions(
+    context: Context,
+    onLabelClicked: () -> Unit
+) {
 
     val termsAndConditions = context.getString(R.string.mobile_terms_and_conditions)
     val privacyPolicy = context.getString(R.string.mobile_privacy_policy)
@@ -186,6 +211,7 @@ fun TextTermsAndConditions(context: Context) {
                     Log.d("CLICKED", "Privacy Policy")
                     mToast(context = context, text = "Privacy Policy :: CLICKED")
                 }
+                else -> onLabelClicked()
             }
         }
     )
