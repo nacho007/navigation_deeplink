@@ -7,14 +7,18 @@ import android.view.View
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
+import androidx.compose.material.Checkbox
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,11 +33,10 @@ import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.custom.CodeValidation
+import com.test.androiddevelopersexample.ui.fragments.custom.CreatePassword
 import com.test.androiddevelopersexample.ui.fragments.custom.OnBoardingProgressBar
+import com.test.androiddevelopersexample.ui.fragments.custom.PhoneNumberTextField
 
-/**
- * Created by ignaciodeandreisdenis on 4/11/21.
- */
 class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBinding::inflate) {
 
     override var screenTag = "OnBoardingFragment"
@@ -72,7 +75,17 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
         val steps = 4
         val currentStep = remember { mutableStateOf(1) }
 
-        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+        val isValidPassword = remember { mutableStateOf(false) }
+        val showDifferentPasswordError = remember { mutableStateOf(false) }
+        val canEnableButton = remember { mutableStateOf(false) }
+        val password = remember { mutableStateOf("") }
+        val confirmPassword = remember { mutableStateOf("") }
+
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .verticalScroll(rememberScrollState())
+        ) {
             Spacer(modifier = Modifier.height(16.dp))
             OnBoardingProgressBar(
                 steps = steps,
@@ -97,13 +110,64 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
                 Text(text = "VALIDATE")
             }
             Spacer(modifier = Modifier.height(16.dp))
-            TextTermsAndConditions(context = context)
+            PhoneNumberTextField()
+            Spacer(modifier = Modifier.height(16.dp))
+            TermsCheckBox(context = context)
+
+            Spacer(modifier = Modifier.height(16.dp))
+            CreatePassword(
+                password = password.value,
+                confirmPassword = confirmPassword.value,
+                onPasswordChange = {
+                    password.value = it
+                    showDifferentPasswordError.value = false
+                    isValidPassword.value = it.length in 8..20
+                    canEnableButton.value = isValidPassword.value && confirmPassword.value.isNotEmpty()
+                },
+                onConfirmPasswordChange = {
+                    confirmPassword.value = it
+                    canEnableButton.value = isValidPassword.value && it.isNotEmpty()
+                    showDifferentPasswordError.value = false
+                },
+                isValidPassword = isValidPassword.value,
+                showDifferentPasswordError = showDifferentPasswordError.value
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = {
+                    showDifferentPasswordError.value = password.value != confirmPassword.value
+                },
+                enabled = canEnableButton.value
+            ) {
+                Text(text = "CREATE PASSWORD")
+            }
         }
     }
 }
 
 @Composable
-fun TextTermsAndConditions(context: Context) {
+fun TermsCheckBox(context: Context) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        val isChecked = remember { mutableStateOf(false) }
+
+        Checkbox(
+            checked = isChecked.value,
+            onCheckedChange = { isChecked.value = it }
+        )
+        TextTermsAndConditions(context) {
+            isChecked.value = isChecked.value.not()
+        }
+    }
+}
+
+@Composable
+private fun TextTermsAndConditions(
+    context: Context,
+    onLabelClicked: () -> Unit
+) {
 
     val termsAndConditions = context.getString(R.string.mobile_terms_and_conditions)
     val privacyPolicy = context.getString(R.string.mobile_privacy_policy)
@@ -147,10 +211,10 @@ fun TextTermsAndConditions(context: Context) {
                     Log.d("CLICKED", "Privacy Policy")
                     mToast(context = context, text = "Privacy Policy :: CLICKED")
                 }
+                else -> onLabelClicked()
             }
         }
     )
-
 }
 
 private fun mToast(context: Context, text: String) {
