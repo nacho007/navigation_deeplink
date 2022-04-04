@@ -114,6 +114,10 @@ class CardsListFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBi
                 contentPadding = PaddingValues(8.dp),
                 state = scrollState
             ) {
+                item {
+                    NewCardComponent()
+                }
+
                 items(cards) { cardAmount ->
                     ApcCard(amount = cardAmount.toString())
                 }

@@ -8,6 +8,11 @@
         <entry key="../../../../layout/compose-model-1648224239981.xml" value="0.27280405405405406" />
         <entry key="../../../../layout/compose-model-1648224966878.xml" value="0.27280405405405406" />
         <entry key="../../../../layout/compose-model-1648226203532.xml" value="0.27280405405405406" />
+        <entry key="../../../../layout/compose-model-1648559601938.xml" value="0.22001689189189189" />
+        <entry key="../../../../layout/compose-model-1648559727237.xml" value="1.0" />
+        <entry key="../../../../layout/compose-model-1648561544520.xml" value="0.335" />
+        <entry key="../../../../layout/compose-model-1648663596090.xml" value="0.27280405405405406" />
+        <entry key="../../../../layout/compose-model-1648736662776.xml" value="0.27280405405405406" />
         <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.192" />
         <entry key="app/src/main/res/drawable/svg_arrow_right.xml" value="0.172" />
         <entry key="app/src/main/res/drawable/svg_receive_money.xml" value="0.2445" />
@@ -20,7 +25,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
