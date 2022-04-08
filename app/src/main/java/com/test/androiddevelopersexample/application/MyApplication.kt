@@ -2,7 +2,6 @@ package com.test.androiddevelopersexample.application
 
 import android.app.Application
 import android.util.Log
-import android.widget.Toast
 import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.decode.SvgDecoder
@@ -10,8 +9,10 @@ import coil.util.CoilUtils
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
-import com.test.androiddevelopersexample.R
+import com.test.androiddevelopersexample.di.viewModelsModule
 import okhttp3.OkHttpClient
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 /**
  * Created by ignaciodeandreisdenis on 7/20/20.
@@ -20,6 +21,15 @@ class MyApplication : Application(), ImageLoaderFactory {
 
     override fun onCreate() {
         super.onCreate()
+
+        startKoin {
+            androidContext(this@MyApplication)
+            modules(
+                listOf(
+                    viewModelsModule
+                )
+            )
+        }
 
         FirebaseApp.initializeApp(this)
 

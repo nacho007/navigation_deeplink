@@ -154,7 +154,9 @@ fun CodeValidation(
 }
 
 @Composable
-fun PhoneNumberTextField() {
+fun PhoneNumberTextField(
+    countryUrl: String
+) {
     val hasFocus = remember { mutableStateOf(false) }
 
     Row(
@@ -172,8 +174,7 @@ fun PhoneNumberTextField() {
         verticalAlignment = Alignment.CenterVertically
     ) {
         val text = remember { mutableStateOf("") }
-        val painter =
-            rememberImagePainter(data = "https://getapp-test.astropaycard.com/img/flags/CD.svg")
+        val painter = rememberImagePainter(data = countryUrl)
         Spacer(modifier = Modifier.width(16.dp))
         Image(
             modifier = Modifier.size(25.dp),
