@@ -93,7 +93,7 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
         val uiState = viewModel.stateLiveData.observeAsState(viewModel.state)
 
         AnimatedVisibility(
-            visible = uiState.value?.isLoading == true
+            visible = uiState.value.isLoading
         ) {
             Column(
                 verticalArrangement = Arrangement.Center,
@@ -104,7 +104,7 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
         }
 
         AnimatedVisibility(
-            visible = uiState.value?.isLoading == false
+            visible = !uiState.value.isLoading
         ) {
             Column(
                 modifier = Modifier
