@@ -17,31 +17,41 @@ class OnboardingViewModel(
 
     fun emulateLoading() {
         sendAction(Action.Loading)
+        lastIntention = { emulateLoading() }
         viewModelScope.launch {
             delay(3000)
             sendAction(Action.Success)
         }
     }
 
+    fun emulateNetworkError() {
+        sendAction(Action.Loading)
+        viewModelScope.launch {
+            delay(3000)
+            sendAction(Action.NetworkError)
+        }
+    }
+
     override fun onReduceState(viewAction: Action): ViewState = when (viewAction) {
         Action.Loading -> state.copy(
-            isLoading = true,
-            isSuccess = false
+            state = StateType.LOAD
         )
         Action.Success -> state.copy(
-            isLoading = false,
-            isSuccess = true
+            state = StateType.HIDE
+        )
+        Action.NetworkError -> state.copy(
+            state = StateType.NETWORK_ERROR
         )
     }
 
     data class ViewState(
-        val isLoading: Boolean = false,
-        val isSuccess: Boolean = false
+        val state: StateType = StateType.NONE
     ) : BaseViewState
 
     sealed class Action : BaseAction {
         object Loading : Action()
         object Success : Action()
+        object NetworkError : Action()
     }
 
 }

@@ -63,7 +63,14 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
                             .fillMaxSize()
                             .background(color = colorResource(id = R.color.color_view_background))
                     ) {
-                        CodeScreen()
+                        val uiState = viewModel.stateLiveData.observeAsState(viewModel.state)
+
+                        ContentState(
+                            state = uiState.value.state,
+                            lastIntention = viewModel.lastIntention
+                        ) {
+                            CodeScreen()
+                        }
                     }
                 }
             }
@@ -90,162 +97,156 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
         val password = remember { mutableStateOf("") }
         val confirmPassword = remember { mutableStateOf("") }
 
-        val uiState = viewModel.stateLiveData.observeAsState(viewModel.state)
-
-        AnimatedVisibility(
-            visible = uiState.value.isLoading
+        Column(
+            modifier = Modifier
+                .padding(horizontal = dimensionResource(id = R.dimen.padding))
+                .verticalScroll(rememberScrollState())
         ) {
-            Column(
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding)))
+            OnBoardingProgressBar(
+                steps = steps,
+                currentStep = currentStep.value
+            )
+            CodeValidation(
+                onCodeCompleted = { valid, code ->
+                    isCodeCompleted.value = valid
+                    hasError.value = false
+                    pinCode.value = code
+                },
+                hasError = hasError.value
+            )
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = {
+                    hasError.value = pinCode.value != "11111"
+                    currentStep.value++
+                },
+                enabled = isCodeCompleted.value
             ) {
-                CircularProgressIndicator()
+                Text(text = "VALIDATE")
             }
-        }
+            Spacer(modifier = Modifier.height(16.dp))
+            PhoneNumberTextField(countryUrl = viewModel.getCountryUrl())
+            Spacer(modifier = Modifier.height(16.dp))
+            TermsCheckBox(context = context)
 
-        AnimatedVisibility(
-            visible = !uiState.value.isLoading
-        ) {
-            Column(
-                modifier = Modifier
-                    .padding(horizontal = dimensionResource(id = R.dimen.padding))
-                    .verticalScroll(rememberScrollState())
+            Spacer(modifier = Modifier.height(16.dp))
+            CreatePassword(
+                password = password.value,
+                confirmPassword = confirmPassword.value,
+                onPasswordChange = {
+                    password.value = it
+                    showDifferentPasswordError = false
+                    isValidPassword.value = it.length in 8..20
+                    canEnableButton.value =
+                        isValidPassword.value && confirmPassword.value.isNotEmpty()
+                },
+                onConfirmPasswordChange = {
+                    confirmPassword.value = it
+                    canEnableButton.value = isValidPassword.value && it.isNotEmpty()
+                    showDifferentPasswordError = false
+                },
+                isValidPassword = isValidPassword.value,
+                showDifferentPasswordError = showDifferentPasswordError
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = {
+                    showDifferentPasswordError = password.value != confirmPassword.value
+                    if (showDifferentPasswordError.not()) {
+                        viewModel.emulateLoading()
+                    }
+                },
+                enabled = canEnableButton.value
             ) {
-                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding)))
-                OnBoardingProgressBar(
-                    steps = steps,
-                    currentStep = currentStep.value
-                )
-                CodeValidation(
-                    onCodeCompleted = { valid, code ->
-                        isCodeCompleted.value = valid
-                        hasError.value = false
-                        pinCode.value = code
-                    },
-                    hasError = hasError.value
-                )
-                Button(
-                    modifier = Modifier.fillMaxWidth(),
-                    onClick = {
-                        hasError.value = pinCode.value != "11111"
-                        currentStep.value++
-                    },
-                    enabled = isCodeCompleted.value
-                ) {
-                    Text(text = "VALIDATE")
-                }
-                Spacer(modifier = Modifier.height(16.dp))
-                PhoneNumberTextField(countryUrl = viewModel.getCountryUrl())
-                Spacer(modifier = Modifier.height(16.dp))
-                TermsCheckBox(context = context)
+                Text(text = "CREATE PASSWORD")
+            }
 
-                Spacer(modifier = Modifier.height(16.dp))
-                CreatePassword(
-                    password = password.value,
-                    confirmPassword = confirmPassword.value,
-                    onPasswordChange = {
-                        password.value = it
-                        showDifferentPasswordError = false
-                        isValidPassword.value = it.length in 8..20
-                        canEnableButton.value = isValidPassword.value && confirmPassword.value.isNotEmpty()
-                    },
-                    onConfirmPasswordChange = {
-                        confirmPassword.value = it
-                        canEnableButton.value = isValidPassword.value && it.isNotEmpty()
-                        showDifferentPasswordError = false
-                    },
-                    isValidPassword = isValidPassword.value,
-                    showDifferentPasswordError = showDifferentPasswordError
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Button(
-                    modifier = Modifier.fillMaxWidth(),
-                    onClick = {
-                        showDifferentPasswordError = password.value != confirmPassword.value
-                        if (showDifferentPasswordError.not()) {
-                            viewModel.emulateLoading()
-                        }
-                    },
-                    enabled = canEnableButton.value
-                ) {
-                    Text(text = "CREATE PASSWORD")
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = {
+                    viewModel.emulateNetworkError()
                 }
+            ) {
+                Text(text = "NETWORK ERROR")
             }
         }
     }
-}
 
-@Composable
-fun TermsCheckBox(context: Context) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically
+    @Composable
+    fun TermsCheckBox(context: Context) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            val isChecked = remember { mutableStateOf(false) }
+
+            Checkbox(
+                checked = isChecked.value,
+                onCheckedChange = { isChecked.value = it }
+            )
+            TextTermsAndConditions(context) {
+                isChecked.value = isChecked.value.not()
+            }
+        }
+    }
+
+    @Composable
+    private fun TextTermsAndConditions(
+        context: Context,
+        onLabelClicked: () -> Unit
     ) {
-        val isChecked = remember { mutableStateOf(false) }
 
-        Checkbox(
-            checked = isChecked.value,
-            onCheckedChange = { isChecked.value = it }
+        val termsAndConditions = context.getString(R.string.mobile_terms_and_conditions)
+        val privacyPolicy = context.getString(R.string.mobile_privacy_policy)
+        val string = context.getString(
+            R.string.mobile_terms_and_conditions_privacy_policy,
+            termsAndConditions,
+            privacyPolicy
         )
-        TextTermsAndConditions(context) {
-            isChecked.value = isChecked.value.not()
-        }
-    }
-}
 
-@Composable
-private fun TextTermsAndConditions(
-    context: Context,
-    onLabelClicked: () -> Unit
-) {
+        val termsAndConditionsStartPosition = string.indexOf(termsAndConditions)
+        val termsAndConditionsEndPosition =
+            termsAndConditions.length + termsAndConditionsStartPosition
+        val privacyPolicyStartPosition = string.indexOf(privacyPolicy)
+        val privacyPolicyEndPosition = privacyPolicy.length + privacyPolicyStartPosition
 
-    val termsAndConditions = context.getString(R.string.mobile_terms_and_conditions)
-    val privacyPolicy = context.getString(R.string.mobile_privacy_policy)
-    val string = context.getString(
-        R.string.mobile_terms_and_conditions_privacy_policy,
-        termsAndConditions,
-        privacyPolicy
-    )
-
-    val termsAndConditionsStartPosition = string.indexOf(termsAndConditions)
-    val termsAndConditionsEndPosition =
-        termsAndConditions.length + termsAndConditionsStartPosition
-    val privacyPolicyStartPosition = string.indexOf(privacyPolicy)
-    val privacyPolicyEndPosition = privacyPolicy.length + privacyPolicyStartPosition
-
-    val annotatedString = AnnotatedString(
-        text = string,
-        spanStyles = listOf(
-            AnnotatedString.Range(
-                SpanStyle(fontWeight = FontWeight.Bold, color = Color.Red),
-                termsAndConditionsStartPosition,
-                termsAndConditionsEndPosition
-            ),
-            AnnotatedString.Range(
-                SpanStyle(fontWeight = FontWeight.Bold, color = Color.Red),
-                privacyPolicyStartPosition,
-                privacyPolicyEndPosition
+        val annotatedString = AnnotatedString(
+            text = string,
+            spanStyles = listOf(
+                AnnotatedString.Range(
+                    SpanStyle(fontWeight = FontWeight.Bold, color = Color.Red),
+                    termsAndConditionsStartPosition,
+                    termsAndConditionsEndPosition
+                ),
+                AnnotatedString.Range(
+                    SpanStyle(fontWeight = FontWeight.Bold, color = Color.Red),
+                    privacyPolicyStartPosition,
+                    privacyPolicyEndPosition
+                )
             )
         )
-    )
 
-    ClickableText(
-        text = annotatedString,
-        onClick = { offset ->
-            when (offset) {
-                in termsAndConditionsStartPosition..termsAndConditionsEndPosition -> {
-                    Log.d("CLICKED", "Terms and Conditions")
-                    mToast(context = context, text = "Terms and Conditions :: CLICKED")
+        ClickableText(
+            text = annotatedString,
+            onClick = { offset ->
+                when (offset) {
+                    in termsAndConditionsStartPosition..termsAndConditionsEndPosition -> {
+                        Log.d("CLICKED", "Terms and Conditions")
+                        mToast(context = context, text = "Terms and Conditions :: CLICKED")
+                    }
+                    in privacyPolicyStartPosition..privacyPolicyEndPosition -> {
+                        Log.d("CLICKED", "Privacy Policy")
+                        mToast(context = context, text = "Privacy Policy :: CLICKED")
+                    }
+                    else -> onLabelClicked()
                 }
-                in privacyPolicyStartPosition..privacyPolicyEndPosition -> {
-                    Log.d("CLICKED", "Privacy Policy")
-                    mToast(context = context, text = "Privacy Policy :: CLICKED")
-                }
-                else -> onLabelClicked()
             }
-        }
-    )
-}
+        )
+    }
 
-private fun mToast(context: Context, text: String) {
-    Toast.makeText(context, text, Toast.LENGTH_LONG).show()
+    private fun mToast(context: Context, text: String) {
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show()
+    }
 }

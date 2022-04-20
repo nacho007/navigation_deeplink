@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlin.properties.Delegates
 
+typealias Intention = (() -> Unit)?
+
 abstract class BaseViewModel<ViewState : BaseViewState, ViewAction : BaseAction>(initialState: ViewState) :
     ViewModel() {
 
@@ -12,6 +14,8 @@ abstract class BaseViewModel<ViewState : BaseViewState, ViewAction : BaseAction>
 
     private val stateMutableLiveData = MutableLiveData<ViewState>()
     val stateLiveData = stateMutableLiveData.asLiveData()
+
+    var lastIntention: Intention = null
 
     // Delegate will handle state event deduplication
     // (multiple states of the same type holding the same data will not be dispatched multiple times to LiveData stream)
