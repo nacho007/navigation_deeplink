@@ -73,4 +73,6 @@
     <string name="deeplink_money">money</string>
     <string name="deeplink_loyalty">loyalty</string>
 
+    <string name="mobile_bonus_description">"You will have a total credit of %1$s %2$s at %3$s"</string>
+
 </resources>

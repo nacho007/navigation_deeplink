@@ -107,6 +107,9 @@
         <action
             android:id="@+id/action_moreFragment_to_OnBoardingFragment"
             app:destination="@id/onBoardingFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_moneyFragment"
+            app:destination="@id/moneyFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentMethodFragment"

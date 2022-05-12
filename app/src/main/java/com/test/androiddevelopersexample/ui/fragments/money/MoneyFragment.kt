@@ -20,14 +20,21 @@ class MoneyFragment : BaseFragment<FragmentMoneyBinding>(FragmentMoneyBinding::i
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
+
             btnViewpager.setOnClickListener {
                 navigate(R.id.action_moneyFragment_to_fragmentViewPager)
             }
+
+            val currency = "USD"
+            val amount = "16"
+            val merchantName = "Bet365"
+
+            val description =
+                getString(R.string.mobile_bonus_description, currency, amount, merchantName)
+
+            tvBonus.text = description
         }
 
-        binding.title.setOnClickListener {
-
-        }
     }
 
 }

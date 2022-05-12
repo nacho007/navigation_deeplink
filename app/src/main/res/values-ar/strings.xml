@@ -1,0 +1,4 @@
+<resources>
+    <string name="money">المال</string>
+    <string name="mobile_bonus_description">"سيصبح إجمالي رصيدك %1$ s$2%s على %3$s"</string>
+</resources>
