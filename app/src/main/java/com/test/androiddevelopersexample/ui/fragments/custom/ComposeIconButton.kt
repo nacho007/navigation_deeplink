@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -22,9 +23,9 @@ import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
 
 @Composable
-fun IconButton(
-    text: Int,
-    icon: Int = R.drawable.ic_settings,
+fun ComposeIconButton(
+    text: String,
+    icon: Painter = painterResource(R.drawable.ic_settings),
     enabled: Boolean = true,
     isNew: Boolean = false,
     action: () -> Unit = {}
@@ -42,7 +43,7 @@ fun IconButton(
         onClick = action
     ) {
         Icon(
-            painter = painterResource(icon),
+            painter = icon,
             contentDescription = null
         )
         Spacer(modifier = Modifier.width(8.dp))
@@ -51,8 +52,8 @@ fun IconButton(
                 .weight(1f, true)
                 .padding(vertical = 8.dp)
                 .align(alignment = Alignment.CenterVertically),
-            text = stringResource(text),
-            style = TextStyle(
+            text = text,
+            style = TextStyle.Default.copy(
                 fontWeight = FontWeight.Medium,
                 color = if (enabled) Color.Black else Color.LightGray,
                 fontSize = 16.sp
@@ -65,7 +66,7 @@ fun IconButton(
                     .padding(horizontal = 8.dp, vertical = 2.dp)
                     .align(alignment = Alignment.CenterVertically),
                 text = stringResource(id = R.string.mobile_new),
-                style = TextStyle(
+                style = TextStyle.Default.copy(
                     fontSize = 12.sp,
                     color = Color.White
                 )

@@ -36,6 +36,7 @@
     <string name="is_logged">is_logged</string>
     <string name="astro_coins">ASTROCOINS</string>
     <string name="onboarding_compose">OnBoarding Compose</string>
+    <string name="cards_list">Cards List</string>
     <string name="payment_methods">PAYMENT METHODS</string>
     <string name="checkout">CHECKOUT</string>
     <string name="deep_link_to_loyalty">Deep Link To Loyalty</string>
@@ -72,6 +73,10 @@
     <string name="deeplink_article">article</string>
     <string name="deeplink_money">money</string>
     <string name="deeplink_loyalty">loyalty</string>
+
+    <string name="mobile_terms_and_conditions">"Terms and Conditions"</string>
+    <string name="mobile_privacy_policy">"Privacy Policy"</string>
+    <string name="mobile_terms_and_conditions_privacy_policy">"I agree to the %s and that I have read the %s"</string>
 
     <string name="mobile_bonus_description">"You will have a total credit of %1$s %2$s at %3$s"</string>
 

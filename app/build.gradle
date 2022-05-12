@@ -102,9 +102,14 @@ dependencies {
     implementation "com.xwray:groupie:$groupie_version"
     implementation "com.xwray:groupie-viewbinding:$groupie_version"
 
+    // DI
+    api "org.koin:koin-android:2.1.5"
+    api "org.koin:koin-android-scope:2.1.5"
+    api "org.koin:koin-android-viewmodel:2.1.5"
 
     // Coil
     implementation("io.coil-kt:coil:1.4.0")
+    implementation("io.coil-kt:coil-compose:1.4.0")
     implementation("io.coil-kt:coil-svg:1.4.0")
 
     implementation 'com.squareup.picasso:picasso:2.8'
@@ -113,17 +118,20 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
 
-    // Integration with activities
+    // Compose compiler
     implementation 'androidx.compose.compiler:compiler:1.1.1'
-    implementation 'androidx.activity:activity-compose:1.4.0'
     // Compose Material Design
     implementation 'androidx.compose.material:material:1.1.1'
+    implementation 'androidx.compose.material:material-icons-extended:1.1.1'
+    implementation "com.google.android.material:compose-theme-adapter:1.1.6"
     // Animations
     implementation 'androidx.compose.animation:animation:1.1.1'
     // Tooling support (Previews, etc.)
     implementation 'androidx.compose.ui:ui-tooling:1.1.1'
     // Integration with ViewModels
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-alpha04'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1'
+    // Compose with LiveData
+    implementation 'androidx.compose.runtime:runtime-livedata:1.1.1'
     // UI Tests
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.1.1'
 

@@ -1,12 +1,23 @@
 package com.test.androiddevelopersexample.ui.fragments.custom
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -17,8 +28,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.*
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -28,6 +44,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.text.isDigitsOnly
+import coil.compose.rememberImagePainter
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -48,17 +65,17 @@ fun CodeValidation(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(vertical = 16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         repeat(passcodeLength) { index ->
             Column(
                 modifier = Modifier
                     .size(50.dp)
-                    .clip(shape = RoundedCornerShape(4.dp))
+                    .clip(shape = RoundedCornerShape(5.dp))
                     .border(
                         border = BorderStroke(1.dp, Color.LightGray),
-                        shape = RoundedCornerShape(4.dp)
+                        shape = RoundedCornerShape(5.dp)
                     )
             ) {
                 Box(
@@ -133,5 +150,68 @@ fun CodeValidation(
 
     LaunchedEffect(key1 = Unit) {
         focusRequesters[0].requestFocus()
+    }
+}
+
+@Composable
+fun PhoneNumberTextField(
+    countryUrl: String
+) {
+    val hasFocus = remember { mutableStateOf(false) }
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(55.dp)
+            .clip(shape = RoundedCornerShape(5.dp))
+            .border(
+                border = BorderStroke(
+                    if (hasFocus.value) 2.dp else 1.dp,
+                    if (hasFocus.value) Color.Blue else Color.LightGray
+                ),
+                shape = RoundedCornerShape(5.dp)
+            ),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        val text = remember { mutableStateOf("") }
+        val painter = rememberImagePainter(data = countryUrl)
+        Spacer(modifier = Modifier.width(16.dp))
+        Image(
+            modifier = Modifier.size(25.dp),
+            painter = painter,
+            contentDescription = ""
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(text = "54")
+        Spacer(modifier = Modifier.width(8.dp))
+        BasicTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .onFocusChanged {
+                    hasFocus.value = it.hasFocus
+                },
+            value = text.value,
+            onValueChange = {
+                if (it.isDigitsOnly()) {
+                    text.value = it
+                }
+            },
+            textStyle = TextStyle(fontSize = 16.sp),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Next
+            ),
+            decorationBox = { innerTextField ->
+                if (text.value.isEmpty()) {
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "15xxxxxxxx",
+                        color = Color.LightGray
+                    )
+                }
+                innerTextField()
+            }
+        )
     }
 }

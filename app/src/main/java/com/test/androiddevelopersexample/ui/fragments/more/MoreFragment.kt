@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
@@ -20,7 +21,7 @@ import com.test.androiddevelopersexample.constants.FIREBASE_TOKEN
 import com.test.androiddevelopersexample.databinding.FragmentMoreBinding
 import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
-import com.test.androiddevelopersexample.ui.fragments.custom.IconButton
+import com.test.androiddevelopersexample.ui.fragments.custom.ComposeIconButton
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils.PUSH_LOYALTY
 import com.test.androiddevelopersexample.ui.utils.Messaging
 import com.test.androiddevelopersexample.ui.utils.PushNotificationUtils
@@ -63,6 +64,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                             LogoutButton()
                             SwipeButton()
                             OnBoardingComposeButton()
+                            CardsComposeButton()
                             Spacer(modifier = Modifier.height(16.dp))
                         }
                     }
@@ -75,21 +77,28 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
 
     @Composable
     private fun OnBoardingComposeButton() {
-        IconButton(text = R.string.onboarding_compose, action = {
+        ComposeIconButton(text = stringResource(id = R.string.onboarding_compose), action = {
             findNavController().navigate(R.id.action_moreFragment_to_OnBoardingFragment)
         })
     }
 
     @Composable
+    private fun CardsComposeButton() {
+        ComposeIconButton(text = stringResource(R.string.cards_list), action = {
+            findNavController().navigate(R.id.action_moreFragment_to_cardsListFragment)
+        })
+    }
+
+    @Composable
     private fun SwipeButton() {
-        IconButton(text = R.string.swipe, action = {
+        ComposeIconButton(text = stringResource(id = R.string.swipe), action = {
             navigate(R.id.action_moreFragment_to_swipeFragment)
         })
     }
 
     @Composable
     private fun LogoutButton() {
-        IconButton(text = R.string.logout, action = {
+        ComposeIconButton(text = stringResource(id = R.string.logout), action = {
             val sharedPref = activity?.getSharedPreferences(
                 getString(R.string.preferences), Context.MODE_PRIVATE
             )
@@ -104,14 +113,14 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
 
     @Composable
     private fun HelpCenterButton() {
-        IconButton(text = R.string.help_center, action = {
+        ComposeIconButton(text = stringResource(id = R.string.help_center), action = {
             navigate(R.id.action_moreFragment_to_fragmentHelpCenter)
         })
     }
 
     @Composable
     private fun BottomSheetButton() {
-        IconButton(text = R.string.bottom_sheet, action = {
+        ComposeIconButton(text = stringResource(id = R.string.bottom_sheet), action = {
             navigate(R.id.action_moreFragment_to_phoneBottomSheet)
         })
     }
@@ -120,7 +129,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
     private fun NotificationLoyaltyButton() {
         val coroutineScope = rememberCoroutineScope()
 
-        IconButton(text = R.string.generate_push_notification_loyalty, action = {
+        ComposeIconButton(text = stringResource(id = R.string.generate_push_notification_loyalty), action = {
             coroutineScope.launch {
                 invoke(
                     NotificationType.Loyalty(
@@ -136,7 +145,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
 
     @Composable
     private fun NotificationArticleButton() {
-        IconButton(text = R.string.generate_push_notification_article, action = {
+        ComposeIconButton(text = stringResource(id = R.string.generate_push_notification_article), action = {
 
 
             val executor: ScheduledExecutorService =
@@ -155,15 +164,15 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
 
     @Composable
     private fun AstrocoinsButton() {
-        IconButton(text = R.string.astro_coins, action = {
+        ComposeIconButton(text = stringResource(id = R.string.astro_coins), action = {
             findNavController().navigate(R.id.action_moreFragment_to_astroCoinsFragment)
         })
     }
 
     @Composable
     private fun BadgesButton() {
-        IconButton(
-            text = R.string.generate_badges, action = {
+        ComposeIconButton(
+            text = stringResource(id = R.string.generate_badges), action = {
                 (activity as NavigationActivity).createBadges(
                     R.id.newCardFragment,
                     2
@@ -180,7 +189,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
     @Composable
     private fun CoilButton() {
         var isNew by remember { mutableStateOf(true) }
-        IconButton(text = R.string.contacts_with_coil, isNew = isNew, action = {
+        ComposeIconButton(text = stringResource(id = R.string.contacts_with_coil), isNew = isNew, action = {
             isNew = false
             findNavController().navigate(R.id.action_moreFragment_to_contactsFragment)
         })
@@ -188,7 +197,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
 
     @Composable
     private fun CustomComponentButton() {
-        IconButton(text = R.string.custom_component, action = {
+        ComposeIconButton(text = stringResource(id = R.string.custom_component), action = {
             findNavController().navigate(
                 R.id.action_moreFragment_to_fragmentCustomComponent
             )
