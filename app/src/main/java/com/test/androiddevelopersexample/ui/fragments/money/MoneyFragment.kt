@@ -30,7 +30,10 @@ class MoneyFragment : BaseFragment<FragmentMoneyBinding>(FragmentMoneyBinding::i
             val merchantName = "Bet365"
 
             val description =
-                getString(R.string.mobile_bonus_description, currency, amount, merchantName)
+                getString(R.string.mobile_transfer_amount_to, currency, amount, merchantName)
+
+//            val description =
+//                getString(R.string.mobile_transfer_amount_to, currency, amount, merchantName)
 
             tvBonus.text = description
         }
