@@ -32,9 +32,6 @@ class MoneyFragment : BaseFragment<FragmentMoneyBinding>(FragmentMoneyBinding::i
             val description =
                 getString(R.string.mobile_transfer_amount_to, currency, amount, merchantName)
 
-//            val description =
-//                getString(R.string.mobile_transfer_amount_to, currency, amount, merchantName)
-
             tvBonus.text = description
         }
 

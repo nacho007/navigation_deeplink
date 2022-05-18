@@ -55,6 +55,9 @@
     <string name="contacts_with_coil">Contacts With Coil</string>
     <string name="custom_component">Custom Component</string>
     <string name="mobile_contacts">Contacts</string>
+    <string name="show_dialog">Show Dialog</string>
+    <string name="mobile_ok">"OK"</string>
+    <string name="mobile_error">"Error"</string>
 
     <string name="mobile_we_cant_show_your_contact_list">"We can\'t show your contact list because we don\'t have access to it"</string>
     <string name="mobile_allow_access_to_contacts">"Allow access to contacts"</string>
