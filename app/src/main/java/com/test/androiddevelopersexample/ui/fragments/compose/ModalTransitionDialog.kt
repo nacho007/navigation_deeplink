@@ -2,10 +2,13 @@ package com.test.androiddevelopersexample.ui.fragments.compose
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandIn
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.animation.shrinkOut
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +23,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
@@ -36,7 +40,7 @@ import kotlinx.coroutines.launch
 /**
  * Figured out by trial and error
  */
-private const val DIALOG_BUILD_TIME = 300L
+private const val DIALOG_BUILD_TIME = 200L
 
 /**
  * [Dialog] which uses a modal transition to animate in and out its content.
@@ -125,6 +129,7 @@ class ModalTransitionDialogHelper(
 
 internal const val ANIMATION_TIME = 200L
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun DialogAnimation(
     visible: Boolean,
@@ -135,15 +140,15 @@ internal fun DialogAnimation(
         enter = fadeIn(
             animationSpec = tween(ANIMATION_TIME.toInt()),
             initialAlpha = 0f,
-        ) + expandIn(
+        ) + scaleIn(
             animationSpec = tween(ANIMATION_TIME.toInt()),
-            expandFrom = Alignment.Center
+            transformOrigin = TransformOrigin.Center
         ),
         exit = fadeOut(
             animationSpec = tween(ANIMATION_TIME.toInt()),
-        ) + shrinkOut(
+        ) + scaleOut(
             animationSpec = tween(ANIMATION_TIME.toInt()),
-            shrinkTowards = Alignment.Center
+            transformOrigin = TransformOrigin.Center
         ),
         content = content
     )
