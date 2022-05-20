@@ -56,7 +56,6 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-
             buttonsContainer.setContent {
                 MaterialTheme {
                     LazyColumn(modifier = Modifier.padding(horizontal = 16.dp)) {
@@ -65,7 +64,11 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
 
                             var visibleAlertDialog by rememberSaveable { mutableStateOf(false) }
                             var visibleErrorDialog by rememberSaveable { mutableStateOf(false) }
-                            var visiblePositiveNegativeDialog by rememberSaveable { mutableStateOf(false) }
+                            var visiblePositiveNegativeDialog by rememberSaveable {
+                                mutableStateOf(
+                                    false
+                                )
+                            }
 
                             AlertDialogButton(onClick = {
                                 visibleAlertDialog = true
@@ -157,10 +160,10 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                     negativeText = "No",
                     onPositive = {
                         Log.e(screenTag, "Positive")
-                        modalTransitionDialogHelper::triggerAnimatedClose
+                        modalTransitionDialogHelper.triggerAnimatedClose()
                     }) {
                     Log.e(screenTag, "Negative")
-                    modalTransitionDialogHelper::triggerAnimatedClose
+                    modalTransitionDialogHelper.triggerAnimatedClose()
                 }
             }
         }
