@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
@@ -86,15 +88,19 @@ fun ErrorDialog(
 fun ShowPreview() {
     ErrorDialog(
         onConfirm = {},
-        desc = "My description"
+        desc = "Do you wish to use Touch ID to log in? You can always change this in Settings",
     )
 }
 
 @Composable
-fun CustomDialog(onConfirm: () -> Unit, onCancel: () -> Unit) {
+fun CustomDialog(
+    description: String,
+    onConfirm: () -> Unit
+) {
     Column(
         modifier = Modifier
-            .size(320.dp, 160.dp)
+            .width(320.dp)
+            .wrapContentHeight()
             .background(colorResource(R.color.color_balloon), RoundedCornerShape(4.dp))
     ) {
 
@@ -112,12 +118,10 @@ fun CustomDialog(onConfirm: () -> Unit, onCancel: () -> Unit) {
             modifier = Modifier
                 .padding(top = 16.dp, start = 24.dp, end = 24.dp)
                 .fillMaxWidth(),
-            text = "My description",
+            text = description,
             fontSize = 16.sp,
             color = MaterialTheme.colors.onSurface
         )
-
-        Spacer(modifier = Modifier.weight(1f))
 
         Row(
             modifier = Modifier
@@ -126,15 +130,6 @@ fun CustomDialog(onConfirm: () -> Unit, onCancel: () -> Unit) {
                 .padding(horizontal = 8.dp, vertical = 4.dp),
             horizontalArrangement = Arrangement.End
         ) {
-            TextButton(onClick = onCancel)
-            {
-                Text(
-                    text = stringResource(id = R.string.mobile_cancel),
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colors.primary
-                )
-            }
-
             TextButton(onClick = onConfirm)
             {
                 Text(
@@ -147,11 +142,86 @@ fun CustomDialog(onConfirm: () -> Unit, onCancel: () -> Unit) {
     }
 }
 
+@Composable
+fun CustomPositiveNegativeDialog(
+    title: String,
+    description: String,
+    positiveText: String,
+    negativeText: String,
+    onPositive: () -> Unit,
+    onNegative: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .width(320.dp)
+            .wrapContentHeight()
+            .background(colorResource(R.color.color_balloon), RoundedCornerShape(4.dp))
+    ) {
+
+        Text(
+            modifier = Modifier
+                .padding(top = 24.dp, start = 24.dp, end = 24.dp)
+                .fillMaxWidth(),
+            text = title,
+            color = MaterialTheme.colors.onSurface,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.SemiBold
+        )
+
+        Text(
+            modifier = Modifier
+                .padding(top = 16.dp, start = 24.dp, end = 24.dp)
+                .fillMaxWidth(),
+            text = description,
+            fontSize = 16.sp,
+            color = MaterialTheme.colors.onSurface
+        )
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(horizontal = 8.dp, vertical = 4.dp),
+            horizontalArrangement = Arrangement.End
+        ) {
+            TextButton(onClick = onNegative)
+            {
+                Text(
+                    text = negativeText,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colors.primary
+                )
+            }
+
+            TextButton(onClick = onPositive)
+            {
+                Text(
+                    text = positiveText,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colors.primary
+                )
+            }
+        }
+    }
+}
+
 @Preview
 @Composable
 fun ShowPreview2() {
     CustomDialog(
-        onConfirm = {},
-        onCancel = {}
+        description = "Do you wish to use Touch ID to log in? You can always change this in Settings",
+        onConfirm = {}
     )
+}
+
+@Preview
+@Composable
+fun ShowPreview3() {
+    CustomPositiveNegativeDialog(
+        title = "Title",
+        description = "Do you wish to use Touch ID to log in? You can always change this in Settings",
+        positiveText = "Yes",
+        negativeText = "No",
+        onPositive = { /*TODO*/ }) {
+    }
 }

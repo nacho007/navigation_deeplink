@@ -122,8 +122,8 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
         if (visible) {
             ModalTransitionDialog(onDismissRequest = { onClick() }) { modalTransitionDialogHelper ->
                 CustomDialog(
+                    description = "My description",
                     onConfirm = modalTransitionDialogHelper::triggerAnimatedClose,
-                    onCancel = modalTransitionDialogHelper::triggerAnimatedClose
                 )
             }
         }
