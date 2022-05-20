@@ -55,7 +55,8 @@
     <string name="contacts_with_coil">Contacts With Coil</string>
     <string name="custom_component">Custom Component</string>
     <string name="mobile_contacts">Contacts</string>
-    <string name="show_custom_dialog">Show Custom Dialog</string>
+    <string name="show_custom_error_dialog">Show Custom Error Dialog</string>
+    <string name="show_custom_positive_negative_dialog">Show Positive/Negative Dialog</string>
     <string name="show_alert_dialog">Show Alert Dialog</string>
     <string name="mobile_ok">"OK"</string>
     <string name="mobile_cancel">"Cancel"</string>

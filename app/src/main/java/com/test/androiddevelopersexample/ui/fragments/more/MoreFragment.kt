@@ -2,6 +2,7 @@ package com.test.androiddevelopersexample.ui.fragments.more
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -28,6 +29,7 @@ import com.test.androiddevelopersexample.databinding.FragmentMoreBinding
 import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.CustomDialog
+import com.test.androiddevelopersexample.ui.fragments.compose.CustomPositiveNegativeDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.ErrorDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.custom.ComposeIconButton
@@ -62,19 +64,25 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                             Spacer(modifier = Modifier.height(16.dp))
 
                             var visibleAlertDialog by rememberSaveable { mutableStateOf(false) }
-                            var visibleCustomDialog by rememberSaveable { mutableStateOf(false) }
+                            var visibleErrorDialog by rememberSaveable { mutableStateOf(false) }
+                            var visiblePositiveNegativeDialog by rememberSaveable { mutableStateOf(false) }
 
-                            ShowAlertDialogButton(onClick = {
+                            AlertDialogButton(onClick = {
                                 visibleAlertDialog = true
                             })
 
-                            ShowCustomDialogButton(onClick = {
-                                visibleCustomDialog = true
+                            CustomErrorDialogButton(onClick = {
+                                visibleErrorDialog = true
+                            })
+
+                            CustomPositiveNegativeDialogButton(onClick = {
+                                visiblePositiveNegativeDialog = true
                             })
 
                             ShowAlertErrorDialog(visibleAlertDialog) { visibleAlertDialog = false }
-                            ShowCustomErrorDialog(visibleCustomDialog) {
-                                visibleCustomDialog = false
+                            ShowCustomErrorDialog(visibleErrorDialog) { visibleErrorDialog = false }
+                            ShowCustomPositiveNegativeDialog(visiblePositiveNegativeDialog) {
+                                visiblePositiveNegativeDialog = false
                             }
                             CustomComponentButton()
                             CoilButton()
@@ -97,17 +105,26 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
     }
 
     @Composable
-    private fun ShowCustomDialogButton(onClick: () -> Unit) {
-        ComposeIconButton(text = stringResource(id = R.string.show_custom_dialog), action = {
+    private fun CustomErrorDialogButton(onClick: () -> Unit) {
+        ComposeIconButton(text = stringResource(id = R.string.show_custom_error_dialog), action = {
             onClick()
         })
     }
 
     @Composable
-    private fun ShowAlertDialogButton(onClick: () -> Unit) {
+    private fun AlertDialogButton(onClick: () -> Unit) {
         ComposeIconButton(text = stringResource(id = R.string.show_alert_dialog), action = {
             onClick()
         })
+    }
+
+    @Composable
+    private fun CustomPositiveNegativeDialogButton(onClick: () -> Unit) {
+        ComposeIconButton(
+            text = stringResource(id = R.string.show_custom_positive_negative_dialog),
+            action = {
+                onClick()
+            })
     }
 
     @Composable
@@ -125,6 +142,26 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                     description = "My description",
                     onConfirm = modalTransitionDialogHelper::triggerAnimatedClose,
                 )
+            }
+        }
+    }
+
+    @Composable
+    private fun ShowCustomPositiveNegativeDialog(visible: Boolean, onClick: () -> Unit) {
+        if (visible) {
+            ModalTransitionDialog(onDismissRequest = { onClick() }) { modalTransitionDialogHelper ->
+                CustomPositiveNegativeDialog(
+                    title = "Title",
+                    description = "Do you wish to use Touch ID to log in? You can always change this in Settings",
+                    positiveText = "Yes",
+                    negativeText = "No",
+                    onPositive = {
+                        Log.e(screenTag, "Positive")
+                        modalTransitionDialogHelper::triggerAnimatedClose
+                    }) {
+                    Log.e(screenTag, "Negative")
+                    modalTransitionDialogHelper::triggerAnimatedClose
+                }
             }
         }
     }
