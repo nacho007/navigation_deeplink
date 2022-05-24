@@ -1,5 +1,6 @@
 package com.test.androiddevelopersexample.ui.fragments.compose
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.test.androiddevelopersexample.ui.base.BaseAction
 import com.test.androiddevelopersexample.ui.base.BaseViewModel
@@ -7,44 +8,39 @@ import com.test.androiddevelopersexample.ui.base.BaseViewState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class OnboardingViewModel(
-) : BaseViewModel<OnboardingViewModel.ViewState, OnboardingViewModel.Action>(ViewState()) {
+internal class ComposeViewModel(
+) : BaseViewModel<ComposeViewModel.ViewState, ComposeViewModel.Action>(ViewState()) {
 
-    override val viewModelName: String = "OnboardingViewModel"
+    override val viewModelName: String = "ComposeViewModel"
 
-    fun getCountryUrl() = "https://getapp-test.astropaycard.com/img/flags/CD.svg"
-
-    fun emulateLoading() {
-        sendAction(Action.Loading)
-        lastIntention = { emulateLoading() }
+    override fun onLoadData() {
+        super.onLoadData()
+        state = state.copy(
+            animate = false
+        )
         viewModelScope.launch {
-            delay(3000)
-            sendAction(Action.Success)
-        }
-    }
-
-    fun emulateNetworkError() {
-        sendAction(Action.Loading)
-        viewModelScope.launch {
-            delay(3000)
-            sendAction(Action.NetworkError)
+            delay(500)
+            state = state.copy(
+                animate = true
+            )
         }
     }
 
     override fun onReduceState(viewAction: Action): ViewState = when (viewAction) {
         Action.Loading -> state.copy(
-            state = StateType.LOAD
+            state = StateType.LOAD,
         )
         Action.Success -> state.copy(
-            state = StateType.HIDE
+            state = StateType.HIDE,
         )
         Action.NetworkError -> state.copy(
-            state = StateType.NETWORK_ERROR
+            state = StateType.NETWORK_ERROR,
         )
     }
 
-    data class ViewState(
-        val state: StateType = StateType.NONE
+    internal data class ViewState(
+        val state: StateType = StateType.NONE,
+        val animate: Boolean = false
     ) : BaseViewState
 
     sealed class Action : BaseAction {
@@ -52,5 +48,4 @@ class OnboardingViewModel(
         object Success : Action()
         object NetworkError : Action()
     }
-
 }

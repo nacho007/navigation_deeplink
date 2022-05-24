@@ -2,7 +2,15 @@ package com.test.androiddevelopersexample.ui.fragments.compose
 
 import android.os.Bundle
 import android.view.View
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -19,8 +27,14 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
@@ -30,6 +44,8 @@ import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
+import kotlinx.coroutines.delay
+import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * Created by ignaciodeandreisdenis on 24/5/22.
@@ -37,7 +53,9 @@ import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 @ExperimentalFoundationApi
 class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBinding::inflate) {
 
-    override var screenTag = "CardsListFragment"
+    override var screenTag = "ComposeFragment"
+
+    private val viewModel: ComposeViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,26 +67,61 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
                 }
             }
         }
+        viewModel.loadData()
     }
 
 
+    @OptIn(ExperimentalAnimationApi::class)
     @Composable
     private fun Screen() {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(colorResource(R.color.color_black_opacity_75)),
-            contentAlignment = Alignment.Center
-        ) {
-            CustomDialog(
-                onConfirm = {},
-                onCancel = { } ,
-                promoCode = "PromoCode",
-                onPromoCodeChange = { } ,
-                error = null,
-                showInput = false,
-                onPromoVisibility = {}
+        val screenState by viewModel.stateLiveData.observeAsState(initial = ComposeViewModel.ViewState())
+
+        AnimatedVisibility(
+            visible = screenState.animate,
+            enter = fadeIn(
+                animationSpec = tween(
+                    durationMillis = ANIMATION_TIME.toInt(),
+                ),
+                initialAlpha = 0f,
+            ) + scaleIn(
+                animationSpec = tween(
+                    durationMillis = ANIMATION_TIME.toInt(),
+                ),
+                transformOrigin = TransformOrigin.Center
+            ),
+            exit = fadeOut(
+                animationSpec = tween(ANIMATION_TIME.toInt()),
+            ) + scaleOut(
+                animationSpec = tween(ANIMATION_TIME.toInt()),
+                transformOrigin = TransformOrigin.Center
             )
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CustomDialog(
+                    onConfirm = {
+
+                    },
+                    onCancel = { },
+                    promoCode = "PromoCode",
+                    onPromoCodeChange = { },
+                    error = null,
+                    showInput = true,
+                    onPromoVisibility = {}
+                )
+            }
+
+//            Text(
+//                text = "Hello World",
+//                color = Color.White,
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .height(200.dp),
+//                fontSize = 32.sp
+//            )
         }
     }
 
