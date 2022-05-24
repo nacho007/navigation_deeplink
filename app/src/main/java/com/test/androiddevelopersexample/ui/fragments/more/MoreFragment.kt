@@ -62,6 +62,8 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                         item {
                             Spacer(modifier = Modifier.height(16.dp))
 
+                            ComposeFragment()
+
                             var visibleAlertDialog by rememberSaveable { mutableStateOf(false) }
                             var visibleErrorDialog by rememberSaveable { mutableStateOf(false) }
                             var visiblePositiveNegativeDialog by rememberSaveable {
@@ -105,6 +107,13 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                 }
             }
         }
+    }
+
+    @Composable
+    private fun ComposeFragment() {
+        ComposeIconButton(text = stringResource(R.string.compose_fragment), action = {
+            findNavController().navigate(R.id.action_moreFragment_to_composeFragment)
+        })
     }
 
     @Composable
