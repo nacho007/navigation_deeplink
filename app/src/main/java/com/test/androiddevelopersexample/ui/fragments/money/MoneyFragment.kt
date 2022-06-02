@@ -1,6 +1,7 @@
 package com.test.androiddevelopersexample.ui.fragments.money
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentMoneyBinding
@@ -23,6 +24,10 @@ class MoneyFragment : BaseFragment<FragmentMoneyBinding>(FragmentMoneyBinding::i
 
             btnViewpager.setOnClickListener {
                 navigate(R.id.action_moneyFragment_to_fragmentViewPager)
+            }
+
+            mcv.setOnClickListener {
+                Log.e(screenTag, "asdfasdf")
             }
 
             val currency = "USD"

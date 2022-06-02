@@ -3,6 +3,7 @@ package com.test.androiddevelopersexample.ui.fragments.swipe
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.GsonBuilder
@@ -63,7 +64,7 @@ class SwipeListFragment :
             rvCountries.apply {
                 adapter = countryAdapter.apply {
                     setOnSingleItemClickListener { item, _ ->
-
+                        Toast.makeText(context, "Pressed", Toast.LENGTH_SHORT).show()
                     }
                 }
                 setHasFixedSize(true)

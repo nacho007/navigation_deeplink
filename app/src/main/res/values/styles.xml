@@ -10,6 +10,15 @@
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
         <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
         <item name="editTextStyle">@style/Widget.AppCompat.EditText.BasicEditText</item>
+        <item name="materialCardViewStyle">@style/MaterialCardViewStyle</item>
+    </style>
+
+    <style name="MaterialCardViewStyle" parent="CardView">
+        <item name="cardBackgroundColor">@color/color_green</item>
+        <item name="cardCornerRadius">@dimen/card_bordered_radius</item>
+        <item name="rippleColor">@color/color_black</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
     </style>
 
     <style name="DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
