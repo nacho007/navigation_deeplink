@@ -46,7 +46,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="1111"
+            tools:text="1111"
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
