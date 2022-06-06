@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <LinearLayout
+        android:id="@+id/ll_phone_change_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/padding"
+        android:paddingEnd="@dimen/margin_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_phone_country_flag"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            app:srcCompat="@drawable/svg_camera" />
+
+        <TextView
+            android:id="@+id/tv_country_phone_prefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_black"
+            android:layout_marginStart="@dimen/margin_small"
+            style="@style/PhonePrefixTextViewStyle"
+            tools:text="598" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v_phone_separator"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/color_list_item_divider"
+        app:layout_constraintBottom_toBottomOf="@+id/ll_phone_change_country"
+        app:layout_constraintStart_toEndOf="@+id/ll_phone_change_country"
+        app:layout_constraintTop_toTopOf="@+id/ll_phone_change_country" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_phone_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start|center"
+        android:padding="@dimen/padding"
+        android:textAlignment="viewStart"
+        android:textColor="@color/color_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/v_phone_separator"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/PhoneEditTextStyle"
+        tools:text="099483673" />
+
+</merge>

@@ -1,0 +1,117 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_red</item>
+        <item name="colorPrimaryDark">@color/color_black</item>
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="appBarLayoutStyle">@style/AppBarLayoutTheme</item>
+        <item name="android:windowBackground">@drawable/shape_splash_background</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
+        <item name="editTextStyle">@style/Widget.AppCompat.EditText.BasicEditText</item>
+        <item name="materialCardViewStyle">@style/MaterialCardViewStyle</item>
+    </style>
+
+    <style name="MaterialCardViewStyle" parent="CardView">
+        <item name="cardBackgroundColor">@color/color_green</item>
+        <item name="cardCornerRadius">@dimen/card_bordered_radius</item>
+        <item name="rippleColor">@color/color_black</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="BottomNavigationView.InActive" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="ErrorTextInputStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_size_1</item>
+        <item name="android:textColor">@color/color_text_error</item>
+    </style>
+
+    <style name="HintTextInputStyle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/color_text_field_description</item>
+        <item name="android:textColorHint">@color/color_input_hint</item>
+        <item name="android:textSize">@dimen/text_size_2</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxStrokeColor">@color/color_input_text</item>
+        <item name="boxBackgroundColor">@color/color_balloon</item>
+        <item name="android:textColorHint">@color/color_text_field_description</item>
+        <item name="android:textSize">@dimen/text_size_3</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/color_text_pressed</item>
+        <item name="errorTextAppearance">@color/color_text_error</item>
+        <item name="hintTextColor">@color/color_text</item>
+        <item name="boxStrokeColor">@color/selector_text_input_layout_box_stroke_color</item>
+        <item name="boxBackgroundColor">@color/color_balloon</item>
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.AppTheme.TextInputEditText.OutlinedBox
+        </item>
+    </style>
+
+    <style name="ThemeOverlay.AppTheme.TextInputEditText.OutlinedBox" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="colorControlActivated">@color/color_text</item>
+        <item name="android:textColorPrimary">@color/color_text</item>
+    </style>
+
+    <style name="ExposedDropdownMenu" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:textColorHint">@color/color_text_pressed</item>
+        <item name="hintTextColor">@color/color_text</item>
+        <item name="boxStrokeColor">@color/selector_text_input_layout_box_stroke_color</item>
+        <item name="boxBackgroundColor">@color/color_balloon</item>
+        <item name="endIconTint">@color/color_text_pressed</item>
+    </style>
+
+    <style name="Widget.AppCompat.EditText.BasicEditText">
+        <item name="android:textColor">@color/color_input_text</item>
+        <item name="android:textColorHint">@color/color_input_hint</item>
+    </style>
+
+    <style name="AppBarLayoutTheme" parent="@style/Widget.Design.AppBarLayout">
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/color_input_text</item>
+        <item name="android:textSize">@dimen/edit_text_size</item>
+        <item name="android:textColorHint">@color/color_input_hint</item>
+        <item name="android:paddingTop">@dimen/padding</item>
+        <item name="android:paddingBottom">@dimen/padding</item>
+        <item name="android:paddingRight">@dimen/padding</item>
+        <item name="android:fontFamily">@font/light</item>
+    </style>
+
+    <style name="PhoneEditTextStyle" parent="EditTextStyle">
+        <item name="android:inputType">number</item>
+        <item name="android:background">@color/color_transparent</item>
+        <item name="android:maxLength">20</item>
+    </style>
+
+    <style name="TextViewStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/color_text</item>
+        <item name="android:textSize">@dimen/text_size_3</item>
+        <item name="android:fontFamily">@font/light</item>
+    </style>
+
+    <style name="PhonePrefixTextViewStyle" parent="TextViewStyle">
+        <item name="android:textColor">@color/color_text_field_title</item>
+        <item name="android:gravity">start</item>
+        <item name="android:fontFamily">@font/regular</item>
+    </style>
+
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_aqua"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.test.androiddevelopersexample.ui.custom.PhoneNumberLayout
+        android:id="@+id/pl_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:background="@drawable/shape_balloon_alone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:phone_number_color="@color/color_input_text"
+        app:phone_number_hint_color="@color/color_input_hint"
+        app:phone_number_prefix_color="@color/color_phone_number_prefix"
+        tools:phone_number_hint="99483673"
+        tools:phone_number_prefix="598" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

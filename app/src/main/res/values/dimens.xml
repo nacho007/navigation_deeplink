@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="margin">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="padding">16dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="tab_indicator_height">15dp</dimen>
+    <dimen name="card_bordered_radius">10dp</dimen>
+
+    <!--Splash-->
+    <dimen name="splash_logo_width">250dp</dimen>
+    <dimen name="splash_logo_height">78dp</dimen>
+
+    <dimen name="text_size_0">12sp</dimen>
+    <dimen name="text_size_1">14sp</dimen>
+    <dimen name="text_size_2">16sp</dimen>
+    <dimen name="text_size_3">18sp</dimen>
+    <dimen name="text_size_4">20sp</dimen>
+    <dimen name="text_size_5">22sp</dimen>
+    <dimen name="text_size_6">28sp</dimen>
+    <dimen name="text_size_7">32sp</dimen>
+
+    <dimen name="edit_text_size">@dimen/text_size_3</dimen>
+
+    <dimen name="shape_balloon_border_radius">8dp</dimen>
+    <dimen name="shape_balloon_bottom">2dp</dimen>
+
+    <dimen name="user_photo_small_size">55dp</dimen>
+    <dimen name="astropay_user_icon_small_size">20dp</dimen>
+
+</resources>

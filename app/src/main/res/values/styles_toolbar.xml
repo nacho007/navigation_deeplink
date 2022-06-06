@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
+        <!-- android:textColorPrimary is the color of the title text in the Toolbar  -->
+        <item name="android:textColorPrimary">@color/color_black</item>
+
+        <item name="android:background">@color/color_balloon</item>
+        <item name="android:itemBackground">@color/color_balloon</item>
+
+        <item name="android:textColorHint">@color/color_accent</item>
+        <!-- actionMenuTextColor is the color of the text of action (menu) items  -->
+        <item name="actionMenuTextColor">@color/color_accent</item>
+        <!-- Tints the input fields like checkboxes and text fields -->
+        <item name="colorAccent">@color/color_accent</item>
+        <!-- Applies to views in their normal state. -->
+        <item name="colorControlNormal">@color/color_accent</item>
+        <!-- Applies to views in their activated state (i.e checked or switches) -->
+        <item name="colorControlActivated">@color/color_accent</item>
+        <!-- Applied to framework control highlights (i.e ripples or list selectors) -->
+        <item name="colorControlHighlight">@color/color_accent</item>
+    </style>
+
+    <!-- This configures the styles for the title within the Toolbar  -->
+    <style name="Toolbar.TitleText" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/color_black</item>
+    </style>
+
+    <style name="ConsolidateToolbarTheme" parent="ToolbarTheme">
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="ConsolidateToolbar.TitleText" parent="Toolbar.TitleText">
+        <item name="android:background">@null</item>
+    </style>
+</resources>

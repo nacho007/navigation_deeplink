@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">Navigation DeepLink</string>
+    <string name="welcome">Welcome %1s</string>
+    <string name="splash">SPLASH</string>
+    <string name="new_card">NEW CARD</string>
+    <string name="loyalty">LOYALTY</string>
+    <string name="money">MONEY</string>
+    <string name="wallet">WALLET</string>
+    <string name="cards">CARDS</string>
+    <string name="phone">PHONE</string>
+    <string name="notifications">NOTIFICATIONS</string>
+    <string name="notification_detail">NOTIFICATION DETAIL</string>
+    <string name="more">MORE</string>
+    <string name="tab_new_card">New card</string>
+    <string name="tab_loyalty">Loyalty</string>
+    <string name="tab_money">Money</string>
+    <string name="tab_notifications">Notifications</string>
+    <string name="tab_more">More</string>
+    <string name="mobile_first_name">"First Name"</string>
+
+    <string name="generate_badges">Generate Badges</string>
+    <string name="generate_push_notification_loyalty">Push Loyalty</string>
+    <string name="generate_push_notification_article">Push Article</string>
+
+    <string name="image_content_description" translatable="false">No content description</string>
+
+    <string name="main">MAIN</string>
+    <string name="deeplink">DEEPLINK</string>
+    <string name="home">HOME</string>
+    <string name="login">LOGIN</string>
+    <string name="register">REGISTER</string>
+    <string name="logout">LOGOUT</string>
+    <string name="help_center">HELP CENTER</string>
+    <string name="article">ARTICLE</string>
+    <string name="preferences">preferences</string>
+    <string name="is_logged">is_logged</string>
+    <string name="astro_coins">ASTROCOINS</string>
+    <string name="onboarding_compose">OnBoarding Compose</string>
+    <string name="cards_list">Cards List</string>
+    <string name="payment_methods">PAYMENT METHODS</string>
+    <string name="checkout">CHECKOUT</string>
+    <string name="deep_link_to_loyalty">Deep Link To Loyalty</string>
+    <string name="go_to_detail">Notification Detail</string>
+    <string name="viewpager">VIEWPAGER</string>
+    <string name="swipe">SWIPE</string>
+    <string name="change_state">Change State</string>
+    <string name="bottom_sheet">Bottom Sheet</string>
+
+    <string name="mobile_search_for_a_contact">"Search for a contact"</string>
+    <string name="mobile_transfer">"Transfer"</string>
+    <string name="mobile_new_number">"New number"</string>
+    <string name="mobile_transfer_1">"Transfer UYU 1000 to:"</string>
+    <string name="mobile_transfer_2">"Choose who to send the money to"</string>
+
+    <string name="contacts_with_coil">Contacts With Coil</string>
+    <string name="custom_component">Custom Component</string>
+    <string name="mobile_contacts">Contacts</string>
+    <string name="show_custom_error_dialog">Show Custom Error Dialog</string>
+    <string name="show_custom_positive_negative_dialog">Show Positive/Negative Dialog</string>
+    <string name="show_alert_dialog">Show Alert Dialog</string>
+    <string name="mobile_ok">"OK"</string>
+    <string name="mobile_cancel">"Cancel"</string>
+    <string name="mobile_error">"Error"</string>
+
+    <string name="mobile_we_cant_show_your_contact_list">"We can\'t show your contact list because we don\'t have access to it"</string>
+    <string name="mobile_allow_access_to_contacts">"Allow access to contacts"</string>
+    <string name="mobile_you_can_still_transfer_card">"You can still transfer your card by adding a phone number manually"</string>
+    <string name="mobile_add_phone_number_manually">"Add phone number manually"</string>
+    <string name="mobile_permission_cant_continue">"We can't proceed without your permission"</string>
+
+    <string name="mobile_recents">"Recents"</string>
+    <string name="mobile_new">"new"</string>
+    <string name="two_values" translatable="false">%1$s %2$s</string>
+
+    <string name="compose_fragment">Compose Fragment</string>
+
+    //DeepLinks
+    <string name="scheme" translatable="false">app</string>
+
+    <string name="deeplink_signup">signup</string>
+    <string name="deeplink_article">article</string>
+    <string name="deeplink_money">money</string>
+    <string name="deeplink_loyalty">loyalty</string>
+
+    <string name="mobile_terms_and_conditions">"Terms and Conditions"</string>
+    <string name="mobile_privacy_policy">"Privacy Policy"</string>
+    <string name="mobile_terms_and_conditions_privacy_policy">"I agree to the %s and that I have read the %s"</string>
+
+    <string name="mobile_transfer_amount_to">"You will have a total credit of %1$s %2$s at %3$s"</string>
+    <string name="mobile_on_boarding_promo_code_title">"Do you have a promo code?"</string>
+    <string name="mobile_on_boarding_promo_code_enter">"Enter your promo code"</string>
+    <string name="mobile_on_boarding_yes_apply_promo_code">"Yes, apply promo code"</string>
+    <string name="mobile_on_boarding_continue_without_promo_code">"Continue without promo code"</string>
+
+</resources>

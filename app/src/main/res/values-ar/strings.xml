@@ -1,0 +1,11 @@
+<resources>
+    <string name="money">المال</string>
+
+<!--    <string name="mobile_transfer_amount_to">سيصبح إجمالي رصيدك %1$s$2% v s على %3$s</string>-->
+
+    <string name="mobile_transfer_amount_to">الرقم الأول %1$s  %2$s ثان %3$s ثان</string>
+
+<!--    <string name="mobile_transfer_amount_to_2">الرقم الأول %1$s - الرقم الثاني %2$s ثان %3$s ثان</string>-->
+
+
+</resources>
