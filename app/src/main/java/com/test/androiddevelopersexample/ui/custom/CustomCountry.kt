@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.card.MaterialCardView
+import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.CustomCountryItemViewBinding
 import com.test.androiddevelopersexample.ui.fragments.swipe.Country
 import com.test.androiddevelopersexample.ui.utils.show
@@ -16,15 +17,14 @@ import com.test.androiddevelopersexample.ui.utils.show
 class CustomCountry @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyle: Int = 0
+    defStyle: Int = R.attr.materialCardViewStyle
 ) : MaterialCardView(context, attrs, defStyle) {
 
     private var binding: CustomCountryItemViewBinding =
-        CustomCountryItemViewBinding.inflate(LayoutInflater.from(context), this, true)
+        CustomCountryItemViewBinding.inflate(LayoutInflater.from(context), this)
 
     init {
         binding.root.setOnClickListener {
-            super.callOnClick()
             Toast.makeText(context, "Custom Pressed", Toast.LENGTH_SHORT).show()
         }
     }
