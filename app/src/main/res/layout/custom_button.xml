@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:parentTag="com.google.android.material.card.MaterialCardView">
 
-
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/padding"
+        android:text="Text"
+        android:textAlignment="center"
+        android:fontFamily="@font/regular"
+        android:textSize="@dimen/text_size_5"
+        app:drawableStartCompat="@drawable/svg_fidelity"
+        app:drawableEndCompat="@drawable/svg_arrow_right" />
 
 </merge>

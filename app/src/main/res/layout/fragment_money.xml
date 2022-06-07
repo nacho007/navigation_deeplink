@@ -67,34 +67,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ti_first_name" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcv"
+
+        <com.test.androiddevelopersexample.ui.custom.CustomButton
+            android:id="@+id/cb_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            app:drawable_tint_start="@color/color_gray"
+            app:drawable_tint_end="@color/color_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_viewpager">
+            app:layout_constraintTop_toBottomOf="@+id/btn_viewpager" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+        <com.test.androiddevelopersexample.ui.custom.CustomButton
+            android:id="@+id/cb_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            app:drawable_tint_start="@color/color_yellow"
+            app:drawable_tint_end="@color/color_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cb_1" />
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="0dp"
-                    android:layout_height="200dp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.card.MaterialCardView>
+        <com.test.androiddevelopersexample.ui.custom.CustomButton
+            android:id="@+id/cb_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            app:drawable_tint_start="@color/color_gray_8"
+            app:drawable_tint_end="@color/color_aqua"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cb_2" />
 
         <TextView
             android:id="@+id/tv_bonus"

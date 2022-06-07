@@ -21,14 +21,13 @@
             android:id="@+id/tv_notifications"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/notifications"
             android:fontFamily="sans-serif-medium"
-            android:textSize="36sp"
+            android:text="@string/notifications"
             android:textColor="@color/color_red"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/abl_toolbar" />
 
         <Button
             android:id="@+id/btn_deep_link"
@@ -49,5 +48,34 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_deep_link" />
+
+
+        <com.test.androiddevelopersexample.ui.custom.CustomButton
+            android:id="@+id/cb_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_navigate_to_detail" />
+
+        <com.test.androiddevelopersexample.ui.custom.CustomButton
+            android:id="@+id/cb_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cb_1" />
+
+        <com.test.androiddevelopersexample.ui.custom.CustomButton
+            android:id="@+id/cb_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cb_2" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
