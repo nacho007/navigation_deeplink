@@ -1,10 +1,12 @@
 package com.test.androiddevelopersexample.ui.custom
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.google.android.material.card.MaterialCardView
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.CustomButtonBinding
@@ -29,27 +31,28 @@ class CustomButton @JvmOverloads constructor(
         attrs?.let {
             val attributes = context.obtainStyledAttributes(attrs, R.styleable.CustomButton)
 
-            val drawableTintStart = attributes.getResourceId(
-                R.styleable.CustomButton_drawable_tint_start,
-                R.color.color_red
+            val drawableTintStart = ContextCompat.getColor(
+                context, attributes.getResourceId(
+                    R.styleable.CustomButton_drawable_tint_start,
+                    R.color.color_red
+                )
             )
 
-            val drawableTintEnd = attributes.getResourceId(
-                R.styleable.CustomButton_drawable_tint_end,
-                R.color.color_red
+            val drawableTintEnd = ContextCompat.getColor(
+                context, attributes.getResourceId(
+                    R.styleable.CustomButton_drawable_tint_end,
+                    R.color.color_red
+                )
             )
 
             binding.apply {
-                val drawableStart = ContextCompat.getDrawable(context, R.drawable.svg_fidelity)
-                val drawableEnd = ContextCompat.getDrawable(context, R.drawable.svg_arrow_right)
+                val compoundDrawables: Array<Drawable> = tvText.compoundDrawablesRelative
 
-                drawableStart?.apply {
-                    setTint(ContextCompat.getColor(context, drawableTintStart))
-                }
+                val startCompoundDrawable = compoundDrawables[0]
+                val endCompoundDrawable = compoundDrawables[2]
 
-                drawableEnd?.apply {
-                    setTint(ContextCompat.getColor(context, drawableTintEnd))
-                }
+                DrawableCompat.setTint(startCompoundDrawable, drawableTintStart)
+                DrawableCompat.setTint(endCompoundDrawable, drawableTintEnd)
             }
 
             attributes.recycle()
