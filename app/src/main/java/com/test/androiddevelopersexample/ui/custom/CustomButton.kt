@@ -31,6 +31,12 @@ class CustomButton @JvmOverloads constructor(
         attrs?.let {
             val attributes = context.obtainStyledAttributes(attrs, R.styleable.CustomButton)
 
+            val drawableStart = attributes.getDrawable(R.styleable.CustomButton_drawable_start)
+                ?: ContextCompat.getDrawable(context, R.drawable.svg_fidelity)
+
+            val drawableEnd = attributes.getDrawable(R.styleable.CustomButton_drawable_end)
+                ?: ContextCompat.getDrawable(context, R.drawable.svg_arrow_right)
+
             val drawableTintStart = ContextCompat.getColor(
                 context, attributes.getResourceId(
                     R.styleable.CustomButton_drawable_tint_start,
@@ -46,7 +52,14 @@ class CustomButton @JvmOverloads constructor(
             )
 
             binding.apply {
-                val compoundDrawables: Array<Drawable> = tvText.compoundDrawablesRelative
+                tvText.setCompoundDrawablesWithIntrinsicBounds(
+                    drawableStart,
+                    null,
+                    drawableEnd,
+                    null
+                )
+
+                val compoundDrawables: Array<Drawable> = tvText.compoundDrawables
 
                 val startCompoundDrawable = compoundDrawables[0]
                 val endCompoundDrawable = compoundDrawables[2]
