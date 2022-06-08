@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.test.androiddevelopersexample.ui.base.BaseAction
 import com.test.androiddevelopersexample.ui.base.BaseViewModel
 import com.test.androiddevelopersexample.ui.base.BaseViewState
+import com.test.androiddevelopersexample.ui.custom.Type
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -33,18 +34,18 @@ class OnboardingViewModel(
 
     override fun onReduceState(viewAction: Action): ViewState = when (viewAction) {
         Action.Loading -> state.copy(
-            state = StateType.LOAD
+            state = Type.LOAD_LIGHT
         )
         Action.Success -> state.copy(
-            state = StateType.HIDE
+            state = Type.HIDE
         )
         Action.NetworkError -> state.copy(
-            state = StateType.NETWORK_ERROR
+            state = Type.NETWORK_ERROR
         )
     }
 
     data class ViewState(
-        val state: StateType = StateType.NONE
+        val state: Type = Type.NONE
     ) : BaseViewState
 
     sealed class Action : BaseAction {

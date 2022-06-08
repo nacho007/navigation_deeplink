@@ -1,11 +1,11 @@
 package com.test.androiddevelopersexample.ui.fragments.compose
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -29,22 +29,21 @@ import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
+import com.test.androiddevelopersexample.ui.custom.ContentState
+import com.test.androiddevelopersexample.ui.custom.Type
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
-import kotlinx.coroutines.delay
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -63,7 +62,8 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
         binding.apply {
             composeView.setContent {
                 MaterialTheme {
-                    Screen()
+                    val screenState by viewModel.stateLiveData.observeAsState(initial = ComposeViewModel.ViewState())
+                    Screen(screenState = screenState)
                 }
             }
         }
@@ -73,55 +73,50 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
 
     @OptIn(ExperimentalAnimationApi::class)
     @Composable
-    private fun Screen() {
-        val screenState by viewModel.stateLiveData.observeAsState(initial = ComposeViewModel.ViewState())
-
-        AnimatedVisibility(
-            visible = screenState.animate,
-            enter = fadeIn(
-                animationSpec = tween(
-                    durationMillis = ANIMATION_TIME.toInt(),
-                ),
-                initialAlpha = 0f,
-            ) + scaleIn(
-                animationSpec = tween(
-                    durationMillis = ANIMATION_TIME.toInt(),
-                ),
-                transformOrigin = TransformOrigin.Center
-            ),
-            exit = fadeOut(
-                animationSpec = tween(ANIMATION_TIME.toInt()),
-            ) + scaleOut(
-                animationSpec = tween(ANIMATION_TIME.toInt()),
-                transformOrigin = TransformOrigin.Center
-            )
+    private fun Screen(screenState: ComposeViewModel.ViewState) {
+        ContentState(
+            state = screenState.state,
+            lastIntention = { }
         ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CustomDialog(
-                    onConfirm = {
+//            AnimatedVisibility(
+//                visible = screenState.animate,
+//                enter = fadeIn(
+//                    animationSpec = tween(
+//                        durationMillis = ANIMATION_TIME.toInt(),
+//                    ),
+//                    initialAlpha = 0f,
+//                ) + scaleIn(
+//                    animationSpec = tween(
+//                        durationMillis = ANIMATION_TIME.toInt(),
+//                    ),
+//                    transformOrigin = TransformOrigin.Center
+//                ),
+//                exit = fadeOut(
+//                    animationSpec = tween(ANIMATION_TIME.toInt()),
+//                ) + scaleOut(
+//                    animationSpec = tween(ANIMATION_TIME.toInt()),
+//                    transformOrigin = TransformOrigin.Center
+//                )
+//            ) {
+                Box(
+                    modifier = Modifier
+                        .background(colorResource(id = R.color.color_advise))
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CustomDialog(
+                        onConfirm = {
 
-                    },
-                    onCancel = { },
-                    promoCode = "PromoCode",
-                    onPromoCodeChange = { },
-                    error = null,
-                    showInput = true,
-                    onPromoVisibility = {}
-                )
-            }
-
-//            Text(
-//                text = "Hello World",
-//                color = Color.White,
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .height(200.dp),
-//                fontSize = 32.sp
-//            )
+                        },
+                        onCancel = { },
+                        promoCode = "PromoCode",
+                        onPromoCodeChange = { },
+                        error = null,
+                        showInput = true,
+                        onPromoVisibility = {}
+                    )
+                }
+//            }
         }
     }
 
@@ -203,5 +198,11 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
                 Spacer(modifier = Modifier.height(16.dp))
             }
         }
+    }
+
+    @Composable
+    @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+    private fun ComposeFragmentPreview() {
+        Screen(screenState = ComposeViewModel.ViewState(state = Type.HIDE))
     }
 }

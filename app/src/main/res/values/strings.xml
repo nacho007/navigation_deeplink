@@ -91,5 +91,8 @@
     <string name="mobile_on_boarding_promo_code_enter">"Enter your promo code"</string>
     <string name="mobile_on_boarding_yes_apply_promo_code">"Yes, apply promo code"</string>
     <string name="mobile_on_boarding_continue_without_promo_code">"Continue without promo code"</string>
+    <string name="mobile_no_results_found">"No results found"</string>
+    <string name="mobile_refresh">"Refresh"</string>
+    <string name="mobile_internet_error">"Internet connection not detected. Please check your connection and try again."</string>
 
 </resources>
