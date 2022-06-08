@@ -14,30 +14,17 @@ internal class ComposeViewModel(
 
     override val viewModelName: String = "ComposeViewModel"
 
-//    override fun onLoadData() {
-//        super.onLoadData()
-//        state = state.copy(
-//            animate = false
-//        )
-//        viewModelScope.launch {
-//            delay(500)
-//            state = state.copy(
-//                animate = true
-//            )
-//        }
-//    }
-
     override fun onLoadData() {
         super.onLoadData()
 
         state = state.copy(
             state = Type.LOAD_LIGHT
         )
+
         viewModelScope.launch {
             delay(1500)
             state = state.copy(
-                state = Type.HIDE,
-                animate = true
+                state = Type.HIDE
             )
         }
     }
@@ -55,8 +42,7 @@ internal class ComposeViewModel(
     }
 
     internal data class ViewState(
-        val state: Type = Type.NONE,
-        val animate: Boolean = false
+        val state: Type = Type.NONE
     ) : BaseViewState
 
     sealed class Action : BaseAction {

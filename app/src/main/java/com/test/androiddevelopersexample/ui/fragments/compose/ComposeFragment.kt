@@ -71,52 +71,30 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
     }
 
 
-    @OptIn(ExperimentalAnimationApi::class)
     @Composable
     private fun Screen(screenState: ComposeViewModel.ViewState) {
         ContentState(
             state = screenState.state,
             lastIntention = { }
         ) {
-//            AnimatedVisibility(
-//                visible = screenState.animate,
-//                enter = fadeIn(
-//                    animationSpec = tween(
-//                        durationMillis = ANIMATION_TIME.toInt(),
-//                    ),
-//                    initialAlpha = 0f,
-//                ) + scaleIn(
-//                    animationSpec = tween(
-//                        durationMillis = ANIMATION_TIME.toInt(),
-//                    ),
-//                    transformOrigin = TransformOrigin.Center
-//                ),
-//                exit = fadeOut(
-//                    animationSpec = tween(ANIMATION_TIME.toInt()),
-//                ) + scaleOut(
-//                    animationSpec = tween(ANIMATION_TIME.toInt()),
-//                    transformOrigin = TransformOrigin.Center
-//                )
-//            ) {
-                Box(
-                    modifier = Modifier
-                        .background(colorResource(id = R.color.color_advise))
-                        .fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CustomDialog(
-                        onConfirm = {
+            Box(
+                modifier = Modifier
+                    .background(colorResource(id = R.color.color_advise))
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CustomDialog(
+                    onConfirm = {
 
-                        },
-                        onCancel = { },
-                        promoCode = "PromoCode",
-                        onPromoCodeChange = { },
-                        error = null,
-                        showInput = true,
-                        onPromoVisibility = {}
-                    )
-                }
-//            }
+                    },
+                    onCancel = { },
+                    promoCode = "PromoCode",
+                    onPromoCodeChange = { },
+                    error = null,
+                    showInput = true,
+                    onPromoVisibility = {}
+                )
+            }
         }
     }
 
