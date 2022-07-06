@@ -3,8 +3,14 @@ package com.test.androiddevelopersexample.ui.fragments.compose.money
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -13,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
 import com.test.androiddevelopersexample.theme.AstroPayTheme
@@ -20,8 +27,10 @@ import com.test.androiddevelopersexample.ui.custom.ContentState
 import com.test.androiddevelopersexample.ui.custom.Type
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.ComposeViewModel
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.AstroCardView
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.AstroText
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.AstroToolBar
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.DefaultButton
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.IconNavigationBack
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -50,12 +59,11 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
         viewModel.loadData()
     }
 
-
     @Composable
     private fun Screen(screenState: ComposeViewModel.ViewState) {
         Scaffold(
             topBar = {
-                AstroToolBar(title = "Toolbar") {
+                AstroToolBar(title = "Este es mi texto") {
                     IconNavigationBack {
                         findNavController().popBackStack()
                     }
@@ -66,13 +74,39 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                     state = screenState.loadState,
                     lastIntention = { }
                 ) {
-                    Box(modifier = Modifier.fillMaxSize()) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(all = 16.dp),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+
+                        
+
                         AstroText(
-                            modifier = Modifier.align(Alignment.Center),
-                            text = "Este es mi texto"
+                            text = "This is my title\nBigger than anyone",
+                            modifier = Modifier.padding(all = 16.dp),
+                            style = MaterialTheme.typography.h1
+                        )
+
+                        AstroCardView {
+                            AstroText(
+                                text = "Este es mi texto\nMore text",
+                                modifier = Modifier.padding(all = 16.dp)
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.padding(all = 32.dp))
+
+                        DefaultButton(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp),
+                            text = "Continues",
+                            action = {}
                         )
                     }
-
                 }
             }
         )

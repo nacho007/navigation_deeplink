@@ -18,15 +18,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.sp
-import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 
 /**
@@ -43,16 +37,9 @@ fun AstroToolBar(
     var showMenu by remember { mutableStateOf(false) }
     TopAppBar(
         title = {
-            Text(
-                text = title ?: "",
-                style = TextStyle(
-                    color = textColor(),
-                    fontSize = dimensionResource(id = R.dimen.text_size_4).value.sp,
-                    fontWeight = FontWeight.Normal
-                ),
-            )
+            AstroText(text = title ?: "Text title")
         },
-        backgroundColor = backgroundColor ?: toolBarColor(),
+        backgroundColor = backgroundColor ?: toolBarBackgroundColor(),
         actions = {
             items?.let {
                 if (items.isNotEmpty()) {
@@ -117,7 +104,7 @@ fun IconNavigationBack(navAction: () -> Unit) {
 fun ActionIconToolbarPreview() {
     AstroPayTheme {
         AstroToolBar(
-            title = "Menu",
+            title = "Menu Toolbar Text",
             navigationIcon = {
                 IconButton(onClick = {}) {
                     Icon(

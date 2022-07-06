@@ -22,7 +22,7 @@ fun Modifier.readDirection(): Modifier {
 }
 
 @Composable
-fun toolBarColor() = if (isSystemInDarkTheme()) Grey800 else Grey25
+fun toolBarBackgroundColor() = if (isSystemInDarkTheme()) Grey800 else Grey25
 
 @Composable
 fun textColor() = if (isSystemInDarkTheme()) Color.White else Grey800
