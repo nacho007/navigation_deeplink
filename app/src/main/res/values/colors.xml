@@ -2,6 +2,80 @@
 <resources>
 
     <!-- Raw -->
+
+    <!-- Global -->
+    <color name="global_primary_100">#FFF8F8</color>
+    <color name="global_primary_200">#FFE2E2</color>
+    <color name="global_primary_300">#FFBFBF</color>
+    <color name="global_primary_400">#E60022</color>
+    <color name="global_primary_500">#E82121</color>
+    <color name="global_primary_600">#CC0000</color>
+
+    <!-- Grey -->
+    <color name="white">#ffffff</color>
+    <color name="grey_25">#FCFCFD</color>
+    <color name="grey_50">#F9FAFB</color>
+    <color name="grey_100">#F2F4F7</color>
+    <color name="grey_200">#EAECF0</color>
+    <color name="grey_300">#D0D5DD</color>
+    <color name="grey_400">#98A2B3</color>
+    <color name="grey_500">#667085</color>
+    <color name="grey_600">#475467</color>
+    <color name="grey_700">#344054</color>
+    <color name="grey_800">#1D2939</color>
+    <color name="grey_900">#101828</color>
+
+    <color name="grey_25_alpha_20">#33FCFCFD</color>
+    <color name="grey_300_alpha_20">#33D0D5DD</color>
+
+    <!-- Secondary (Indigo) -->
+    <color name="indigo_25">#F5FAFF</color>
+    <color name="indigo_50">#EFF8FF</color>
+    <color name="indigo_100">#D1E9FF</color>
+    <color name="indigo_600">#1570EF</color>
+    <color name="indigo_700">#175CD3</color>
+    <color name="indigo_800">#1849A9</color>
+    <color name="indigo_900">#194185</color>
+
+    <!-- Yellow -->
+    <color name="yellow_25">#FFFCF5</color>
+    <color name="yellow_50">#FFFAEB</color>
+    <color name="yellow_300">#FEC84B</color>
+    <color name="yellow_400">#FDB022</color>
+    <color name="yellow_700">#B54708</color>
+
+    <!-- Green -->
+    <color name="green_25">#F6FEF9</color>
+    <color name="green_50">#D7FDE6</color>
+    <color name="green_300">#6CE9A6</color>
+    <color name="green_400">#32D583</color>
+    <color name="green_700">#027A48</color>
+    <color name="green_800">#05603A</color>
+    <color name="green_900">#054F31</color>
+
+    <!-- Red -->
+    <color name="red_100">#FFA8A8</color>
+    <color name="red_200">#FF6767</color>
+    <color name="red_600">#CC0000</color>
+    <color name="red_700">#990000</color>
+
+    <!-- Button -->
+<!--    <color name="button_background">@color/global_primary_400</color>-->
+<!--    <color name="button_text_enabled">@color/white</color>-->
+
+<!--    &lt;!&ndash; Semantic &ndash;&gt;-->
+<!--    <color name="semantic_highlight">@color/global_primary_400</color>-->
+<!--    <color name="semantic_highlight_light">@color/global_primary_100</color>-->
+<!--    <color name="semantic_error">@color/red_600</color>-->
+<!--    <color name="semantic_error_light">@color/red_100</color>-->
+<!--    <color name="semantic_warning">@color/yellow_400</color>-->
+<!--    <color name="semantic_warning_light">@color/yellow_300</color>-->
+<!--    <color name="semantic_success">@color/green_400</color>-->
+<!--    <color name="semantic_success_light">@color/green_300</color>-->
+<!--    <color name="semantic_info">@color/indigo_600</color>-->
+<!--    <color name="semantic_info_light">@color/indigo_100</color>-->
+
+
     <color name="color_transparent">#00000000</color>
     <color name="color_black">#000000</color>
     <color name="color_black_light">#1c1c1c</color>

@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.compose
+package com.test.androiddevelopersexample.ui.fragments.compose.dialogs
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope

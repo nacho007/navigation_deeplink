@@ -55,6 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin"
+            app:drawable_tint_start="@color/color_gray"
+            app:drawable_tint_end="@color/color_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_navigate_to_detail" />
@@ -64,6 +66,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin"
+            app:drawable_start="@drawable/svg_money"
+            app:drawable_tint_start="@color/color_yellow"
+            app:drawable_tint_end="@color/color_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cb_1" />
@@ -73,6 +78,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin"
+            app:drawable_tint_start="@color/color_gray_8"
+            app:drawable_tint_end="@color/color_red_salmon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cb_2" />

@@ -163,7 +163,7 @@
 
     <fragment
         android:id="@+id/moneyFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.money.MoneyFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.compose.money.MoneyFragment"
         android:label="MoneyFragment"
         tools:layout="@layout/fragment_money">
         <action

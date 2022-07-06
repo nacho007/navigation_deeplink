@@ -23,8 +23,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.ui.fragments.compose.ANIMATION_TIME
+import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.compose.DefaultButton
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.AstroText
+import com.test.androiddevelopersexample.ui.fragments.compose.dialogs.ANIMATION_TIME
 
 /**
  * Created by ignaciodeandreisdenis on 7/6/22.
@@ -36,11 +38,6 @@ fun ContentState(
     lastIntention: (() -> Unit)? = null,
     content: @Composable () -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.color_advise))
-    )
 
     val animate = when (state) {
         Type.EMPTY -> false
@@ -80,7 +77,9 @@ fun ContentState(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(colorResource(R.color.color_blue))
-            )
+            ) {
+                AstroText(modifier = Modifier.align(Alignment.Center), text = "STATE NONE")
+            }
         }
         Type.EMPTY -> {
             Column(
@@ -184,7 +183,7 @@ enum class Type {
 @Composable
 @Preview
 private fun ContentStatePreview() {
-    MaterialTheme {
+    AstroPayTheme {
         ContentState(
             state = Type.NONE,
             lastIntention = { }

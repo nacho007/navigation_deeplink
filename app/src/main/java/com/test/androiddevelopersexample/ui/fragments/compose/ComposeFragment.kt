@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
+import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.custom.ContentState
 import com.test.androiddevelopersexample.ui.custom.Type
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
@@ -61,7 +62,7 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
 
         binding.apply {
             composeView.setContent {
-                MaterialTheme {
+                AstroPayTheme {
                     val screenState by viewModel.stateLiveData.observeAsState(initial = ComposeViewModel.ViewState())
                     Screen(screenState = screenState)
                 }
@@ -181,6 +182,8 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
     @Composable
     @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
     private fun ComposeFragmentPreview() {
-        Screen(screenState = ComposeViewModel.ViewState(state = Type.HIDE))
+        AstroPayTheme {
+            Screen(screenState = ComposeViewModel.ViewState(state = Type.HIDE))
+        }
     }
 }
