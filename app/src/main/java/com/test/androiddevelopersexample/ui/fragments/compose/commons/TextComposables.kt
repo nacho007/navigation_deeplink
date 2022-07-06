@@ -64,7 +64,7 @@ fun AstroText(
 fun AstroText(
     text: String,
     modifier: Modifier = Modifier,
-    color: Color = colorResource(id = R.color.color_text),
+    color: Color = textColor(),
     fontSize: TextUnit = TextUnit.Unspecified,
     fontStyle: FontStyle? = null,
     fontWeight: FontWeight? = null,

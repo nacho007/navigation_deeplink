@@ -3,14 +3,7 @@ package com.test.androiddevelopersexample.ui.fragments.compose
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -31,7 +24,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
@@ -75,7 +67,7 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
     @Composable
     private fun Screen(screenState: ComposeViewModel.ViewState) {
         ContentState(
-            state = screenState.state,
+            state = screenState.loadState,
             lastIntention = { }
         ) {
             Box(
@@ -183,7 +175,7 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
     @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
     private fun ComposeFragmentPreview() {
         AstroPayTheme {
-            Screen(screenState = ComposeViewModel.ViewState(state = Type.HIDE))
+            Screen(screenState = ComposeViewModel.ViewState(loadState = Type.HIDE))
         }
     }
 }
