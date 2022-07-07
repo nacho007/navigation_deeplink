@@ -78,11 +78,9 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(all = 16.dp),
-                        verticalArrangement = Arrangement.Center,
+                        verticalArrangement = Arrangement.Top,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-
-                        
 
                         AstroText(
                             text = "This is my title\nBigger than anyone",

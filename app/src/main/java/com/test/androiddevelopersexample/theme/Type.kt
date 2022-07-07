@@ -26,8 +26,26 @@ val Typography = Typography(
 
     h1 = TextStyle(
         fontWeight = FontWeight.SemiBold,
+        fontSize = 36.sp,
+        lineHeight = 40.sp
+    ),
+
+    h2 = TextStyle(
+        fontWeight = FontWeight.SemiBold,
         fontSize = 32.sp,
         lineHeight = 40.sp
+    ),
+
+    h3 = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 24.sp,
+        lineHeight = 32.sp
+    ),
+
+    h4 = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 22.sp,
+        lineHeight = 32.sp
     ),
 
     button = TextStyle(
