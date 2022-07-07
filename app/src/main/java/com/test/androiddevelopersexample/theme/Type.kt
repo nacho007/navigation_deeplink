@@ -48,11 +48,6 @@ val Typography = Typography(
         lineHeight = 32.sp
     ),
 
-    button = TextStyle(
-        fontWeight = FontWeight.Medium,
-        fontSize = 14.sp
-    ),
-
     body1 = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.Normal,
@@ -62,33 +57,8 @@ val Typography = Typography(
         lineHeight = 24.sp
     ),
 
-    h6 = TextStyle(
-        color = Color.Red,
-        fontSize = 20.sp,
-        letterSpacing = 0.15.sp,
-        fontFamily = Poppins,
-        fontWeight = FontWeight.Normal,
-        fontStyle = FontStyle.Normal
+    button = TextStyle(
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp
     ),
-
-
-/*    body1 = TextStyle(
-    fontFamily = FontFamily.Default,
-    fontWeight = FontWeight.Normal,
-    fontSize = 16.sp
-),
-
-button = TextStyle(
-    fontFamily = FontFamily.Default,
-    fontWeight = FontWeight.W500,
-    fontSize = 14.sp
-),*/
-
-/* Other default text styles to override
-    caption = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
-    )
-*/
 )
