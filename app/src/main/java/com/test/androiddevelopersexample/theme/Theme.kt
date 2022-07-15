@@ -22,9 +22,7 @@ private val LightColorPalette = lightColors(
     primaryVariant = Indigo600,
     onPrimary = Color.White,
     secondary = Color.Black,
-    surface = Grey25,
-    onSurface = Grey800,
-    background = Grey25,
+    onSurface = Color.Black
 )
 
 @Composable

@@ -80,7 +80,7 @@ class SwipeListFragment :
             }
         }
 
-        val json = Utils.loadJSONFromAsset(requireContext(), "countries.json")
+            val json = Utils.loadJSONFromAsset(requireContext(), "countries.json")
 
         val gSon = GsonBuilder().serializeNulls().create()
         val type = object : TypeToken<MockCountries>() {
