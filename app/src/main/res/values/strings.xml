@@ -102,4 +102,5 @@
     <string name="mobile_new_card">New card</string>
     <string name="mobile_wallet">Wallet</string>
     <string name="mobile_game_cards">Game cards</string>
+    <string name="mobile_generic_error">We are experiencing difficulties with the system. Please try again later.</string>
 </resources>
