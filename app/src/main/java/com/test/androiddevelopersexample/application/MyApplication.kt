@@ -1,16 +1,18 @@
 package com.test.androiddevelopersexample.application
 
 import android.app.Application
+import android.os.Build
 import android.util.Log
 import coil.ImageLoader
 import coil.ImageLoaderFactory
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 import coil.decode.SvgDecoder
-import coil.util.CoilUtils
+import coil.disk.DiskCache
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import com.test.androiddevelopersexample.di.viewModelsModule
-import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -48,20 +50,18 @@ class MyApplication : Application(), ImageLoaderFactory {
     // Coil image provider
     override fun newImageLoader(): ImageLoader {
         return ImageLoader.Builder(applicationContext)
-            .componentRegistry {
-                add(SvgDecoder(applicationContext))
+            .components {
+                add(SvgDecoder.Factory())
+                if (Build.VERSION.SDK_INT >= 28) {
+                    add(ImageDecoderDecoder.Factory())
+                } else {
+                    add(GifDecoder.Factory())
+                }
             }
-//            .componentRegistry {
-//                if (SDK_INT >= 28) {
-//                    add(ImageDecoderDecoder(applicationContext))
-//                } else {
-//                    add(GifDecoder())
-//                }
-//            }
-            .crossfade(true)
-            .okHttpClient {
-                OkHttpClient.Builder()
-                    .cache(CoilUtils.createDefaultCache(applicationContext))
+            .crossfade(false)
+            .diskCache {
+                DiskCache.Builder()
+                    .directory(applicationContext.cacheDir.resolve("image_cache"))
                     .build()
             }
             .build()

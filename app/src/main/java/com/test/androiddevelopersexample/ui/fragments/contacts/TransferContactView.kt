@@ -114,7 +114,7 @@ class TransferContactView(
 
     private fun setImage(context: Context, image: String?, ivImage: CircleImageView) {
         ImageHelper.setImage(
-            imageProvider = ImageHelper.ImageProvider.Coil(context),
+            context = context,
             imageView = ivImage,
             path = image,
             placeHolderType = PlaceHolderType.USER,

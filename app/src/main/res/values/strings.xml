@@ -95,4 +95,11 @@
     <string name="mobile_refresh">"Refresh"</string>
     <string name="mobile_internet_error">"Internet connection not detected. Please check your connection and try again."</string>
 
+    <string name="mobile_yesterday">Yesterday</string>
+    <string name="mobile_pending">Pending</string>
+    <string name="mobile_canceled">Canceled</string>
+    <string name="mobile_completed">Completed</string>
+    <string name="mobile_new_card">New card</string>
+    <string name="mobile_wallet">Wallet</string>
+    <string name="mobile_game_cards">Game cards</string>
 </resources>

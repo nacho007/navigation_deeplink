@@ -61,6 +61,9 @@ val Red600 = Color(0xffcc0000)
 val Red700 = Color(0xff990000)
 
 @Composable
+fun textColor() = if (isSystemInDarkTheme()) Color.White else Grey800
+
+@Composable
 fun Colors.disabledContent() = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
 
 @Composable

@@ -69,7 +69,7 @@ class PhoneNumberLayout @JvmOverloads constructor(
 
     fun setIcon(url: String?) {
         ImageHelper.setImage(
-            imageProvider = ImageHelper.ImageProvider.Coil(context),
+            context = context,
             imageView = binding.ivPhoneCountryFlag,
             path = url,
             placeHolderType = PlaceHolderType.CAMERA
