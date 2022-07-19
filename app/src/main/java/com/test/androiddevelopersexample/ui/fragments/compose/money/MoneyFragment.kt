@@ -45,6 +45,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.Body
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import com.test.androiddevelopersexample.ui.utils.Utils
+import com.test.androiddevelopersexample.ui.utils.navigate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -87,7 +88,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                             PhoneBottomSheet(
                                 state = phoneState,
                                 flagUrl = phoneViewModel.getCountryUrl(),
-                                callback = {event -> onTestBottomSheet(event)}
+                                callback = { event -> onTestBottomSheet(event) }
                             )
                         },
                         sheetState = bottomSheetState,
@@ -115,6 +116,10 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
         bottomState: ModalBottomSheetState,
         eventReducer: (UIEvent) -> Unit = {}
     ) {
+        screenState.destination?.let {
+            Navigation(it)
+        }
+
         Scaffold(
             topBar = {
                 AstroToolBar(title = "Este es mi texto") {
@@ -149,7 +154,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                             )
                         }
 
-                        Spacer(modifier = Modifier.padding(all = 32.dp))
+                        Spacer(modifier = Modifier.padding(all = 16.dp))
 
                         DefaultButton(
                             modifier = Modifier
@@ -163,10 +168,22 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp),
-                            text = "Open Phone Buttom Sheet",
+                            text = "Open Phone Bottom Sheet",
                             action = {
                                 scope.launch {
                                     bottomState.show()
+                                }
+                            }
+                        )
+
+                        DefaultButton(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp),
+                            text = "Paginated",
+                            action = {
+                                scope.launch {
+                                    eventReducer(UIEvent.OpenPaginated)
                                 }
                             }
                         )
@@ -177,13 +194,27 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
     }
 
     internal sealed class UIEvent {
+        object OpenPaginated : UIEvent()
     }
 
     private fun onUIEvent(event: UIEvent) {
+        when (event) {
+            is UIEvent.OpenPaginated -> viewModel.onPaginatedPressed()
+        }
     }
 
-    private fun onTestBottomSheet(event: PhoneBottomSheet){
-        when(event){
+    @Composable
+    private fun Navigation(it: ComposeViewModel.Destination) {
+        when (it) {
+            is ComposeViewModel.Destination.PaginatedList -> {
+                navigate(MoneyFragmentDirections.actionMoneyFragmentToPaginatedFragment())
+            }
+        }
+        viewModel.onClearDestination()
+    }
+
+    private fun onTestBottomSheet(event: PhoneBottomSheet) {
+        when (event) {
             is PhoneBottomSheet.LoadCountries -> {
                 val json =
                     Utils.loadJSONFromAsset(

@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.test.androiddevelopersexample.R
@@ -18,6 +19,14 @@ import com.xwray.groupie.Item
 fun Fragment.navigate(destination: Int) {
     try {
         findNavController().navigate(destination)
+    } catch (exception: Exception) {
+        exception.printStackTrace()
+    }
+}
+
+fun Fragment.navigate(navDirections: NavDirections) {
+    try {
+        findNavController().navigate(navDirections)
     } catch (exception: Exception) {
         exception.printStackTrace()
     }

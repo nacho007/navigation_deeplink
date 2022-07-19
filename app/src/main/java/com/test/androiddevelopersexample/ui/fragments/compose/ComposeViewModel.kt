@@ -8,8 +8,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-internal class ComposeViewModel(
-) : BaseViewModel<ComposeViewModel.ViewState, ComposeViewModel.Action>(ViewState()) {
+internal class ComposeViewModel : BaseViewModel<ComposeViewModel.ViewState, ComposeViewModel.Action>(ViewState()) {
 
     override val viewModelName: String = "ComposeViewModel"
 
@@ -27,6 +26,17 @@ internal class ComposeViewModel(
             )
         }
     }
+    fun onClearDestination() {
+        state = state.copy(
+            destination = null
+        )
+    }
+
+    fun onPaginatedPressed(){
+        state = state.copy(
+            destination = Destination.PaginatedList
+        )
+    }
 
     override fun onReduceState(viewAction: Action): ViewState = when (viewAction) {
         Action.Loading -> state.copy(
@@ -41,12 +51,17 @@ internal class ComposeViewModel(
     }
 
     internal data class ViewState(
-        val loadState: Type = Type.NONE
+        val loadState: Type = Type.NONE,
+        val destination: Destination? = null
     ) : BaseViewState
 
     sealed class Action : BaseAction {
         object Loading : Action()
         object Success : Action()
         object NetworkError : Action()
+    }
+
+    sealed class Destination {
+        object PaginatedList : Destination()
     }
 }

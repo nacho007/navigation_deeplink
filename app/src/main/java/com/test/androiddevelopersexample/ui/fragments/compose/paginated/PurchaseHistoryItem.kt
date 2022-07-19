@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.compose.history
+package com.test.androiddevelopersexample.ui.fragments.compose.paginated
 
 /**
  * Created by ignaciodeandreisdenis on 19/7/22.
@@ -32,14 +32,14 @@ import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.cards.DefaultCardView
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.images.AstroAsyncImage
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
-import com.test.androiddevelopersexample.ui.fragments.compose.history.PurchaseHistory.Status.APPROVED
-import com.test.androiddevelopersexample.ui.fragments.compose.history.PurchaseHistory.Status.CANCELED
-import com.test.androiddevelopersexample.ui.fragments.compose.history.PurchaseHistory.Status.CANCELLED
-import com.test.androiddevelopersexample.ui.fragments.compose.history.PurchaseHistory.Status.COMPLETED
-import com.test.androiddevelopersexample.ui.fragments.compose.history.PurchaseHistory.Status.PENDING
-import com.test.androiddevelopersexample.ui.fragments.compose.history.PurchaseHistory.Type.APC
-import com.test.androiddevelopersexample.ui.fragments.compose.history.PurchaseHistory.Type.PREPAID_CARD
-import com.test.androiddevelopersexample.ui.fragments.compose.history.PurchaseHistory.Type.WALLET_BALANCE
+import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Status.APPROVED
+import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Status.CANCELED
+import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Status.CANCELLED
+import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Status.COMPLETED
+import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Status.PENDING
+import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Type.APC
+import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Type.PREPAID_CARD
+import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Type.WALLET_BALANCE
 import com.test.androiddevelopersexample.ui.utils.DateUtils
 import com.test.androiddevelopersexample.ui.utils.ImageExtension
 import com.test.androiddevelopersexample.ui.utils.Utils

@@ -164,11 +164,13 @@
     <fragment
         android:id="@+id/moneyFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.compose.money.MoneyFragment"
-        android:label="MoneyFragment"
-        tools:layout="@layout/fragment_money">
+        android:label="MoneyFragment">
         <action
             android:id="@+id/action_moneyFragment_to_fragmentViewPager"
             app:destination="@id/fragmentViewPager" />
+        <action
+            android:id="@+id/action_moneyFragment_to_paginatedFragment"
+            app:destination="@id/paginatedFragment" />
     </fragment>
 
     <navigation
@@ -248,5 +250,10 @@
         android:name="com.test.androiddevelopersexample.ui.fragments.compose.ComposeFragment"
         android:label="ComposeFragment"
         tools:layout="@layout/fragment_astro_coins" />
+
+    <fragment
+        android:id="@+id/paginatedFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.compose.paginated.PaginatedFragment"
+        android:label="PaginatedFragment" />
 
 </navigation>

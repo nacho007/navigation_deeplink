@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.compose.history
+package com.test.androiddevelopersexample.ui.fragments.compose.paginated
 
 /**
  * Created by ignaciodeandreisdenis on 19/7/22.

@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.compose.history
+package com.test.androiddevelopersexample.ui.fragments.compose.paginated
 
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.ui.base.BaseAction

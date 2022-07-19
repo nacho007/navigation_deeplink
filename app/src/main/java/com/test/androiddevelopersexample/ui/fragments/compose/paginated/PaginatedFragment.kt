@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.compose.history
+package com.test.androiddevelopersexample.ui.fragments.compose.paginated
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -16,13 +16,13 @@ import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.CustomErrorDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.dialogs.ModalTransitionDialog
-import com.test.androiddevelopersexample.ui.fragments.compose.history.mock_preview.PurchaseHistoryMockPreview
+import com.test.androiddevelopersexample.ui.fragments.compose.paginated.mock_preview.PurchaseHistoryMockPreview
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * Created by ignaciodeandreisdenis on 19/7/22.
  */
-class PurchaseHistoryFragment :
+class PaginatedFragment :
     BaseFragment<FragmentComposeBinding>(FragmentComposeBinding::inflate) {
 
     private val viewModel: PurchaseHistoryViewModel by viewModel()
