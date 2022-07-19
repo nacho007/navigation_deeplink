@@ -34,9 +34,9 @@ import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
 import com.test.androiddevelopersexample.theme.AstroPayTheme
-import com.test.androiddevelopersexample.ui.custom.ContentState
-import com.test.androiddevelopersexample.ui.custom.Type
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**

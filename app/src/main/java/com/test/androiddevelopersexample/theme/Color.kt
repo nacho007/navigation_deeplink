@@ -64,34 +64,13 @@ val Red700 = Color(0xff990000)
 fun textColor() = if (isSystemInDarkTheme()) Color.White else Grey800
 
 @Composable
-fun Colors.disabledContent() = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)
+fun cardBackground() = if (isSystemInDarkTheme()) Grey800 else Color.White
 
 @Composable
-fun Colors.cardBackground() = if (isSystemInDarkTheme()) Grey800 else Color.White
+fun secondaryButtonColor() = if (isSystemInDarkTheme()) Grey800 else Grey25
 
 @Composable
-fun Colors.disabledBackground() =
-    MaterialTheme.colors.cardBackground().copy(alpha = 0.12f)
-        .compositeOver(MaterialTheme.colors.surface)
-
-@Composable
-fun colorDatePicker(
-    focusedBorderColor: Color = MaterialTheme.colors.onSurface,
-    focusedLabelColor: Color = MaterialTheme.colors.onSurface,
-    disabledBorderColor: Color = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled),
-    disabledTrailingIconColor: Color = MaterialTheme.colors.onSurface.copy(alpha = TextFieldDefaults.IconOpacity),
-    disabledLabelColor: Color = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.medium),
-    disabledPlaceholderColor: Color = MaterialTheme.colors.onSurface.copy(ContentAlpha.medium),
-    disabledTextColor: Color = MaterialTheme.colors.onSurface
-) = TextFieldDefaults.outlinedTextFieldColors(
-    focusedBorderColor = focusedBorderColor,
-    focusedLabelColor = focusedLabelColor,
-    disabledBorderColor = disabledBorderColor,
-    disabledTrailingIconColor = disabledTrailingIconColor,
-    disabledLabelColor = disabledLabelColor,
-    disabledPlaceholderColor = disabledPlaceholderColor,
-    disabledTextColor = disabledTextColor
-)
+fun dialogBackgroundColor() = if (isSystemInDarkTheme()) Grey800 else Color.White
 
 val Colors.DebitCardGradientBackground: Color
     get() = if(isLight) Color(0xFFFFA500) else Color(0xFF013220)

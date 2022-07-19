@@ -1,6 +1,7 @@
 package com.test.androiddevelopersexample.ui.fragments.compose.commons.texts
 
 import androidx.compose.material.LocalTextStyle
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,6 +20,103 @@ import com.test.androiddevelopersexample.theme.textColor
 /**
  * Created by ignaciodeandreisdenis on 19/7/22.
  */
+
+@Composable
+fun H1Title(
+    text: String,
+    modifier: Modifier = Modifier,
+    color: Color = textColor(),
+    textAlign: TextAlign? = null,
+    overflow: TextOverflow = TextOverflow.Clip,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {}
+) {
+    BodyText(
+        text = text,
+        modifier = modifier,
+        color = color,
+        textAlign = textAlign,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout,
+        style = MaterialTheme.typography.h1
+    )
+}
+
+@Composable
+fun H2Title(
+    text: String,
+    modifier: Modifier = Modifier,
+    color: Color = textColor(),
+    textAlign: TextAlign? = null,
+    overflow: TextOverflow = TextOverflow.Clip,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {}
+) {
+    BodyText(
+        text = text,
+        modifier = modifier,
+        color = color,
+        textAlign = textAlign,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout,
+        style = MaterialTheme.typography.h2
+    )
+}
+
+@Composable
+fun H3Title(
+    text: String,
+    modifier: Modifier = Modifier,
+    color: Color = textColor(),
+    textAlign: TextAlign? = null,
+    overflow: TextOverflow = TextOverflow.Clip,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {}
+) {
+    BodyText(
+        text = text,
+        modifier = modifier,
+        color = color,
+        textAlign = textAlign,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout,
+        style = MaterialTheme.typography.h3
+    )
+}
+
+@Composable
+fun H4Title(
+    text: String,
+    modifier: Modifier = Modifier,
+    color: Color = textColor(),
+    textAlign: TextAlign? = null,
+    overflow: TextOverflow = TextOverflow.Clip,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {}
+) {
+    BodyText(
+        text = text,
+        modifier = modifier,
+        color = color,
+        textAlign = textAlign,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout,
+        style = MaterialTheme.typography.h4
+    )
+}
+
 @Composable
 fun BodyText(
     text: String,

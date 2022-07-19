@@ -19,9 +19,9 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.*
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.theme.AstroPayTheme
-import com.test.androiddevelopersexample.ui.custom.LottieLoader
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.DefaultButton
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.loaders.LottieLoader
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.IntentionOrNull
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.buttons.DefaultButton
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
 
 internal const val ANIMATION_TIME = 250L

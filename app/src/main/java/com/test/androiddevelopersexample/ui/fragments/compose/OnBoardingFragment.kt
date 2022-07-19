@@ -41,8 +41,8 @@ import androidx.compose.ui.unit.dp
 import com.google.android.material.composethemeadapter.MdcTheme
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
-import com.test.androiddevelopersexample.ui.custom.ContentState
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.custom.CodeValidation
 import com.test.androiddevelopersexample.ui.fragments.custom.CreatePassword
 import com.test.androiddevelopersexample.ui.fragments.custom.OnBoardingProgressBar

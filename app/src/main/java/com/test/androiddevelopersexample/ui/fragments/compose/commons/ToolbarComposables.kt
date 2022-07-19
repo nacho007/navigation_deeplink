@@ -50,6 +50,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.theme.AstroPayTheme
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
 
 /**
  * Created by ignaciodeandreisdenis on 6/7/22.
@@ -65,7 +66,7 @@ fun AstroToolBar(
     var showMenu by remember { mutableStateOf(false) }
     TopAppBar(
         title = {
-            AstroText(text = title ?: "Text title")
+            BodyText(text = title ?: "Text title")
         },
         backgroundColor = backgroundColor ?: toolBarBackgroundColor(),
         actions = {

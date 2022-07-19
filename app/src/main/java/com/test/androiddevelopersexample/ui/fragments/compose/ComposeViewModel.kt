@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.test.androiddevelopersexample.ui.base.BaseAction
 import com.test.androiddevelopersexample.ui.base.BaseViewModel
 import com.test.androiddevelopersexample.ui.base.BaseViewState
-import com.test.androiddevelopersexample.ui.custom.Type
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

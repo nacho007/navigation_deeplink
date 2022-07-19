@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.custom
+package com.test.androiddevelopersexample.ui.fragments.compose.commons.loaders
 
 /**
  * Created by ignaciodeandreisdenis on 7/6/22.

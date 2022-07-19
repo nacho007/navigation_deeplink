@@ -13,6 +13,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.CustomErrorDialog
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.dialogs.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.history.mock_preview.PurchaseHistoryMockPreview
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -55,12 +57,12 @@ class PurchaseHistoryFragment :
             Navigation(it)
         }
 
-//        ContentState(
-//            state = screenState.loadState,
-//            lastIntention = { viewModel.lastIntention() }
-//        ) {
-//            Scaffold(
-//                content = {
+        ContentState(
+            state = screenState.loadState,
+            lastIntention = { viewModel.lastIntention() }
+        ) {
+            Scaffold(
+                content = {
 //                    RefreshablePaginatedList(
 //                        onRefresh = { eventReducer(UIEvent.Refresh) },
 //                        items = screenState.movements,
@@ -80,9 +82,9 @@ class PurchaseHistoryFragment :
 //                            onClick = { eventReducer(UIEvent.ItemClick(it)) }
 //                        )
 //                    }
-//                }
-//            )
-//        }
+                }
+            )
+        }
     }
 
     @Composable
@@ -94,10 +96,10 @@ class PurchaseHistoryFragment :
                 ModalTransitionDialog(
                     onDismissRequest = viewModel::onClearDestination
                 ) { modalTransitionDialogHelper ->
-//                    CustomErrorDialog(
-//                        description = message,
-//                        onConfirm = modalTransitionDialogHelper::triggerAnimatedClose
-//                    )
+                    CustomErrorDialog(
+                        description = message,
+                        onConfirm = modalTransitionDialogHelper::triggerAnimatedClose
+                    )
                 }
             }
             is PurchaseHistoryViewModel.Destination.PurchaseDetail -> {

@@ -60,4 +60,5 @@
     <color name="color_advise_background">@color/color_yellow_3</color>
     <color name="color_ok">@color/color_green</color>
     <color name="color_ok_background">@color/color_green</color>
+
 </resources>

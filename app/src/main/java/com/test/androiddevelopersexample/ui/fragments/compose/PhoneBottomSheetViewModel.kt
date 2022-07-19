@@ -1,16 +1,14 @@
 package com.test.androiddevelopersexample.ui.fragments.compose
 
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.viewModelScope
 import com.google.common.reflect.TypeToken
 import com.google.gson.GsonBuilder
 import com.test.androiddevelopersexample.ui.base.BaseAction
 import com.test.androiddevelopersexample.ui.base.BaseViewModel
 import com.test.androiddevelopersexample.ui.base.BaseViewState
-import com.test.androiddevelopersexample.ui.custom.Type
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import com.test.androiddevelopersexample.ui.fragments.swipe.Country
 import com.test.androiddevelopersexample.ui.fragments.swipe.MockCountries
-import com.test.androiddevelopersexample.ui.utils.Utils
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

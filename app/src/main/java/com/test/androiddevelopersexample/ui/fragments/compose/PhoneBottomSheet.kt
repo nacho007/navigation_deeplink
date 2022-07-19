@@ -33,11 +33,11 @@ import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.theme.Grey800
-import com.test.androiddevelopersexample.ui.custom.Type
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.AstroCardView
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.IconNavigationBack
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.PhoneNumberTextField
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.SearchToolbar
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.cards.DefaultCardView
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import com.test.androiddevelopersexample.ui.fragments.swipe.Country
 import java.util.*
 
@@ -145,7 +145,7 @@ fun CountryItem(
     flagUrl: String,
     callback: (PhoneBottomSheet) -> Unit = { }
 ) {
-    AstroCardView(
+    DefaultCardView(
         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
         Column {

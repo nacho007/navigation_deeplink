@@ -33,17 +33,17 @@ import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
 import com.test.androiddevelopersexample.theme.AstroPayTheme
-import com.test.androiddevelopersexample.ui.custom.ContentState
-import com.test.androiddevelopersexample.ui.custom.Type
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.ComposeViewModel
+import com.test.androiddevelopersexample.ui.fragments.compose.DefaultButton
 import com.test.androiddevelopersexample.ui.fragments.compose.PhoneBottomSheet
 import com.test.androiddevelopersexample.ui.fragments.compose.PhoneBottomSheetViewModel
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.AstroCardView
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.AstroText
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.AstroToolBar
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.DefaultButton
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.IconNavigationBack
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.cards.DefaultCardView
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import com.test.androiddevelopersexample.ui.utils.Utils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -136,14 +136,14 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
 
-                        AstroText(
+                        BodyText(
                             text = "This is my title\nBigger than anyone",
                             modifier = Modifier.padding(all = 16.dp),
                             style = MaterialTheme.typography.h1
                         )
 
-                        AstroCardView {
-                            AstroText(
+                        DefaultCardView {
+                            BodyText(
                                 text = "Este es mi texto\nMore text",
                                 modifier = Modifier.padding(all = 16.dp)
                             )
