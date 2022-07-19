@@ -254,6 +254,10 @@
     <fragment
         android:id="@+id/paginatedFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.compose.paginated.PaginatedFragment"
-        android:label="PaginatedFragment" />
+        android:label="PaginatedFragment" >
+        <action
+            android:id="@+id/action_paginatedFragment_to_astroCoinsFragment"
+            app:destination="@id/astroCoinsFragment" />
+    </fragment>
 
 </navigation>

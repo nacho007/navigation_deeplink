@@ -138,7 +138,9 @@ dependencies {
     implementation("io.coil-kt:coil:2.0.0-rc03")
     implementation("io.coil-kt:coil-svg:2.0.0-rc03")
     implementation("io.coil-kt:coil-gif:2.0.0-rc03")
-    
+
+    //Swipe Refresh Compose
+    implementation "com.google.accompanist:accompanist-swiperefresh:0.23.1"
 
     // UI Tests
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.1.1'

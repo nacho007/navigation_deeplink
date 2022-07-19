@@ -14,9 +14,11 @@ import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.CustomErrorDialog
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.lists.RefreshablePaginatedList
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.dialogs.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.mock_preview.PurchaseHistoryMockPreview
+import com.test.androiddevelopersexample.ui.utils.navigate
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -63,25 +65,25 @@ class PaginatedFragment :
         ) {
             Scaffold(
                 content = {
-//                    RefreshablePaginatedList(
-//                        onRefresh = { eventReducer(UIEvent.Refresh) },
-//                        items = screenState.movements,
-//                        loadingNewPage = screenState.loadingNewPage,
-//                        page = screenState.page,
-//                        pageSize = LIST_PAGES_SIZE,
-//                        loadNextPage = { eventReducer(UIEvent.LoadNewPage) }
-//                    ) {
-//                        PurchaseHistoryItem(
-//                            image = it.image,
-//                            type = it.type,
-//                            name = it.name,
-//                            status = it.status,
-//                            currency = it.currency,
-//                            amount = it.amount,
-//                            date = it.date,
-//                            onClick = { eventReducer(UIEvent.ItemClick(it)) }
-//                        )
-//                    }
+                    RefreshablePaginatedList(
+                        onRefresh = { eventReducer(UIEvent.Refresh) },
+                        items = screenState.movements,
+                        loadingNewPage = screenState.loadingNewPage,
+                        page = screenState.page,
+                        pageSize = LIST_PAGES_SIZE,
+                        loadNextPage = { eventReducer(UIEvent.LoadNewPage) }
+                    ) {
+                        PurchaseHistoryItem(
+                            image = it.image,
+                            type = it.type,
+                            name = it.name,
+                            status = it.status,
+                            currency = it.currency,
+                            amount = it.amount,
+                            date = it.date,
+                            onClick = { eventReducer(UIEvent.ItemClick(it)) }
+                        )
+                    }
                 }
             )
         }
@@ -103,11 +105,7 @@ class PaginatedFragment :
                 }
             }
             is PurchaseHistoryViewModel.Destination.PurchaseDetail -> {
-//                val action =
-//                    HistoryLogsFragmentDirections.actionHistoryLogsFragmentToPurchaseDetailFragment(
-//                        it.id
-//                    )
-//                navigate(action)
+                navigate(PaginatedFragmentDirections.actionPaginatedFragmentToAstroCoinsFragment())
             }
         }
         viewModel.onClearDestination()
