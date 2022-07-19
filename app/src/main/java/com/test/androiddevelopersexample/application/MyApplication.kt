@@ -12,6 +12,9 @@ import coil.disk.DiskCache
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
+import com.test.androiddevelopersexample.di.actionsModule
+import com.test.androiddevelopersexample.di.networkModule
+import com.test.androiddevelopersexample.di.repositoriesModule
 import com.test.androiddevelopersexample.di.viewModelsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -28,6 +31,9 @@ class MyApplication : Application(), ImageLoaderFactory {
             androidContext(this@MyApplication)
             modules(
                 listOf(
+                    repositoriesModule,
+                    actionsModule,
+                    networkModule,
                     viewModelsModule
                 )
             )

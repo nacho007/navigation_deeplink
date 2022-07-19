@@ -1,15 +1,20 @@
 package com.test.androiddevelopersexample.ui.fragments.compose.paginated
 
+import androidx.lifecycle.viewModelScope
 import com.test.androiddevelopersexample.R
+import com.test.androiddevelopersexample.domain.GetPurchaseHistory
 import com.test.androiddevelopersexample.ui.base.BaseAction
 import com.test.androiddevelopersexample.ui.base.BaseViewModel
 import com.test.androiddevelopersexample.ui.base.BaseViewState
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
+import kotlinx.coroutines.launch
 
 /**
  * Created by ignaciodeandreisdenis on 19/7/22.
  */
-internal class PurchaseHistoryViewModel :
+internal class PurchaseHistoryViewModel(
+    private val getPurchaseHistory: GetPurchaseHistory
+) :
     BaseViewModel<PurchaseHistoryViewModel.ViewState, PurchaseHistoryViewModel.Action>(
         ViewState()
     ) {
@@ -45,26 +50,23 @@ internal class PurchaseHistoryViewModel :
     private fun loadPurchaseHistory(page: Int) {
         lastIntention = { loadPurchaseHistory(page) }
 
-//        viewModelScope.launch {
-//            logger.setLog(viewModelName, "$EVENT_LOGGER_CALLED_SERVICE ${getPurchaseHistory.name}")
-//            getPurchaseHistory(page).also {
-//                val action = when (it) {
-//                    is GetPurchaseHistory.Result.Success -> {
-//                        val movements = it.value
-//                        Action.GetPurchaseHistorySuccess(purchaseHistoryResult = movements)
-//                    }
-//                    is GetPurchaseHistory.Result.Error -> Action.Failure(
-//                        message = it.value?.description,
-//                        retry = page == 1
-//                    )
-//                    GetPurchaseHistory.Result.NetworkError -> Action.NetworkError
-//                }
-//                sendAction(action)
-//            }
-//        }
-
+        viewModelScope.launch {
+            getPurchaseHistory(page).also {
+                val action = when (it) {
+                    is GetPurchaseHistory.Result.Success -> {
+                        val movements = it.value
+                        Action.GetPurchaseHistorySuccess(purchaseHistoryResult = movements)
+                    }
+                    is GetPurchaseHistory.Result.Error -> Action.Failure(
+                        message = it.value?.description,
+                        retry = page == 1
+                    )
+                    GetPurchaseHistory.Result.NetworkError -> Action.NetworkError
+                }
+                sendAction(action)
+            }
+        }
     }
-
 
     fun onItemPressed(movement: PurchaseHistory) {
         if (movement.purchaseId != -1) {
