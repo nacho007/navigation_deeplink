@@ -3,9 +3,7 @@ package com.test.androiddevelopersexample.ui.fragments.compose.money
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,7 +15,6 @@ import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -27,7 +24,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Devices
@@ -37,21 +33,12 @@ import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
 import com.test.androiddevelopersexample.theme.AstroPayTheme
-import com.test.androiddevelopersexample.theme.GlobalPrimary400
-import com.test.androiddevelopersexample.theme.Grey800
-import com.test.androiddevelopersexample.theme.Grey900
-import com.test.androiddevelopersexample.theme.Red700
 import com.test.androiddevelopersexample.ui.custom.ContentState
 import com.test.androiddevelopersexample.ui.custom.Type
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.ComposeViewModel
-import com.test.androiddevelopersexample.ui.fragments.compose.CountryList
-import com.test.androiddevelopersexample.ui.fragments.compose.InputPhone
 import com.test.androiddevelopersexample.ui.fragments.compose.PhoneBottomSheet
-import com.test.androiddevelopersexample.ui.fragments.compose.PhoneBottomSheetData
-import com.test.androiddevelopersexample.ui.fragments.compose.PhoneBottomSheetEvent
 import com.test.androiddevelopersexample.ui.fragments.compose.PhoneBottomSheetViewModel
-import com.test.androiddevelopersexample.ui.fragments.compose.TestBottomSheet
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.AstroCardView
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.AstroText
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.AstroToolBar
@@ -82,31 +69,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
             composeView.setContent {
                 AstroPayTheme {
                     val screenState by viewModel.stateLiveData.observeAsState(initial = ComposeViewModel.ViewState())
-                    //Screen(screenState = screenState)
-
-                    //ToDo PhoneBottomSheet
                     val phoneState by phoneViewModel.stateLiveData.observeAsState(initial = PhoneBottomSheetViewModel.ViewState())
-                    /*              PhoneBottomSheet(
-                                      phoneBottomSheetData = phoneState.bottomSheetPhoneData,
-                                      screenState = { bottomSheetScope,  bottomSheetState ->
-                                          Screen(
-                                              screenState = screenState,
-                                              scope = bottomSheetScope,
-                                              bottomState =  bottomSheetState,
-                                              eventReducer = ::onUIEvent
-                                          )
-                                      },
-                                      phoneState = phoneState,
-                                      countryFlagsUrl = phoneViewModel.getCountryUrl(),
-                                      callback = {event ->
-                                          when(event){
-                                              is PhoneBottomSheetEvent.LoadCountries -> {
-                                                  val json = Utils.loadJSONFromAsset(requireContext(), "countries.json")
-                                                  json?.let { phoneViewModel.emulateLoadCountries(it) }
-                                              }
-                                          }
-                                      }
-                                  )*/
 
                     val bottomSheetState =
                         rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
@@ -121,14 +84,13 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                     }
                     ModalBottomSheetLayout(
                         sheetContent = {
-                            TestBottomSheet(
+                            PhoneBottomSheet(
                                 state = phoneState,
                                 flagUrl = phoneViewModel.getCountryUrl(),
                                 callback = {event -> onTestBottomSheet(event)}
                             )
                         },
                         sheetState = bottomSheetState,
-                        /*sheetBackgroundColor = if (isSystemInDarkTheme()) Grey800 else Color.White,*/
                         scrimColor = colorResource(id = R.color.color_black_opacity_50),
                     ) {
                         Screen(
@@ -201,7 +163,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp),
-                            text = "Open Buttom Sheet",
+                            text = "Open Phone Buttom Sheet",
                             action = {
                                 scope.launch {
                                     bottomState.show()
@@ -220,9 +182,9 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
     private fun onUIEvent(event: UIEvent) {
     }
 
-    private fun onTestBottomSheet(event: TestBottomSheet){
+    private fun onTestBottomSheet(event: PhoneBottomSheet){
         when(event){
-            is TestBottomSheet.LoadCountries -> {
+            is PhoneBottomSheet.LoadCountries -> {
                 val json =
                     Utils.loadJSONFromAsset(
                         requireContext(),
@@ -233,26 +195,26 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                     phoneViewModel.emulateLoadCountries(it)
                 }
             }
-            is TestBottomSheet.OnChangePhone -> {
+            is PhoneBottomSheet.OnChangePhone -> {
                 phoneViewModel.onUpdatePhoneNumber(event.phone)
             }
-            is TestBottomSheet.LoadCountry -> {
+            is PhoneBottomSheet.LoadCountry -> {
                 val json = Utils.loadJSONFromAsset(requireContext(), "country.json")
                 json?.let { phoneViewModel.emulateLoadCountry(it) }
             }
-            is TestBottomSheet.CloseCountryList -> {
+            is PhoneBottomSheet.CloseCountryList -> {
                 phoneViewModel.openCountryList(false)
             }
-            is TestBottomSheet.OnSelectCountry -> {
+            is PhoneBottomSheet.OnSelectCountry -> {
                 phoneViewModel.onSelectCountry(event.country)
             }
-            is TestBottomSheet.OnSearchCountry -> {
+            is PhoneBottomSheet.OnSearchCountry -> {
                 phoneViewModel.onSerchCountry(event.text)
             }
-            is TestBottomSheet.OnNextButton -> {
+            is PhoneBottomSheet.OnNextButton -> {
                 //ToDO
             }
-            is TestBottomSheet.OnClearSearch -> {
+            is PhoneBottomSheet.OnClearSearch -> {
                 phoneViewModel.onClearSearch()
             }
         }

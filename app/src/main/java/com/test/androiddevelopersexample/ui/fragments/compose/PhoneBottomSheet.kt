@@ -1,6 +1,9 @@
 package com.test.androiddevelopersexample.ui.fragments.compose
 
 import android.content.res.Configuration
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,112 +11,78 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.Button
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ModalBottomSheetLayout
-import androidx.compose.material.ModalBottomSheetState
-import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.theme.AstroPayTheme
+import com.test.androiddevelopersexample.theme.Grey800
 import com.test.androiddevelopersexample.ui.custom.Type
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.AstroCardView
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.AstroToolBar
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.DefaultButton
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.IconNavigationBack
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.PhoneNumberTextField
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.SearchToolbar
 import com.test.androiddevelopersexample.ui.fragments.swipe.Country
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
-
+import java.util.*
 
 /**
- * Created by Martin Zarzar on 8/7/22.
+ * Created by Martin Zarzar on 14/7/22.
  */
-
-sealed class PhoneBottomSheetData{
-    data class InputPhoneData(val countryFlagsUrl:String):PhoneBottomSheetData()
-    data class CountryListData(val countryFlagsUrl:String, val countries:List<Country>):PhoneBottomSheetData()
-}
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PhoneBottomSheet(
-    phoneBottomSheetData:PhoneBottomSheetData?,
-    screenState: @Composable (scope: CoroutineScope, bottomState: ModalBottomSheetState) -> Unit,
-    phoneState: PhoneBottomSheetViewModel.ViewState,
-    countryFlagsUrl: String,
-    callback: (PhoneBottomSheetEvent) -> Unit = { }
+    state: PhoneBottomSheetViewModel.ViewState,
+    flagUrl: String,
+    callback: (PhoneBottomSheet) -> Unit = { }
 ) {
-    val modalBottomSheetState =
-        rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
-    val scope = rememberCoroutineScope()
-    ModalBottomSheetLayout(
-        sheetContent = {
-            when(phoneBottomSheetData){
-                is PhoneBottomSheetData.InputPhoneData -> {
-                    InputPhone(state = phoneState, countryFlagsUrl = countryFlagsUrl, callback = callback)
-                }
-                is PhoneBottomSheetData.CountryListData -> {
-                    /*CountryList(
-                        state = phoneState,
-                        countryFlagsUrl = countryFlagsUrl,
-                        scope = scope,
-                        bottomState = modalBottomSheetState
-                    )*/
-                }
-                else -> {
-                    Text(text = "blabla")
-                }
-            }
-        },
-        sheetState = modalBottomSheetState,
-        sheetBackgroundColor = colorResource(id = R.color.grey_800),
-        scrimColor = colorResource(id = R.color.color_black_opacity_75),  // Color for the fade background when you open/close the drawer
-    ) {
-        screenState(
-            scope = scope,
-            bottomState = modalBottomSheetState
-        )
+    if (state.country == null) {
+        callback.invoke(PhoneBottomSheet.LoadCountry)
     }
+
+    if (state.viewCountryList) {
+        CountryList(state = state, flagUrl = flagUrl, callback = callback)
+    } else {
+        AddPhone(state = state, flagUrl = flagUrl, callback = callback)
+    }
+
 }
 
 @Composable
-fun InputPhone(
+private fun AddPhone(
     state: PhoneBottomSheetViewModel.ViewState,
-    countryFlagsUrl: String,
-    callback: (PhoneBottomSheetEvent) -> Unit = { }
+    flagUrl: String,
+    callback: (PhoneBottomSheet) -> Unit = { }
 ) {
     Column(
         modifier = Modifier
+            .background(if (isSystemInDarkTheme()) Grey800 else Color.White)
             .padding(horizontal = 16.dp, vertical = 16.dp)
             .fillMaxWidth()
     ) {
         state.country?.let { country ->
             PhoneNumberTextField(
                 callingCode = country.callingCode,
-                flagIcon = "${countryFlagsUrl}${country.iso}",
+                flagIcon = "${flagUrl}${country.iso}",
                 hint = country.phoneHint,
-                text = "",
-                onTextChanged = {},
-                changeCountry = {},
+                text = state.phoneNumber,
+                onTextChanged = { callback.invoke(PhoneBottomSheet.OnChangePhone(it)) },
+                changeCountry = {
+                    callback.invoke(PhoneBottomSheet.LoadCountries)
+                },
                 onComplete = {}
             )
         }
@@ -122,50 +91,58 @@ fun InputPhone(
                 .fillMaxWidth()
                 .padding(top = 16.dp, bottom = 16.dp),
             text = "Next",
-            action = {
-                callback.invoke(PhoneBottomSheetEvent.LoadCountries)
-            },
-            enabled = true
+            action = {},
+            enabled = state.isButtonEnabled
         )
         Spacer(Modifier.size(90.dp))
     }
 }
-/*
-@OptIn(ExperimentalMaterialApi::class)
+
+
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun CountryList(
     state: PhoneBottomSheetViewModel.ViewState,
-    scope: CoroutineScope,
-    bottomState: ModalBottomSheetState,
-    countryFlagsUrl: String
+    flagUrl: String,
+    callback: (PhoneBottomSheet) -> Unit = { }
 ) {
     Scaffold(
         topBar = {
-            AstroToolBar(title = "Select Country") {
+            SearchToolbar(placeholderText = "Search Country",
+                searchText = state.searchCountry,
+                onClearClick = { callback.invoke(PhoneBottomSheet.OnClearSearch) },
+                onSearchTextChanged = { callback.invoke(PhoneBottomSheet.OnSearchCountry(it)) }
+            ) {
                 IconNavigationBack {
-                    scope.launch {
-                        bottomState.hide()
-                    }
+                    callback.invoke(PhoneBottomSheet.CloseCountryList)
                 }
             }
-        },
-        content = {
-            state.countries?.let { items ->
-                LazyColumn {
-                    itemsIndexed(items) { i, it ->
-                        CountryItem(country = it, countryFlagsUrl = countryFlagsUrl, onClick = {})
-                    }
+        }
+    ) {
+        state.countries?.let { countries ->
+            val listFiltered = countries.filter {
+                val name = it.name
+                val callingCode = it.callingCode
+                (name.lowercase(Locale.getDefault())
+                    .contains(state.searchCountry.lowercase(Locale.getDefault())) ||
+                        callingCode.lowercase(Locale.getDefault())
+                            .contains(state.searchCountry.lowercase(Locale.getDefault())))
+            }
+            LazyColumn {
+                itemsIndexed(listFiltered) { i, it ->
+                    CountryItem(country = it, flagUrl = flagUrl, callback = callback)
                 }
             }
-        })
+        }
+    }
 
 }
 
 @Composable
 fun CountryItem(
     country: Country,
-    countryFlagsUrl: String,
-    onClick: () -> Unit
+    flagUrl: String,
+    callback: (PhoneBottomSheet) -> Unit = { }
 ) {
     AstroCardView(
         modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
@@ -175,6 +152,7 @@ fun CountryItem(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .clickable { callback.invoke(PhoneBottomSheet.OnSelectCountry(country = country)) }
             ) {
                 Box(modifier = Modifier.padding(16.dp)) {
                     Icon(
@@ -188,55 +166,37 @@ fun CountryItem(
                     text = country.name,
                     fontStyle = FontStyle.Normal,
                     color = MaterialTheme.colors.onSurface,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                     fontSize = 16.sp,
                     modifier = Modifier
                         .weight(1f)
                         .padding(top = 4.dp)
                 )
                 Text(
-                    text = "99999",//country.callingCode,
+                    text = country.callingCode,
                     fontStyle = FontStyle.Normal,
                     color = MaterialTheme.colors.onSurface,
                     fontSize = 16.sp,
                     modifier = Modifier
                         .padding(end = 16.dp)
                 )
-                *//*              Box(modifier = Modifier.padding(16.dp)) {
-                                  Icon(
-                                      painter = painterResource(id = R.drawable.svg_check_gray),
-                                      contentDescription = "Icon",
-                                      tint = MaterialTheme.colors.primary
-                                  )
-                              }*//*
             }
         }
     }
-}*/
-
-sealed class PhoneBottomSheetEvent {
-    object LoadCountries : PhoneBottomSheetEvent()
 }
 
-sealed class PhoneBottomSheetUI {
-    data class InputPhone(
-        val state: PhoneBottomSheetViewModel.ViewState,
-        val countryFlagsUrl: String,
-        val callback: (PhoneBottomSheetEvent) -> Unit = { }
-    ) : PhoneBottomSheetUI()
-
-    data class CountryList @OptIn(ExperimentalMaterialApi::class) constructor(
-        val state: PhoneBottomSheetViewModel.ViewState,
-        val scope: CoroutineScope,
-        val bottomState: ModalBottomSheetState,
-        val countryFlagsUrl: String
-    ) : PhoneBottomSheetUI()
-
-
+sealed class PhoneBottomSheet {
+    object LoadCountry : PhoneBottomSheet()
+    object LoadCountries : PhoneBottomSheet()
+    data class OnChangePhone(val phone: String) : PhoneBottomSheet()
+    data class OnSelectCountry(val country: Country) : PhoneBottomSheet()
+    object CloseCountryList : PhoneBottomSheet()
+    data class OnSearchCountry(val text: String) : PhoneBottomSheet()
+    object OnClearSearch : PhoneBottomSheet()
+    object OnNextButton : PhoneBottomSheet()
 }
 
-/*
-
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 @Preview(
     device = Devices.PIXEL_4,
@@ -246,7 +206,7 @@ sealed class PhoneBottomSheetUI {
     device = Devices.PIXEL_4,
     uiMode = Configuration.UI_MODE_NIGHT_NO
 )
-private fun PhoneBottomSheetPreview() {
+private fun TestBottomSheetPreview() {
     AstroPayTheme {
         val country = Country(
             id = 0,
@@ -258,28 +218,17 @@ private fun PhoneBottomSheetPreview() {
             states = null,
             displayName = null
         )
-        val countries = listOf(country, country)
-
         PhoneBottomSheet(
-            screenState = { scope, bottomState ->
-                Button(onClick = {
-                    scope.launch {
-                        bottomState.show()
-                    }
-                }) {
-                    Text(text = "BottomSheet")
-                }
-            },
-            phoneState = PhoneBottomSheetViewModel.ViewState(
-                state = Type.HIDE
+            state = PhoneBottomSheetViewModel.ViewState(
+                state = Type.HIDE,
+                country = country
             ),
-            countryFlagsUrl = "https://getapp-test.astropaycard.com/img/flags/"
+            flagUrl = ""
         )
     }
 }
-*/
 
-/*@Composable
+@Composable
 @Preview(
     device = Devices.PIXEL_4,
     uiMode = Configuration.UI_MODE_NIGHT_YES
@@ -288,13 +237,26 @@ private fun PhoneBottomSheetPreview() {
     device = Devices.PIXEL_4,
     uiMode = Configuration.UI_MODE_NIGHT_NO
 )
-private fun CountryItemPreview() {
+private fun TestBottomSheetCountriesPreview() {
     AstroPayTheme {
-        val country = DomainObjectsMocks.getCountry()
-        val countries = listOf(country, country)
-        CountryItem(
-            country = country,
-            onClick = {}
+        val country = Country(
+            id = 0,
+            iso = "UY",
+            name = "Uruguay",
+            callingCode = "598",
+            phoneHint = "9xxxxxxx",
+            documentTypeOptions = emptyList(),
+            states = null,
+            displayName = null
+        )
+        val countries = listOf(country, country, country, country, country)
+        PhoneBottomSheet(
+            state = PhoneBottomSheetViewModel.ViewState(
+                state = Type.HIDE,
+                countries = countries,
+                viewCountryList = true
+            ),
+            flagUrl = ""
         )
     }
-}*/
+}
