@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -128,7 +129,7 @@ fun CountryList(
                         callingCode.lowercase(Locale.getDefault())
                             .contains(state.searchCountry.lowercase(Locale.getDefault())))
             }
-            LazyColumn {
+            LazyColumn(contentPadding = PaddingValues(vertical = 8.dp)) {
                 itemsIndexed(listFiltered) { i, it ->
                     CountryItem(country = it, flagUrl = flagUrl, callback = callback)
                 }
@@ -145,7 +146,7 @@ fun CountryItem(
     callback: (PhoneBottomSheet) -> Unit = { }
 ) {
     AstroCardView(
-        modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
+        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
         Column {
             Row(
