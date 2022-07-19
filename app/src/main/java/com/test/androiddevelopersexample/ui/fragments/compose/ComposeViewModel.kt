@@ -20,7 +20,7 @@ internal class ComposeViewModel : BaseViewModel<ComposeViewModel.ViewState, Comp
         )
 
         viewModelScope.launch {
-            delay(1500)
+            delay(500)
             state = state.copy(
                 loadState = Type.HIDE
             )

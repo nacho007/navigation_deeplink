@@ -54,7 +54,7 @@ class InitFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                         navigate(R.id.action_initFragment_to_loginFragment)
                     }
 
-                }, 3500
+                }, 500
             )
         }
     }
