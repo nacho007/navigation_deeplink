@@ -1,12 +1,19 @@
 package com.test.androiddevelopersexample.ui.fragments.compose.paginated
 
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.domain.GetPurchaseHistory
+import com.test.androiddevelopersexample.domain.PurchaseHistoryV2
+import com.test.androiddevelopersexample.infrastructure.PurchaseHistorySource
 import com.test.androiddevelopersexample.ui.base.BaseAction
 import com.test.androiddevelopersexample.ui.base.BaseViewModel
 import com.test.androiddevelopersexample.ui.base.BaseViewState
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 /**
@@ -14,61 +21,70 @@ import kotlinx.coroutines.launch
  */
 internal class PurchaseHistoryViewModel(
     private val getPurchaseHistory: GetPurchaseHistory
-) :
-    BaseViewModel<PurchaseHistoryViewModel.ViewState, PurchaseHistoryViewModel.Action>(
-        ViewState()
-    ) {
-
+) : BaseViewModel<PurchaseHistoryViewModel.ViewState, PurchaseHistoryViewModel.Action>(
+    ViewState()
+) {
     override val viewModelName: String
         get() = "PurchaseHistoryViewModel"
 
     var lastState = Type.HIDE
 
-    var page = 1
-        private set
-
-    override fun onLoadData() {
-        onClearDestination()
-        loadFirstPage()
-    }
-
-    private fun loadFirstPage() {
-        this.page = 1
-        state = state.copy(
-            page = 1
+    val purchaseHistory: Flow<PagingData<PurchaseHistoryV2>> = Pager(
+        PagingConfig(
+            pageSize = 10,
+            enablePlaceholders = true,
+            maxSize = 200
         )
-        sendAction(Action.Loading)
-        loadPurchaseHistory(page)
-    }
+    ) {
+        PurchaseHistorySource(getPurchaseHistory)
+    }.flow.cachedIn(viewModelScope)
 
-    fun loadNextPage() {
-        this.page++
-        sendAction(Action.LoadingNewPage)
-        loadPurchaseHistory(page)
-    }
 
-    private fun loadPurchaseHistory(page: Int) {
-        lastIntention = { loadPurchaseHistory(page) }
+//    var page = 1
+//        private set
+//
+//    override fun onLoadData() {
+//        onClearDestination()
+//        loadFirstPage()
+//    }
+//
+//    private fun loadFirstPage() {
+//        this.page = 1
+//        state = state.copy(
+//            page = 1
+//        )
+//        sendAction(Action.Loading)
+//        loadPurchaseHistory(page)
+//    }
+//
+//    fun loadNextPage() {
+//        this.page++
+//        sendAction(Action.LoadingNewPage)
+//        loadPurchaseHistory(page)
+//    }
+//
+//    private fun loadPurchaseHistory(page: Int) {
+//        lastIntention = { loadPurchaseHistory(page) }
+//
+//        viewModelScope.launch {
+//            getPurchaseHistory(page).also {
+//                val action = when (it) {
+//                    is GetPurchaseHistory.Result.Success -> {
+//                        val movements = it.value
+//                        Action.GetPurchaseHistorySuccess(purchaseHistoryResult = movements)
+//                    }
+//                    is GetPurchaseHistory.Result.Error -> Action.Failure(
+//                        message = it.value?.description,
+//                        retry = page == 1
+//                    )
+//                    GetPurchaseHistory.Result.NetworkError -> Action.NetworkError
+//                }
+//                sendAction(action)
+//            }
+//        }
+//    }
 
-        viewModelScope.launch {
-            getPurchaseHistory(page).also {
-                val action = when (it) {
-                    is GetPurchaseHistory.Result.Success -> {
-                        val movements = it.value
-                        Action.GetPurchaseHistorySuccess(purchaseHistoryResult = movements)
-                    }
-                    is GetPurchaseHistory.Result.Error -> Action.Failure(
-                        message = it.value?.description,
-                        retry = page == 1
-                    )
-                    GetPurchaseHistory.Result.NetworkError -> Action.NetworkError
-                }
-                sendAction(action)
-            }
-        }
-    }
-
-    fun onItemPressed(movement: PurchaseHistory) {
+    fun onItemPressed(movement: PurchaseHistoryV2) {
         if (movement.purchaseId != -1) {
             state = state.copy(
                 destination = Destination.PurchaseDetail(id = movement.purchaseId)
@@ -103,38 +119,28 @@ internal class PurchaseHistoryViewModel(
                 loadingNewPage = false
             )
         }
-        is Action.GetPurchaseHistorySuccess -> {
-            if (page == 1) {
-                state.movements.clear()
-            }
-            state.movements.addAll(viewAction.purchaseHistoryResult)
-            state.copy(
-                loadState = if (page == 1 && viewAction.purchaseHistoryResult.isEmpty()) Type.EMPTY else Type.HIDE,
-                destination = null,
-                loadingNewPage = false
-            )
-        }
         is Action.NetworkError -> state.copy(
             loadState = Type.NETWORK_ERROR,
             destination = null,
             loadingNewPage = false
         )
-        is Action.LoadingNewPage -> state.copy(
-            loadingNewPage = true,
-            page = page
+        else ->  state.copy(
+            loadState = Type.NETWORK_ERROR,
+            destination = null,
+            loadingNewPage = false
         )
     }
 
     internal data class ViewState(
         val loadState: Type = Type.NONE,
-        val movements: MutableList<PurchaseHistory> = mutableListOf(),
+        val movements: MutableList<PurchaseHistoryV2> = mutableListOf(),
         val page: Int = 1,
         val loadingNewPage: Boolean = false,
         val destination: Destination? = null
     ) : BaseViewState
 
     internal sealed class Action : BaseAction {
-        data class GetPurchaseHistorySuccess(val purchaseHistoryResult: List<PurchaseHistory>) :
+        data class GetPurchaseHistorySuccess(val purchaseHistoryResult: List<PurchaseHistoryV2>) :
             Action()
 
         data class Failure(

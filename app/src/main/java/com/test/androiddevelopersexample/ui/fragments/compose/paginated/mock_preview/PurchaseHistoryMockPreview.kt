@@ -1,45 +1,45 @@
 package com.test.androiddevelopersexample.ui.fragments.compose.paginated.mock_preview
 
 import androidx.compose.runtime.mutableStateListOf
-import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory
+import com.test.androiddevelopersexample.domain.PurchaseHistoryV2
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistoryViewModel
 
 object PurchaseHistoryMockPreview {
 
     internal fun getMockState() = PurchaseHistoryViewModel.ViewState(
         movements = mutableStateListOf(
-            PurchaseHistory(
+            PurchaseHistoryV2(
                 purchaseId = 1,
-                status = PurchaseHistory.Status.APPROVED,
+                status = PurchaseHistoryV2.Status.APPROVED,
                 name = "LiteCoin",
                 currency = "UYU",
                 amount = 500.0,
                 date = "2021-08-11T12:36:43Z",
                 expirationDate = null,
                 image = null,
-                type = PurchaseHistory.Type.APC
+                type = PurchaseHistoryV2.Type.APC
             ),
-            PurchaseHistory(
+            PurchaseHistoryV2(
                 purchaseId = 1,
-                status = PurchaseHistory.Status.PENDING,
+                status = PurchaseHistoryV2.Status.PENDING,
                 name = "LiteCoin",
                 currency = "UYU",
                 amount = 500.0,
                 date = "2021-08-11T12:36:43Z",
                 expirationDate = null,
                 image = null,
-                type = PurchaseHistory.Type.APC
+                type = PurchaseHistoryV2.Type.APC
             ),
-            PurchaseHistory(
+            PurchaseHistoryV2(
                 purchaseId = 1,
-                status = PurchaseHistory.Status.CANCELED,
+                status = PurchaseHistoryV2.Status.CANCELED,
                 name = "LiteCoin",
                 currency = "UYU",
                 amount = 500.0,
                 date = "2021-08-11T12:36:43Z",
                 expirationDate = null,
                 image = null,
-                type = PurchaseHistory.Type.APC
+                type = PurchaseHistoryV2.Type.APC
             ),
         )
     )

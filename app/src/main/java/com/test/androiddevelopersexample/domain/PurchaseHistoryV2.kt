@@ -1,9 +1,9 @@
-package com.test.androiddevelopersexample.ui.fragments.compose.paginated
+package com.test.androiddevelopersexample.domain
 
 /**
  * Created by ignaciodeandreisdenis on 19/7/22.
  */
-data class PurchaseHistory(
+data class PurchaseHistoryV2(
     val purchaseId: Int,
     val status: Status,
     val name: String,

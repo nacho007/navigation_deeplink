@@ -28,18 +28,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
+import com.test.androiddevelopersexample.domain.PurchaseHistoryV2
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.cards.DefaultCardView
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.images.AstroAsyncImage
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
-import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Status.APPROVED
-import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Status.CANCELED
-import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Status.CANCELLED
-import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Status.COMPLETED
-import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Status.PENDING
-import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Type.APC
-import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Type.PREPAID_CARD
-import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistory.Type.WALLET_BALANCE
+import com.test.androiddevelopersexample.domain.PurchaseHistoryV2.Status.APPROVED
+import com.test.androiddevelopersexample.domain.PurchaseHistoryV2.Status.CANCELED
+import com.test.androiddevelopersexample.domain.PurchaseHistoryV2.Status.CANCELLED
+import com.test.androiddevelopersexample.domain.PurchaseHistoryV2.Status.COMPLETED
+import com.test.androiddevelopersexample.domain.PurchaseHistoryV2.Status.PENDING
+import com.test.androiddevelopersexample.domain.PurchaseHistoryV2.Type.APC
+import com.test.androiddevelopersexample.domain.PurchaseHistoryV2.Type.PREPAID_CARD
+import com.test.androiddevelopersexample.domain.PurchaseHistoryV2.Type.WALLET_BALANCE
 import com.test.androiddevelopersexample.ui.utils.DateUtils
 import com.test.androiddevelopersexample.ui.utils.ImageExtension
 import com.test.androiddevelopersexample.ui.utils.Utils
@@ -47,9 +48,9 @@ import com.test.androiddevelopersexample.ui.utils.Utils
 @Composable
 fun PurchaseHistoryItem(
     image: String?,
-    type: PurchaseHistory.Type,
+    type: PurchaseHistoryV2.Type,
     name: String,
-    status: PurchaseHistory.Status,
+    status: PurchaseHistoryV2.Status,
     currency: String,
     amount: Double,
     date: String,

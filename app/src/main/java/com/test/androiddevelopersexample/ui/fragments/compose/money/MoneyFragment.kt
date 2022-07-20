@@ -207,7 +207,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
     private fun Navigation(it: ComposeViewModel.Destination) {
         when (it) {
             is ComposeViewModel.Destination.PaginatedList -> {
-                navigate(MoneyFragmentDirections.actionMoneyFragmentToPaginatedFragment2())
+                navigate(MoneyFragmentDirections.actionMoneyFragmentToPaginatedFragment())
             }
         }
         viewModel.onClearDestination()
