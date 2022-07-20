@@ -1,0 +1,173 @@
+{
+  "data" : [ {
+    "purchase_id" : 1014181,
+    "user_id" : 5,
+    "pm_name" : "Credit/Debit Card 3",
+    "pm_img" : "EC",
+    "type" : "WALLET_BALANCE",
+    "status" : "APPROVED",
+    "amount" : 5.0000,
+    "currency" : "USD",
+    "created" : "2022-05-30T23:07:10Z",
+    "expiration_date" : "2022-05-30T23:07:20Z"
+  }, {
+    "purchase_id" : 1014180,
+    "user_id" : 5,
+    "pm_name" : "Credit/Debit Card 3",
+    "pm_img" : "EC",
+    "type" : "WALLET_BALANCE",
+    "status" : "APPROVED",
+    "amount" : 5.0000,
+    "currency" : "USD",
+    "created" : "2022-05-30T23:05:53Z",
+    "expiration_date" : "2022-05-30T23:06:03Z"
+  }, {
+    "purchase_id" : 1014152,
+    "user_id" : 5,
+    "pm_name" : "Bitcoin 3",
+    "pm_img" : "BT",
+    "type" : "APC",
+    "status" : "CANCELLED",
+    "amount" : 500.0000,
+    "currency" : "UYU",
+    "created" : "2022-05-30T14:53:23Z",
+    "expiration_date" : "2022-05-30T14:54:23Z"
+  }, {
+    "purchase_id" : 1014151,
+    "user_id" : 5,
+    "pm_name" : "Credit/Debit Card 3",
+    "pm_img" : "EC",
+    "type" : "WALLET_BALANCE",
+    "status" : "APPROVED",
+    "amount" : 5.0000,
+    "currency" : "USD",
+    "created" : "2022-05-30T14:49:04Z",
+    "expiration_date" : "2022-05-30T14:49:14Z"
+  }, {
+    "purchase_id" : 1013924,
+    "user_id" : 5,
+    "pm_name" : "Credit/Debit Card 3",
+    "pm_img" : "EC",
+    "type" : "WALLET_BALANCE",
+    "status" : "APPROVED",
+    "amount" : 1.0000,
+    "currency" : "USD",
+    "created" : "2022-05-19T15:56:50Z",
+    "expiration_date" : "2022-05-19T15:57:00Z"
+  }, {
+    "purchase_id" : 1013913,
+    "user_id" : 5,
+    "pm_name" : "Boleto 3",
+    "pm_img" : "BL",
+    "type" : "WALLET_BALANCE",
+    "status" : "CANCELLED",
+    "amount" : 70.0000,
+    "currency" : "BRL",
+    "created" : "2022-05-18T17:58:15Z",
+    "expiration_date" : "2022-05-18T18:58:15Z"
+  }, {
+    "purchase_id" : 1013802,
+    "user_id" : 5,
+    "pm_name" : "Bradesco 3",
+    "pm_img" : "B",
+    "type" : "WALLET_BALANCE",
+    "status" : "CANCELLED",
+    "amount" : 70.0000,
+    "currency" : "BRL",
+    "created" : "2022-05-10T18:11:26Z",
+    "expiration_date" : "2022-05-10T18:12:26Z"
+  }, {
+    "purchase_id" : 1013801,
+    "user_id" : 5,
+    "pm_name" : "Santander 3",
+    "pm_img" : "SB",
+    "type" : "WALLET_BALANCE",
+    "status" : "CANCELLED",
+    "amount" : 70.0000,
+    "currency" : "BRL",
+    "created" : "2022-05-10T18:11:14Z",
+    "expiration_date" : "2022-05-10T18:12:14Z"
+  }, {
+    "purchase_id" : 1013800,
+    "user_id" : 5,
+    "pm_name" : "Caixa 3",
+    "pm_img" : "CA",
+    "type" : "WALLET_BALANCE",
+    "status" : "CANCELLED",
+    "amount" : 70.0000,
+    "currency" : "BRL",
+    "created" : "2022-05-10T18:11:07Z",
+    "expiration_date" : "2022-05-10T18:12:07Z"
+  }, {
+    "purchase_id" : 1013799,
+    "user_id" : 5,
+    "pm_name" : "Banco do Brasil 3",
+    "pm_img" : "BB",
+    "type" : "WALLET_BALANCE",
+    "status" : "CANCELLED",
+    "amount" : 70.0000,
+    "currency" : "BRL",
+    "created" : "2022-05-10T18:10:57Z",
+    "expiration_date" : "2022-05-10T18:11:57Z"
+  }, {
+    "purchase_id" : 1013798,
+    "user_id" : 5,
+    "pm_name" : "Neteller 3",
+    "pm_img" : "NE",
+    "type" : "APC",
+    "status" : "CANCELLED",
+    "amount" : 70.0000,
+    "currency" : "BRL",
+    "created" : "2022-05-10T18:10:14Z",
+    "expiration_date" : "2022-05-10T19:10:14Z"
+  }, {
+    "purchase_id" : 1013712,
+    "user_id" : 5,
+    "pm_name" : "Credit/Debit Card 3",
+    "pm_img" : "EC",
+    "type" : "APC",
+    "status" : "APPROVED",
+    "amount" : 250.0000,
+    "currency" : "USD",
+    "created" : "2022-05-03T21:16:41Z",
+    "expiration_date" : "2022-05-03T21:16:51Z"
+  }, {
+    "purchase_id" : 1013711,
+    "user_id" : 5,
+    "pm_name" : "Credit/Debit Card 3",
+    "pm_img" : "EC",
+    "type" : "WALLET_BALANCE",
+    "status" : "APPROVED",
+    "amount" : 15.0000,
+    "currency" : "USD",
+    "created" : "2022-05-03T21:16:00Z",
+    "expiration_date" : "2022-05-03T21:16:10Z"
+  }, {
+    "purchase_id" : 1013710,
+    "user_id" : 5,
+    "pm_name" : "Credit/Debit Card 3",
+    "pm_img" : "EC",
+    "type" : "WALLET_BALANCE",
+    "status" : "APPROVED",
+    "amount" : 70.0000,
+    "currency" : "BRL",
+    "created" : "2022-05-03T21:15:25Z",
+    "expiration_date" : "2022-05-03T21:15:35Z"
+  }, {
+    "purchase_id" : 1013709,
+    "user_id" : 5,
+    "pm_name" : "Credit/Debit Card 3",
+    "pm_img" : "EC",
+    "type" : "APC",
+    "status" : "APPROVED",
+    "amount" : 70.0000,
+    "currency" : "BRL",
+    "created" : "2022-05-03T21:14:01Z",
+    "expiration_date" : "2022-05-03T21:14:11Z"
+  } ],
+  "page" : {
+    "page_size" : 15,
+    "page_number" : 2,
+    "total" : 3255
+  }
+}

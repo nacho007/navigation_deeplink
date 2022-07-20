@@ -1,0 +1,173 @@
+{
+  "data" : [ {
+    "purchase_id" : 1015175,
+    "user_id" : 5,
+    "pm_name" : "Red Pagos 1",
+    "pm_img" : "RE",
+    "type" : "WALLET_BALANCE",
+    "status" : "CANCELLED",
+    "amount" : 500.0000,
+    "currency" : "UYU",
+    "created" : "2022-07-16T17:34:47Z",
+    "expiration_date" : "2022-07-16T18:04:47Z"
+  }, {
+    "purchase_id" : 1015161,
+    "user_id" : 5,
+    "pm_name" : "Red Pagos 1",
+    "pm_img" : "RE",
+    "type" : "WALLET_BALANCE",
+    "status" : "CANCELLED",
+    "amount" : 10.0000,
+    "currency" : "UYU",
+    "created" : "2022-07-15T14:41:03Z",
+    "expiration_date" : "2022-07-15T15:11:03Z"
+  }, {
+    "purchase_id" : 1015116,
+    "user_id" : 5,
+    "pm_name" : "Ripple 1",
+    "pm_img" : "XR",
+    "type" : "WALLET_BALANCE",
+    "status" : "CANCELLED",
+    "amount" : 15.0000,
+    "currency" : "USD",
+    "created" : "2022-07-13T18:41:38Z",
+    "expiration_date" : "2022-07-13T18:42:38Z"
+  }, {
+    "purchase_id" : 1014795,
+    "user_id" : 5,
+    "pm_name" : "Ripple 1",
+    "pm_img" : "XR",
+    "type" : "WALLET_BALANCE",
+    "status" : "CANCELLED",
+    "amount" : 500.0000,
+    "currency" : "UYU",
+    "created" : "2022-06-23T13:36:03Z",
+    "expiration_date" : "2022-06-23T13:37:03Z"
+  }, {
+    "purchase_id" : 1014738,
+    "user_id" : 5,
+    "pm_name" : "Credit/Debit Card 1",
+    "pm_img" : "EC",
+    "type" : "APC",
+    "status" : "APPROVED",
+    "amount" : 15.0000,
+    "currency" : "USD",
+    "created" : "2022-06-20T19:01:48Z",
+    "expiration_date" : "2022-06-20T19:01:58Z"
+  }, {
+    "purchase_id" : 1014737,
+    "user_id" : 5,
+    "pm_name" : "Credit/Debit Card 1",
+    "pm_img" : "EC",
+    "type" : "APC",
+    "status" : "APPROVED",
+    "amount" : 1000.0000,
+    "currency" : "UYU",
+    "created" : "2022-06-20T19:01:47Z",
+    "expiration_date" : "2022-06-20T19:01:57Z"
+  }, {
+    "purchase_id" : 1014480,
+    "user_id" : 5,
+    "pm_name" : "Ripple 1",
+    "pm_img" : "XR",
+    "type" : "APC",
+    "status" : "CANCELLED",
+    "amount" : 500.0000,
+    "currency" : "UYU",
+    "created" : "2022-06-13T19:08:27Z",
+    "expiration_date" : "2022-06-13T19:09:27Z"
+  }, {
+    "purchase_id" : 1014479,
+    "user_id" : 5,
+    "pm_name" : "Ethereum 1",
+    "pm_img" : "ET",
+    "type" : "WALLET_BALANCE",
+    "status" : "CANCELLED",
+    "amount" : 500.0000,
+    "currency" : "UYU",
+    "created" : "2022-06-13T19:01:48Z",
+    "expiration_date" : "2022-06-13T19:02:48Z"
+  }, {
+    "purchase_id" : 1014478,
+    "user_id" : 5,
+    "pm_name" : "Ethereum 1",
+    "pm_img" : "ET",
+    "type" : "WALLET_BALANCE",
+    "status" : "CANCELLED",
+    "amount" : 10000.0000,
+    "currency" : "UYU",
+    "created" : "2022-06-13T18:50:32Z",
+    "expiration_date" : "2022-06-13T18:51:32Z"
+  }, {
+    "purchase_id" : 1014475,
+    "user_id" : 5,
+    "pm_name" : "Ripple 1",
+    "pm_img" : "XR",
+    "type" : "WALLET_BALANCE",
+    "status" : "CANCELLED",
+    "amount" : 3000.0000,
+    "currency" : "UYU",
+    "created" : "2022-06-13T18:48:02Z",
+    "expiration_date" : "2022-06-13T18:49:02Z"
+  }, {
+    "purchase_id" : 1014473,
+    "user_id" : 5,
+    "pm_name" : "Litecoin 1",
+    "pm_img" : "LT",
+    "type" : "APC",
+    "status" : "CANCELLED",
+    "amount" : 500.0000,
+    "currency" : "UYU",
+    "created" : "2022-06-13T18:26:04Z",
+    "expiration_date" : "2022-06-13T18:27:04Z"
+  }, {
+    "purchase_id" : 1014295,
+    "user_id" : 5,
+    "pm_name" : "Bitcoin 1",
+    "pm_img" : "BT",
+    "type" : "WALLET_BALANCE",
+    "status" : "CANCELLED",
+    "amount" : 5.0000,
+    "currency" : "USD",
+    "created" : "2022-06-02T17:54:20Z",
+    "expiration_date" : "2022-06-02T17:55:20Z"
+  }, {
+    "purchase_id" : 1014209,
+    "user_id" : 5,
+    "pm_name" : "Bitcoin 1",
+    "pm_img" : "BT",
+    "type" : "APC",
+    "status" : "CANCELLED",
+    "amount" : 500.0000,
+    "currency" : "UYU",
+    "created" : "2022-05-31T14:46:24Z",
+    "expiration_date" : "2022-05-31T14:47:24Z"
+  }, {
+    "purchase_id" : 1014208,
+    "user_id" : 5,
+    "pm_name" : "Credit/Debit Card 1",
+    "pm_img" : "EC",
+    "type" : "WALLET_BALANCE",
+    "status" : "APPROVED",
+    "amount" : 5.0000,
+    "currency" : "USD",
+    "created" : "2022-05-31T13:47:10Z",
+    "expiration_date" : "2022-05-31T13:47:20Z"
+  }, {
+    "purchase_id" : 1014182,
+    "user_id" : 5,
+    "pm_name" : "Bitcoin 1",
+    "pm_img" : "BT",
+    "type" : "APC",
+    "status" : "CANCELLED",
+    "amount" : 500.0000,
+    "currency" : "UYU",
+    "created" : "2022-05-30T23:07:29Z",
+    "expiration_date" : "2022-05-30T23:08:29Z"
+  } ],
+  "page" : {
+    "page_size" : 15,
+    "page_number" : 1,
+    "total" : 3255
+  }
+}

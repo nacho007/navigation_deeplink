@@ -1,6 +1,5 @@
 package com.test.androiddevelopersexample.di
 
-import com.google.gson.Gson
 import com.test.androiddevelopersexample.domain.GetPurchaseHistory
 import com.test.androiddevelopersexample.domain.UserRepository
 import com.test.androiddevelopersexample.infrastructure.ResponseHandler
@@ -10,6 +9,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.OnboardingViewMode
 import com.test.androiddevelopersexample.ui.fragments.compose.PhoneBottomSheetViewModel
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistoryViewModel
 import kotlinx.coroutines.Dispatchers
+import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -21,7 +21,7 @@ val viewModelsModule = module {
 }
 
 val repositoriesModule = module {
-    single<UserRepository> { UserRepositoryImpl(Gson(), get()) }
+    single<UserRepository> { UserRepositoryImpl(get(), androidContext()) }
 }
 
 val actionsModule = module {
