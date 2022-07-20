@@ -171,6 +171,9 @@
         <action
             android:id="@+id/action_moneyFragment_to_paginatedFragment"
             app:destination="@id/paginatedFragment" />
+        <action
+            android:id="@+id/action_moneyFragment_to_paginatedFragment2"
+            app:destination="@id/paginatedFragment2" />
     </fragment>
 
     <navigation
@@ -254,10 +257,15 @@
     <fragment
         android:id="@+id/paginatedFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.compose.paginated.PaginatedFragment"
-        android:label="PaginatedFragment" >
+        android:label="PaginatedFragment">
         <action
             android:id="@+id/action_paginatedFragment_to_astroCoinsFragment"
             app:destination="@id/astroCoinsFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/paginatedFragment2"
+        android:name="com.test.androiddevelopersexample.ui.fragments.compose.paginated.PaginatedFragment2"
+        android:label="PaginatedFragment" />
 
 </navigation>

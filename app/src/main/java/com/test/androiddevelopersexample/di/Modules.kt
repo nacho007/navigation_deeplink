@@ -7,6 +7,7 @@ import com.test.androiddevelopersexample.infrastructure.UserRepositoryImpl
 import com.test.androiddevelopersexample.ui.fragments.compose.ComposeViewModel
 import com.test.androiddevelopersexample.ui.fragments.compose.OnboardingViewModel
 import com.test.androiddevelopersexample.ui.fragments.compose.PhoneBottomSheetViewModel
+import com.test.androiddevelopersexample.ui.fragments.compose.paginated.EmployeeViewModel
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistoryViewModel
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
@@ -18,6 +19,7 @@ val viewModelsModule = module {
     viewModel { ComposeViewModel() }
     viewModel { PhoneBottomSheetViewModel() }
     viewModel { PurchaseHistoryViewModel(get()) }
+    viewModel { EmployeeViewModel() }
 }
 
 val repositoriesModule = module {

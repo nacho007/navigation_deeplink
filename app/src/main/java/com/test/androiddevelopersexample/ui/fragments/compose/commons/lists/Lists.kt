@@ -1,5 +1,6 @@
 package com.test.androiddevelopersexample.ui.fragments.compose.commons.lists
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
@@ -68,6 +69,7 @@ fun <Model> RefreshablePaginatedList(
                 scrollState.isScrolledToEnd()
             }
         }
+        Log.e("PAGINATED", endOfListReached.toString())
         if (endOfListReached) {
             if (items.size / pageSize >= page) {
                 loadNextPage()
