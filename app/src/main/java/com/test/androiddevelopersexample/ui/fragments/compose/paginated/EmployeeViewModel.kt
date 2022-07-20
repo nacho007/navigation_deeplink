@@ -14,7 +14,13 @@ import kotlinx.coroutines.flow.Flow
  * Created by ignaciodeandreisdenis on 20/7/22.
  */
 class EmployeeViewModel : ViewModel() {
-    val user: Flow<PagingData<User>> = Pager(PagingConfig(pageSize = 6)) {
+    val user: Flow<PagingData<User>> = Pager(
+        PagingConfig(
+            pageSize = 6,
+            enablePlaceholders = true,
+            maxSize = 200
+        )
+    ) {
         UserSource()
     }.flow.cachedIn(viewModelScope)
 }

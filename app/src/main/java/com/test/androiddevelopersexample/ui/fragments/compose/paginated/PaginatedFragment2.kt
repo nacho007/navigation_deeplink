@@ -5,7 +5,6 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,7 +16,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.LocalContentAlpha
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -41,8 +39,6 @@ import androidx.paging.compose.items
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
 import com.test.androiddevelopersexample.domain.User
 import com.test.androiddevelopersexample.theme.AstroPayTheme
-import com.test.androiddevelopersexample.theme.cardBackground
-import com.test.androiddevelopersexample.theme.dialogBackgroundColor
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import kotlinx.coroutines.flow.Flow
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -116,11 +112,11 @@ class PaginatedFragment2 :
 
     @Composable
     fun UserList(modifier: Modifier = Modifier, viewModel: EmployeeViewModel, context: Context) {
-        UserInfoList(modifier, userList = viewModel.user, context)
+        UserInfoList(userList = viewModel.user, context)
     }
 
     @Composable
-    fun UserInfoList(modifier: Modifier, userList: Flow<PagingData<User>>, context: Context) {
+    fun UserInfoList(userList: Flow<PagingData<User>>, context: Context) {
         val userListItems: LazyPagingItems<User> = userList.collectAsLazyPagingItems()
 
         LazyColumn {
