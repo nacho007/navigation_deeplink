@@ -26,62 +26,22 @@ internal class PurchaseHistoryViewModel(
     override val viewModelName: String
         get() = "PurchaseHistoryViewModel"
 
-    var lastState = Type.HIDE
+    override fun onLoadData() {
+        state = state.copy(
+            loadState = Type.HIDE,
+            destination = null
+        )
+    }
 
     val purchaseHistory: Flow<PagingData<PurchaseHistoryV2>> = Pager(
         PagingConfig(
-            pageSize = 10,
+            pageSize = LIST_PAGES_SIZE,
             enablePlaceholders = true,
             maxSize = 200
         )
     ) {
         PurchaseHistorySource(getPurchaseHistory)
     }.flow.cachedIn(viewModelScope)
-
-
-//    var page = 1
-//        private set
-//
-//    override fun onLoadData() {
-//        onClearDestination()
-//        loadFirstPage()
-//    }
-//
-//    private fun loadFirstPage() {
-//        this.page = 1
-//        state = state.copy(
-//            page = 1
-//        )
-//        sendAction(Action.Loading)
-//        loadPurchaseHistory(page)
-//    }
-//
-//    fun loadNextPage() {
-//        this.page++
-//        sendAction(Action.LoadingNewPage)
-//        loadPurchaseHistory(page)
-//    }
-//
-//    private fun loadPurchaseHistory(page: Int) {
-//        lastIntention = { loadPurchaseHistory(page) }
-//
-//        viewModelScope.launch {
-//            getPurchaseHistory(page).also {
-//                val action = when (it) {
-//                    is GetPurchaseHistory.Result.Success -> {
-//                        val movements = it.value
-//                        Action.GetPurchaseHistorySuccess(purchaseHistoryResult = movements)
-//                    }
-//                    is GetPurchaseHistory.Result.Error -> Action.Failure(
-//                        message = it.value?.description,
-//                        retry = page == 1
-//                    )
-//                    GetPurchaseHistory.Result.NetworkError -> Action.NetworkError
-//                }
-//                sendAction(action)
-//            }
-//        }
-//    }
 
     fun onItemPressed(movement: PurchaseHistoryV2) {
         if (movement.purchaseId != -1) {
@@ -123,7 +83,7 @@ internal class PurchaseHistoryViewModel(
             destination = null,
             loadingNewPage = false
         )
-        else ->  state.copy(
+        else -> state.copy(
             loadState = Type.NETWORK_ERROR,
             destination = null,
             loadingNewPage = false
@@ -157,6 +117,10 @@ internal class PurchaseHistoryViewModel(
     sealed class Destination {
         data class ErrorDialog(val error: LoadNotificationsError) : Destination()
         data class PurchaseDetail(val id: Int) : Destination()
+    }
+
+    companion object {
+        private const val LIST_PAGES_SIZE = 15
     }
 }
 

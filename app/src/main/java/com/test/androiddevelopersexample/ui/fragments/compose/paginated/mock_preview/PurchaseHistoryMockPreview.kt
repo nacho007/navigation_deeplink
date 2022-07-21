@@ -2,11 +2,13 @@ package com.test.androiddevelopersexample.ui.fragments.compose.paginated.mock_pr
 
 import androidx.compose.runtime.mutableStateListOf
 import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistoryViewModel
 
 object PurchaseHistoryMockPreview {
 
     internal fun getMockState() = PurchaseHistoryViewModel.ViewState(
+        loadState = Type.HIDE,
         movements = mutableStateListOf(
             PurchaseHistoryV2(
                 purchaseId = 1,

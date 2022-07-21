@@ -1,14 +1,18 @@
 package com.test.androiddevelopersexample.ui.fragments.compose.paginated
 
-import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,10 +26,13 @@ import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.CustomErrorDialog
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.progress.ProgressIndicator
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.dialogs.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.mock_preview.PurchaseHistoryMockPreview
 import com.test.androiddevelopersexample.ui.utils.navigate
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -51,7 +58,7 @@ class PaginatedFragment :
                     Screen(
                         screenState = screenState,
                         eventReducer = ::onUIEvent,
-                        context = requireContext()
+                        purchaseList = viewModel.purchaseHistory
                     )
                 }
             }
@@ -62,34 +69,32 @@ class PaginatedFragment :
     private fun Screen(
         screenState: PurchaseHistoryViewModel.ViewState,
         eventReducer: (UIEvent) -> Unit = {},
-        context: Context
+        purchaseList: Flow<PagingData<PurchaseHistoryV2>>
     ) {
-        PaginatedList(
-            purchaseList = viewModel.purchaseHistory,
-            context = context
-        )
+        screenState.destination?.let {
+            Navigation(it)
+        }
 
-//        screenState.destination?.let {
-//            Navigation(it)
-//        }
-//
-//        ContentState(
-//            state = screenState.loadState,
-//            lastIntention = { viewModel.lastIntention() }
-//        ) {
-//            Scaffold(
-//                content = {
-//                    PaginatedList(
-//                        purchaseList = viewModel.purchaseHistory,
-//                        context = context
-//                    )
-//                }
-//            )
-//        }
+        ContentState(
+            state = screenState.loadState,
+            lastIntention = { }
+        ) {
+            Scaffold(
+                content = {
+                    PaginatedList(
+                        purchaseList = purchaseList,
+                        eventReducer = eventReducer
+                    )
+                }
+            )
+        }
     }
 
     @Composable
-    fun PaginatedList(purchaseList: Flow<PagingData<PurchaseHistoryV2>>, context: Context) {
+    private fun PaginatedList(
+        purchaseList: Flow<PagingData<PurchaseHistoryV2>>,
+        eventReducer: (UIEvent) -> Unit = {}
+    ) {
         val purchaseListItems: LazyPagingItems<PurchaseHistoryV2> =
             purchaseList.collectAsLazyPagingItems()
 
@@ -104,18 +109,26 @@ class PaginatedFragment :
                         currency = it.currency,
                         amount = it.amount,
                         date = it.date,
-                        onClick = { }
-//                        onClick = { eventReducer(UIEvent.ItemClick(it)) }
+                        onClick = { eventReducer(UIEvent.ItemClick(it)) }
                     )
                 }
             }
+
             purchaseListItems.apply {
                 when {
                     loadState.refresh is LoadState.Loading -> {
-                        //You can add modifier to manage load state when first time response page is loading
+                        item {
+                            Row(
+                                modifier = Modifier.fillParentMaxSize(),
+                                horizontalArrangement = Arrangement.Center,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                ProgressIndicator(color = Color.Yellow)
+                            }
+                        }
                     }
                     loadState.append is LoadState.Loading -> {
-                        //You can add modifier to manage load state when next response page is loading
+                        item { ProgressIndicator() }
                     }
                     loadState.append is LoadState.Error -> {
                         //You can use modifier to show error message
@@ -176,12 +189,8 @@ class PaginatedFragment :
             Screen(
                 screenState = PurchaseHistoryMockPreview.getMockState(),
                 eventReducer = {},
-                context = LocalContext.current
+                purchaseList = flowOf(PagingData.empty())
             )
         }
-    }
-
-    companion object {
-        private const val LIST_PAGES_SIZE = 15
     }
 }

@@ -10,6 +10,8 @@ import com.test.androiddevelopersexample.domain.repositories.UserRepository
 import com.test.androiddevelopersexample.infrastructure.entities.PurchaseHistoryResultEntityV2
 import com.test.androiddevelopersexample.infrastructure.network.ResponseHandler
 import com.test.androiddevelopersexample.ui.utils.Utils
+import kotlinx.coroutines.delay
+import okhttp3.internal.wait
 
 /**
  * Created by ignaciodeandreisdenis on 19/7/22.
@@ -23,6 +25,8 @@ class UserRepositoryImpl(
         val queryParams = HashMap<String, String>()
         queryParams[PAGE] = page.toString()
         queryParams[SIZE] = LIST_PAGES_SIZE
+
+        delay(1000)
 
         Log.e("PAGINATED", page.toString())
 

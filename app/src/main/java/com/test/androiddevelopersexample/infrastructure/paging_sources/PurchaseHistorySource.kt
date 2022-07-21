@@ -42,7 +42,6 @@ class PurchaseHistorySource(
                 prevKey = if (nextPage == 1) null else nextPage - 1,
                 nextKey = if (result.purchaseHistories.isEmpty()) null else result.page.pageNumber + 1
             )
-
         } catch (exception: IOException) {
             return LoadResult.Error(exception)
         } catch (exception: HttpException) {
