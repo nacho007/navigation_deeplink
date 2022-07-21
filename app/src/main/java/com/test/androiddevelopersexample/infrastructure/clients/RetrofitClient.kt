@@ -1,6 +1,5 @@
-package com.test.androiddevelopersexample.infrastructure
+package com.test.androiddevelopersexample.infrastructure.clients
 
-import com.test.androiddevelopersexample.domain.RetrofitService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

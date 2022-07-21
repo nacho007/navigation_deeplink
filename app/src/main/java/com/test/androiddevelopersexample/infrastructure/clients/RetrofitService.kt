@@ -1,5 +1,6 @@
-package com.test.androiddevelopersexample.domain
+package com.test.androiddevelopersexample.infrastructure.clients
 
+import com.test.androiddevelopersexample.domain.user.UserResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

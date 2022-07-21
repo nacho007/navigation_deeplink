@@ -2,10 +2,10 @@ package com.test.androiddevelopersexample.infrastructure
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.test.androiddevelopersexample.domain.GetPurchaseHistory
-import com.test.androiddevelopersexample.domain.Page
-import com.test.androiddevelopersexample.domain.PurchaseHistoryResultV2
-import com.test.androiddevelopersexample.domain.PurchaseHistoryV2
+import com.test.androiddevelopersexample.domain.actions.GetPurchaseHistory
+import com.test.androiddevelopersexample.domain.models.Page
+import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryResultV2
+import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2
 import org.apache.http.HttpException
 import java.io.IOException
 

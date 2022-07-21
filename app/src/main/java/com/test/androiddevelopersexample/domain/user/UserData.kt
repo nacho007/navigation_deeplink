@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.domain
+package com.test.androiddevelopersexample.domain.user
 
 /**
  * Created by ignaciodeandreisdenis on 20/7/22.

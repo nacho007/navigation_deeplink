@@ -6,7 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.test.androiddevelopersexample.domain.User
+import com.test.androiddevelopersexample.domain.user.User
 import com.test.androiddevelopersexample.infrastructure.UserSource
 import kotlinx.coroutines.flow.Flow
 

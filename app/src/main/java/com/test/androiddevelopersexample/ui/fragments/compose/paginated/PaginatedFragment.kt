@@ -5,7 +5,6 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -19,12 +18,10 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
-import com.test.androiddevelopersexample.domain.PurchaseHistoryV2
+import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.CustomErrorDialog
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.lists.RefreshablePaginatedList
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.dialogs.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.mock_preview.PurchaseHistoryMockPreview
 import com.test.androiddevelopersexample.ui.utils.navigate

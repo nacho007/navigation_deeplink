@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.domain
+package com.test.androiddevelopersexample.domain.models.purchase
 
 /**
  * Created by ignaciodeandreisdenis on 19/7/22.

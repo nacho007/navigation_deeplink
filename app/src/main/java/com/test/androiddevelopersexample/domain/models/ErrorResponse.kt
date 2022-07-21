@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.domain
+package com.test.androiddevelopersexample.domain.models
 
 import com.google.gson.annotations.SerializedName
 

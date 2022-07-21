@@ -2,7 +2,8 @@ package com.test.androiddevelopersexample.infrastructure
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.test.androiddevelopersexample.domain.User
+import com.test.androiddevelopersexample.domain.user.User
+import com.test.androiddevelopersexample.infrastructure.clients.RetrofitClient
 
 import org.apache.http.HttpException
 import java.io.IOException

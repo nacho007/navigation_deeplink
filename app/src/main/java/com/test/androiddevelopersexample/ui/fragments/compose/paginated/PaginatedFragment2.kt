@@ -37,7 +37,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
-import com.test.androiddevelopersexample.domain.User
+import com.test.androiddevelopersexample.domain.user.User
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import kotlinx.coroutines.flow.Flow

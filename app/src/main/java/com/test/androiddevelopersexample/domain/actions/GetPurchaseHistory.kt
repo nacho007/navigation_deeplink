@@ -1,4 +1,10 @@
-package com.test.androiddevelopersexample.domain
+package com.test.androiddevelopersexample.domain.actions
+
+import com.test.androiddevelopersexample.domain.actions.base.BaseAction
+import com.test.androiddevelopersexample.domain.models.ErrorResponse
+import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryResultV2
+import com.test.androiddevelopersexample.domain.models.ResultWrapper
+import com.test.androiddevelopersexample.domain.repositories.UserRepository
 
 /**
  * Created by ignaciodeandreisdenis on 19/7/22.

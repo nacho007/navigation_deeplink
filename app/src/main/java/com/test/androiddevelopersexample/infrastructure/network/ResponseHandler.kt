@@ -1,6 +1,6 @@
-package com.test.androiddevelopersexample.infrastructure
+package com.test.androiddevelopersexample.infrastructure.network
 
-import com.test.androiddevelopersexample.domain.ResultWrapper
+import com.test.androiddevelopersexample.domain.models.ResultWrapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 

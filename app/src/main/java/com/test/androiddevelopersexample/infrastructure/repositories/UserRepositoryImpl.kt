@@ -1,12 +1,14 @@
-package com.test.androiddevelopersexample.infrastructure
+package com.test.androiddevelopersexample.infrastructure.repositories
 
 import android.content.Context
 import android.util.Log
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import com.test.androiddevelopersexample.domain.PurchaseHistoryResultV2
-import com.test.androiddevelopersexample.domain.ResultWrapper
-import com.test.androiddevelopersexample.domain.UserRepository
+import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryResultV2
+import com.test.androiddevelopersexample.domain.models.ResultWrapper
+import com.test.androiddevelopersexample.domain.repositories.UserRepository
+import com.test.androiddevelopersexample.infrastructure.entities.PurchaseHistoryResultEntityV2
+import com.test.androiddevelopersexample.infrastructure.network.ResponseHandler
 import com.test.androiddevelopersexample.ui.utils.Utils
 
 /**

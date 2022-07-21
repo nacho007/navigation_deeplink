@@ -1,7 +1,7 @@
 package com.test.androiddevelopersexample.ui.fragments.compose.paginated.mock_preview
 
 import androidx.compose.runtime.mutableStateListOf
-import com.test.androiddevelopersexample.domain.PurchaseHistoryV2
+import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistoryViewModel
 
 object PurchaseHistoryMockPreview {

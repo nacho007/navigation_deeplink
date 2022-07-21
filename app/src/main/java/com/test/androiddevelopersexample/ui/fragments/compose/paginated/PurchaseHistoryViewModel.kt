@@ -6,15 +6,14 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.test.androiddevelopersexample.R
-import com.test.androiddevelopersexample.domain.GetPurchaseHistory
-import com.test.androiddevelopersexample.domain.PurchaseHistoryV2
+import com.test.androiddevelopersexample.domain.actions.GetPurchaseHistory
+import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2
 import com.test.androiddevelopersexample.infrastructure.PurchaseHistorySource
 import com.test.androiddevelopersexample.ui.base.BaseAction
 import com.test.androiddevelopersexample.ui.base.BaseViewModel
 import com.test.androiddevelopersexample.ui.base.BaseViewState
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 /**
  * Created by ignaciodeandreisdenis on 19/7/22.

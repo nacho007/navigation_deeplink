@@ -1,12 +1,12 @@
-package com.test.androiddevelopersexample.infrastructure
+package com.test.androiddevelopersexample.infrastructure.entities
 
 /**
  * Created by ignaciodeandreisdenis on 20/7/22.
  */
 import com.google.gson.annotations.SerializedName
-import com.test.androiddevelopersexample.domain.Page
-import com.test.androiddevelopersexample.domain.PurchaseHistoryResultV2
-import com.test.androiddevelopersexample.domain.PurchaseHistoryV2
+import com.test.androiddevelopersexample.domain.models.Page
+import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryResultV2
+import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2
 
 data class PurchaseHistoryResultEntityV2(
     @SerializedName("page") val page: PageEntity,
