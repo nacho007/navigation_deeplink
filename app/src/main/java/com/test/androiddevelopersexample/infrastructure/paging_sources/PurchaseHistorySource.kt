@@ -17,12 +17,15 @@ class PurchaseHistorySource(
 ) : PagingSource<Int, PurchaseHistoryV2>() {
 
     override fun getRefreshKey(state: PagingState<Int, PurchaseHistoryV2>): Int? {
-        return state.anchorPosition
+        return state.anchorPosition?.let {
+            state.closestPageToPosition(it)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(it)?.nextKey?.minus(1)
+        }
     }
-
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PurchaseHistoryV2> {
         return try {
             val nextPage = params.key ?: 1
+
             var result = PurchaseHistoryResultV2(
                 page = Page(0, 0, 0),
                 purchaseHistories = listOf()
@@ -37,10 +40,13 @@ class PurchaseHistorySource(
                 }
             }
 
+            val prevKey = if (nextPage > 1) nextPage - 1 else null
+            val nextKey = if (result.purchaseHistories.isNotEmpty()) nextPage + 1 else null
+
             LoadResult.Page(
                 data = result.purchaseHistories,
-                prevKey = if (nextPage == 1) null else nextPage - 1,
-                nextKey = if (result.purchaseHistories.isEmpty()) null else result.page.pageNumber + 1
+                prevKey = prevKey,
+                nextKey = nextKey
             )
         } catch (exception: IOException) {
             return LoadResult.Error(exception)

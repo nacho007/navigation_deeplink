@@ -35,9 +35,7 @@ internal class PurchaseHistoryViewModel(
 
     val purchaseHistory: Flow<PagingData<PurchaseHistoryV2>> = Pager(
         PagingConfig(
-            pageSize = LIST_PAGES_SIZE,
-            enablePlaceholders = true,
-            maxSize = 200
+            pageSize = LIST_PAGES_SIZE
         )
     ) {
         PurchaseHistorySource(getPurchaseHistory)

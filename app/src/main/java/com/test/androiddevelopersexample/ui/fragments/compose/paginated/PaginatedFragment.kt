@@ -21,12 +21,15 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
 import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.CustomErrorDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.progress.ProgressIndicator
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.swipe.DefaultSwipeRefreshIndicator
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.dialogs.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.mock_preview.PurchaseHistoryMockPreview
@@ -98,46 +101,63 @@ class PaginatedFragment :
         val purchaseListItems: LazyPagingItems<PurchaseHistoryV2> =
             purchaseList.collectAsLazyPagingItems()
 
-        LazyColumn {
-            items(purchaseListItems) { item ->
-                item?.let {
-                    PurchaseHistoryItem(
-                        image = it.image,
-                        type = it.type,
-                        name = it.name,
-                        status = it.status,
-                        currency = it.currency,
-                        amount = it.amount,
-                        date = it.date,
-                        onClick = { eventReducer(UIEvent.ItemClick(it)) }
-                    )
-                }
-            }
+        val swipeRefreshState = rememberSwipeRefreshState(
+            isRefreshing = false
+        )
 
-            purchaseListItems.apply {
-                when {
-                    loadState.refresh is LoadState.Loading -> {
-                        item {
-                            Row(
-                                modifier = Modifier.fillParentMaxSize(),
-                                horizontalArrangement = Arrangement.Center,
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                ProgressIndicator(color = Color.Yellow)
+        SwipeRefresh(
+            state = swipeRefreshState,
+            onRefresh =
+            {
+                purchaseListItems.refresh()
+            },
+            indicator = { indicatorState, trigger ->
+                DefaultSwipeRefreshIndicator(
+                    state = indicatorState,
+                    refreshTriggerDistance = trigger
+                )
+            }
+        ) {
+            LazyColumn {
+                items(purchaseListItems) { item ->
+                    item?.let {
+                        PurchaseHistoryItem(
+                            image = it.image,
+                            type = it.type,
+                            name = it.name,
+                            status = it.status,
+                            currency = it.currency,
+                            amount = it.amount,
+                            date = it.date,
+                            onClick = { eventReducer(UIEvent.ItemClick(it)) }
+                        )
+                    }
+                }
+
+                purchaseListItems.apply {
+                    when {
+                        loadState.refresh is LoadState.Loading -> {
+                            item {
+                                Row(
+                                    modifier = Modifier.fillParentMaxSize(),
+                                    horizontalArrangement = Arrangement.Center,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    ProgressIndicator(color = Color.Yellow)
+                                }
                             }
                         }
-                    }
-                    loadState.append is LoadState.Loading -> {
-                        item { ProgressIndicator() }
-                    }
-                    loadState.append is LoadState.Error -> {
-                        //You can use modifier to show error message
+                        loadState.append is LoadState.Loading -> {
+                            item { ProgressIndicator() }
+                        }
+                        loadState.append is LoadState.Error -> {
+                            //You can use modifier to show error message
+                        }
                     }
                 }
             }
         }
     }
-
 
     @Composable
     private fun Navigation(it: PurchaseHistoryViewModel.Destination) {
@@ -163,14 +183,10 @@ class PaginatedFragment :
 
     private fun onUIEvent(event: UIEvent) = when (event) {
         is UIEvent.ItemClick -> viewModel.onItemPressed(event.item)
-        is UIEvent.LoadNewPage -> viewModel.loadData()
-        is UIEvent.Refresh -> viewModel.loadData()
     }
 
     internal sealed class UIEvent {
         data class ItemClick(val item: PurchaseHistoryV2) : UIEvent()
-        object Refresh : UIEvent()
-        object LoadNewPage : UIEvent()
     }
 
     @Preview(

@@ -161,7 +161,7 @@ dependencies {
     implementation 'com.google.accompanist:accompanist-coil:0.12.0'
 
     //Paging 3.0
-    implementation 'androidx.paging:paging-compose:1.0.0-alpha10'
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha14'
 
 
 
