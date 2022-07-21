@@ -8,7 +8,7 @@ import androidx.paging.cachedIn
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.domain.actions.GetPurchaseHistory
 import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2
-import com.test.androiddevelopersexample.infrastructure.PurchaseHistorySource
+import com.test.androiddevelopersexample.infrastructure.paging_sources.PurchaseHistorySource
 import com.test.androiddevelopersexample.ui.base.BaseAction
 import com.test.androiddevelopersexample.ui.base.BaseViewModel
 import com.test.androiddevelopersexample.ui.base.BaseViewState

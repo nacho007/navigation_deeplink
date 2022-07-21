@@ -5,8 +5,8 @@ import com.test.androiddevelopersexample.domain.repositories.UserRepository
 import com.test.androiddevelopersexample.infrastructure.network.ResponseHandler
 import com.test.androiddevelopersexample.infrastructure.repositories.UserRepositoryImpl
 import com.test.androiddevelopersexample.ui.fragments.compose.ComposeViewModel
-import com.test.androiddevelopersexample.ui.fragments.compose.OnboardingViewModel
-import com.test.androiddevelopersexample.ui.fragments.compose.PhoneBottomSheetViewModel
+import com.test.androiddevelopersexample.ui.fragments.compose.onboarding.OnboardingViewModel
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.bottom_sheet.PhoneBottomSheetViewModel
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.EmployeeViewModel
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistoryViewModel
 import kotlinx.coroutines.Dispatchers

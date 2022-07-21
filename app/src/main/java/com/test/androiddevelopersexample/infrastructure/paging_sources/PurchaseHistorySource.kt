@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.infrastructure
+package com.test.androiddevelopersexample.infrastructure.paging_sources
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -47,7 +47,7 @@ class PurchaseHistorySource(
             return LoadResult.Error(exception)
         } catch (exception: HttpException) {
             return LoadResult.Error(exception)
-        }catch (exception : Exception){
+        } catch (exception: Exception) {
             return LoadResult.Error(exception)
         }
     }

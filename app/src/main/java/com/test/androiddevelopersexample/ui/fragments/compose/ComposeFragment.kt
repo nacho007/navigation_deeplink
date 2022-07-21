@@ -35,6 +35,8 @@ import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.buttons.DefaultButton
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.text_field.DefaultOutlinedTextField
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -117,7 +119,7 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
                     fontSize = 16.sp
                 )
                 if (showInput) {
-                    AstroOutlinedTextField(
+                    DefaultOutlinedTextField(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp),

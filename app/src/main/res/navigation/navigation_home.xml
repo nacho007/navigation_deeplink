@@ -148,7 +148,7 @@
     </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.compose.OnBoardingFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.compose.onboarding.OnBoardingFragment"
         android:label="OnBoardingFragment"
         tools:layout="@layout/fragment_astro_coins" />
     <fragment

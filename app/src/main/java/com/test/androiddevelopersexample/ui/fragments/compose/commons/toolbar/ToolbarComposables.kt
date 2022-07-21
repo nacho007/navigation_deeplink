@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.compose.commons
+package com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar
 
 import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
@@ -50,7 +50,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.theme.AstroPayTheme
+import com.test.androiddevelopersexample.theme.textColor
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.iconColorTint
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.readDirection
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolBarBackgroundColor
 
 /**
  * Created by ignaciodeandreisdenis on 6/7/22.

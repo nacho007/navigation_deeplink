@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.compose
+package com.test.androiddevelopersexample.ui.fragments.compose.onboarding
 
 import androidx.lifecycle.viewModelScope
 import com.test.androiddevelopersexample.ui.base.BaseAction

@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.infrastructure
+package com.test.androiddevelopersexample.infrastructure.paging_sources
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

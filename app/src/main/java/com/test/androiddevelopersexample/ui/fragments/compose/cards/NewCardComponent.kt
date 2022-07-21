@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.compose
+package com.test.androiddevelopersexample.ui.fragments.compose.cards
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.padding

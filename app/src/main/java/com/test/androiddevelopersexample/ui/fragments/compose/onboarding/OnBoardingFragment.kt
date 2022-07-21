@@ -1,6 +1,7 @@
-package com.test.androiddevelopersexample.ui.fragments.compose
+package com.test.androiddevelopersexample.ui.fragments.compose.onboarding
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -27,7 +28,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -36,11 +36,12 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.android.material.composethemeadapter.MdcTheme
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
+import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.custom.CodeValidation
@@ -55,14 +56,13 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
 
     private val viewModel: OnboardingViewModel by viewModel()
 
-    @OptIn(ExperimentalComposeUiApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
 
             composeView.setContent {
-                MdcTheme {
+                AstroPayTheme {
                     Surface(
                         modifier = Modifier
                             .fillMaxSize()
@@ -74,7 +74,10 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
                             state = uiState.value.state,
                             lastIntention = viewModel.lastIntention
                         ) {
-                            CodeScreen()
+                            CodeScreen(
+                                context = requireContext(),
+                                url = viewModel.getCountryUrl()
+                            )
                         }
                     }
                 }
@@ -83,12 +86,11 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
         }
     }
 
-    @OptIn(ExperimentalComposeUiApi::class)
     @Composable
-    @Preview(showBackground = true)
-    fun CodeScreen() {
-        val context = LocalContext.current
-
+    fun CodeScreen(
+        context: Context,
+        url: String
+    ) {
         val pinCode = remember { mutableStateOf("") }
         val hasError = remember { mutableStateOf(false) }
         val isCodeCompleted = remember { mutableStateOf(false) }
@@ -131,7 +133,7 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
                 Text(text = "VALIDATE")
             }
             Spacer(modifier = Modifier.height(16.dp))
-            PhoneNumberTextField(countryUrl = viewModel.getCountryUrl())
+            PhoneNumberTextField(countryUrl = url)
             Spacer(modifier = Modifier.height(16.dp))
             TermsCheckBox(context = context)
 
@@ -253,5 +255,31 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
 
     private fun mToast(context: Context, text: String) {
         Toast.makeText(context, text, Toast.LENGTH_LONG).show()
+    }
+
+    @Composable
+    @Preview(
+        device = Devices.PIXEL_4,
+        uiMode = Configuration.UI_MODE_NIGHT_YES,
+        locale = ""
+    )
+    @Preview(
+        device = Devices.PIXEL_4,
+        uiMode = Configuration.UI_MODE_NIGHT_NO,
+        locale = ""
+    )
+    private fun OnboardingPreview() {
+        AstroPayTheme {
+            Surface(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = colorResource(id = R.color.color_view_background))
+            ) {
+                CodeScreen(
+                    context = LocalContext.current,
+                    url = "https://getapp-test.astropaycard.com/img/flags/CD.svg"
+                )
+            }
+        }
     }
 }

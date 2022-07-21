@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.compose
+package com.test.androiddevelopersexample.ui.fragments.compose.commons.bottom_sheet
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -33,10 +33,11 @@ import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.theme.Grey800
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.IconNavigationBack
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.PhoneNumberTextField
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.SearchToolbar
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.buttons.DefaultButton
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.cards.DefaultCardView
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.SearchToolbar
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import com.test.androiddevelopersexample.ui.fragments.swipe.Country
 import java.util.*

@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.compose
+package com.test.androiddevelopersexample.ui.fragments.compose.cards
 
 import android.os.Bundle
 import android.view.View

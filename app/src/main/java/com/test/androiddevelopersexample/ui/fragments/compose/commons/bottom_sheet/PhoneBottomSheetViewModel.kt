@@ -1,4 +1,4 @@
-package com.test.androiddevelopersexample.ui.fragments.compose
+package com.test.androiddevelopersexample.ui.fragments.compose.commons.bottom_sheet
 
 import androidx.lifecycle.viewModelScope
 import com.google.common.reflect.TypeToken
