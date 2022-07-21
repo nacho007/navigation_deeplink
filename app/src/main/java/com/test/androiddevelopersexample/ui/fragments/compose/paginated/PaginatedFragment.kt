@@ -3,6 +3,7 @@ package com.test.androiddevelopersexample.ui.fragments.compose.paginated
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.LazyColumn
@@ -34,6 +35,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state
 import com.test.androiddevelopersexample.ui.fragments.compose.dialogs.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.mock_preview.PurchaseHistoryMockPreview
 import com.test.androiddevelopersexample.ui.utils.navigate
+import com.test.androiddevelopersexample.ui.utils.showToast
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -119,18 +121,20 @@ class PaginatedFragment :
             }
         ) {
             LazyColumn {
-                items(purchaseListItems) { item ->
-                    item?.let {
-                        PurchaseHistoryItem(
-                            image = it.image,
-                            type = it.type,
-                            name = it.name,
-                            status = it.status,
-                            currency = it.currency,
-                            amount = it.amount,
-                            date = it.date,
-                            onClick = { eventReducer(UIEvent.ItemClick(it)) }
-                        )
+                if (purchaseListItems.loadState.refresh !is LoadState.Loading) {
+                    items(purchaseListItems) { item ->
+                        item?.let {
+                            PurchaseHistoryItem(
+                                image = it.image,
+                                type = it.type,
+                                name = it.name,
+                                status = it.status,
+                                currency = it.currency,
+                                amount = it.amount,
+                                date = it.date,
+                                onClick = { eventReducer(UIEvent.ItemClick(it)) }
+                            )
+                        }
                     }
                 }
 
@@ -151,7 +155,7 @@ class PaginatedFragment :
                             item { ProgressIndicator() }
                         }
                         loadState.append is LoadState.Error -> {
-                            //You can use modifier to show error message
+                            Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
