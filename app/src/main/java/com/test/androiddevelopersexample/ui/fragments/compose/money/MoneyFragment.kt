@@ -88,13 +88,10 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                             PhoneBottomSheet(
                                 state = phoneState,
                                 flagUrl = phoneViewModel.getCountryUrl(),
-                                callback = { event ->
-                                    if (event is PhoneBottomSheet.OnNextButton) {
-                                        bottomSheetScope.launch {
-                                            bottomSheetState.hide()
-                                            onPhoneBottomSheet(event)
-                                        }
-                                    } else {
+                                callback = { event -> onPhoneBottomSheet(event) },
+                                close = { event ->
+                                    bottomSheetScope.launch {
+                                        bottomSheetState.hide()
                                         onPhoneBottomSheet(event)
                                     }
                                 }

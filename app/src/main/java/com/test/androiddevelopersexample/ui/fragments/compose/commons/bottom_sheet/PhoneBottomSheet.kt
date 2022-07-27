@@ -49,7 +49,8 @@ import java.util.*
 fun PhoneBottomSheet(
     state: PhoneBottomSheetViewModel.ViewState,
     flagUrl: String,
-    callback: (PhoneBottomSheet) -> Unit = { }
+    callback: (PhoneBottomSheet) -> Unit = { },
+    close: (PhoneBottomSheet) -> Unit = {}
 ) {
     if (state.country == null) {
         callback.invoke(PhoneBottomSheet.LoadCountry)
@@ -58,7 +59,7 @@ fun PhoneBottomSheet(
     if (state.viewCountryList) {
         CountryList(state = state, flagUrl = flagUrl, callback = callback)
     } else {
-        AddPhone(state = state, flagUrl = flagUrl, callback = callback)
+        AddPhone(state = state, flagUrl = flagUrl, callback = callback, close = close)
     }
 
 }
@@ -67,7 +68,8 @@ fun PhoneBottomSheet(
 private fun AddPhone(
     state: PhoneBottomSheetViewModel.ViewState,
     flagUrl: String,
-    callback: (PhoneBottomSheet) -> Unit = { }
+    callback: (PhoneBottomSheet) -> Unit = { },
+    close: (PhoneBottomSheet) -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -93,7 +95,7 @@ private fun AddPhone(
                 .fillMaxWidth()
                 .padding(top = 16.dp, bottom = 16.dp),
             text = "Next",
-            action = {callback.invoke(PhoneBottomSheet.OnNextButton)},
+            action = { close.invoke(PhoneBottomSheet.OnNextButton) },
             enabled = state.isButtonEnabled
         )
         Spacer(Modifier.size(90.dp))
