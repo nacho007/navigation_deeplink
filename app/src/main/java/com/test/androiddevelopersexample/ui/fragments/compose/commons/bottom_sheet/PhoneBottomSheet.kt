@@ -93,7 +93,7 @@ private fun AddPhone(
                 .fillMaxWidth()
                 .padding(top = 16.dp, bottom = 16.dp),
             text = "Next",
-            action = {},
+            action = {callback.invoke(PhoneBottomSheet.OnNextButton)},
             enabled = state.isButtonEnabled
         )
         Spacer(Modifier.size(90.dp))
