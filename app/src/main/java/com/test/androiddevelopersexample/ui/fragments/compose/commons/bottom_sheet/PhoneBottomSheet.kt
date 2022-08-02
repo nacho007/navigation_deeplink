@@ -14,11 +14,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ModalBottomSheetState
+import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -40,14 +45,19 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.Ic
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.SearchToolbar
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import com.test.androiddevelopersexample.ui.fragments.swipe.Country
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import java.util.*
 
 /**
  * Created by Martin Zarzar on 14/7/22.
  */
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PhoneBottomSheet(
     state: PhoneBottomSheetViewModel.ViewState,
+    bottomSheetScope: CoroutineScope,
+    bottomSheetState: ModalBottomSheetState,
     flagUrl: String,
     callback: (PhoneBottomSheet) -> Unit = { }
 ) {
@@ -58,14 +68,23 @@ fun PhoneBottomSheet(
     if (state.viewCountryList) {
         CountryList(state = state, flagUrl = flagUrl, callback = callback)
     } else {
-        AddPhone(state = state, flagUrl = flagUrl, callback = callback)
+        AddPhone(
+            state = state,
+            bottomSheetScope = bottomSheetScope,
+            bottomSheetState = bottomSheetState,
+            flagUrl = flagUrl,
+            callback = callback
+        )
     }
 
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun AddPhone(
     state: PhoneBottomSheetViewModel.ViewState,
+    bottomSheetScope: CoroutineScope,
+    bottomSheetState: ModalBottomSheetState,
     flagUrl: String,
     callback: (PhoneBottomSheet) -> Unit = { }
 ) {
@@ -93,7 +112,12 @@ private fun AddPhone(
                 .fillMaxWidth()
                 .padding(top = 16.dp, bottom = 16.dp),
             text = "Next",
-            action = {},
+            action = {
+                bottomSheetScope.launch {
+                    bottomSheetState.hide()
+                    callback.invoke(PhoneBottomSheet.OnNextButton)
+                }
+            },
             enabled = state.isButtonEnabled
         )
         Spacer(Modifier.size(90.dp))
@@ -208,6 +232,7 @@ sealed class PhoneBottomSheet {
     device = Devices.PIXEL_4,
     uiMode = Configuration.UI_MODE_NIGHT_NO
 )
+@OptIn(ExperimentalMaterialApi::class)
 private fun TestBottomSheetPreview() {
     AstroPayTheme {
         val country = Country(
@@ -220,11 +245,16 @@ private fun TestBottomSheetPreview() {
             states = null,
             displayName = null
         )
+        val bottomSheetState =
+            rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+        val bottomSheetScope = rememberCoroutineScope()
         PhoneBottomSheet(
             state = PhoneBottomSheetViewModel.ViewState(
                 state = Type.HIDE,
                 country = country
             ),
+            bottomSheetScope = bottomSheetScope,
+            bottomSheetState = bottomSheetState,
             flagUrl = ""
         )
     }
@@ -239,6 +269,7 @@ private fun TestBottomSheetPreview() {
     device = Devices.PIXEL_4,
     uiMode = Configuration.UI_MODE_NIGHT_NO
 )
+@OptIn(ExperimentalMaterialApi::class)
 private fun TestBottomSheetCountriesPreview() {
     AstroPayTheme {
         val country = Country(
@@ -252,12 +283,17 @@ private fun TestBottomSheetCountriesPreview() {
             displayName = null
         )
         val countries = listOf(country, country, country, country, country)
+        val bottomSheetState =
+            rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+        val bottomSheetScope = rememberCoroutineScope()
         PhoneBottomSheet(
             state = PhoneBottomSheetViewModel.ViewState(
                 state = Type.HIDE,
                 countries = countries,
                 viewCountryList = true
             ),
+            bottomSheetScope = bottomSheetScope,
+            bottomSheetState = bottomSheetState,
             flagUrl = ""
         )
     }

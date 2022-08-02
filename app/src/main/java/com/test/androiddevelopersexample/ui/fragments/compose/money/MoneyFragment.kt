@@ -87,8 +87,10 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                         sheetContent = {
                             PhoneBottomSheet(
                                 state = phoneState,
+                                bottomSheetScope = bottomSheetScope,
+                                bottomSheetState = bottomSheetState,
                                 flagUrl = phoneViewModel.getCountryUrl(),
-                                callback = { event -> onTestBottomSheet(event) }
+                                callback = { event -> onPhoneBottomSheet(event) }
                             )
                         },
                         sheetState = bottomSheetState,
@@ -213,7 +215,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
         viewModel.onClearDestination()
     }
 
-    private fun onTestBottomSheet(event: PhoneBottomSheet) {
+    private fun onPhoneBottomSheet(event: PhoneBottomSheet) {
         when (event) {
             is PhoneBottomSheet.LoadCountries -> {
                 val json =
@@ -243,7 +245,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                 phoneViewModel.onSerchCountry(event.text)
             }
             is PhoneBottomSheet.OnNextButton -> {
-                //ToDO
+                navigate(MoneyFragmentDirections.actionMoneyFragmentToPaginatedFragment())
             }
             is PhoneBottomSheet.OnClearSearch -> {
                 phoneViewModel.onClearSearch()
