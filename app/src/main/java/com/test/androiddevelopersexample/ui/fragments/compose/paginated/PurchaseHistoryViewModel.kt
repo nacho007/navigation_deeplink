@@ -1,14 +1,9 @@
 package com.test.androiddevelopersexample.ui.fragments.compose.paginated
 
-import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.domain.actions.GetPurchaseHistory
 import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2
-import com.test.androiddevelopersexample.infrastructure.paging_sources.PurchaseHistorySource
 import com.test.androiddevelopersexample.ui.base.BaseAction
 import com.test.androiddevelopersexample.ui.base.BaseViewModel
 import com.test.androiddevelopersexample.ui.base.BaseViewState
@@ -29,17 +24,10 @@ internal class PurchaseHistoryViewModel(
     override fun onLoadData() {
         state = state.copy(
             loadState = Type.HIDE,
-            destination = null
+            destination = null,
+            purchaseHistory = getPurchaseHistory()
         )
     }
-
-    val purchaseHistory: Flow<PagingData<PurchaseHistoryV2>> = Pager(
-        PagingConfig(
-            pageSize = LIST_PAGES_SIZE
-        )
-    ) {
-        PurchaseHistorySource(getPurchaseHistory)
-    }.flow.cachedIn(viewModelScope)
 
     fun onItemPressed(movement: PurchaseHistoryV2) {
         if (movement.purchaseId != -1) {
@@ -93,7 +81,8 @@ internal class PurchaseHistoryViewModel(
         val movements: MutableList<PurchaseHistoryV2> = mutableListOf(),
         val page: Int = 1,
         val loadingNewPage: Boolean = false,
-        val destination: Destination? = null
+        val destination: Destination? = null,
+        val purchaseHistory: Flow<PagingData<PurchaseHistoryV2>>? = null
     ) : BaseViewState
 
     internal sealed class Action : BaseAction {

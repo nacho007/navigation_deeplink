@@ -1,39 +1,35 @@
 package com.test.androiddevelopersexample.domain.actions
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.test.androiddevelopersexample.domain.actions.base.BaseAction
 import com.test.androiddevelopersexample.domain.models.ErrorResponse
 import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryResultV2
 import com.test.androiddevelopersexample.domain.models.ResultWrapper
+import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2
 import com.test.androiddevelopersexample.domain.repositories.UserRepository
+import com.test.androiddevelopersexample.infrastructure.paging_sources.PurchaseHistorySource
+import com.test.androiddevelopersexample.ui.fragments.compose.paginated.PurchaseHistoryViewModel
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by ignaciodeandreisdenis on 19/7/22.
  */
 class GetPurchaseHistory(
-    private val userRepository: UserRepository
+    private val purchaseHistorySource: PurchaseHistorySource
 ) : BaseAction() {
 
     override val name: String get() = "GetPurchaseHistory"
 
-    sealed class Result {
-        data class Success(val value: PurchaseHistoryResultV2) : Result()
-        data class Error(val value: ErrorResponse? = null) : Result()
-        object NetworkError : Result()
-    }
+    operator fun invoke(): Flow<PagingData<PurchaseHistoryV2>> {
+        return Pager(
+            PagingConfig(
+                pageSize = 10
+            )
+        ) {
+            purchaseHistorySource
+        }.flow
 
-    suspend operator fun invoke(page: Int): Result {
-        return when (val resultWrapper = userRepository.getPurchaseHistoryV2(page)) {
-            is ResultWrapper.Success -> {
-                resultWrapper.value.purchaseHistories.map {
-                    it.image =
-                        "https://getapp-test.astropaycard.com/img/payment_methods/".plus(it.image)
-                    it
-                }
-
-                Result.Success(resultWrapper.value)
-            }
-            is ResultWrapper.NetworkError -> Result.NetworkError
-            is ResultWrapper.Error -> Result.Error(resultWrapper.error)
-        }
     }
 }

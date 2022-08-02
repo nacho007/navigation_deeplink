@@ -35,7 +35,6 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state
 import com.test.androiddevelopersexample.ui.fragments.compose.dialogs.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.mock_preview.PurchaseHistoryMockPreview
 import com.test.androiddevelopersexample.ui.utils.navigate
-import com.test.androiddevelopersexample.ui.utils.showToast
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -62,8 +61,7 @@ class PaginatedFragment :
                 AstroPayTheme {
                     Screen(
                         screenState = screenState,
-                        eventReducer = ::onUIEvent,
-                        purchaseList = viewModel.purchaseHistory
+                        eventReducer = ::onUIEvent
                     )
                 }
             }
@@ -73,8 +71,7 @@ class PaginatedFragment :
     @Composable
     private fun Screen(
         screenState: PurchaseHistoryViewModel.ViewState,
-        eventReducer: (UIEvent) -> Unit = {},
-        purchaseList: Flow<PagingData<PurchaseHistoryV2>>
+        eventReducer: (UIEvent) -> Unit = {}
     ) {
         screenState.destination?.let {
             Navigation(it)
@@ -87,7 +84,7 @@ class PaginatedFragment :
             Scaffold(
                 content = {
                     PaginatedList(
-                        purchaseList = purchaseList,
+                        purchaseList = screenState.purchaseHistory,
                         eventReducer = eventReducer
                     )
                 }
@@ -97,11 +94,11 @@ class PaginatedFragment :
 
     @Composable
     private fun PaginatedList(
-        purchaseList: Flow<PagingData<PurchaseHistoryV2>>,
+        purchaseList: Flow<PagingData<PurchaseHistoryV2>>?,
         eventReducer: (UIEvent) -> Unit = {}
     ) {
-        val purchaseListItems: LazyPagingItems<PurchaseHistoryV2> =
-            purchaseList.collectAsLazyPagingItems()
+        val purchaseListItems: LazyPagingItems<PurchaseHistoryV2>? =
+            purchaseList?.collectAsLazyPagingItems()
 
         val swipeRefreshState = rememberSwipeRefreshState(
             isRefreshing = false
@@ -111,7 +108,7 @@ class PaginatedFragment :
             state = swipeRefreshState,
             onRefresh =
             {
-                purchaseListItems.refresh()
+                purchaseListItems?.refresh()
             },
             indicator = { indicatorState, trigger ->
                 DefaultSwipeRefreshIndicator(
@@ -121,41 +118,43 @@ class PaginatedFragment :
             }
         ) {
             LazyColumn {
-                if (purchaseListItems.loadState.refresh !is LoadState.Loading) {
-                    items(purchaseListItems) { item ->
-                        item?.let {
-                            PurchaseHistoryItem(
-                                image = it.image,
-                                type = it.type,
-                                name = it.name,
-                                status = it.status,
-                                currency = it.currency,
-                                amount = it.amount,
-                                date = it.date,
-                                onClick = { eventReducer(UIEvent.ItemClick(it)) }
-                            )
-                        }
-                    }
-                }
-
-                purchaseListItems.apply {
-                    when {
-                        loadState.refresh is LoadState.Loading -> {
-                            item {
-                                Row(
-                                    modifier = Modifier.fillParentMaxSize(),
-                                    horizontalArrangement = Arrangement.Center,
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    ProgressIndicator(color = Color.Yellow)
-                                }
+                purchaseListItems?.let { list ->
+                    if (list.loadState.refresh !is LoadState.Loading) {
+                        items(list) { item ->
+                            item?.let {
+                                PurchaseHistoryItem(
+                                    image = it.image,
+                                    type = it.type,
+                                    name = it.name,
+                                    status = it.status,
+                                    currency = it.currency,
+                                    amount = it.amount,
+                                    date = it.date,
+                                    onClick = { eventReducer(UIEvent.ItemClick(it)) }
+                                )
                             }
                         }
-                        loadState.append is LoadState.Loading -> {
-                            item { ProgressIndicator() }
-                        }
-                        loadState.append is LoadState.Error -> {
-                            Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+                    }
+
+                    list.apply {
+                        when {
+                            loadState.refresh is LoadState.Loading -> {
+                                item {
+                                    Row(
+                                        modifier = Modifier.fillParentMaxSize(),
+                                        horizontalArrangement = Arrangement.Center,
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        ProgressIndicator(color = Color.Yellow)
+                                    }
+                                }
+                            }
+                            loadState.append is LoadState.Loading -> {
+                                item { ProgressIndicator() }
+                            }
+                            loadState.append is LoadState.Error -> {
+                                Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
                 }
@@ -208,8 +207,7 @@ class PaginatedFragment :
         AstroPayTheme {
             Screen(
                 screenState = PurchaseHistoryMockPreview.getMockState(),
-                eventReducer = {},
-                purchaseList = flowOf(PagingData.empty())
+                eventReducer = {}
             )
         }
     }
