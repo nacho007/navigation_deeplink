@@ -13,10 +13,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Button
 import androidx.compose.material.Card
@@ -101,56 +101,55 @@ class CardsListFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBi
         updateToLoadingState: () -> Unit,
         removeLoadingState: () -> Unit
     ) {
-        val scrollState = rememberLazyListState()
-
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-        ) {
-            LazyVerticalGrid(
-                modifier = Modifier.align(Alignment.TopCenter),
-                cells = GridCells.Fixed(2),
-                contentPadding = PaddingValues(8.dp),
-                state = scrollState
-            ) {
-                item {
-                    NewCardComponent()
-                }
-
-                items(cards) { cardAmount ->
-                    ApcCard(amount = cardAmount.toString())
-                }
-
-                item {
-                    Spacer(modifier = Modifier.height(40.dp))
-                }
-            }
-
-            AnimatedVisibility(
-                modifier = Modifier.align(Alignment.BottomCenter),
-                visible = isLoading && scrollState.isScrolledToEnd()
-            ) {
-                CircularProgressIndicator()
-            }
-        }
-
-        // observer when reached end of list
-        val endOfListReached by remember {
-            derivedStateOf {
-                scrollState.isScrolledToEnd()
-            }
-        }
-
-        // act when end of list reached
-        LaunchedEffect(endOfListReached) {
-            if (cards.last() < 100) {
-                updateToLoadingState()
-                delay(1000)
-                addCards(cards)
-                removeLoadingState()
-            }
-        }
+//        val scrollState = rememberLazyGridState()
+//
+//        Box(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(innerPadding),
+//        ) {
+//            LazyVerticalGrid(
+//                modifier = Modifier.align(Alignment.TopCenter),
+//                contentPadding = PaddingValues(8.dp),
+//                state = scrollState
+//            ) {
+//                item {
+//                    NewCardComponent()
+//                }
+//
+//                items(cards) { cardAmount ->
+//                    ApcCard(amount = cardAmount.toString())
+//                }
+//
+//                item {
+//                    Spacer(modifier = Modifier.height(40.dp))
+//                }
+//            }
+//
+//            AnimatedVisibility(
+//                modifier = Modifier.align(Alignment.BottomCenter),
+//                visible = isLoading && scrollState.isScrolledToEnd()
+//            ) {
+//                CircularProgressIndicator()
+//            }
+//        }
+//
+//        // observer when reached end of list
+//        val endOfListReached by remember {
+//            derivedStateOf {
+//                scrollState.isScrolledToEnd()
+//            }
+//        }
+//
+//        // act when end of list reached
+//        LaunchedEffect(endOfListReached) {
+//            if (cards.last() < 100) {
+//                updateToLoadingState()
+//                delay(1000)
+//                addCards(cards)
+//                removeLoadingState()
+//            }
+//        }
     }
 
     @Composable

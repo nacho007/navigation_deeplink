@@ -119,8 +119,8 @@ dependencies {
     // Compose compiler
     implementation 'androidx.compose.compiler:compiler:1.2.0'
     // Compose Material Design
-    implementation 'androidx.compose.material:material:1.1.1'
-    implementation 'androidx.compose.material:material-icons-extended:1.1.1'
+    implementation 'androidx.compose.material:material:1.2.0'
+    implementation 'androidx.compose.material:material-icons-extended:1.2.0'
     implementation "com.google.android.material:compose-theme-adapter:1.1.6"
 
     // Animations
@@ -161,7 +161,7 @@ dependencies {
     implementation 'com.google.accompanist:accompanist-coil:0.12.0'
 
     //Paging 3.0
-    implementation 'androidx.paging:paging-compose:1.0.0-alpha14'
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha15'
 
 
 
