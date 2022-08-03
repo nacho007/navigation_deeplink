@@ -2,14 +2,9 @@ package com.test.androiddevelopersexample.infrastructure.paging_sources
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.test.androiddevelopersexample.domain.actions.GetPurchaseHistory
-import com.test.androiddevelopersexample.domain.models.Page
 import com.test.androiddevelopersexample.domain.models.ResultWrapper
-import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryResultV2
 import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2
 import com.test.androiddevelopersexample.domain.repositories.UserRepository
-import org.apache.http.HttpException
-import java.io.IOException
 
 /**
  * Created by ignaciodeandreisdenis on 20/7/22.
@@ -24,6 +19,7 @@ class PurchaseHistorySource(
                 ?: state.closestPageToPosition(it)?.nextKey?.minus(1)
         }
     }
+
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PurchaseHistoryV2> {
         val nextPage = params.key ?: 1
         return when (val resultWrapper = userRepository.getPurchaseHistoryV2(nextPage)) {

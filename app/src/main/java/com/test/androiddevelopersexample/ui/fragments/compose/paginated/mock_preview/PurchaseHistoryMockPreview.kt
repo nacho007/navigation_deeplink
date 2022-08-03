@@ -9,40 +9,5 @@ object PurchaseHistoryMockPreview {
 
     internal fun getMockState() = PurchaseHistoryViewModel.ViewState(
         loadState = Type.HIDE,
-        movements = mutableStateListOf(
-            PurchaseHistoryV2(
-                purchaseId = 1,
-                status = PurchaseHistoryV2.Status.APPROVED,
-                name = "LiteCoin",
-                currency = "UYU",
-                amount = 500.0,
-                date = "2021-08-11T12:36:43Z",
-                expirationDate = null,
-                image = null,
-                type = PurchaseHistoryV2.Type.APC
-            ),
-            PurchaseHistoryV2(
-                purchaseId = 1,
-                status = PurchaseHistoryV2.Status.PENDING,
-                name = "LiteCoin",
-                currency = "UYU",
-                amount = 500.0,
-                date = "2021-08-11T12:36:43Z",
-                expirationDate = null,
-                image = null,
-                type = PurchaseHistoryV2.Type.APC
-            ),
-            PurchaseHistoryV2(
-                purchaseId = 1,
-                status = PurchaseHistoryV2.Status.CANCELED,
-                name = "LiteCoin",
-                currency = "UYU",
-                amount = 500.0,
-                date = "2021-08-11T12:36:43Z",
-                expirationDate = null,
-                image = null,
-                type = PurchaseHistoryV2.Type.APC
-            ),
-        )
     )
 }

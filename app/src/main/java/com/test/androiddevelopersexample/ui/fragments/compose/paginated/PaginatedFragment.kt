@@ -36,7 +36,6 @@ import com.test.androiddevelopersexample.ui.fragments.compose.dialogs.ModalTrans
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.mock_preview.PurchaseHistoryMockPreview
 import com.test.androiddevelopersexample.ui.utils.navigate
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**

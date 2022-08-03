@@ -53,42 +53,27 @@ internal class PurchaseHistoryViewModel(
                     viewAction.networkError,
                     viewAction.retry
                 )
-            ),
-            loadingNewPage = false
+            )
         )
         is Action.Loading -> {
-            state.movements.clear()
             state.copy(
                 loadState = Type.LOAD_LIGHT,
-                destination = null,
-                loadingNewPage = false
+                destination = null
             )
         }
         is Action.NetworkError -> state.copy(
             loadState = Type.NETWORK_ERROR,
-            destination = null,
-            loadingNewPage = false
-        )
-        else -> state.copy(
-            loadState = Type.NETWORK_ERROR,
-            destination = null,
-            loadingNewPage = false
+            destination = null
         )
     }
 
     internal data class ViewState(
         val loadState: Type = Type.NONE,
-        val movements: MutableList<PurchaseHistoryV2> = mutableListOf(),
-        val page: Int = 1,
-        val loadingNewPage: Boolean = false,
         val destination: Destination? = null,
         val purchaseHistory: Flow<PagingData<PurchaseHistoryV2>>? = null
     ) : BaseViewState
 
     internal sealed class Action : BaseAction {
-        data class GetPurchaseHistorySuccess(val purchaseHistoryResult: List<PurchaseHistoryV2>) :
-            Action()
-
         data class Failure(
             val message: String? = null,
             val errorResourceId: Int = R.string.mobile_generic_error,
@@ -98,16 +83,11 @@ internal class PurchaseHistoryViewModel(
 
         object NetworkError : Action()
         object Loading : Action()
-        object LoadingNewPage : Action()
     }
 
     sealed class Destination {
         data class ErrorDialog(val error: LoadNotificationsError) : Destination()
         data class PurchaseDetail(val id: Int) : Destination()
-    }
-
-    companion object {
-        private const val LIST_PAGES_SIZE = 15
     }
 }
 
