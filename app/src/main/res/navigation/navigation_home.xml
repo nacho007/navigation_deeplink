@@ -268,4 +268,11 @@
         android:name="com.test.androiddevelopersexample.ui.fragments.compose.paginated.PaginatedFragment2"
         android:label="PaginatedFragment" />
 
+    <action
+        android:id="@+id/action_global_Paginated"
+        app:destination="@id/paginatedFragment"
+        app:enterAnim="@animator/fragment_close_enter"
+        app:exitAnim="@animator/fragment_close_exit"
+        app:popEnterAnim="@animator/fragment_open_enter"
+        app:popExitAnim="@animator/fragment_open_exit" />
 </navigation>

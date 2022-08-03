@@ -1,6 +1,8 @@
 package com.test.androiddevelopersexample.ui.activities
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -49,6 +51,11 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
             navHostFragment.navController.graph.setStartDestination(it)
         }
 
+        binding.bottomNav.apply {
+            background = null
+            menu.getItem(2).isEnabled = false
+        }
+
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.newCardFragment -> Log.v("Bottom Navigation", getString(R.string.tab_new_card))
@@ -95,7 +102,21 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
 
     fun showBottomNavigationMenu(show: Boolean) {
         showBottomNavigation = show
-        binding.bottomNav.visibility = VISIBLE.takeIf { show } ?: GONE
+        binding.apply {
+            if (show) {
+                fab.show()
+                bottomAppBar.performShow(true)
+            } else {
+                fab.hide()
+                bottomAppBar.performHide(true)
+            }
+        }
+    }
+
+    fun setFabListener(listener: () -> Unit) {
+        binding.fab.setOnClickListener {
+            listener()
+        }
     }
 
     fun createBadges(id: Int, quantity: Int, visible: Boolean = true) {

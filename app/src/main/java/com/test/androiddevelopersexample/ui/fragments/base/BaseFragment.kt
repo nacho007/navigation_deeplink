@@ -14,8 +14,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.viewbinding.ViewBinding
+import com.test.androiddevelopersexample.HomeNavigationDirections
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.ui.activities.NavigationActivity
+import com.test.androiddevelopersexample.ui.utils.navigate
 
 
 /**
@@ -51,6 +53,9 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
 //        Log.e(screenTag, "onCreateView")
         if (activity is NavigationActivity) {
             (activity as NavigationActivity).showBottomNavigationMenu(showBottomNavigation)
+            (activity as NavigationActivity).setFabListener {
+                navigate(HomeNavigationDirections.actionGlobalPaginated())
+            }
         }
         _binding = inflate.invoke(inflater, container, false)
         return binding.root
