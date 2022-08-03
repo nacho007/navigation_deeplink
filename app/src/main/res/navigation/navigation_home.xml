@@ -61,6 +61,7 @@
             android:id="@+id/action_newCardFragment_to_paymentMethodFragment"
             app:destination="@id/paymentMethodFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/loyaltyFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.loyalty.LoyaltyFragment"

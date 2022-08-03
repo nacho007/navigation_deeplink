@@ -6,7 +6,8 @@
         android:id="@+id/coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:animateLayoutChanges="true">
+        android:animateLayoutChanges="true"
+        android:background="@color/color_transparent">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentNavHost"
@@ -20,20 +21,21 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:rippleColor="@null"
-            android:shadowColor="@null"
-            app:elevation="0dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/svg_arrow_right"
-            app:layout_anchor="@id/bottom_app_bar" />
+            app:elevation="0dp"
+            app:layout_anchor="@id/bottom_app_bar"
+            app:rippleColor="@null" />
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottom_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:fabCradleMargin="10dp"
+            app:contentInsetStart="0dp"
             app:fabAlignmentMode="center"
+            app:fabCradleMargin="10dp"
+            app:backgroundTint="@color/white"
             app:fabCradleRoundedCornerRadius="10dp"
             app:fabCradleVerticalOffset="10dp">
 
@@ -41,7 +43,7 @@
                 android:id="@+id/bottom_nav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:background="@color/color_transparent"
                 app:itemIconTint="@color/selector_bottom_nav_text"
                 app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
                 app:itemTextAppearanceInactive="@style/BottomNavigationView.InActive"

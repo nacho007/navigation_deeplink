@@ -101,7 +101,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
                             SwipeButton()
                             OnBoardingComposeButton()
                             CardsComposeButton()
-                            Spacer(modifier = Modifier.height(16.dp))
+                            Spacer(modifier = Modifier.height(65.dp))
                         }
                     }
                 }
