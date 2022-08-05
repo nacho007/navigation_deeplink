@@ -104,8 +104,8 @@ class NavigationActivity : BaseActivity<ActivityNavigationBinding>() {
         showBottomNavigation = show
         binding.apply {
             if (show) {
-                fab.show()
                 bottomAppBar.performShow(true)
+                fab.show()
             } else {
                 fab.hide()
                 bottomAppBar.performHide(true)

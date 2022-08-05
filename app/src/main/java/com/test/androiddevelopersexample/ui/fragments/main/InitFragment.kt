@@ -61,8 +61,8 @@ class InitFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
     private fun navigate(){
         (activity as NavigationActivity).deepLinkUnLogged = false
-        navigate(R.id.action_initFragment_to_moneyFragment)
-        findNavController().graph.setStartDestination(R.id.moneyFragment)
+        navigate(R.id.action_initFragment_to_newCard)
+        findNavController().graph.setStartDestination(R.id.newCardFragment)
         checkDeepLinks()
     }
 

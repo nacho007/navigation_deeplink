@@ -57,7 +57,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
 
     override var screenTag = "MoneyFragment"
 
-    override var showBottomNavigation: Boolean = true
+    override var showBottomNavigation: Boolean = false
 
     private val viewModel: ComposeViewModel by viewModel()
     private val phoneViewModel: PhoneBottomSheetViewModel by viewModel()

@@ -52,9 +52,10 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
     ): View? {
 //        Log.e(screenTag, "onCreateView")
         if (activity is NavigationActivity) {
-            (activity as NavigationActivity).showBottomNavigationMenu(showBottomNavigation)
-            (activity as NavigationActivity).setFabListener {
-                navigate(HomeNavigationDirections.actionGlobalPaginated())
+            val navigationActivity = activity as NavigationActivity
+            navigationActivity.showBottomNavigationMenu(showBottomNavigation)
+            navigationActivity.setFabListener {
+                navigate(HomeNavigationDirections.openBottomSheetMenu())
             }
         }
         _binding = inflate.invoke(inflater, container, false)

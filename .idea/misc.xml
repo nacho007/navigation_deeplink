@@ -6,12 +6,20 @@
         <entry key="../../../../layout/compose-model-1658930921420.xml" value="0.3175925925925926" />
         <entry key="../../../../layout/compose-model-1658930986067.xml" value="0.16552315608919382" />
         <entry key="../../../../layout/compose-model-1658935913542.xml" value="0.22" />
+        <entry key="../../../../layout/compose-model-1659615687994.xml" value="0.2" />
+        <entry key="../../../../layout/compose-model-1659615725858.xml" value="0.16552315608919382" />
+        <entry key="../../../../layout/compose-model-1659616158609.xml" value="0.3264358108108108" />
+        <entry key="../../../../layout/compose-model-1659620669181.xml" value="0.3264358108108108" />
+        <entry key="../../../../layout/compose-model-1659645945122.xml" value="0.8148148148148148" />
+        <entry key="app/src/main/res/drawable/shape_balloon_top_dialog_web_view.xml" value="0.2245" />
+        <entry key="app/src/main/res/drawable/svg_new_card.xml" value="0.195" />
         <entry key="app/src/main/res/layout/activity_navigation.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_compose.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/fragment_kyc.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/menu/menu_bottom_nav.xml" value="0.37604166666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

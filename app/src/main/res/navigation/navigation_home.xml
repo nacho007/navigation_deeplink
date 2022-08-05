@@ -20,6 +20,11 @@
             app:destination="@id/moneyFragment"
             app:popUpTo="@id/initFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_initFragment_to_newCard"
+            app:destination="@id/newCardFragment"
+            app:popUpTo="@id/initFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -269,11 +274,25 @@
         android:name="com.test.androiddevelopersexample.ui.fragments.compose.paginated.PaginatedFragment2"
         android:label="PaginatedFragment" />
 
+
+    <dialog
+        android:id="@+id/menuBottomSheet"
+        android:name="com.test.androiddevelopersexample.ui.fragments.compose.MenuBottomSheet"
+        android:label="TestFragment" />
+
     <action
-        android:id="@+id/action_global_Paginated"
-        app:destination="@id/paginatedFragment"
-        app:enterAnim="@animator/fragment_close_enter"
-        app:exitAnim="@animator/fragment_close_exit"
-        app:popEnterAnim="@animator/fragment_open_enter"
-        app:popExitAnim="@animator/fragment_open_exit" />
+        android:id="@+id/action_global_money"
+        app:destination="@id/moneyFragment"
+        app:enterAnim="@anim/slide_in_up"
+        app:exitAnim="@anim/slide_out_down"
+        app:popEnterAnim="@anim/slide_in_up"
+        app:popExitAnim="@anim/slide_out_down" />
+
+    <action
+        android:id="@+id/open_bottom_sheet_menu"
+        app:destination="@id/menuBottomSheet"
+        app:enterAnim="@anim/slide_in_up"
+        app:exitAnim="@anim/slide_out_down"
+        app:popEnterAnim="@anim/slide_in_up"
+        app:popExitAnim="@anim/slide_out_down" />
 </navigation>
