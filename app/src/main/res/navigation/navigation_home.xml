@@ -274,6 +274,10 @@
         android:name="com.test.androiddevelopersexample.ui.fragments.compose.paginated.PaginatedFragment2"
         android:label="PaginatedFragment" />
 
+    <fragment
+        android:id="@+id/home"
+        android:name="com.test.androiddevelopersexample.ui.fragments.compose.home.HomeFragment"
+        android:label="HomeFragment" />
 
     <dialog
         android:id="@+id/menuBottomSheet"
@@ -281,8 +285,8 @@
         android:label="TestFragment" />
 
     <action
-        android:id="@+id/action_global_money"
-        app:destination="@id/moneyFragment"
+        android:id="@+id/open_home"
+        app:destination="@id/home"
         app:enterAnim="@anim/slide_in_up"
         app:exitAnim="@anim/slide_out_down"
         app:popEnterAnim="@anim/slide_in_up"

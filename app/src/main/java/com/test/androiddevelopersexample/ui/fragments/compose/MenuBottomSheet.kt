@@ -72,7 +72,7 @@ class MenuBottomSheet :
                                 .fillMaxWidth()
                                 .clip(RoundedCornerShape(8.dp))
                                 .clickable {
-                                    navigate(R.id.action_global_money)
+                                    navigate(R.id.open_home)
                                     dismiss()
                                 }
                                 .padding(vertical = 8.dp, horizontal = 8.dp)
