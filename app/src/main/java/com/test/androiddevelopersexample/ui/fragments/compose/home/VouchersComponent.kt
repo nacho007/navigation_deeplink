@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,7 +42,10 @@ fun MyVouchersComponent(
 ) {
     Column {
         if (vouchers.isEmpty()) {
-            HomeHeaderItem(text = "My vouchers")
+            HomeHeaderItem(
+                modifier = Modifier.padding(start = 16.dp, end = 8.dp),
+                text = "My vouchers"
+            )
             Spacer(modifier = Modifier.height(8.dp))
             Row(
                 modifier = Modifier.padding(horizontal = 16.dp)
@@ -70,6 +74,7 @@ fun MyVouchersComponent(
             }
         } else {
             HomeHeaderItem(
+                modifier = Modifier.padding(start = 16.dp, end = 8.dp),
                 text = "My vouchers",
                 action = { seAllVoucher() }
             )
@@ -90,9 +95,9 @@ fun MyVouchersComponent(
                         )
                     }
                 }
-                items(15) {
+                items(vouchers.size) { index ->
                     GenericVoucherItem(
-                        text = "R$ 1000",
+                        text = vouchers[index],
                         action = { openVoucher("id") }
                     ) {
                         BodyText(
@@ -152,15 +157,17 @@ private fun GenericVoucherItem(
 )
 private fun GenericVoucherItemPreview() {
     AstroPayTheme {
-        GenericVoucherItem(
-            text = "R$ 1000",
-            action = { }
-        ) {
-            BodyText(
-                fontWeight = FontWeight.Bold,
-                text = "AstroPay",
-                color = Color.White
-            )
+        Surface {
+            GenericVoucherItem(
+                text = "R$ 1000",
+                action = { }
+            ) {
+                BodyText(
+                    fontWeight = FontWeight.Bold,
+                    text = "AstroPay",
+                    color = Color.White
+                )
+            }
         }
     }
 }
@@ -178,28 +185,30 @@ private fun GenericVoucherItemPreview() {
 )
 private fun VouchersPreview() {
     AstroPayTheme {
-        val vouchers = listOf(
-            "R$ 1000",
-            "R$ 30",
-            "R$ 5000",
-            "R$ 58",
-            "R$ 1000",
-            "R$ 30",
-            "R$ 5000",
-            "R$ 58",
-            "R$ 1000",
-            "R$ 30",
-            "R$ 5000",
-            "R$ 58"
-        )
-        MyVouchersComponent(
-            vouchers = vouchers,
-            newVoucher = { },
-            seAllVoucher = { },
-            openVoucher = {
+        Surface {
+            val vouchers = listOf(
+                "R$ 1000",
+                "R$ 30",
+                "R$ 5000",
+                "R$ 58",
+                "R$ 1000",
+                "R$ 30",
+                "R$ 5000",
+                "R$ 58",
+                "R$ 1000",
+                "R$ 30",
+                "R$ 5000",
+                "R$ 58"
+            )
+            MyVouchersComponent(
+                vouchers = vouchers,
+                newVoucher = { },
+                seAllVoucher = { },
+                openVoucher = {
 
-            }
-        )
+                }
+            )
+        }
     }
 }
 
@@ -216,13 +225,15 @@ private fun VouchersPreview() {
 )
 private fun VouchersEmptyPreview() {
     AstroPayTheme {
-        MyVouchersComponent(
-            vouchers = emptyList(),
-            newVoucher = { },
-            seAllVoucher = { },
-            openVoucher = {
+        Surface {
+            MyVouchersComponent(
+                vouchers = emptyList(),
+                newVoucher = { },
+                seAllVoucher = { },
+                openVoucher = {
 
-            }
-        )
+                }
+            )
+        }
     }
 }

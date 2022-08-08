@@ -3,7 +3,7 @@ package com.test.androiddevelopersexample.ui.fragments.compose.home
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,17 +17,17 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.Body
 
 @Composable
 fun HomeHeaderItem(
+    modifier: Modifier = Modifier,
     text: String,
     action: (() -> Unit)? = null
 ) {
     Row(
-        modifier = Modifier.padding(horizontal = 8.dp),
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
         BodyText(
             modifier = Modifier
-                .weight(1f)
-                .padding(start = 8.dp),
+                .weight(1f),
             fontWeight = FontWeight.SemiBold,
             text = text
         )
@@ -54,10 +54,12 @@ fun HomeHeaderItem(
 )
 private fun HomeHeaderItemPreview() {
     AstroPayTheme {
-        HomeHeaderItem(
-            text = "My activity",
-            action = {}
-        )
+        Surface {
+            HomeHeaderItem(
+                text = "My activity",
+                action = {}
+            )
+        }
     }
 }
 
@@ -74,9 +76,11 @@ private fun HomeHeaderItemPreview() {
 )
 private fun HomeHeaderEmptyItemPreview() {
     AstroPayTheme {
-        HomeHeaderItem(
-            text = "My activity",
-            action = null
-        )
+        Surface {
+            HomeHeaderItem(
+                text = "My activity",
+                action = null
+            )
+        }
     }
 }

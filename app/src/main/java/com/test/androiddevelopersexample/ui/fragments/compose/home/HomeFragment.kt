@@ -29,6 +29,27 @@ import com.test.androiddevelopersexample.ui.utils.navigate
 class HomeFragment :
     BaseFragment<FragmentComposeBinding>(FragmentComposeBinding::inflate) {
 
+    private val vouchers = listOf(
+        "R$ 1000",
+        "R$ 30",
+        "R$ 5000",
+        "R$ 58",
+        "R$ 1000",
+        "R$ 30",
+        "R$ 5000",
+        "R$ 58",
+        "R$ 1000",
+        "R$ 30",
+        "R$ 5000",
+        "R$ 58"
+    )
+
+    private val transactions = listOf(
+        "R$ 200",
+        "BTC 0.03",
+        "USD 45",
+        "R$ 1000"
+    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -57,39 +78,47 @@ class HomeFragment :
                     text = "Home"
                 )
 
-                val vouchers = listOf(
-                    "R$ 1000",
-                    "R$ 30",
-                    "R$ 5000",
-                    "R$ 58",
-                    "R$ 1000",
-                    "R$ 30",
-                    "R$ 5000",
-                    "R$ 58",
-                    "R$ 1000",
-                    "R$ 30",
-                    "R$ 5000",
-                    "R$ 58"
+                Spacer(modifier = Modifier.height(16.dp))
+
+                MyVouchersComponent(
+                    vouchers = vouchers,
+                    newVoucher = { navigate(R.id.open_home) },
+                    seAllVoucher = { navigate(R.id.open_home) },
+                    openVoucher = {
+
+                    }
                 )
-                repeat(4) {
-                    MyVouchersComponent(
-                        vouchers = vouchers,
-                        newVoucher = { navigate(R.id.open_home) },
-                        seAllVoucher = { navigate(R.id.open_home) },
-                        openVoucher = {
+                Spacer(modifier = Modifier.height(32.dp))
 
-                        }
-                    )
-                    Spacer(modifier = Modifier.height(32.dp))
-                    MyVouchersComponent(
-                        vouchers = emptyList(),
-                        newVoucher = { navigate(R.id.open_home) },
-                        seAllVoucher = { navigate(R.id.open_home) },
-                        openVoucher = {
+                MyVouchersComponent(
+                    vouchers = emptyList(),
+                    newVoucher = { navigate(R.id.open_home) },
+                    seAllVoucher = { navigate(R.id.open_home) },
+                    openVoucher = {
 
-                        }
-                    )
-                }
+                    }
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                TransactionsComponent(
+                    modifier = Modifier
+                        .padding(start = 16.dp, end = 8.dp),
+                    transactions = transactions,
+                    seAllTransactions = { }
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                TransactionsComponent(
+                    modifier = Modifier
+                        .padding(start = 16.dp, end = 8.dp),
+                    transactions = emptyList(),
+                    seAllTransactions = { }
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
             }
         }
     }
