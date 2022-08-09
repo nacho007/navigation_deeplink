@@ -17,6 +17,45 @@ import com.test.androiddevelopersexample.ui.utils.ImageHelper
  * Created by ignaciodeandreisdenis on 19/7/22.
  */
 @Composable
+fun AsyncImage(
+    image: String?,
+    placeholderRes: Int,
+    modifier: Modifier = Modifier,
+    imageExtension: ImageExtension = ImageExtension.NONE,
+    contentScale: ContentScale = ContentScale.Fit,
+) {
+    if (image.isNullOrEmpty()) {
+        Image(
+            painter = painterResource(placeholderRes),
+            contentDescription = null,
+            modifier = modifier,
+            contentScale = contentScale,
+        )
+    } else {
+        SubcomposeAsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(ImageHelper.getFormattedPath(imageExtension, image))
+                .build(),
+            contentDescription = null,
+            modifier = modifier,
+            contentScale = contentScale,
+        ) {
+            when (painter.state) {
+                is AsyncImagePainter.State.Empty,
+                is AsyncImagePainter.State.Loading,
+                is AsyncImagePainter.State.Error -> Image(
+                    painter = painterResource(placeholderRes),
+                    contentDescription = null,
+                    contentScale = contentScale,
+                    modifier = modifier,
+                )
+                is AsyncImagePainter.State.Success -> SubcomposeAsyncImageContent()
+            }
+        }
+    }
+}
+
+@Composable
 fun AstroAsyncImage(
     image: String?,
     placeholderRes: Int,

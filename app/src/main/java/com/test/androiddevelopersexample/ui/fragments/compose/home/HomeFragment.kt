@@ -5,12 +5,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Surface
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
@@ -65,61 +64,69 @@ class HomeFragment :
 
     @Composable
     fun Screen() {
-        Surface(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Column(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState())
-            ) {
-                H4Title(
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp),
-                    text = "Home"
+        Scaffold(
+            topBar = {
+                HomeToolbar(
+                    name = "Pedro Lopez",
+                    image = "https://astro-tst-profile-pictures.s3.amazonaws.com/0VxyjL74-1659990190890.png",
+                    openProfile = { },
+                    openNotifications = {},
+                    counter = 1
                 )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                MyVouchersComponent(
-                    vouchers = vouchers,
-                    newVoucher = { navigate(R.id.open_home) },
-                    seAllVoucher = { navigate(R.id.open_home) },
-                    openVoucher = {
-
-                    }
-                )
-                Spacer(modifier = Modifier.height(32.dp))
-
-                MyVouchersComponent(
-                    vouchers = emptyList(),
-                    newVoucher = { navigate(R.id.open_home) },
-                    seAllVoucher = { navigate(R.id.open_home) },
-                    openVoucher = {
-
-                    }
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                TransactionsComponent(
-                    modifier = Modifier
-                        .padding(start = 16.dp, end = 8.dp),
-                    transactions = transactions,
-                    seAllTransactions = { }
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                TransactionsComponent(
-                    modifier = Modifier
-                        .padding(start = 16.dp, end = 8.dp),
-                    transactions = emptyList(),
-                    seAllTransactions = { }
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
             }
+        ) { it ->
+            Content()
+        }
+    }
+
+    @Composable
+    private fun Content() {
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+        ) {
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            MyVouchersComponent(
+                vouchers = vouchers,
+                newVoucher = { navigate(R.id.open_home) },
+                seAllVoucher = { navigate(R.id.open_home) },
+                openVoucher = {
+
+                }
+            )
+            Spacer(modifier = Modifier.height(32.dp))
+
+            MyVouchersComponent(
+                vouchers = emptyList(),
+                newVoucher = { navigate(R.id.open_home) },
+                seAllVoucher = { navigate(R.id.open_home) },
+                openVoucher = {
+
+                }
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            TransactionsComponent(
+                modifier = Modifier
+                    .padding(start = 16.dp, end = 8.dp),
+                transactions = transactions,
+                seAllTransactions = { }
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            TransactionsComponent(
+                modifier = Modifier
+                    .padding(start = 16.dp, end = 8.dp),
+                transactions = emptyList(),
+                seAllTransactions = { }
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
         }
     }
 
