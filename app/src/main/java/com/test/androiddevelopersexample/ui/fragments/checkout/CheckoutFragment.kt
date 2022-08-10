@@ -37,4 +37,9 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(FragmentCheckoutB
         }
     }
 
+    override val fragmentName: String
+        get() = "CheckoutFragment"
+    override val screenName: String
+        get() = "CheckoutFragment"
+
 }

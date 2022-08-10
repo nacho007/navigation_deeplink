@@ -32,4 +32,9 @@ class NotificationDetailFragment : BaseFragment<FragmentNotificationDetailBindin
             }
         }
     }
+
+    override val fragmentName: String
+        get() = "NotificationDetailFragment"
+    override val screenName: String
+        get() = "NotificationDetailFragment"
 }

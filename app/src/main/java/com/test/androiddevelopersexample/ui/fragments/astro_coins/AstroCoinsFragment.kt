@@ -20,4 +20,9 @@ class AstroCoinsFragment : BaseFragment<FragmentAstroCoinsBinding>(FragmentAstro
             setNavigation(ablToolbar.toolbar, R.id.astroCoinsFragment)
         }
     }
+
+    override val fragmentName: String
+        get() = "AstroCoinsFragment"
+    override val screenName: String
+        get() = "AstroCoinsFragment"
 }

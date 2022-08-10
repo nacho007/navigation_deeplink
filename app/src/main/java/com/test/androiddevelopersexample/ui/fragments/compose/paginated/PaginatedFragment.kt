@@ -29,10 +29,10 @@ import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.CustomErrorDialog
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.progress.ProgressIndicator
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.swipe.DefaultSwipeRefreshIndicator
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
-import com.test.androiddevelopersexample.ui.fragments.compose.dialogs.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.paginated.mock_preview.PurchaseHistoryMockPreview
 import com.test.androiddevelopersexample.ui.utils.navigate
 import kotlinx.coroutines.flow.Flow
@@ -210,4 +210,9 @@ class PaginatedFragment :
             )
         }
     }
+
+    override val fragmentName: String
+        get() = "PaginatedFragment"
+    override val screenName: String
+        get() = "PaginatedFragment"
 }

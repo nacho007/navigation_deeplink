@@ -53,6 +53,6 @@ class UserRepositoryImpl(
     companion object {
         private const val PAGE = "page"
         private const val SIZE = "size"
-        private const val LIST_PAGES_SIZE = "15"
+        private const val LIST_PAGES_SIZE = "10"
     }
 }

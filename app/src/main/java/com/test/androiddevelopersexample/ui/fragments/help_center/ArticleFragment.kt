@@ -21,4 +21,9 @@ class ArticleFragment : BaseFragment<FragmentArticleBinding>(FragmentArticleBind
         }
     }
 
+    override val fragmentName: String
+        get() = "ArticleFragment"
+    override val screenName: String
+        get() = "ArticleFragment"
+
 }

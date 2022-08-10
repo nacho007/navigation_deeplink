@@ -17,5 +17,10 @@ class CardsFragment : BaseFragment<FragmentCardsBinding>(FragmentCardsBinding::i
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
+
+    override val fragmentName: String
+        get() = "CardsFragment"
+    override val screenName: String
+        get() = "CardsFragment"
 }
 

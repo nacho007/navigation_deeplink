@@ -282,4 +282,9 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
             }
         }
     }
+
+    override val fragmentName: String
+        get() = "OnBoardingFragment"
+    override val screenName: String
+        get() = "OnBoardingFragment"
 }

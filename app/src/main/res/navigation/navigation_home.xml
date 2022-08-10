@@ -174,6 +174,9 @@
         <action
             android:id="@+id/action_moneyFragment_to_paginatedFragment2"
             app:destination="@id/paginatedFragment2" />
+        <action
+            android:id="@+id/action_moneyFragment_to_transferContactsFragment"
+            app:destination="@id/transferContactsFragment" />
     </fragment>
 
     <navigation
@@ -230,7 +233,7 @@
 
     <dialog
         android:id="@+id/phoneBottomSheet"
-        android:name="com.test.androiddevelopersexample.ui.bottom_sheets.PhoneBottomSheet"
+        android:name="com.test.androiddevelopersexample.ui.fragments.compose.commons.bottom_sheet.PhoneBottomSheet"
         android:label="PhoneBottomSheet"
         tools:layout="@layout/bottom_sheet_phone" />
     <fragment
@@ -245,7 +248,7 @@
         tools:layout="@layout/fragment_custom_component" />
     <fragment
         android:id="@+id/cardsListFragment"
-        android:name="com.test.androiddevelopersexample.ui.fragments.compose.CardsListFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.compose.cards.CardsListFragment"
         android:label="CardsListFragment"
         tools:layout="@layout/fragment_custom_component" />
     <fragment
@@ -267,5 +270,26 @@
         android:id="@+id/paginatedFragment2"
         android:name="com.test.androiddevelopersexample.ui.fragments.compose.paginated.PaginatedFragment2"
         android:label="PaginatedFragment" />
+
+    <fragment
+        android:id="@+id/transferContactsFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.compose.contacts.TransferContactsFragment">
+
+        <argument
+            android:name="transferWalletParameters"
+            app:argType="com.test.androiddevelopersexample.domain.actions.contacts.TransferWalletParameter"
+            app:nullable="true" />
+
+        <argument
+            android:name="transferAPCParameters"
+            app:argType="com.test.androiddevelopersexample.domain.actions.contacts.TransferAPCParameter"
+            app:nullable="true" />
+
+        <argument
+            android:name="flowType"
+            app:argType="com.test.androiddevelopersexample.ui.fragments.compose.contacts.FlowType"
+            app:nullable="false" />
+
+    </fragment>
 
 </navigation>

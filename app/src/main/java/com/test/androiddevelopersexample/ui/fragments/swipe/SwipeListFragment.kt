@@ -90,4 +90,9 @@ class SwipeListFragment :
         countryAdapter.update(countriesViewList)
 
     }
+
+    override val fragmentName: String
+        get() = "SwipeListFragment"
+    override val screenName: String
+        get() = "SwipeListFragment"
 }

@@ -180,4 +180,9 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
             Screen(screenState = ComposeViewModel.ViewState(loadState = Type.HIDE))
         }
     }
+
+    override val fragmentName: String
+        get() = "ComposeFragment"
+    override val screenName: String
+        get() = "ComposeFragment"
 }

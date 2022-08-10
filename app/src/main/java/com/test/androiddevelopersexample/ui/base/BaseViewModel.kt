@@ -48,3 +48,5 @@ interface BaseViewState
 interface BaseAction
 
 fun <T> MutableLiveData<T>.asLiveData() = this as LiveData<T>
+
+data class GenericError(val message: String? = null, val errorResourceId: Int)

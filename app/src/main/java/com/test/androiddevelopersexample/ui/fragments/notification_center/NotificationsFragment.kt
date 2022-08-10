@@ -35,4 +35,9 @@ class NotificationsFragment : BaseFragment<FragmentNotificationsBinding>(Fragmen
         }
 
     }
+
+    override val fragmentName: String
+        get() = "NotificationsFragment"
+    override val screenName: String
+        get() = "NotificationsFragment"
 }

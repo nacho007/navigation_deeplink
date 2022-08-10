@@ -49,4 +49,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             }, 1500.toLong(), TimeUnit.MILLISECONDS)
         }
     }
+
+    override val fragmentName: String
+        get() = "LoginFragment"
+    override val screenName: String
+        get() = "LoginFragment"
 }

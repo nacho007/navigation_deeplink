@@ -17,7 +17,7 @@ import com.test.androiddevelopersexample.ui.utils.ImageHelper
  * Created by ignaciodeandreisdenis on 19/7/22.
  */
 @Composable
-fun AstroAsyncImage(
+fun AsyncImage(
     image: String?,
     placeholderRes: Int,
     modifier: Modifier = Modifier,

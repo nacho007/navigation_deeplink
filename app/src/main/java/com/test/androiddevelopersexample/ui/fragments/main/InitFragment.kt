@@ -85,4 +85,9 @@ class InitFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             }
         }
     }
+
+    override val fragmentName: String
+        get() = "InitFragment"
+    override val screenName: String
+        get() = "InitFragment"
 }

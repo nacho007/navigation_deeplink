@@ -23,5 +23,10 @@ class WalletFragment : BaseFragment<FragmentWalletBinding>(FragmentWalletBinding
         }
     }
 
+    override val fragmentName: String
+        get() = "WalletFragment"
+    override val screenName: String
+        get() = "WalletFragment"
+
 }
 

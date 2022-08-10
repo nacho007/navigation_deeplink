@@ -28,4 +28,9 @@ class PaymentMethodFragment : BaseFragment<FragmentPaymentMethodBinding>(Fragmen
         }
     }
 
+    override val fragmentName: String
+        get() = "PaymentMethodsFragment"
+    override val screenName: String
+        get() = "PaymentMethodsFragment"
+
 }

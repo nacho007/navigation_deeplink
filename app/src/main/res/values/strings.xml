@@ -86,7 +86,7 @@
     <string name="mobile_privacy_policy">"Privacy Policy"</string>
     <string name="mobile_terms_and_conditions_privacy_policy">"I agree to the %s and that I have read the %s"</string>
 
-    <string name="mobile_transfer_amount_to">"You will have a total credit of %1$s %2$s at %3$s"</string>
+    <string name="mobile_transfer_amount_to">Transfer %s to:</string>
     <string name="mobile_on_boarding_promo_code_title">"Do you have a promo code?"</string>
     <string name="mobile_on_boarding_promo_code_enter">"Enter your promo code"</string>
     <string name="mobile_on_boarding_yes_apply_promo_code">"Yes, apply promo code"</string>
@@ -103,4 +103,7 @@
     <string name="mobile_wallet">Wallet</string>
     <string name="mobile_game_cards">Game cards</string>
     <string name="mobile_generic_error">We are experiencing difficulties with the system. Please try again later.</string>
+    <string name="mobile_continue">Continue</string>
+    <string name="mobile_permission_needed_contacts">We need this permission for use the contact list</string>
+    <string name="mobile_choose_who_to_send_money">Choose who to send the money to</string>
 </resources>

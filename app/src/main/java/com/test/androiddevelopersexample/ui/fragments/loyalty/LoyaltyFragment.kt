@@ -26,4 +26,9 @@ class LoyaltyFragment : BaseFragment<FragmentLoyaltyBinding>(FragmentLoyaltyBind
         }
     }
 
+    override val fragmentName: String
+        get() = "LoyaltyFragment"
+    override val screenName: String
+        get() = "LoyaltyFragment"
+
 }

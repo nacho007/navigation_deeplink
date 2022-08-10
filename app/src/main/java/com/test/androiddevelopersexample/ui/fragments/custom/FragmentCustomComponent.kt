@@ -20,4 +20,9 @@ class FragmentCustomComponent :
             plPhone.setIcon("https://getapp-test.astropaycard.com/img/flags/AR")
         }
     }
+
+    override val fragmentName: String
+        get() = "FragmentCustomComponent"
+    override val screenName: String
+        get() = "FragmentCustomComponent"
 }

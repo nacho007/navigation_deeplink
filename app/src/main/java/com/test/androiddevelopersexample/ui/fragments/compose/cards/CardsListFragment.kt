@@ -214,6 +214,11 @@ class CardsListFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBi
             Screen()
         }
     }
+
+    override val fragmentName: String
+        get() = "CardsFragment"
+    override val screenName: String
+        get() = "CardsFragment"
 }
 
 fun LazyListState.isScrolledToEnd() = layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1

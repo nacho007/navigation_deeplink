@@ -32,5 +32,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             navigate(R.id.action_registerFragment_to_moneyFragment)
         }
     }
+
+    override val fragmentName: String
+        get() = "RegisterFragment"
+    override val screenName: String
+        get() = "RegisterFragment"
 }
 

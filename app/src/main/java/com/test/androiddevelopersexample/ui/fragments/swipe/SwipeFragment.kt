@@ -38,4 +38,9 @@ class SwipeFragment : BaseFragment<FragmentSwipeBinding>(FragmentSwipeBinding::i
             }
         }
     }
+
+    override val fragmentName: String
+        get() = "SwipeFragment"
+    override val screenName: String
+        get() = "SwipeFragment"
 }

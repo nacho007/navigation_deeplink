@@ -71,4 +71,9 @@ class ViewPagerFragment  : BaseFragment<FragmentViewpagerBinding>(FragmentViewpa
             }
         }
     }
+
+    override val fragmentName: String
+        get() = "ViewPagerFragment"
+    override val screenName: String
+        get() = "ViewPagerFragment"
 }

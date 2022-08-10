@@ -32,10 +32,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
+import com.test.androiddevelopersexample.domain.actions.contacts.TransferWalletParameter
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.ComposeViewModel
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.bottom_sheet.PhoneBottomSheet
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.bottom_sheet.PhoneBottomSheetAction
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.bottom_sheet.PhoneBottomSheetViewModel
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.buttons.DefaultButton
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.cards.DefaultCardView
@@ -44,6 +46,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.As
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
+import com.test.androiddevelopersexample.ui.fragments.compose.contacts.FlowType
 import com.test.androiddevelopersexample.ui.utils.Utils
 import com.test.androiddevelopersexample.ui.utils.navigate
 import kotlinx.coroutines.CoroutineScope
@@ -162,6 +165,25 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp),
+                            text = "Contact List",
+                            action = {
+                                navigate(
+                                    MoneyFragmentDirections.actionMoneyFragmentToTransferContactsFragment(
+                                        transferWalletParameters = TransferWalletParameter(
+                                            amount = 200.0,
+                                            currency = "USD"
+                                        ),
+                                        transferAPCParameters = null,
+                                        flowType = FlowType.WALLET
+                                    )
+                                )
+                            }
+                        )
+
+                        DefaultButton(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp),
                             text = "Continues",
                             action = {}
                         )
@@ -215,9 +237,9 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
         viewModel.onClearDestination()
     }
 
-    private fun onPhoneBottomSheet(event: PhoneBottomSheet) {
+    private fun onPhoneBottomSheet(event: PhoneBottomSheetAction) {
         when (event) {
-            is PhoneBottomSheet.LoadCountries -> {
+            is PhoneBottomSheetAction.LoadCountries -> {
                 val json =
                     Utils.loadJSONFromAsset(
                         requireContext(),
@@ -228,26 +250,26 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                     phoneViewModel.emulateLoadCountries(it)
                 }
             }
-            is PhoneBottomSheet.OnChangePhone -> {
+            is PhoneBottomSheetAction.OnChangePhoneAction -> {
                 phoneViewModel.onUpdatePhoneNumber(event.phone)
             }
-            is PhoneBottomSheet.LoadCountry -> {
+            is PhoneBottomSheetAction.LoadCountry -> {
                 val json = Utils.loadJSONFromAsset(requireContext(), "country.json")
                 json?.let { phoneViewModel.emulateLoadCountry(it) }
             }
-            is PhoneBottomSheet.CloseCountryList -> {
+            is PhoneBottomSheetAction.CloseCountryList -> {
                 phoneViewModel.openCountryList(false)
             }
-            is PhoneBottomSheet.OnSelectCountry -> {
+            is PhoneBottomSheetAction.OnSelectCountry -> {
                 phoneViewModel.onSelectCountry(event.country)
             }
-            is PhoneBottomSheet.OnSearchCountry -> {
+            is PhoneBottomSheetAction.OnSearchCountry -> {
                 phoneViewModel.onSerchCountry(event.text)
             }
-            is PhoneBottomSheet.OnNextButton -> {
+            is PhoneBottomSheetAction.OnNextButton -> {
                 navigate(MoneyFragmentDirections.actionMoneyFragmentToPaginatedFragment())
             }
-            is PhoneBottomSheet.OnClearSearch -> {
+            is PhoneBottomSheetAction.OnClearSearch -> {
                 phoneViewModel.onClearSearch()
             }
         }
@@ -277,4 +299,9 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
             )
         }
     }
+
+    override val fragmentName: String
+        get() = "MoneyFragment"
+    override val screenName: String
+        get() = "MoneyFragment"
 }

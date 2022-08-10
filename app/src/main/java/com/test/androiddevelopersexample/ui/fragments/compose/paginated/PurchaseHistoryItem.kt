@@ -31,7 +31,7 @@ import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.cards.DefaultCardView
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.images.AstroAsyncImage
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.images.AsyncImage
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
 import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2.Status.APPROVED
 import com.test.androiddevelopersexample.domain.models.purchase.PurchaseHistoryV2.Status.CANCELED
@@ -73,7 +73,7 @@ fun PurchaseHistoryItem(
 
             ) {
                 Row(Modifier.weight(0.5f)) {
-                    AstroAsyncImage(
+                    AsyncImage(
                         image = image,
                         placeholderRes = R.drawable.svg_loading_cube,
                         imageExtension = ImageExtension.SVG,

@@ -35,4 +35,9 @@ class SwipeCustomFragment :
 
         }
     }
+
+    override val fragmentName: String
+        get() = "SwipeFragment"
+    override val screenName: String
+        get() = "SwipeFragment"
 }

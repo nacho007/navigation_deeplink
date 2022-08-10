@@ -31,7 +31,7 @@ import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.CustomDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.CustomPositiveNegativeDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.ErrorDialog
-import com.test.androiddevelopersexample.ui.fragments.compose.dialogs.ModalTransitionDialog
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.custom.ComposeIconButton
 import com.test.androiddevelopersexample.ui.utils.DeepLinkUtils.PUSH_LOYALTY
 import com.test.androiddevelopersexample.ui.utils.Messaging
@@ -390,4 +390,9 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
         private const val PUSH_TIME_TOAST_TEXT = "Push will be sent in 3 seconds"
         private const val DIALOG = 103
     }
+
+    override val fragmentName: String
+        get() = "MoreFragment"
+    override val screenName: String
+        get() = "MoreFragment"
 }

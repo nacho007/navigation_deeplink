@@ -24,8 +24,11 @@ import com.test.androiddevelopersexample.ui.activities.NavigationActivity
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
 abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) : Fragment() {
-
     open var screenTag = "BaseFragment"
+
+    protected abstract val fragmentName: String
+    protected abstract val screenName: String
+
     private var _binding: VB? = null
     protected val binding get() = _binding!!
     open var showBottomNavigation = false

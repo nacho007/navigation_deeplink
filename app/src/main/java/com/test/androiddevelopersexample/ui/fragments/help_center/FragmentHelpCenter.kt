@@ -27,4 +27,9 @@ class FragmentHelpCenter :
         }
     }
 
+    override val fragmentName: String
+        get() = "HelpCenterFragment"
+    override val screenName: String
+        get() = "HelpCenterFragment"
+
 }

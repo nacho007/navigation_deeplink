@@ -159,4 +159,9 @@ class ContactsFragment :
         }
     }
 
+    override val fragmentName: String
+        get() = "ContactsFragment"
+    override val screenName: String
+        get() = "ContactsFragment"
+
 }

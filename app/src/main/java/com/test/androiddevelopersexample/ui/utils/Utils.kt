@@ -37,4 +37,15 @@ object Utils {
             }
             return form
         }
+
+    private var nf: DecimalFormat? = null
+    val decimalFormatOnlyShowDecimalIfNotZero: DecimalFormat?
+        get() {
+            if (nf == null) {
+                nf = DecimalFormat("#.##", DecimalFormatSymbols(Locale.US))
+                nf?.isDecimalSeparatorAlwaysShown = false
+                nf?.roundingMode = RoundingMode.DOWN
+            }
+            return nf
+        }
 }

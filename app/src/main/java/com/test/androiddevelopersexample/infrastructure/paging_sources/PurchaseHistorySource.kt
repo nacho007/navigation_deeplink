@@ -28,11 +28,15 @@ class PurchaseHistorySource(
                 val purchaseHistories = resultWrapper.value.purchaseHistories
                 val nextKey = if (purchaseHistories.isNotEmpty()) nextPage + 1 else null
 
-                LoadResult.Page(
-                    data = purchaseHistories,
-                    prevKey = prevKey,
-                    nextKey = nextKey
-                )
+                if (nextKey == 4) {
+                    LoadResult.Error(Exception())
+                } else {
+                    LoadResult.Page(
+                        data = purchaseHistories,
+                        prevKey = prevKey,
+                        nextKey = nextKey
+                    )
+                }
             }
             else -> LoadResult.Error(Exception())
         }

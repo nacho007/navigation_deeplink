@@ -19,4 +19,9 @@ class NewCardFragment : BaseFragment<FragmentNewCardBinding>(FragmentNewCardBind
             findNavController().navigate(R.id.action_newCardFragment_to_paymentMethodFragment)
         }
     }
+
+    override val fragmentName: String
+        get() = "NewCardFragment"
+    override val screenName: String
+        get() = "NewCardFragment"
 }

@@ -59,10 +59,10 @@ fun PhoneBottomSheet(
     bottomSheetScope: CoroutineScope,
     bottomSheetState: ModalBottomSheetState,
     flagUrl: String,
-    callback: (PhoneBottomSheet) -> Unit = { }
+    callback: (PhoneBottomSheetAction) -> Unit = { }
 ) {
     if (state.country == null) {
-        callback.invoke(PhoneBottomSheet.LoadCountry)
+        callback.invoke(PhoneBottomSheetAction.LoadCountry)
     }
 
     if (state.viewCountryList) {
@@ -86,7 +86,7 @@ private fun AddPhone(
     bottomSheetScope: CoroutineScope,
     bottomSheetState: ModalBottomSheetState,
     flagUrl: String,
-    callback: (PhoneBottomSheet) -> Unit = { }
+    callback: (PhoneBottomSheetAction) -> Unit = { }
 ) {
     Column(
         modifier = Modifier
@@ -100,9 +100,9 @@ private fun AddPhone(
                 flagIcon = "${flagUrl}${country.iso}",
                 hint = country.phoneHint,
                 text = state.phoneNumber,
-                onTextChanged = { callback.invoke(PhoneBottomSheet.OnChangePhone(it)) },
+                onTextChanged = { callback.invoke(PhoneBottomSheetAction.OnChangePhoneAction(it)) },
                 changeCountry = {
-                    callback.invoke(PhoneBottomSheet.LoadCountries)
+                    callback.invoke(PhoneBottomSheetAction.LoadCountries)
                 },
                 onComplete = {}
             )
@@ -115,7 +115,7 @@ private fun AddPhone(
             action = {
                 bottomSheetScope.launch {
                     bottomSheetState.hide()
-                    callback.invoke(PhoneBottomSheet.OnNextButton)
+                    callback.invoke(PhoneBottomSheetAction.OnNextButton)
                 }
             },
             enabled = state.isButtonEnabled
@@ -130,17 +130,17 @@ private fun AddPhone(
 fun CountryList(
     state: PhoneBottomSheetViewModel.ViewState,
     flagUrl: String,
-    callback: (PhoneBottomSheet) -> Unit = { }
+    callback: (PhoneBottomSheetAction) -> Unit = { }
 ) {
     Scaffold(
         topBar = {
             SearchToolbar(placeholderText = "Search Country",
                 searchText = state.searchCountry,
-                onClearClick = { callback.invoke(PhoneBottomSheet.OnClearSearch) },
-                onSearchTextChanged = { callback.invoke(PhoneBottomSheet.OnSearchCountry(it)) }
+                onClearClick = { callback.invoke(PhoneBottomSheetAction.OnClearSearch) },
+                onSearchTextChanged = { callback.invoke(PhoneBottomSheetAction.OnSearchCountry(it)) }
             ) {
                 IconNavigationBack {
-                    callback.invoke(PhoneBottomSheet.CloseCountryList)
+                    callback.invoke(PhoneBottomSheetAction.CloseCountryList)
                 }
             }
         }
@@ -168,7 +168,7 @@ fun CountryList(
 fun CountryItem(
     country: Country,
     flagUrl: String,
-    callback: (PhoneBottomSheet) -> Unit = { }
+    callback: (PhoneBottomSheetAction) -> Unit = { }
 ) {
     DefaultCardView(
         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
@@ -178,7 +178,7 @@ fun CountryItem(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { callback.invoke(PhoneBottomSheet.OnSelectCountry(country = country)) }
+                    .clickable { callback.invoke(PhoneBottomSheetAction.OnSelectCountry(country = country)) }
             ) {
                 Box(modifier = Modifier.padding(16.dp)) {
                     Icon(
@@ -212,15 +212,15 @@ fun CountryItem(
     }
 }
 
-sealed class PhoneBottomSheet {
-    object LoadCountry : PhoneBottomSheet()
-    object LoadCountries : PhoneBottomSheet()
-    data class OnChangePhone(val phone: String) : PhoneBottomSheet()
-    data class OnSelectCountry(val country: Country) : PhoneBottomSheet()
-    object CloseCountryList : PhoneBottomSheet()
-    data class OnSearchCountry(val text: String) : PhoneBottomSheet()
-    object OnClearSearch : PhoneBottomSheet()
-    object OnNextButton : PhoneBottomSheet()
+sealed class PhoneBottomSheetAction {
+    object LoadCountry : PhoneBottomSheetAction()
+    object LoadCountries : PhoneBottomSheetAction()
+    data class OnChangePhoneAction(val phone: String) : PhoneBottomSheetAction()
+    data class OnSelectCountry(val country: Country) : PhoneBottomSheetAction()
+    object CloseCountryList : PhoneBottomSheetAction()
+    data class OnSearchCountry(val text: String) : PhoneBottomSheetAction()
+    object OnClearSearch : PhoneBottomSheetAction()
+    object OnNextButton : PhoneBottomSheetAction()
 }
 
 @Composable

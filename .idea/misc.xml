@@ -6,8 +6,24 @@
         <entry key="../../../../layout/compose-model-1658930921420.xml" value="0.3175925925925926" />
         <entry key="../../../../layout/compose-model-1658930986067.xml" value="0.16552315608919382" />
         <entry key="../../../../layout/compose-model-1658935913542.xml" value="0.22" />
+        <entry key="../../../layout/compose-model-1660086664177.xml" value="0.1" />
+        <entry key="../../../layout/compose-model-1660087206951.xml" value="0.1" />
+        <entry key="../../../layout/compose-model-1660090424155.xml" value="0.13679245283018868" />
+        <entry key="../../../layout/compose-model-1660090558416.xml" value="0.10240770465489567" />
+        <entry key="../../../layout/compose-model-1660090977722.xml" value="0.1" />
+        <entry key="../../../layout/compose-model-1660090980988.xml" value="0.1" />
+        <entry key="../../../layout/compose-model-1660134704813.xml" value="0.10304054054054054" />
+        <entry key="../../../layout/compose-model-1660134718398.xml" value="0.1" />
+        <entry key="../../../layout/compose-model-1660134735107.xml" value="0.1" />
+        <entry key="../../../layout/compose-model-1660134748687.xml" value="0.1" />
+        <entry key="../../../layout/compose-model-1660134797627.xml" value="0.11649089165867689" />
+        <entry key="../../../layout/compose-model-1660135179954.xml" value="0.335" />
+        <entry key="../../../layout/compose-model-1660135323687.xml" value="1.0" />
+        <entry key="../../../layout/compose-model-1660135885831.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/svg_user_profile_picture.xml" value="0.1665" />
+        <entry key="app/src/main/res/layout/fragment_wallet.xml" value="0.30625" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

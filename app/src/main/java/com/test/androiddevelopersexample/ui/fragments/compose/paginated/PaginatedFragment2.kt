@@ -168,4 +168,9 @@ class PaginatedFragment2 :
             )
         }
     }
+
+    override val fragmentName: String
+        get() = "PaginatedFragment"
+    override val screenName: String
+        get() = "PaginatedFragment"
 }
