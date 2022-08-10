@@ -1,4 +1,4 @@
-plugins{
+plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
@@ -7,6 +7,14 @@ plugins{
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/ignaciodeandreisdenis/AndroidStudioProjects/CodeLabs/AndroidDevelopersExample/keystore.jks')
+            storePassword '!qaz2wsx'
+            keyAlias 'key0'
+            keyPassword '!qaz2wsx'
+        }
+    }
     compileSdkVersion 32
 
     testOptions {
@@ -35,10 +43,14 @@ android {
 
     buildTypes {
         debug {
+            versionNameSuffix "-debug"
             buildConfigField "String", "PROJECT_ID", '"mock-app-5ec60"'
         }
 
         release {
+            buildConfigField "String", "PROJECT_ID", '"mock-app-5ec60"'
+            versionNameSuffix "-release"
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -67,6 +79,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
     implementation 'com.google.android.material:material:1.6.1'
+
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     def lifecycle_version = "2.2.0"
     // ViewModel and LiveData
@@ -164,7 +178,6 @@ dependencies {
 
     //Paging 3.0
     implementation 'androidx.paging:paging-compose:1.0.0-alpha15'
-
 
 
     // UI Tests
