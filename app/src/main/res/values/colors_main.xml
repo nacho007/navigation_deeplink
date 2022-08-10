@@ -7,7 +7,7 @@
     <color name="color_accent_light">@color/color_red_opacity_25</color>
     <color name="color_control_normal">@color/color_light_gray</color>
     <color name="color_control_activated">@color/color_black</color>
-    <color name="color_view_background">@color/color_gray</color>
+    <color name="color_view_background">@color/grey_25</color>
     <color name="color_progress_bar">@color/color_red</color>
     <color name="color_item">@color/color_red</color>
     <color name="color_item_pressed">@color/color_red_opacity_70</color>

@@ -64,6 +64,9 @@ val Red700 = Color(0xff990000)
 fun textColor() = if (isSystemInDarkTheme()) Color.White else Grey800
 
 @Composable
+fun viewBackground() = if (isSystemInDarkTheme()) Grey900 else Grey25
+
+@Composable
 fun cardBackground() = if (isSystemInDarkTheme()) Grey800 else Color.White
 
 @Composable

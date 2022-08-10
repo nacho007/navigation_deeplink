@@ -20,7 +20,13 @@
         <entry key="../../../layout/compose-model-1660135179954.xml" value="0.335" />
         <entry key="../../../layout/compose-model-1660135323687.xml" value="1.0" />
         <entry key="../../../layout/compose-model-1660135885831.xml" value="0.1" />
+        <entry key="../../../layout/compose-model-1660143104695.xml" value="0.20384615384615384" />
+        <entry key="../../../layout/compose-model-1660145197248.xml" value="0.22724514563106796" />
+        <entry key="../../../layout/compose-model-1660146528956.xml" value="0.3553072625698324" />
+        <entry key="../../../layout/compose-model-1660146555035.xml" value="0.335" />
+        <entry key="../../../layout/compose-model-1660146555037.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/svg_user_profile_picture.xml" value="0.1665" />
+        <entry key="app/src/main/res/layout/fragment_compose.xml" value="0.30625" />
         <entry key="app/src/main/res/layout/fragment_wallet.xml" value="0.30625" />
       </map>
     </option>

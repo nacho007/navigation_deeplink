@@ -4,7 +4,11 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
@@ -91,8 +95,6 @@ class TransferContactsFragment :
             composeView.setContent {
                 viewModel.setFlowType(args.flowType)
 
-                val scrollState = rememberLazyListState()
-
                 val readContactsPermissionState = rememberPermissionState(
                     android.Manifest.permission.READ_CONTACTS
                 )
@@ -155,7 +157,6 @@ class TransferContactsFragment :
                             walletParams = args.transferWalletParameters,
                             apcParams = args.transferAPCParameters,
                             amountText = amountText,
-                            scrollState = scrollState,
                             hasPermission = readContactsPermissionState.status.isGranted,
                             bottomSheetScope = bottomSheetScope,
                             bottomSheetState = bottomSheetState,
@@ -181,7 +182,6 @@ class TransferContactsFragment :
         walletParams: TransferWalletParameter? = null,
         apcParams: TransferAPCParameter? = null,
         amountText: String,
-        scrollState: LazyListState,
         hasPermission: Boolean,
         bottomSheetScope: CoroutineScope,
         bottomSheetState: ModalBottomSheetState,
@@ -196,11 +196,7 @@ class TransferContactsFragment :
             )
         }
 
-        val scrollOffset: Float = min(
-            1f,
-            1 - (scrollState.firstVisibleItemScrollOffset / 600f +
-                    scrollState.firstVisibleItemIndex)
-        )
+        val scrollState = rememberLazyListState()
 
         Scaffold(
             topBar = {
@@ -226,20 +222,17 @@ class TransferContactsFragment :
                         amountText = amountText,
                         scrollState = scrollState,
                         hasPermission = hasPermission,
-                        eventReducer = eventReducer,
-                        scrollOffset = scrollOffset
+                        eventReducer = eventReducer
                     )
                 }
             },
             floatingActionButton = {
                 if (hasPermission) {
                     AnimatedVisibility(
-                        visible = (scrollState.isScrollingUp() && scrollOffset > -1),
-                        enter = slideInVertically(),
-                        exit = slideOutVertically()
+                        visible = (scrollState.isScrollingUp()),
+                        enter = fadeIn(),
+                        exit = fadeOut()
                     ) {
-
-
                         ExtendedFloatingActionButton(
                             onClick = {
                                 viewModel.newNumberFromNewNumber()
@@ -283,7 +276,6 @@ class TransferContactsFragment :
         amountText: String,
         scrollState: LazyListState,
         hasPermission: Boolean,
-        scrollOffset: Float,
         eventReducer: (UIEvent) -> Unit = {}
     ) {
         SwipeRefresh(
@@ -302,24 +294,24 @@ class TransferContactsFragment :
         ) {
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize(),
+                    .fillMaxSize()
+                    .padding(vertical = 16.dp),
                 state = scrollState,
-                contentPadding = PaddingValues(vertical = 16.dp, horizontal = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                if (flowType == FlowType.WALLET && hasPermission) {
-                    stickyHeader {
-                        HeaderInformation(
-                            scrollState = scrollState,
-                            scrollOffset = scrollOffset,
-                            amountText = amountText
-                        )
-                    }
-                }
                 if (hasPermission) {
                     screenState.allContacts?.let { contacts ->
                         stickyHeader {
+                            HeaderInformation(
+                                modifier = Modifier.fillMaxWidth(),
+                                scrollState = scrollState,
+                                amountText = amountText
+                            )
+
                             SearchContact(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 16.dp),
                                 searchText = screenState.searchText
                             ) {
                                 searchText = it
@@ -331,9 +323,13 @@ class TransferContactsFragment :
                             }
                         }
 
-                        item {
-                            if (contacts.isEmpty()) {
-                                EmptyContactList {
+                        if (contacts.isEmpty()) {
+                            item {
+                                EmptyContactList(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 16.dp)
+                                ) {
                                     viewModel.newNumberFromSearchBar()
                                     bottomSheetScope.launch {
                                         bottomSheetState.show()
@@ -344,6 +340,9 @@ class TransferContactsFragment :
 
                         itemsIndexed(contacts) { i, contact ->
                             ContactItem(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 16.dp),
                                 name = contact.name,
                                 number = contact.number,
                                 picture = contact.image,
@@ -363,6 +362,9 @@ class TransferContactsFragment :
                 } else {
                     item {
                         NoPermissionsComponent(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 16.dp),
                             actionAddPhoneNumberManually = {
                                 viewModel.newNumberFromNewNumber()
                                 bottomSheetScope.launch {
@@ -372,7 +374,7 @@ class TransferContactsFragment :
                             actionAllowAccessContacts = {
                                 viewModel.onRequestPermission()
 
-                                when(permissionState?.status){
+                                when (permissionState?.status) {
                                     is PermissionStatus.Denied -> {
                                         if (permissionState.status.shouldShowRationale) {
                                             onUIEvent(UIEvent.PermissionsRationale)
@@ -542,7 +544,6 @@ class TransferContactsFragment :
                     number = "12345678"
                 ),
                 apcParams = null,
-                scrollState = LazyListState(),
                 amountText = "COP $250.000",
                 hasPermission = false,
                 bottomSheetScope = bottomSheetScope,
@@ -580,7 +581,6 @@ class TransferContactsFragment :
                     number = "12345678"
                 ),
                 apcParams = null,
-                scrollState = LazyListState(),
                 amountText = "COP $250.000",
                 hasPermission = true,
                 bottomSheetScope = bottomSheetScope,
@@ -612,7 +612,6 @@ class TransferContactsFragment :
                 flowType = FlowType.WALLET,
                 walletParams = null,
                 apcParams = null,
-                scrollState = LazyListState(),
                 amountText = "COP $250.000",
                 hasPermission = true,
                 bottomSheetScope = bottomSheetScope,
@@ -651,7 +650,6 @@ class TransferContactsFragment :
                     isAstroPayUser = true
                 ),
                 walletParams = null,
-                scrollState = LazyListState(),
                 amountText = "USD $25",
                 hasPermission = true,
                 bottomSheetScope = bottomSheetScope,

@@ -27,6 +27,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.setS
 
 @Composable
 fun ContactItem(
+    modifier: Modifier,
     name: String?,
     number: String,
     picture: String?,
@@ -35,8 +36,7 @@ fun ContactItem(
     onClick: () -> Unit,
 ) {
     DefaultCardView(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = modifier
     ) {
         Row(
             modifier = Modifier
@@ -102,6 +102,7 @@ fun ContactItem(
 private fun ContactItemPreview() {
     AstroPayTheme {
         ContactItem(
+            modifier = Modifier,
             name = "Mairon Andres Piedrahita",
             number = "3155555555",
             picture = null,
@@ -124,6 +125,7 @@ private fun ContactItemPreview() {
 private fun ContactItemRecentPreview() {
     AstroPayTheme {
         ContactItem(
+            modifier = Modifier,
             name = "Mairon Andres Piedrahita",
             number = "3155555555",
             picture = null,
@@ -147,6 +149,7 @@ private fun ContactItemRecentPreview() {
 private fun ContactItemRecentNameNullPreview() {
     AstroPayTheme {
         ContactItem(
+            modifier = Modifier,
             name = null,
             number = "3155555555",
             picture = null,

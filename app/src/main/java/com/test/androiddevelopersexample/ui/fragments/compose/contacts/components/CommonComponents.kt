@@ -2,8 +2,7 @@ package com.test.androiddevelopersexample.ui.fragments.compose.contacts.componen
 
 import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.theme.AstroPayTheme
+import com.test.androiddevelopersexample.theme.viewBackground
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.buttons.DefaultButton
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.buttons.SecondaryButton
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.isScrollingUp
@@ -33,10 +33,12 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.setS
 
 @Composable
 fun NoPermissionsComponent(
+    modifier: Modifier,
     actionAllowAccessContacts: () -> Unit,
     actionAddPhoneNumberManually: () -> Unit,
 ) {
     Column(
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         BodyText(
@@ -68,18 +70,18 @@ fun NoPermissionsComponent(
 
 @Composable
 fun HeaderInformation(
+    modifier: Modifier,
     scrollState: LazyListState,
-    scrollOffset: Float,
     amountText: String,
 ) {
     AnimatedVisibility(
-        visible = (scrollState.isScrollingUp() && scrollOffset > -10) || scrollOffset > -10,
-        enter = slideInVertically(),
-        exit = slideOutVertically()
+        modifier = modifier,
+        visible = scrollState.isScrollingUp()
     ) {
         Column(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .background(viewBackground()),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -101,11 +103,11 @@ fun HeaderInformation(
 
 @Composable
 fun EmptyContactList(
+    modifier: Modifier,
     actionAddPhoneNumberManually: () -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         BodyText(
@@ -128,13 +130,13 @@ fun EmptyContactList(
 
 @Composable
 fun SearchContact(
+    modifier: Modifier,
     searchText: String,
     onValueChange: (value: String) -> Unit
 ) {
     val focusManager = LocalFocusManager.current
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = modifier
     ) {
         DefaultOutlinedTextField(
             modifier = Modifier
@@ -169,6 +171,7 @@ fun SearchContact(
 private fun NoPermissionsComponentPreview() {
     AstroPayTheme {
         NoPermissionsComponent(
+            modifier = Modifier,
             actionAllowAccessContacts = {},
             actionAddPhoneNumberManually = {}
         )
@@ -189,8 +192,8 @@ private fun NoPermissionsComponentPreview() {
 private fun HeaderInformationPreview() {
     AstroPayTheme {
         HeaderInformation(
+            modifier = Modifier,
             scrollState = LazyListState(),
-            scrollOffset = 0F,
             amountText = "UYU 450"
         )
     }
@@ -209,7 +212,9 @@ private fun HeaderInformationPreview() {
 )
 private fun EmptyContactListPreview() {
     AstroPayTheme {
-        EmptyContactList {}
+        EmptyContactList(
+            modifier = Modifier
+        ) {}
     }
 }
 
@@ -226,6 +231,9 @@ private fun EmptyContactListPreview() {
 )
 private fun SearchContactPreview() {
     AstroPayTheme {
-        SearchContact(searchText = "mai") {}
+        SearchContact(
+            modifier = Modifier,
+            searchText = "mai"
+        ) {}
     }
 }
