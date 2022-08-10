@@ -88,6 +88,21 @@ class HomeFragment :
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            BalanceComponent(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                walletBalance = listOf(Balance("BRL", "10000"))
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            BalanceComponent(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                walletBalance = listOf(Balance("BRL", "10000"), Balance("USD", "50")),
+                cryptoBalance = Balance("BRL", "1000")
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
             MyVouchersComponent(
                 vouchers = vouchers,
                 newVoucher = { navigate(R.id.open_home) },

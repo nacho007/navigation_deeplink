@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -100,10 +101,12 @@ fun MyVouchersComponent(
                         text = vouchers[index],
                         action = { openVoucher("id") }
                     ) {
-                        BodyText(
-                            fontWeight = FontWeight.Bold,
-                            text = "AstroPay",
-                            color = Color.White
+                        Icon(
+                            modifier = Modifier
+                                .size(85.dp, height = 25.dp),
+                            painter = painterResource(R.drawable.svg_card_logo),
+                            contentDescription = "AstroPay Logo",
+                            tint = Color.Unspecified
                         )
                     }
                 }
@@ -162,10 +165,12 @@ private fun GenericVoucherItemPreview() {
                 text = "R$ 1000",
                 action = { }
             ) {
-                BodyText(
-                    fontWeight = FontWeight.Bold,
-                    text = "AstroPay",
-                    color = Color.White
+                Icon(
+                    modifier = Modifier
+                        .size(90.dp, height = 30.dp),
+                    painter = painterResource(R.drawable.svg_card_logo),
+                    contentDescription = "AstroPay Logo",
+                    tint = Color.Unspecified
                 )
             }
         }
