@@ -23,7 +23,7 @@ internal class ComposeViewModel :
         )
 
         viewModelScope.launch {
-            delay(1000)
+            delay(2000)
             state = state.copy(
                 loadState = Type.SHOW_CONTENT
             )
@@ -45,6 +45,30 @@ internal class ComposeViewModel :
     fun onLoadBlack() {
         state = state.copy(
             loadState = Type.LOAD_BLACK_OPACITY
+        )
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            state = state.copy(
+                loadState = Type.SHOW_CONTENT
+            )
+        }, 2000)
+    }
+
+    fun onEmpty() {
+        state = state.copy(
+            loadState = Type.EMPTY
+        )
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            state = state.copy(
+                loadState = Type.SHOW_CONTENT
+            )
+        }, 2000)
+    }
+
+    fun onNetworkError() {
+        state = state.copy(
+            loadState = Type.NETWORK_ERROR
         )
 
         Handler(Looper.getMainLooper()).postDelayed({

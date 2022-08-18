@@ -86,6 +86,18 @@ class LoaderFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
                     }) {
                         BodyText(text = "Load")
                     }
+
+                    Button(onClick = {
+                        viewModel.onEmpty()
+                    }) {
+                        BodyText(text = "Empty")
+                    }
+
+                    Button(onClick = {
+                        viewModel.onNetworkError()
+                    }) {
+                        BodyText(text = "Network Error")
+                    }
                 }
             },
             floatingButton = {}

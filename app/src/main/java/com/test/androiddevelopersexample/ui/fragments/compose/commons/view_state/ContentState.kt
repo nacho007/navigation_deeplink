@@ -6,6 +6,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,7 +34,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.Body
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.AstroToolBar
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
 
-internal const val ANIMATION_TIME = 250L
+internal const val ANIMATION_TIME = 1000L
 
 enum class Type {
     EMPTY, LOAD_BLACK_OPACITY, LOAD_LIGHT, SHOW_CONTENT, NETWORK_ERROR, NONE
@@ -68,34 +69,12 @@ fun ContentState(
 
     Scaffold(
         topBar = {
-            AnimatedVisibility(
-                visible = showToolbar,
-                enter = fadeIn(
-                    animationSpec = tween(
-                        durationMillis = ANIMATION_TIME.toInt(),
-                    ),
-                    initialAlpha = 0f,
-                ),
-                exit = fadeOut(
-                    animationSpec = tween(ANIMATION_TIME.toInt()),
-                )
-            ) {
+            show(showContent = showToolbar) {
                 toolbar()
             }
         },
         content = {
-            AnimatedVisibility(
-                visible = showContent,
-                enter = fadeIn(
-                    animationSpec = tween(
-                        durationMillis = ANIMATION_TIME.toInt(),
-                    ),
-                    initialAlpha = 0f,
-                ),
-                exit = fadeOut(
-                    animationSpec = tween(ANIMATION_TIME.toInt()),
-                )
-            ) {
+            show(showContent = showContent) {
                 content()
             }
         },
@@ -105,56 +84,49 @@ fun ContentState(
         floatingActionButtonPosition = floatingActionButtonPosition
     )
 
+    showEmpty(state == Type.EMPTY, lastIntention)
+    showLoadBlack(state == Type.LOAD_BLACK_OPACITY)
+    showLoadLight(state == Type.LOAD_LIGHT)
+    showConnectionError(state == Type.NETWORK_ERROR, lastIntention)
+}
 
-    when (state) {
-        Type.EMPTY -> {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                LottieLoader(
-                    modifier = Modifier.size(150.dp),
-                    lottieResource = ASTRONAUT_ANIMATION
-                )
-
-                BodyText(
-                    modifier = Modifier.padding(16.dp),
-                    text = stringResource(R.string.mobile_no_results_found),
-                    fontSize = 16.sp,
-                    textAlign = TextAlign.Center
-                )
-
-                lastIntention?.let { lastIntention ->
-                    DefaultButton(
-                        modifier = Modifier,
-                        text = stringResource(R.string.mobile_refresh),
-                        action = { lastIntention() }
-                    )
-                }
-            }
+@Composable
+private fun showLoadBlack(showContent: Boolean) {
+    show(showContent = showContent) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(colorResource(R.color.color_black_opacity_40))
+                .clickable {  },
+            contentAlignment = Alignment.Center
+        ) {
+            LottieLoader(
+                modifier = Modifier.size(120.dp),
+                lottieResource = LOADING
+            )
         }
+    }
+}
 
-        Type.LOAD_BLACK_OPACITY -> {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(colorResource(R.color.color_black_opacity_40)),
-                contentAlignment = Alignment.Center
-            ) {
-                LottieLoader(
-                    modifier = Modifier.size(120.dp),
-                    lottieResource = LOADING
+@Composable
+private fun showLoadLight(showContent: Boolean) {
+    show(showContent = showContent) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            AnimatedVisibility(
+                visible = true,
+                enter = fadeIn(
+                    animationSpec = tween(
+                        durationMillis = ANIMATION_TIME.toInt(),
+                    ),
+                    initialAlpha = 0f,
+                ),
+                exit = fadeOut(
+                    animationSpec = tween(ANIMATION_TIME.toInt()),
                 )
-            }
-        }
-
-        Type.LOAD_LIGHT -> {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
             ) {
                 LottieLoader(
                     modifier = Modifier.size(120.dp),
@@ -162,40 +134,88 @@ fun ContentState(
                 )
             }
         }
+    }
+}
 
-        Type.NETWORK_ERROR -> {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                LottieLoader(
-                    modifier = Modifier.size(150.dp),
-                    lottieResource = NO_INTERNET
+@Composable
+private fun showConnectionError(showContent: Boolean, lastIntention: IntentionOrNull) {
+    show(showContent = showContent) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            LottieLoader(
+                modifier = Modifier.size(150.dp),
+                lottieResource = NO_INTERNET
+            )
+
+            BodyText(
+                modifier = Modifier.padding(16.dp),
+                text = stringResource(R.string.mobile_internet_error),
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center
+            )
+
+            lastIntention?.let { lastIntention ->
+                DefaultButton(
+                    modifier = Modifier,
+                    text = stringResource(R.string.mobile_refresh),
+                    action = { lastIntention() }
                 )
-
-                BodyText(
-                    modifier = Modifier.padding(16.dp),
-                    text = stringResource(R.string.mobile_internet_error),
-                    fontSize = 16.sp,
-                    textAlign = TextAlign.Center
-                )
-
-                lastIntention?.let { lastIntention ->
-                    DefaultButton(
-                        modifier = Modifier,
-                        text = stringResource(R.string.mobile_refresh),
-                        action = { lastIntention() }
-                    )
-                }
             }
         }
+    }
+}
 
-        Type.SHOW_CONTENT,
-        Type.NONE -> {
+@Composable
+private fun showEmpty(showContent: Boolean, lastIntention: IntentionOrNull) {
+    show(showContent = showContent) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            LottieLoader(
+                modifier = Modifier.size(150.dp),
+                lottieResource = ASTRONAUT_ANIMATION
+            )
 
+            BodyText(
+                modifier = Modifier.padding(16.dp),
+                text = stringResource(R.string.mobile_no_results_found),
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center
+            )
+
+            lastIntention?.let { lastIntention ->
+                DefaultButton(
+                    modifier = Modifier,
+                    text = stringResource(R.string.mobile_refresh),
+                    action = { lastIntention() }
+                )
+            }
         }
+    }
+}
+
+@Composable
+private fun show(showContent: Boolean, content: @Composable () -> Unit) {
+    AnimatedVisibility(
+        visible = showContent,
+        enter = fadeIn(
+            animationSpec = tween(
+                durationMillis = ANIMATION_TIME.toInt(),
+            ),
+            initialAlpha = 0f,
+        ),
+        exit = fadeOut(
+            animationSpec = tween(ANIMATION_TIME.toInt()),
+        )
+    ) {
+        content()
     }
 }
 
