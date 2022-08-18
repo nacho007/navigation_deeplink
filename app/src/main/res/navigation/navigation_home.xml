@@ -96,9 +96,6 @@
             android:id="@+id/action_moreFragment_to_swipeFragment"
             app:destination="@id/swipeFragment" />
         <action
-            android:id="@+id/action_moreFragment_to_phoneBottomSheet"
-            app:destination="@id/phoneBottomSheet" />
-        <action
             android:id="@+id/action_moreFragment_to_contactsFragment"
             app:destination="@id/contactsFragment" />
         <action
@@ -177,6 +174,9 @@
         <action
             android:id="@+id/action_moneyFragment_to_transferContactsFragment"
             app:destination="@id/transferContactsFragment" />
+        <action
+            android:id="@+id/action_moneyFragment_to_loaderFragment"
+            app:destination="@id/loaderFragment" />
     </fragment>
 
     <navigation
@@ -231,11 +231,6 @@
         android:label="SwipeCustomFragment"
         tools:layout="@layout/fragment_swipe_custom" />
 
-    <dialog
-        android:id="@+id/phoneBottomSheet"
-        android:name="com.test.androiddevelopersexample.ui.fragments.compose.commons.bottom_sheet.PhoneBottomSheet"
-        android:label="PhoneBottomSheet"
-        tools:layout="@layout/bottom_sheet_phone" />
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.contacts.ContactsFragment"
@@ -265,6 +260,11 @@
             android:id="@+id/action_paginatedFragment_to_astroCoinsFragment"
             app:destination="@id/astroCoinsFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/loaderFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.compose.loaders.LoaderFragment"
+        android:label="LoaderFragment" />
 
     <fragment
         android:id="@+id/paginatedFragment2"

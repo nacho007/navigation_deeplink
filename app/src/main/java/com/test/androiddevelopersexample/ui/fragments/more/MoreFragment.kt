@@ -224,7 +224,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding>(FragmentMoreBinding::infl
     @Composable
     private fun BottomSheetButton() {
         ComposeIconButton(text = stringResource(id = R.string.bottom_sheet), action = {
-            navigate(R.id.action_moreFragment_to_phoneBottomSheet)
+
         })
     }
 

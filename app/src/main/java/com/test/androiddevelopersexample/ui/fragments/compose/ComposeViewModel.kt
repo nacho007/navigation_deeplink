@@ -1,5 +1,7 @@
 package com.test.androiddevelopersexample.ui.fragments.compose
 
+import android.os.Handler
+import android.os.Looper
 import androidx.lifecycle.viewModelScope
 import com.test.androiddevelopersexample.ui.base.BaseAction
 import com.test.androiddevelopersexample.ui.base.BaseViewModel
@@ -8,7 +10,8 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-internal class ComposeViewModel : BaseViewModel<ComposeViewModel.ViewState, ComposeViewModel.Action>(ViewState()) {
+internal class ComposeViewModel :
+    BaseViewModel<ComposeViewModel.ViewState, ComposeViewModel.Action>(ViewState()) {
 
     override val viewModelName: String = "ComposeViewModel"
 
@@ -20,22 +23,35 @@ internal class ComposeViewModel : BaseViewModel<ComposeViewModel.ViewState, Comp
         )
 
         viewModelScope.launch {
-            delay(500)
+            delay(1000)
             state = state.copy(
                 loadState = Type.HIDE
             )
         }
     }
+
     fun onClearDestination() {
         state = state.copy(
             destination = null
         )
     }
 
-    fun onPaginatedPressed(){
+    fun onPaginatedPressed() {
         state = state.copy(
             destination = Destination.PaginatedList
         )
+    }
+
+    fun onLoadBlack() {
+        state = state.copy(
+            loadState = Type.LOAD_BLACK_OPACITY
+        )
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            state = state.copy(
+                loadState = Type.HIDE
+            )
+        }, 2000)
     }
 
     override fun onReduceState(viewAction: Action): ViewState = when (viewAction) {
