@@ -250,7 +250,7 @@ private fun TestBottomSheetPreview() {
         val bottomSheetScope = rememberCoroutineScope()
         PhoneBottomSheet(
             state = PhoneBottomSheetViewModel.ViewState(
-                state = Type.HIDE,
+                state = Type.SHOW_CONTENT,
                 country = country
             ),
             bottomSheetScope = bottomSheetScope,
@@ -288,7 +288,7 @@ private fun TestBottomSheetCountriesPreview() {
         val bottomSheetScope = rememberCoroutineScope()
         PhoneBottomSheet(
             state = PhoneBottomSheetViewModel.ViewState(
-                state = Type.HIDE,
+                state = Type.SHOW_CONTENT,
                 countries = countries,
                 viewCountryList = true
             ),

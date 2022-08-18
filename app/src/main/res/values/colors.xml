@@ -82,6 +82,7 @@
     <color name="color_black_opacity_95">#F2000000</color>
     <color name="color_black_opacity_75">#BF000000</color>
     <color name="color_black_opacity_50">#80000000</color>
+    <color name="color_black_opacity_40">#66000000</color>
     <color name="color_black_opacity_30">#33000000</color>
     <color name="color_black_opacity_85">#D9000000</color>
     <color name="color_red">#FF0000</color>

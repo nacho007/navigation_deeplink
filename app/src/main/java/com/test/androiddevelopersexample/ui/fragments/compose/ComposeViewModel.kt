@@ -25,7 +25,7 @@ internal class ComposeViewModel :
         viewModelScope.launch {
             delay(1000)
             state = state.copy(
-                loadState = Type.HIDE
+                loadState = Type.SHOW_CONTENT
             )
         }
     }
@@ -49,7 +49,7 @@ internal class ComposeViewModel :
 
         Handler(Looper.getMainLooper()).postDelayed({
             state = state.copy(
-                loadState = Type.HIDE
+                loadState = Type.SHOW_CONTENT
             )
         }, 2000)
     }
@@ -59,7 +59,7 @@ internal class ComposeViewModel :
             loadState = Type.LOAD_LIGHT,
         )
         Action.Success -> state.copy(
-            loadState = Type.HIDE,
+            loadState = Type.SHOW_CONTENT,
         )
         Action.NetworkError -> state.copy(
             loadState = Type.NETWORK_ERROR,

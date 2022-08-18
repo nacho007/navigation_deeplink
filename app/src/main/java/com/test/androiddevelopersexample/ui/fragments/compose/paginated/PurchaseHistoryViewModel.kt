@@ -23,7 +23,7 @@ internal class PurchaseHistoryViewModel(
 
     override fun onLoadData() {
         state = state.copy(
-            loadState = Type.HIDE,
+            loadState = Type.SHOW_CONTENT,
             destination = null,
             purchaseHistory = getPurchaseHistory()
         )
@@ -45,7 +45,7 @@ internal class PurchaseHistoryViewModel(
 
     override fun onReduceState(viewAction: Action): ViewState = when (viewAction) {
         is Action.Failure -> state.copy(
-            loadState = Type.HIDE,
+            loadState = Type.SHOW_CONTENT,
             destination = Destination.ErrorDialog(
                 LoadNotificationsError(
                     viewAction.message,

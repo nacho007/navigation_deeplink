@@ -37,7 +37,7 @@ class OnboardingViewModel(
             state = Type.LOAD_LIGHT
         )
         Action.Success -> state.copy(
-            state = Type.HIDE
+            state = Type.SHOW_CONTENT
         )
         Action.NetworkError -> state.copy(
             state = Type.NETWORK_ERROR

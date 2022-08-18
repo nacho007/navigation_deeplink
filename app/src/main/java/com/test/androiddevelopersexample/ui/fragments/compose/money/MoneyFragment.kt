@@ -138,88 +138,91 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
             content = {
                 ContentState(
                     state = screenState.loadState,
-                    lastIntention = { }
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .verticalScroll(rememberScrollState())
-                            .padding(all = 16.dp),
-                        verticalArrangement = Arrangement.Top,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
+                    lastIntention = { },
+                    toolbar = {},
+                    content = {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .verticalScroll(rememberScrollState())
+                                .padding(all = 16.dp),
+                            verticalArrangement = Arrangement.Top,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
 
-                        BodyText(
-                            text = "This is my title\nBigger than anyone",
-                            modifier = Modifier.padding(all = 16.dp),
-                            style = MaterialTheme.typography.h1
-                        )
-
-                        DefaultCardView {
                             BodyText(
-                                text = "Este es mi texto\nMore text",
-                                modifier = Modifier.padding(all = 16.dp)
+                                text = "This is my title\nBigger than anyone",
+                                modifier = Modifier.padding(all = 16.dp),
+                                style = MaterialTheme.typography.h1
+                            )
+
+                            DefaultCardView {
+                                BodyText(
+                                    text = "Este es mi texto\nMore text",
+                                    modifier = Modifier.padding(all = 16.dp)
+                                )
+                            }
+
+                            Spacer(modifier = Modifier.padding(all = 16.dp))
+
+                            DefaultButton(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 8.dp),
+                                text = "Contact List",
+                                action = {
+                                    navigate(
+                                        MoneyFragmentDirections.actionMoneyFragmentToTransferContactsFragment(
+                                            transferWalletParameters = TransferWalletParameter(
+                                                amount = 200.0,
+                                                currency = "USD"
+                                            ),
+                                            transferAPCParameters = null,
+                                            flowType = FlowType.WALLET
+                                        )
+                                    )
+                                }
+                            )
+
+                            DefaultButton(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 8.dp),
+                                text = "Loaders",
+                                action = {
+                                    navigate(
+                                        MoneyFragmentDirections.actionMoneyFragmentToLoaderFragment()
+                                    )
+                                }
+                            )
+
+                            DefaultButton(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 8.dp),
+                                text = "Open Phone Bottom Sheet",
+                                action = {
+                                    scope.launch {
+                                        bottomState.show()
+                                    }
+                                }
+                            )
+
+                            DefaultButton(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 8.dp),
+                                text = "Paginated",
+                                action = {
+                                    scope.launch {
+                                        eventReducer(UIEvent.OpenPaginated)
+                                    }
+                                }
                             )
                         }
-
-                        Spacer(modifier = Modifier.padding(all = 16.dp))
-
-                        DefaultButton(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 8.dp),
-                            text = "Contact List",
-                            action = {
-                                navigate(
-                                    MoneyFragmentDirections.actionMoneyFragmentToTransferContactsFragment(
-                                        transferWalletParameters = TransferWalletParameter(
-                                            amount = 200.0,
-                                            currency = "USD"
-                                        ),
-                                        transferAPCParameters = null,
-                                        flowType = FlowType.WALLET
-                                    )
-                                )
-                            }
-                        )
-
-                        DefaultButton(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 8.dp),
-                            text = "Loaders",
-                            action = {
-                                navigate(
-                                    MoneyFragmentDirections.actionMoneyFragmentToLoaderFragment()
-                                )
-                            }
-                        )
-
-                        DefaultButton(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 8.dp),
-                            text = "Open Phone Bottom Sheet",
-                            action = {
-                                scope.launch {
-                                    bottomState.show()
-                                }
-                            }
-                        )
-
-                        DefaultButton(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 8.dp),
-                            text = "Paginated",
-                            action = {
-                                scope.launch {
-                                    eventReducer(UIEvent.OpenPaginated)
-                                }
-                            }
-                        )
-                    }
-                }
+                    },
+                    floatingButton = {}
+                )
             }
         )
     }
@@ -300,7 +303,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
         val bottomSheetScope = rememberCoroutineScope()
         AstroPayTheme {
             Screen(
-                screenState = ComposeViewModel.ViewState(loadState = Type.HIDE),
+                screenState = ComposeViewModel.ViewState(loadState = Type.SHOW_CONTENT),
                 scope = bottomSheetScope,
                 bottomState = bottomSheetState
             )

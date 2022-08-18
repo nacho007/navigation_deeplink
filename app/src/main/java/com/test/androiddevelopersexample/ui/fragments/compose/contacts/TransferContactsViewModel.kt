@@ -189,7 +189,7 @@ internal class TransferContactsViewModel(
         )
         is Action.GetContactsSuccess -> {
             state.copy(
-                loadState = if (allContacts.isEmpty()) Type.EMPTY else Type.HIDE,
+                loadState = if (allContacts.isEmpty()) Type.EMPTY else Type.SHOW_CONTENT,
                 allContacts = allContacts,
                 recentContacts = viewAction.recentContacts,
                 contacts = viewAction.contacts,
@@ -198,7 +198,7 @@ internal class TransferContactsViewModel(
         }
         is Action.Failure -> {
             state.copy(
-                loadState = Type.HIDE,
+                loadState = Type.SHOW_CONTENT,
                 allContacts = viewAction.contactsFromPhone,
                 recentContacts = null,
                 contacts = viewAction.contactsFromPhone,
@@ -206,7 +206,7 @@ internal class TransferContactsViewModel(
             )
         }
         is Action.Nothing -> state.copy(
-            loadState = Type.HIDE,
+            loadState = Type.SHOW_CONTENT,
             allContacts = null,
             recentContacts = null,
             contacts = null,
@@ -227,7 +227,7 @@ internal class TransferContactsViewModel(
     }
 
     internal data class ViewState(
-        val loadState: Type = Type.HIDE,
+        val loadState: Type = Type.SHOW_CONTENT,
         val allContacts: List<Contact>? = null,
         val recentContacts: List<Contact.Recent>? = null,
         val contacts: List<Contact.Phone>? = null,

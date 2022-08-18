@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -78,17 +77,16 @@ class PaginatedFragment :
 
         ContentState(
             state = screenState.loadState,
-            lastIntention = { }
-        ) {
-            Scaffold(
-                content = {
-                    PaginatedList(
-                        purchaseList = screenState.purchaseHistory,
-                        eventReducer = eventReducer
-                    )
-                }
-            )
-        }
+            lastIntention = { },
+            toolbar = {},
+            content = {
+                PaginatedList(
+                    purchaseList = screenState.purchaseHistory,
+                    eventReducer = eventReducer
+                )
+            },
+            floatingButton = {}
+        )
     }
 
     @Composable

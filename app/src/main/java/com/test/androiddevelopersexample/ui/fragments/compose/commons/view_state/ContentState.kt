@@ -6,6 +6,14 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.FabPosition
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,49 +24,87 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.foundation.layout.*
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.theme.AstroPayTheme
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.loaders.LottieLoader
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.IntentionOrNull
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.buttons.DefaultButton
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.loaders.LottieLoader
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.AstroToolBar
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
 
 internal const val ANIMATION_TIME = 250L
 
 enum class Type {
-    EMPTY, LOAD_BLACK_OPACITY, LOAD_LIGHT, HIDE, NETWORK_ERROR, NONE
+    EMPTY, LOAD_BLACK_OPACITY, LOAD_LIGHT, SHOW_CONTENT, NETWORK_ERROR, NONE
 }
 
 @Composable
 fun ContentState(
     state: Type,
     lastIntention: IntentionOrNull,
-    content: @Composable () -> Unit
+    toolbar: @Composable () -> Unit,
+    content: @Composable () -> Unit,
+    floatingButton: @Composable () -> Unit,
+    floatingActionButtonPosition: FabPosition = FabPosition.End
 ) {
-    val animate = when (state) {
+    val showToolbar = when (state) {
         Type.EMPTY -> false
         Type.LOAD_BLACK_OPACITY -> true
-        Type.LOAD_LIGHT -> false
-        Type.HIDE -> true
+        Type.LOAD_LIGHT -> true
+        Type.SHOW_CONTENT -> true
         Type.NETWORK_ERROR -> false
         Type.NONE -> false
     }
 
-    AnimatedVisibility(
-        visible = animate,
-        enter = fadeIn(
-            animationSpec = tween(
-                durationMillis = ANIMATION_TIME.toInt(),
-            ),
-            initialAlpha = 0f,
-        ),
-        exit = fadeOut(
-            animationSpec = tween(ANIMATION_TIME.toInt()),
-        )
-    ) {
-        content()
+    val showContent = when (state) {
+        Type.EMPTY -> false
+        Type.LOAD_BLACK_OPACITY -> true
+        Type.LOAD_LIGHT -> false
+        Type.SHOW_CONTENT -> true
+        Type.NETWORK_ERROR -> false
+        Type.NONE -> false
     }
+
+    Scaffold(
+        topBar = {
+            AnimatedVisibility(
+                visible = showToolbar,
+                enter = fadeIn(
+                    animationSpec = tween(
+                        durationMillis = ANIMATION_TIME.toInt(),
+                    ),
+                    initialAlpha = 0f,
+                ),
+                exit = fadeOut(
+                    animationSpec = tween(ANIMATION_TIME.toInt()),
+                )
+            ) {
+                toolbar()
+            }
+        },
+        content = {
+            AnimatedVisibility(
+                visible = showContent,
+                enter = fadeIn(
+                    animationSpec = tween(
+                        durationMillis = ANIMATION_TIME.toInt(),
+                    ),
+                    initialAlpha = 0f,
+                ),
+                exit = fadeOut(
+                    animationSpec = tween(ANIMATION_TIME.toInt()),
+                )
+            ) {
+                content()
+            }
+        },
+        floatingActionButton = {
+            floatingButton()
+        },
+        floatingActionButtonPosition = floatingActionButtonPosition
+    )
+
 
     when (state) {
         Type.EMPTY -> {
@@ -94,7 +140,7 @@ fun ContentState(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(colorResource(R.color.color_black_opacity_75)),
+                    .background(colorResource(R.color.color_black_opacity_40)),
                 contentAlignment = Alignment.Center
             ) {
                 LottieLoader(
@@ -146,7 +192,7 @@ fun ContentState(
             }
         }
 
-        Type.HIDE,
+        Type.SHOW_CONTENT,
         Type.NONE -> {
 
         }
@@ -173,9 +219,18 @@ private fun ContentStatePreview() {
     AstroPayTheme {
         ContentState(
             state = Type.NETWORK_ERROR,
-            lastIntention = { }
-        ) {
-            BodyText(text = "Content!")
-        }
+            lastIntention = { },
+            toolbar = {
+                AstroToolBar(
+                    title = stringResource(id = R.string.mobile_transfer),
+                ) {
+                    IconNavigationBack {
+
+                    }
+                }
+            },
+            content = { BodyText(text = "Content!") },
+            floatingButton = {}
+        )
     }
 }

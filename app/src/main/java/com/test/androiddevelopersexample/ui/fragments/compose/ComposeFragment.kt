@@ -70,27 +70,30 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
     private fun Screen(screenState: ComposeViewModel.ViewState) {
         ContentState(
             state = screenState.loadState,
-            lastIntention = { }
-        ) {
-            Box(
-                modifier = Modifier
-                    .background(colorResource(id = R.color.color_advise))
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CustomDialog(
-                    onConfirm = {
+            lastIntention = { },
+            toolbar = {},
+            content = {
+                Box(
+                    modifier = Modifier
+                        .background(colorResource(id = R.color.color_advise))
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CustomDialog(
+                        onConfirm = {
 
-                    },
-                    onCancel = { },
-                    promoCode = "PromoCode",
-                    onPromoCodeChange = { },
-                    error = null,
-                    showInput = true,
-                    onPromoVisibility = {}
-                )
-            }
-        }
+                        },
+                        onCancel = { },
+                        promoCode = "PromoCode",
+                        onPromoCodeChange = { },
+                        error = null,
+                        showInput = true,
+                        onPromoVisibility = {}
+                    )
+                }
+            },
+            floatingButton = {}
+        )
     }
 
     @Composable
@@ -177,7 +180,7 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
     @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
     private fun ComposeFragmentPreview() {
         AstroPayTheme {
-            Screen(screenState = ComposeViewModel.ViewState(loadState = Type.HIDE))
+            Screen(screenState = ComposeViewModel.ViewState(loadState = Type.SHOW_CONTENT))
         }
     }
 

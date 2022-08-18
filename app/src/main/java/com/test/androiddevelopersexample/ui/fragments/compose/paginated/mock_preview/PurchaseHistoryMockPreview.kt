@@ -8,6 +8,6 @@ import com.test.androiddevelopersexample.ui.fragments.compose.paginated.Purchase
 object PurchaseHistoryMockPreview {
 
     internal fun getMockState() = PurchaseHistoryViewModel.ViewState(
-        loadState = Type.HIDE,
+        loadState = Type.SHOW_CONTENT,
     )
 }

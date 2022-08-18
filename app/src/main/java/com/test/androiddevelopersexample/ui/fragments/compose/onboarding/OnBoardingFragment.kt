@@ -72,13 +72,16 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
 
                         ContentState(
                             state = uiState.value.state,
-                            lastIntention = viewModel.lastIntention
-                        ) {
-                            CodeScreen(
-                                context = requireContext(),
-                                url = viewModel.getCountryUrl()
-                            )
-                        }
+                            lastIntention = viewModel.lastIntention,
+                            toolbar = {},
+                            content = {
+                                CodeScreen(
+                                    context = requireContext(),
+                                    url = viewModel.getCountryUrl()
+                                )
+                            },
+                            floatingButton = {}
+                        )
                     }
                 }
             }

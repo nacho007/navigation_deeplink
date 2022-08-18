@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -29,7 +28,6 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.As
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
-import com.test.androiddevelopersexample.ui.fragments.compose.contacts.TransferContactsFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -57,9 +55,10 @@ class LoaderFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
 
     @Composable
     private fun Screen(screenState: ComposeViewModel.ViewState) {
-
-        Scaffold(
-            topBar = {
+        ContentState(
+            state = screenState.loadState,
+            lastIntention = { viewModel.lastIntention() },
+            toolbar = {
                 AstroToolBar(
                     title = stringResource(id = R.string.mobile_transfer),
                 ) {
@@ -69,31 +68,27 @@ class LoaderFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
                 }
             },
             content = {
-                ContentState(
-                    state = screenState.loadState,
-                    lastIntention = { viewModel.lastIntention() }
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Column(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Spacer(Modifier.height(32.dp))
+                    Spacer(Modifier.height(32.dp))
 
-                        BodyText(text = "My Text")
+                    BodyText(text = "My Text")
 
-                        BodyText(text = "My Text2")
+                    BodyText(text = "My Text2")
 
-                        BodyText(text = "My Text3")
+                    BodyText(text = "My Text3")
 
-                        Button(onClick = {
-                            viewModel.onLoadBlack()
-                        }) {
-                            BodyText(text = "Load")
-                        }
+                    Button(onClick = {
+                        viewModel.onLoadBlack()
+                    }) {
+                        BodyText(text = "Load")
                     }
                 }
-            }
+            },
+            floatingButton = {}
         )
     }
 
@@ -106,7 +101,7 @@ class LoaderFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
     @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
     private fun ComposeFragmentPreview() {
         AstroPayTheme {
-            Screen(screenState = ComposeViewModel.ViewState(loadState = Type.HIDE))
+            Screen(screenState = ComposeViewModel.ViewState(loadState = Type.SHOW_CONTENT))
         }
     }
 }

@@ -6,19 +6,27 @@ import android.view.View
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.*
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ExtendedFloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ModalBottomSheetLayout
+import androidx.compose.material.ModalBottomSheetState
+import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -36,10 +44,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.test.androiddevelopersexample.ui.fragments.compose.contacts.components.EmptyContactList
-import com.test.androiddevelopersexample.ui.fragments.compose.contacts.components.HeaderInformation
-import com.test.androiddevelopersexample.ui.fragments.compose.contacts.components.NoPermissionsComponent
-import com.test.androiddevelopersexample.ui.fragments.compose.contacts.components.SearchContact
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.PermissionStatus
@@ -68,13 +72,16 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.As
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.contacts.components.ContactItem
+import com.test.androiddevelopersexample.ui.fragments.compose.contacts.components.EmptyContactList
+import com.test.androiddevelopersexample.ui.fragments.compose.contacts.components.HeaderInformation
+import com.test.androiddevelopersexample.ui.fragments.compose.contacts.components.NoPermissionsComponent
+import com.test.androiddevelopersexample.ui.fragments.compose.contacts.components.SearchContact
 import com.test.androiddevelopersexample.ui.fragments.compose.contacts.mock_preview.TransferContactsMockPreview
 import com.test.androiddevelopersexample.ui.utils.Utils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.io.Serializable
-import kotlin.math.min
 
 @OptIn(ExperimentalPermissionsApi::class)
 class TransferContactsFragment :
@@ -198,8 +205,10 @@ class TransferContactsFragment :
 
         val scrollState = rememberLazyListState()
 
-        Scaffold(
-            topBar = {
+        ContentState(
+            state = screenState.loadState,
+            lastIntention = { viewModel.lastIntention() },
+            toolbar = {
                 AstroToolBar(
                     title = stringResource(id = R.string.mobile_transfer),
                 ) {
@@ -209,24 +218,19 @@ class TransferContactsFragment :
                 }
             },
             content = {
-                ContentState(
-                    state = screenState.loadState,
-                    lastIntention = { viewModel.lastIntention() }
-                ) {
-                    Content(
-                        screenState = screenState,
-                        permissionState = permissionState,
-                        bottomSheetScope = bottomSheetScope,
-                        bottomSheetState = bottomSheetState,
-                        flowType = flowType,
-                        amountText = amountText,
-                        scrollState = scrollState,
-                        hasPermission = hasPermission,
-                        eventReducer = eventReducer
-                    )
-                }
+                Content(
+                    screenState = screenState,
+                    permissionState = permissionState,
+                    bottomSheetScope = bottomSheetScope,
+                    bottomSheetState = bottomSheetState,
+                    flowType = flowType,
+                    amountText = amountText,
+                    scrollState = scrollState,
+                    hasPermission = hasPermission,
+                    eventReducer = eventReducer
+                )
             },
-            floatingActionButton = {
+            floatingButton = {
                 if (hasPermission) {
                     AnimatedVisibility(
                         visible = (scrollState.isScrollingUp()),
@@ -257,11 +261,8 @@ class TransferContactsFragment :
                             }
                         )
                     }
-
-
                 }
-            },
-            floatingActionButtonPosition = FabPosition.End
+            }
         )
     }
 

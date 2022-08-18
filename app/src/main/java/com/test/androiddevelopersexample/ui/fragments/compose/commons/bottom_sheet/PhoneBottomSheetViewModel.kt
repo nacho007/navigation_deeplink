@@ -110,14 +110,14 @@ class PhoneBottomSheetViewModel
             state = Type.LOAD_LIGHT
         )
         is Action.Success -> state.copy(
-            state = Type.HIDE
+            state = Type.SHOW_CONTENT
         )
         is Action.GetCountrySuccess -> state.copy(
-            state = Type.HIDE,
+            state = Type.SHOW_CONTENT,
             country = viewAction.country
         )
         is Action.GetCountriesSuccess -> state.copy(
-            state = Type.HIDE,
+            state = Type.SHOW_CONTENT,
             countries = viewAction.countries
         )
         is Action.NetworkError -> state.copy(
