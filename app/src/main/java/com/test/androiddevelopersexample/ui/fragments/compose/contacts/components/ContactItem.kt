@@ -19,6 +19,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
+import androidx.compose.material.Snackbar
+import androidx.compose.material.Text
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.cards.DefaultCardView
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.images.AsyncImage
@@ -156,5 +161,49 @@ private fun ContactItemRecentNameNullPreview() {
             searchText = "piedra",
             isRecent = true
         ) {}
+    }
+}
+
+@Composable
+fun SnackbarDemo(show: Boolean) {
+    Column {
+        val (snackbarVisibleState, setSnackBarState) = remember { mutableStateOf(false) }
+
+        Button(onClick = { setSnackBarState(!snackbarVisibleState) }) {
+            if (snackbarVisibleState) {
+                Text("Hide Snackbar")
+            } else {
+                Text("Show Snackbar")
+            }
+        }
+        if (snackbarVisibleState || show) {
+            Snackbar(
+                action = {
+                    Button(onClick = {}) {
+                        Text("MyAction")
+                    }
+                },
+                modifier = Modifier.padding(8.dp)
+            ) { Text(text = "This is a snackbar!") }
+        }
+    }
+}
+
+@Composable
+@Preview(
+    device = Devices.PIXEL_4,
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    locale = ""
+)
+@Preview(
+    device = Devices.PIXEL_4,
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    locale = ""
+)
+private fun SnackBarPreview() {
+    AstroPayTheme {
+        SnackbarDemo(
+            show = true
+        )
     }
 }
