@@ -23,7 +23,7 @@ internal class ComposeViewModel :
         )
 
         viewModelScope.launch {
-            delay(2000)
+            delay(500)
             state = state.copy(
                 loadState = Type.SHOW_CONTENT
             )
@@ -78,6 +78,12 @@ internal class ComposeViewModel :
         }, 2000)
     }
 
+    fun onDialog() {
+        state = state.copy(
+            destination = Destination.Dialog
+        )
+    }
+
     override fun onReduceState(viewAction: Action): ViewState = when (viewAction) {
         Action.Loading -> state.copy(
             loadState = Type.LOAD_LIGHT,
@@ -103,5 +109,6 @@ internal class ComposeViewModel :
 
     sealed class Destination {
         object PaginatedList : Destination()
+        object Dialog : Destination()
     }
 }

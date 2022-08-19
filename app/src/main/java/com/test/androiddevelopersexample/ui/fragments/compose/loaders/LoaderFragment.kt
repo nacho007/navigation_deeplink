@@ -1,6 +1,5 @@
 package com.test.androiddevelopersexample.ui.fragments.compose.loaders
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.compose.foundation.layout.Arrangement
@@ -23,6 +22,8 @@ import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.ComposeViewModel
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.CustomErrorDialog
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.AstroToolBar
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
@@ -46,7 +47,10 @@ class LoaderFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
             composeView.setContent {
                 AstroPayTheme {
                     val screenState by viewModel.stateLiveData.observeAsState(initial = ComposeViewModel.ViewState())
-                    Screen(screenState = screenState)
+                    Screen(
+                        screenState = screenState,
+                        eventReducer = ::onUIEvent
+                    )
                 }
             }
         }
@@ -54,7 +58,17 @@ class LoaderFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
     }
 
     @Composable
-    private fun Screen(screenState: ComposeViewModel.ViewState) {
+    private fun Screen(
+        screenState: ComposeViewModel.ViewState,
+        eventReducer: (UIEvent) -> Unit = {}
+    ) {
+
+        screenState.destination?.let {
+            Navigation(
+                destination = it
+            )
+        }
+
         ContentState(
             state = screenState.loadState,
             lastIntention = { viewModel.lastIntention() },
@@ -98,10 +112,45 @@ class LoaderFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
                     }) {
                         BodyText(text = "Network Error")
                     }
+
+                    Button(onClick = {
+                        eventReducer(UIEvent.Dialog)
+                    }) {
+                        BodyText(text = "Dialog")
+                    }
                 }
             },
             floatingButton = {}
         )
+    }
+
+    @Composable
+    private fun Navigation(
+        destination: ComposeViewModel.Destination,
+    ) {
+        when (destination) {
+            is ComposeViewModel.Destination.Dialog -> {
+                val message = "This is my Message"
+
+                ModalTransitionDialog(onDismissRequest = viewModel::onClearDestination) { modalTransitionDialogHelper ->
+                    CustomErrorDialog(
+                        description = message,
+                        onConfirm = modalTransitionDialogHelper::triggerAnimatedClose
+                    )
+                }
+            }
+            else -> {}
+        }
+    }
+
+    private sealed class UIEvent {
+        object Dialog : UIEvent()
+    }
+
+    private fun onUIEvent(event: UIEvent) {
+        when (event) {
+            is UIEvent.Dialog -> viewModel.onDialog()
+        }
     }
 
     override val fragmentName: String
@@ -110,7 +159,7 @@ class LoaderFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
         get() = "LoaderFragment"
 
     @Composable
-    @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+    @Preview()
     private fun ComposeFragmentPreview() {
         AstroPayTheme {
             Screen(screenState = ComposeViewModel.ViewState(loadState = Type.SHOW_CONTENT))

@@ -243,6 +243,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
             is ComposeViewModel.Destination.PaginatedList -> {
                 navigate(MoneyFragmentDirections.actionMoneyFragmentToPaginatedFragment())
             }
+            else -> {}
         }
         viewModel.onClearDestination()
     }

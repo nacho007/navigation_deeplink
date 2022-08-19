@@ -36,7 +36,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.Body
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.AstroToolBar
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
 
-internal const val ANIMATION_TIME = 1000L
+internal const val ANIMATION_TIME = 500L
 
 enum class Type {
     EMPTY, LOAD_BLACK_OPACITY, LOAD_LIGHT, SHOW_CONTENT, NETWORK_ERROR, NONE
