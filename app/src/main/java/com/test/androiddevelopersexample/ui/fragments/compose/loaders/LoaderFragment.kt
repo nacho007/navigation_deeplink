@@ -22,7 +22,7 @@ import com.test.androiddevelopersexample.databinding.FragmentComposeBinding
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.ComposeViewModel
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.CustomErrorDialog
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.BottomSheetLikeDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.AstroToolBar
@@ -133,7 +133,7 @@ class LoaderFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
                 val message = "This is my Message"
 
                 ModalTransitionDialog(onDismissRequest = viewModel::onClearDestination) { modalTransitionDialogHelper ->
-                    CustomErrorDialog(
+                    BottomSheetLikeDialog(
                         description = message,
                         onConfirm = modalTransitionDialogHelper::triggerAnimatedClose
                     )

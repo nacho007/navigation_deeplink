@@ -4,15 +4,21 @@ import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.VisibilityThreshold
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
@@ -35,12 +41,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.TransformOrigin
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -108,16 +115,12 @@ fun ModalTransitionDialog(
     ) {
         Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = 16.dp)
-                .defaultMinSize(minHeight = 250.dp),
-            contentAlignment = Alignment.Center
+                .fillMaxSize(),
+            contentAlignment = Alignment.BottomCenter
         ) {
-
             DialogAnimation(visible = animateContentBackTrigger.value) {
                 content(ModalTransitionDialogHelper(coroutineScope, onCloseSharedFlow))
             }
-
         }
     }
 }
@@ -149,30 +152,113 @@ class ModalTransitionDialogHelper(
 
 internal const val ANIMATION_TIME = 200L
 
+
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun DialogAnimation(
     visible: Boolean,
     content: @Composable AnimatedVisibilityScope.() -> Unit
 ) {
+    val density = LocalDensity.current
+
     AnimatedVisibility(
         visible = visible,
-        enter = fadeIn(
-            animationSpec = tween(ANIMATION_TIME.toInt()),
-            initialAlpha = 0f,
-        ) + scaleIn(
-            animationSpec = tween(ANIMATION_TIME.toInt()),
-            transformOrigin = TransformOrigin.Center
+        enter = slideInVertically(
+            animationSpec = tween(250),
+            initialOffsetY = { fullHeight ->
+                +fullHeight
+            }
+        ) + fadeIn(
+            // Fade in with the initial alpha of 0.3f.
+            initialAlpha = 0.3f
         ),
-        exit = fadeOut(
-            animationSpec = tween(ANIMATION_TIME.toInt()),
-        ) + scaleOut(
-            animationSpec = tween(ANIMATION_TIME.toInt()),
-            transformOrigin = TransformOrigin.Center
-        ),
+        exit = slideOutVertically(
+            animationSpec = tween(250),
+            targetOffsetY = { fullHeight ->
+                +fullHeight
+            }
+        ) + fadeOut(),
         content = content
     )
 }
+
+//@OptIn(ExperimentalAnimationApi::class)
+//@Composable
+//internal fun DialogAnimation(
+//    visible: Boolean,
+//    content: @Composable AnimatedVisibilityScope.() -> Unit
+//) {
+//    AnimatedVisibility(
+//        visible = visible,
+//        enter = fadeIn(
+//            animationSpec = tween(ANIMATION_TIME.toInt()),
+//            initialAlpha = 0f,
+//        ) + scaleIn(
+//            animationSpec = tween(ANIMATION_TIME.toInt()),
+//            transformOrigin = TransformOrigin.Center
+//        ),
+//        exit = fadeOut(
+//            animationSpec = tween(ANIMATION_TIME.toInt()),
+//        ) + scaleOut(
+//            animationSpec = tween(ANIMATION_TIME.toInt()),
+//            transformOrigin = TransformOrigin.Center
+//        ),
+//        content = content
+//    )
+//}
+
+
+@Composable
+fun BottomSheetLikeDialog(
+    description: String,
+    onConfirm: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(250.dp)
+            .background(dialogBackgroundColor(), RoundedCornerShape(4.dp))
+    ) {
+
+        BodyText(
+            modifier = Modifier
+                .padding(top = 24.dp, start = 24.dp, end = 24.dp)
+                .fillMaxWidth(),
+            text = stringResource(id = R.string.mobile_error),
+            color = MaterialTheme.colors.onSurface,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.SemiBold
+        )
+
+        BodyText(
+            modifier = Modifier
+                .padding(top = 16.dp, bottom = 24.dp, start = 24.dp, end = 24.dp)
+                .fillMaxWidth(),
+            text = description,
+            fontSize = 16.sp,
+            color = MaterialTheme.colors.onSurface
+        )
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(horizontal = 8.dp, vertical = 4.dp),
+            horizontalArrangement = Arrangement.End,
+            verticalAlignment = Alignment.Bottom
+        ) {
+            TextButton(onClick = onConfirm)
+            {
+                BodyText(
+                    text = stringResource(id = R.string.mobile_ok),
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colors.primary
+                )
+            }
+        }
+    }
+}
+
 
 @Composable
 fun CustomErrorDialog(
