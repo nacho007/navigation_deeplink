@@ -6,6 +6,11 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+ext {
+    jumio_sdk_version = "4.3.0"
+    compose_version = '1.2.1'
+}
+
 android {
     signingConfigs {
         release {
@@ -74,11 +79,12 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    api 'androidx.appcompat:appcompat:1.5.0'
+
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
-    implementation 'com.google.android.material:material:1.6.1'
+    api 'com.google.android.material:material:1.6.1'
 
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
@@ -95,6 +101,7 @@ dependencies {
     def nav_version = "2.5.0"
 
     implementation "androidx.fragment:fragment-ktx:1.5.0"
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
 
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -130,21 +137,14 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
 
-    // Compose compiler
-    implementation 'androidx.compose.compiler:compiler:1.2.0'
-    // Compose Material Design
-    implementation 'androidx.compose.material:material:1.2.0'
-    implementation 'androidx.compose.material:material-icons-extended:1.2.0'
-    implementation "com.google.android.material:compose-theme-adapter:1.1.6"
-
-    // Animations
-    implementation 'androidx.compose.animation:animation:1.2.0'
-    // Tooling support (Previews, etc.)
-    implementation 'androidx.compose.ui:ui-tooling:1.2.0'
-    // Integration with ViewModels
+    // Compose
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.animation:animation:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0'
-    // Compose with LiveData
-    implementation 'androidx.compose.runtime:runtime-livedata:1.2.0'
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
 
 
     // Coil
@@ -180,6 +180,17 @@ dependencies {
     implementation 'androidx.paging:paging-compose:1.0.0-alpha15'
 
 
+    // Jumio dependencies
+    api "com.jumio.android:core:${jumio_sdk_version}"
+    api "com.jumio.android:mrz:${jumio_sdk_version}"
+    api "com.jumio.android:nfc:${jumio_sdk_version}"
+    api "com.jumio.android:barcode:${jumio_sdk_version}"
+    api "com.jumio.android:iproov:${jumio_sdk_version}"
+    api "com.jumio.android:defaultui:${jumio_sdk_version}"
+    api "com.jumio.android:datadog:${jumio_sdk_version}"
+    api "com.jumio.android:devicerisk:${jumio_sdk_version}"
+
+    
     // UI Tests
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.1.1'
 

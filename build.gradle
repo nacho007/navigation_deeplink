@@ -25,6 +25,18 @@ allprojects {
         google()
         mavenCentral()
         jcenter()
+
+        exclusiveContent {
+            forRepository {
+                maven {
+                    url 'https://repo.mobile.jumio.ai'
+                }
+            }
+            filter {
+                includeGroup "com.jumio.android"
+                includeGroup "com.iproov.sdk"
+            }
+        }
     }
 }
 

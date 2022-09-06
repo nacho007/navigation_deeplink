@@ -29,5 +29,6 @@
 
     <dimen name="user_photo_small_size">55dp</dimen>
     <dimen name="astropay_user_icon_small_size">20dp</dimen>
+    <dimen name="icon_operation_success_size">150dp</dimen>
 
 </resources>

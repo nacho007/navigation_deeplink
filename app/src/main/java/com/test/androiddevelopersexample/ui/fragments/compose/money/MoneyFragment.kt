@@ -1,8 +1,11 @@
 package com.test.androiddevelopersexample.ui.fragments.compose.money
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -169,6 +172,18 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(vertical = 8.dp),
+                                text = "Jumio",
+                                action = {
+                                    scope.launch {
+                                        eventReducer(UIEvent.OpenJumio)
+                                    }
+                                }
+                            )
+
+                            DefaultButton(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 8.dp),
                                 text = "Contact List",
                                 action = {
                                     navigate(
@@ -229,11 +244,13 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
 
     internal sealed class UIEvent {
         object OpenPaginated : UIEvent()
+        object OpenJumio : UIEvent()
     }
 
     private fun onUIEvent(event: UIEvent) {
         when (event) {
             is UIEvent.OpenPaginated -> viewModel.onPaginatedPressed()
+            is UIEvent.OpenJumio -> startJumio()
         }
     }
 
@@ -286,6 +303,21 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
         }
     }
 
+    private val activityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            processResult(result.resultCode, result.data?.extras?.getString("DESCRIPTION"))
+        }
+
+
+    private fun processResult(code: Int, description: String? = null) {
+
+    }
+
+    private fun startJumio() {
+        val intent = Intent(requireContext(), Class.forName(JUMIO_PATH))
+        activityResultLauncher.launch(intent)
+    }
+
     @Composable
     @Preview(
         device = Devices.PIXEL_4,
@@ -316,3 +348,5 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
     override val screenName: String
         get() = "MoneyFragment"
 }
+
+private const val JUMIO_PATH = "com.test.androiddevelopersexample.ui.fragments.jumio.MyJumioActivity"
