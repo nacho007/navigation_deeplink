@@ -84,7 +84,7 @@ internal class ComposeViewModel :
         )
     }
 
-    fun onNewAmountToPay(amountToPay: Double?) {
+    fun onNewAmountToPay(amountToPay: String?) {
         state = state.copy(
             amountToPay = amountToPay
         )
@@ -97,7 +97,7 @@ internal class ComposeViewModel :
     }
 
     private fun onAmountChanged(
-        amount: Double
+        amount: String
     ) {
         sendAction(Action.AmountToGetChangedSuccess(amount))
     }
@@ -120,7 +120,7 @@ internal class ComposeViewModel :
     internal data class ViewState(
         val loadState: Type = Type.NONE,
         val destination: Destination? = null,
-        val amountToPay: Double? = null
+        val amountToPay: String? = null
     ) : BaseViewState
 
     sealed class Action : BaseAction {
@@ -129,7 +129,7 @@ internal class ComposeViewModel :
         object NetworkError : Action()
 
         data class AmountToGetChangedSuccess(
-            val newAmount: Double
+            val newAmount: String
         ) : Action()
     }
 

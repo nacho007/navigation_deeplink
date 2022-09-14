@@ -88,7 +88,7 @@ class CryptoFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
                     ""
                 },
                 onValueChange = { stringAmount ->
-                    eventReducer(UIEvent.NewAmountToPay(stringAmount.toDoubleOrNull()))
+                    eventReducer(UIEvent.NewAmountToPay(stringAmount))
                 },
                 keyboardType = KeyboardType.Decimal,
                 hint = hintValue,
@@ -110,7 +110,7 @@ class CryptoFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
     }
 
     private sealed class UIEvent {
-        class NewAmountToPay(val amountToPay: Double?) : UIEvent()
+        class NewAmountToPay(val amountToPay: String?) : UIEvent()
     }
 
     @Composable
