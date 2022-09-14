@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
@@ -16,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
@@ -103,9 +105,10 @@ class PaginatedFragment :
 
         SwipeRefresh(
             state = swipeRefreshState,
+            indicatorPadding = PaddingValues(56.dp),
             onRefresh =
             {
-                purchaseListItems?.refresh()
+//                purchaseListItems?.refresh()
             },
             indicator = { indicatorState, trigger ->
                 DefaultSwipeRefreshIndicator(

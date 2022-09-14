@@ -32,6 +32,7 @@ fun <Model> RefreshablePaginatedList(
     SwipeRefresh(
         state = rememberSwipeRefreshState(isRefreshing = false),
         onRefresh = onRefresh,
+        refreshTriggerDistance = 200.dp,
         indicator = { indicatorState, trigger ->
             DefaultSwipeRefreshIndicator(
                 state = indicatorState,
