@@ -106,6 +106,6 @@
     <string name="mobile_continue">Continue</string>
     <string name="mobile_permission_needed_contacts">We need this permission for use the contact list</string>
     <string name="mobile_choose_who_to_send_money">Choose who to send the money to</string>
-
+    <string name="mobile_zero_hint" translatable="false">"0.00"</string>
     <string name="jumio_token">eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_5XLTQpCMQwE4Lt0baCdpD9x59KtN0jb9ASCgnh3-94NhFkMwzef4O_bM1xDKgVStOpOCpdgY9zn3nv0iVFA7AYSRJB1gHrRLJ6W-pKDn1gtlVUnaGh2EqmNuqVKyJ4zAGnRN34t_4ePh6-t81HPHy_UxC1SYjMSlkmmxtS8g7Oz1KLh-wO79mUS2wAAAA.aFMSxzCfBF3UX9xixF8y9PazD-2iXxT3sSz0Py6D6WyJz0FK3tCTmYwa5qLg_nhS67rb9dpw1yK8D9SzeSDEsg</string>
 </resources>

@@ -177,6 +177,9 @@
         <action
             android:id="@+id/action_moneyFragment_to_loaderFragment"
             app:destination="@id/loaderFragment" />
+        <action
+            android:id="@+id/action_moneyFragment_to_cryptoFragment"
+            app:destination="@id/cryptoFragment" />
     </fragment>
 
     <navigation
@@ -291,5 +294,10 @@
             app:nullable="false" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/cryptoFragment"
+        android:name="com.test.androiddevelopersexample.ui.fragments.compose.crypto.CryptoFragment"
+        android:label="CryptoFragment" />
 
 </navigation>

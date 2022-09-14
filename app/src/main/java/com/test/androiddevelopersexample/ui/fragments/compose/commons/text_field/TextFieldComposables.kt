@@ -2,9 +2,12 @@ package com.test.androiddevelopersexample.ui.fragments.compose.commons.text_fiel
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ContentAlpha
@@ -25,15 +28,27 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.focus.onFocusEvent
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
+import com.test.androiddevelopersexample.theme.SemanticError
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
 
 /**
@@ -188,4 +203,82 @@ fun DefaultDropdown(
         expanded = expanded,
         onExpand = { expanded = it }
     )
+}
+
+@Composable
+fun DefaultTextField(
+    modifier: Modifier = Modifier,
+    value: String,
+    hint: String,
+    onValueChange: (String) -> Unit = {},
+    enabled: Boolean = true,
+    onDone: () -> Unit = {},
+    keyboardType: KeyboardType = KeyboardType.Text,
+    validField: Boolean = true,
+    textAlign: TextAlign = TextAlign.End,
+    alignment: Alignment = Alignment.BottomEnd,
+    fontSize: TextUnit = TextUnit.Unspecified
+) {
+    var hasFocus by remember { mutableStateOf(false) }
+    val lineWidth = if (hasFocus) 2.dp else 1.dp
+    val lineColor = if (validField) {
+        if (hasFocus) MaterialTheme.colors.onSurface else Color.LightGray
+    } else {
+        SemanticError
+    }
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .drawBehind {
+                val strokeWidth = lineWidth.value * density
+                val y = size.height - strokeWidth / 2
+                drawLine(
+                    lineColor,
+                    Offset(0f, y),
+                    Offset(size.width, y),
+                    strokeWidth
+                )
+            }
+    ) {
+        BasicTextField(
+            value = value,
+            onValueChange = onValueChange,
+            enabled = enabled,
+            textStyle = LocalTextStyle.current.copy(
+                textAlign = textAlign,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colors.onSurface,
+                fontSize = fontSize
+            ),
+            cursorBrush = SolidColor(MaterialTheme.colors.onSurface),
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = keyboardType),
+            keyboardActions = KeyboardActions(
+                onDone = { onDone() }
+            ),
+            singleLine = true,
+            decorationBox = { innerTextField ->
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    contentAlignment = alignment
+                ) {
+                    if (value.isEmpty()) {
+                        BodyText(
+                            text = hint,
+                            textAlign = textAlign,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color.Gray,
+                            fontSize = fontSize
+                        )
+                    }
+                    innerTextField()
+                }
+            },
+            modifier = Modifier
+                .onFocusChanged {
+                    hasFocus = it.hasFocus
+                },
+        )
+    }
 }

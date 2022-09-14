@@ -60,6 +60,8 @@ val Red200 = Color(0xffff6767)
 val Red600 = Color(0xffcc0000)
 val Red700 = Color(0xff990000)
 
+val SemanticError = Red600
+
 @Composable
 fun textColor() = if (isSystemInDarkTheme()) Color.White else Grey800
 

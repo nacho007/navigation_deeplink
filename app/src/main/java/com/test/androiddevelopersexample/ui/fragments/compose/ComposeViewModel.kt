@@ -84,31 +84,58 @@ internal class ComposeViewModel :
         )
     }
 
+    fun onNewAmountToPay(amountToPay: Double?) {
+        state = state.copy(
+            amountToPay = amountToPay
+        )
+
+        if (amountToPay != null) {
+            onAmountChanged(
+                amount = amountToPay
+            )
+        }
+    }
+
+    private fun onAmountChanged(
+        amount: Double
+    ) {
+        sendAction(Action.AmountToGetChangedSuccess(amount))
+    }
+
     override fun onReduceState(viewAction: Action): ViewState = when (viewAction) {
-        Action.Loading -> state.copy(
+        is Action.Loading -> state.copy(
             loadState = Type.LOAD_LIGHT,
         )
-        Action.Success -> state.copy(
+        is Action.Success -> state.copy(
             loadState = Type.SHOW_CONTENT,
         )
-        Action.NetworkError -> state.copy(
+        is Action.NetworkError -> state.copy(
             loadState = Type.NETWORK_ERROR,
+        )
+        is Action.AmountToGetChangedSuccess -> state.copy(
+            loadState = Type.SHOW_CONTENT
         )
     }
 
     internal data class ViewState(
         val loadState: Type = Type.NONE,
-        val destination: Destination? = null
+        val destination: Destination? = null,
+        val amountToPay: Double? = null
     ) : BaseViewState
 
     sealed class Action : BaseAction {
         object Loading : Action()
         object Success : Action()
         object NetworkError : Action()
+
+        data class AmountToGetChangedSuccess(
+            val newAmount: Double
+        ) : Action()
     }
 
     sealed class Destination {
         object PaginatedList : Destination()
         object Dialog : Destination()
     }
+
 }

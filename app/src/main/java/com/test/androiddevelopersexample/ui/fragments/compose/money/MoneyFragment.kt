@@ -172,6 +172,18 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(vertical = 8.dp),
+                                text = "Crypto Input",
+                                action = {
+                                    scope.launch {
+                                        eventReducer(UIEvent.OpenCryptoInput)
+                                    }
+                                }
+                            )
+
+                            DefaultButton(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 8.dp),
                                 text = "Jumio",
                                 action = {
                                     scope.launch {
@@ -245,13 +257,19 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
     internal sealed class UIEvent {
         object OpenPaginated : UIEvent()
         object OpenJumio : UIEvent()
+        object OpenCryptoInput : UIEvent()
     }
 
     private fun onUIEvent(event: UIEvent) {
         when (event) {
             is UIEvent.OpenPaginated -> viewModel.onPaginatedPressed()
             is UIEvent.OpenJumio -> startJumio()
+            is UIEvent.OpenCryptoInput -> goToCrypto()
         }
+    }
+
+    private fun goToCrypto() {
+        navigate(MoneyFragmentDirections.actionMoneyFragmentToCryptoFragment())
     }
 
     @Composable
@@ -349,4 +367,5 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
         get() = "MoneyFragment"
 }
 
-private const val JUMIO_PATH = "com.test.androiddevelopersexample.ui.fragments.jumio.MyJumioActivity"
+private const val JUMIO_PATH =
+    "com.test.androiddevelopersexample.ui.fragments.jumio.MyJumioActivity"
