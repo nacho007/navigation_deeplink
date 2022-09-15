@@ -102,6 +102,10 @@ internal class ComposeViewModel :
         sendAction(Action.AmountToGetChangedSuccess(amount))
     }
 
+    fun onCashBackAnimation() {
+        sendAction(Action.CashBackAnimation)
+    }
+
     override fun onReduceState(viewAction: Action): ViewState = when (viewAction) {
         is Action.Loading -> state.copy(
             loadState = Type.LOAD_LIGHT,
@@ -115,12 +119,16 @@ internal class ComposeViewModel :
         is Action.AmountToGetChangedSuccess -> state.copy(
             loadState = Type.SHOW_CONTENT
         )
+        is Action.CashBackAnimation -> state.copy(
+            cashBackAnimation = true
+        )
     }
 
     internal data class ViewState(
         val loadState: Type = Type.NONE,
         val destination: Destination? = null,
-        val amountToPay: String? = null
+        val amountToPay: String? = null,
+        val cashBackAnimation: Boolean = false
     ) : BaseViewState
 
     sealed class Action : BaseAction {
@@ -131,6 +139,8 @@ internal class ComposeViewModel :
         data class AmountToGetChangedSuccess(
             val newAmount: String
         ) : Action()
+
+        object CashBackAnimation : Action()
     }
 
     sealed class Destination {

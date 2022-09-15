@@ -129,7 +129,7 @@ dependencies {
     api "org.koin:koin-android-viewmodel:2.1.5"
 
     //LOTTIE
-    def lottieVersion = '5.0.3'
+    def lottieVersion = '5.2.0'
     implementation "com.airbnb.android:lottie:$lottieVersion"
     implementation "com.airbnb.android:lottie-compose:$lottieVersion"
 

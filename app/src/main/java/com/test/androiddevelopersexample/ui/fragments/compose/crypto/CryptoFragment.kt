@@ -29,6 +29,8 @@ import com.test.androiddevelopersexample.ui.fragments.compose.ComposeViewModel
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.buttons.DefaultButton
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.text_field.DefaultTextField
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
+import com.test.androiddevelopersexample.ui.fragments.compose.crypto.components.PromotionClaimed
+import com.test.androiddevelopersexample.utils.DomainObjectsMocks
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -38,7 +40,7 @@ class CryptoFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
 
     override var screenTag = "CryptoFragment"
 
-    override var showBottomNavigation: Boolean = true
+    override var showBottomNavigation: Boolean = false
 
     override val fragmentName: String
         get() = "CryptoFragment"
@@ -97,20 +99,29 @@ class CryptoFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
                 fontSize = 20.sp
             )
 
-            DefaultButton(modifier = Modifier.fillMaxWidth(), text = "My btn", action = {})
+            DefaultButton(modifier = Modifier.fillMaxWidth(), text = "My btn", action = {
+                eventReducer(UIEvent.CashBackAnimation)
+            })
+        }
+
+        if (screenState.cashBackAnimation) {
+            PromotionClaimed(
+                promotionToClaim = DomainObjectsMocks.getCryptoPromotionToClaim(),
+                cryptoImageBaseUrl = "https://getapp-test.astropaycard.com/img/crypto/"
+            )
         }
     }
 
     private fun onUIEvent(event: UIEvent) {
         when (event) {
-            is UIEvent.NewAmountToPay -> {
-                viewModel.onNewAmountToPay(event.amountToPay)
-            }
+            is UIEvent.NewAmountToPay -> viewModel.onNewAmountToPay(event.amountToPay)
+            is UIEvent.CashBackAnimation -> viewModel.onCashBackAnimation()
         }
     }
 
     private sealed class UIEvent {
         class NewAmountToPay(val amountToPay: String?) : UIEvent()
+        object CashBackAnimation : UIEvent()
     }
 
     @Composable
