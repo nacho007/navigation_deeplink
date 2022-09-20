@@ -72,5 +72,8 @@ fun secondaryButtonColor() = if (isSystemInDarkTheme()) Grey800 else Grey25
 @Composable
 fun dialogBackgroundColor() = if (isSystemInDarkTheme()) Grey800 else Color.White
 
+@Composable
+fun cardSecondaryBackground() = if (isSystemInDarkTheme()) Grey800 else Grey100
+
 val Colors.DebitCardGradientBackground: Color
     get() = if(isLight) Color(0xFFFFA500) else Color(0xFF013220)
