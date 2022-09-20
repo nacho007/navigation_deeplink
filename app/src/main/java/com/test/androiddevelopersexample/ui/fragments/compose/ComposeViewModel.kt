@@ -127,8 +127,7 @@ internal class ComposeViewModel :
             loadState = Type.SHOW_CONTENT
         )
         is Action.CashBackAnimation -> state.copy(
-            loadState = Type.ANIMATION,
-            cashBackAnimation = true
+            loadState = Type.ANIMATION
         )
     }
 

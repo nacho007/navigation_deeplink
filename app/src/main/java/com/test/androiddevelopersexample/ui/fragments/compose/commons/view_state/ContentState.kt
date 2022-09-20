@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -49,6 +48,7 @@ fun ContentState(
     lastIntention: IntentionOrNull,
     toolbar: @Composable () -> Unit,
     content: @Composable () -> Unit,
+    customAnimation: (@Composable () -> Unit)? = null,
     floatingButton: @Composable () -> Unit,
     floatingActionButtonPosition: FabPosition = FabPosition.End
 ) {
@@ -70,7 +70,7 @@ fun ContentState(
         Type.LOAD_LIGHT -> false
         Type.SHOW_CONTENT -> true
         Type.NETWORK_ERROR -> false
-        Type.ANIMATION -> false
+        Type.ANIMATION -> true
         Type.NONE -> false
     }
 
@@ -106,11 +106,13 @@ fun ContentState(
             floatingActionButtonPosition = floatingActionButtonPosition
         )
 
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-        ){
-            content()
+        if (customAnimation != null && state == Type.ANIMATION) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                customAnimation()
+            }
         }
 
 

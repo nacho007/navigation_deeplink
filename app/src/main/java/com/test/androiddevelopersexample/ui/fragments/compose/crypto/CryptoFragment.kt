@@ -102,6 +102,13 @@ class CryptoFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
                     }
                 )
             },
+            customAnimation = {
+                PromotionClaimed(
+                    promotionToClaim = DomainObjectsMocks.getCryptoPromotionToClaim(),
+                    cryptoImageBaseUrl = "https://getapp-test.astropaycard.com/img/crypto/",
+                    onClick = { eventReducer(UIEvent.CloseCashBackAnimation) }
+                )
+            },
             content = {
                 Content(
                     screenState = screenState,
@@ -150,13 +157,13 @@ class CryptoFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
             })
         }
 
-        if (screenState.cashBackAnimation) {
-            PromotionClaimed(
-                promotionToClaim = DomainObjectsMocks.getCryptoPromotionToClaim(),
-                cryptoImageBaseUrl = "https://getapp-test.astropaycard.com/img/crypto/",
-                onClick = { eventReducer(UIEvent.CloseCashBackAnimation) }
-            )
-        }
+//        if (screenState.cashBackAnimation) {
+//            PromotionClaimed(
+//                promotionToClaim = DomainObjectsMocks.getCryptoPromotionToClaim(),
+//                cryptoImageBaseUrl = "https://getapp-test.astropaycard.com/img/crypto/",
+//                onClick = { eventReducer(UIEvent.CloseCashBackAnimation) }
+//            )
+//        }
     }
 
     private fun onUIEvent(event: UIEvent) {
