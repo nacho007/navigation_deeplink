@@ -108,6 +108,7 @@ internal class ComposeViewModel :
 
     fun onCloseCashBackAnimation() {
         state = state.copy(
+            loadState = Type.SHOW_CONTENT,
             cashBackAnimation = false
         )
     }
@@ -126,6 +127,7 @@ internal class ComposeViewModel :
             loadState = Type.SHOW_CONTENT
         )
         is Action.CashBackAnimation -> state.copy(
+            loadState = Type.ANIMATION,
             cashBackAnimation = true
         )
     }

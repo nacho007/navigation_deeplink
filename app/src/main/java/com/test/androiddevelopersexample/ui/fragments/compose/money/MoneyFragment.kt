@@ -47,7 +47,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.bottom_she
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.buttons.DefaultButton
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.cards.DefaultCardView
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.AstroToolBar
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.DefaultToolBar
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
@@ -132,7 +132,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
 
         Scaffold(
             topBar = {
-                AstroToolBar(title = "Este es mi texto") {
+                DefaultToolBar(title = "Este es mi texto") {
                     IconNavigationBack {
                         findNavController().popBackStack()
                     }

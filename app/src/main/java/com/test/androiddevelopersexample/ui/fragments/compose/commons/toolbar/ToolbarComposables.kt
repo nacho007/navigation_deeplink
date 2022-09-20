@@ -1,9 +1,6 @@
 package com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar
 
 import android.content.res.Configuration
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -37,18 +34,12 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.theme.textColor
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.iconColorTint
@@ -60,7 +51,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolBarBac
  * Created by ignaciodeandreisdenis on 6/7/22.
  */
 @Composable
-fun AstroToolBar(
+fun DefaultToolBar(
     title: String? = null,
     backgroundColor: Color? = null,
     items: List<MenuAction>? = null,
@@ -102,6 +93,22 @@ fun AstroToolBar(
         },
         navigationIcon = navigationIcon,
         elevation = elevation
+    )
+}
+
+@Composable
+fun DefaultActionToolbar(
+    title: String,
+    navigationIcon: @Composable (() -> Unit)? = null,
+    actionIcon: @Composable RowScope.() -> Unit
+) {
+    TopAppBar(
+        title = {
+            BodyText(text = title, fontSize = 16.sp)
+        },
+        backgroundColor = toolBarBackgroundColor(),
+        actions = actionIcon,
+        navigationIcon = navigationIcon
     )
 }
 
@@ -199,7 +206,7 @@ fun SearchToolbar(
 )
 fun ActionIconToolbarPreview() {
     AstroPayTheme {
-        AstroToolBar(
+        DefaultToolBar(
             title = "Menu Toolbar Text",
             navigationIcon = {
                 IconButton(onClick = {}) {

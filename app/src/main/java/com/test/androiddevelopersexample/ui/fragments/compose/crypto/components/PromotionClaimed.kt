@@ -63,11 +63,9 @@ fun PromotionClaimed(
 ) {
     var animationCompleted by remember { mutableStateOf(animationInitialState) }
 
-    var backPressedCount by remember { mutableStateOf(0) }
     BackHandler(enabled = true, onBack = {
-        backPressedCount += 1
+        onClick()
     })
-    Text(text="Backbutton was pressed : $backPressedCount times")
 
     Surface(
         modifier = Modifier
@@ -178,7 +176,7 @@ fun BackHandlerExample() {
     BackHandler(enabled = true, onBack = {
         backPressedCount += 1
     })
-    Text(text="Backbutton was pressed : $backPressedCount times")
+    Text(text = "Backbutton was pressed : $backPressedCount times")
 }
 
 @Composable

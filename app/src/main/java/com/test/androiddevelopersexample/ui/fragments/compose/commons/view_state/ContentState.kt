@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -33,13 +34,13 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.IntentionO
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.buttons.DefaultButton
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.loaders.LottieLoader
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.AstroToolBar
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.DefaultToolBar
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
 
-internal const val ANIMATION_TIME = 500L
+internal const val ANIMATION_TIME = 250L
 
 enum class Type {
-    EMPTY, LOAD_BLACK_OPACITY, LOAD_LIGHT, SHOW_CONTENT, NETWORK_ERROR, NONE
+    EMPTY, EMPTY_WITH_REFRESH, LOAD_BLACK_OPACITY, LOAD_LIGHT, SHOW_CONTENT, NETWORK_ERROR, ANIMATION, NONE
 }
 
 @Composable
@@ -52,44 +53,146 @@ fun ContentState(
     floatingActionButtonPosition: FabPosition = FabPosition.End
 ) {
     val showToolbar = when (state) {
-        Type.EMPTY -> false
+        Type.EMPTY -> true
+        Type.EMPTY_WITH_REFRESH -> true
         Type.LOAD_BLACK_OPACITY -> true
         Type.LOAD_LIGHT -> true
         Type.SHOW_CONTENT -> true
         Type.NETWORK_ERROR -> false
+        Type.ANIMATION -> true
         Type.NONE -> false
     }
 
     val showContent = when (state) {
         Type.EMPTY -> false
+        Type.EMPTY_WITH_REFRESH -> false
         Type.LOAD_BLACK_OPACITY -> true
         Type.LOAD_LIGHT -> false
         Type.SHOW_CONTENT -> true
         Type.NETWORK_ERROR -> false
+        Type.ANIMATION -> false
         Type.NONE -> false
     }
 
-    Scaffold(
-        topBar = {
-            show(showContent = showToolbar) {
-                toolbar()
-            }
-        },
-        content = {
-            show(showContent = showContent) {
-                content()
-            }
-        },
-        floatingActionButton = {
-            floatingButton()
-        },
-        floatingActionButtonPosition = floatingActionButtonPosition
-    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Scaffold(
+            topBar = {
+                show(
+                    showContent = showToolbar,
+                    animate = true
+                ) {
+                    toolbar()
+                }
+            },
+            content = {
+                show(
+                    showContent = showContent,
+                    animate = true
+                ) {
+                    content()
+                }
+                showEmpty(state == Type.EMPTY)
+                showEmptyWithRefresh(state == Type.EMPTY_WITH_REFRESH, lastIntention)
+                showLoadLight(state == Type.LOAD_LIGHT)
+                showConnectionError(state == Type.NETWORK_ERROR, lastIntention)
+            },
+            floatingActionButton = {
+                floatingButton()
+            },
+            floatingActionButtonPosition = floatingActionButtonPosition
+        )
 
-    showEmpty(state == Type.EMPTY, lastIntention)
-    showLoadBlack(state == Type.LOAD_BLACK_OPACITY)
-    showLoadLight(state == Type.LOAD_LIGHT)
-    showConnectionError(state == Type.NETWORK_ERROR, lastIntention)
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+        ){
+            content()
+        }
+
+
+    }
+
+//    showLoadBlack(state == Type.LOAD_BLACK_OPACITY)
+//    animationScaffold(showContent = state == Type.ANIMATION, content = content)
+}
+
+
+@Composable
+private fun animationScaffold(
+    showContent: Boolean,
+    content: @Composable () -> Unit,
+) {
+    show(showContent = showContent) {
+        content()
+    }
+}
+
+@Composable
+private fun showEmpty(showContent: Boolean) {
+    show(showContent = showContent) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null
+                ) {},
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            LottieLoader(
+                modifier = Modifier.size(150.dp),
+                lottieResource = ASTRONAUT_ANIMATION
+            )
+
+            BodyText(
+                modifier = Modifier.padding(16.dp),
+                text = stringResource(R.string.mobile_cancel),
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center
+            )
+        }
+    }
+}
+
+@Composable
+private fun showEmptyWithRefresh(showContent: Boolean, lastIntention: IntentionOrNull) {
+    show(showContent = showContent) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null
+                ) {},
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            LottieLoader(
+                modifier = Modifier.size(150.dp),
+                lottieResource = ASTRONAUT_ANIMATION
+            )
+
+            BodyText(
+                modifier = Modifier.padding(16.dp),
+                text = stringResource(R.string.mobile_no_results_found),
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center
+            )
+
+            lastIntention?.let { lastIntention ->
+                DefaultButton(
+                    modifier = Modifier,
+                    text = stringResource(R.string.mobile_refresh),
+                    action = { lastIntention() }
+                )
+            }
+        }
+    }
 }
 
 @Composable
@@ -98,7 +201,7 @@ private fun showLoadBlack(showContent: Boolean) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(colorResource(R.color.color_black_opacity_40))
+                .background(colorResource(R.color.color_black_opacity_50))
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = null
@@ -125,23 +228,10 @@ private fun showLoadLight(showContent: Boolean) {
                 ) {},
             contentAlignment = Alignment.Center
         ) {
-            AnimatedVisibility(
-                visible = true,
-                enter = fadeIn(
-                    animationSpec = tween(
-                        durationMillis = ANIMATION_TIME.toInt(),
-                    ),
-                    initialAlpha = 0f,
-                ),
-                exit = fadeOut(
-                    animationSpec = tween(ANIMATION_TIME.toInt()),
-                )
-            ) {
-                LottieLoader(
-                    modifier = Modifier.size(120.dp),
-                    lottieResource = LOADING
-                )
-            }
+            LottieLoader(
+                modifier = Modifier.size(120.dp),
+                lottieResource = LOADING
+            )
         }
     }
 }
@@ -183,55 +273,23 @@ private fun showConnectionError(showContent: Boolean, lastIntention: IntentionOr
 }
 
 @Composable
-private fun showEmpty(showContent: Boolean, lastIntention: IntentionOrNull) {
-    show(showContent = showContent) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .clickable(
-                    interactionSource = remember { MutableInteractionSource() },
-                    indication = null
-                ) {},
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            LottieLoader(
-                modifier = Modifier.size(150.dp),
-                lottieResource = ASTRONAUT_ANIMATION
-            )
-
-            BodyText(
-                modifier = Modifier.padding(16.dp),
-                text = stringResource(R.string.mobile_no_results_found),
-                fontSize = 16.sp,
-                textAlign = TextAlign.Center
-            )
-
-            lastIntention?.let { lastIntention ->
-                DefaultButton(
-                    modifier = Modifier,
-                    text = stringResource(R.string.mobile_refresh),
-                    action = { lastIntention() }
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun show(showContent: Boolean, content: @Composable () -> Unit) {
-    AnimatedVisibility(
-        visible = showContent,
-        enter = fadeIn(
-            animationSpec = tween(
-                durationMillis = ANIMATION_TIME.toInt(),
+private fun show(showContent: Boolean, animate: Boolean = false, content: @Composable () -> Unit) {
+    if (animate) {
+        AnimatedVisibility(
+            visible = showContent,
+            enter = fadeIn(
+                animationSpec = tween(
+                    durationMillis = ANIMATION_TIME.toInt(),
+                ),
+                initialAlpha = 0f,
             ),
-            initialAlpha = 0f,
-        ),
-        exit = fadeOut(
-            animationSpec = tween(ANIMATION_TIME.toInt()),
-        )
-    ) {
+            exit = fadeOut(
+                animationSpec = tween(ANIMATION_TIME.toInt()),
+            )
+        ) {
+            content()
+        }
+    } else if (showContent) {
         content()
     }
 }
@@ -258,8 +316,8 @@ private fun ContentStatePreview() {
             state = Type.NETWORK_ERROR,
             lastIntention = { },
             toolbar = {
-                AstroToolBar(
-                    title = stringResource(id = R.string.mobile_transfer),
+                DefaultToolBar(
+                    title = "toolbar",
                 ) {
                     IconNavigationBack {
 

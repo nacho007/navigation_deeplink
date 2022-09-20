@@ -25,7 +25,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.ComposeViewModel
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.BottomSheetLikeDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.ModalTransitionDialog
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.AstroToolBar
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.DefaultToolBar
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
@@ -73,7 +73,7 @@ class LoaderFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
             state = screenState.loadState,
             lastIntention = { viewModel.lastIntention() },
             toolbar = {
-                AstroToolBar(
+                DefaultToolBar(
                     title = stringResource(id = R.string.mobile_transfer),
                 ) {
                     IconNavigationBack {

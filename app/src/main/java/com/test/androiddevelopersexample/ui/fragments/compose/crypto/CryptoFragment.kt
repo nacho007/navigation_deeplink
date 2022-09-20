@@ -9,6 +9,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.History
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -27,7 +31,11 @@ import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.ComposeViewModel
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.buttons.DefaultButton
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.iconColorTint
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.text_field.DefaultTextField
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.DefaultActionToolbar
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import com.test.androiddevelopersexample.ui.fragments.compose.crypto.components.PromotionClaimed
 import com.test.androiddevelopersexample.utils.DomainObjectsMocks
@@ -64,10 +72,48 @@ class CryptoFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
                 }
             }
         }
+        viewModel.loadData()
     }
 
     @Composable
     private fun Screen(
+        screenState: ComposeViewModel.ViewState,
+        eventReducer: (UIEvent) -> Unit
+    ) {
+        ContentState(
+            state = screenState.loadState,
+            lastIntention = { viewModel.lastIntention() },
+            toolbar = {
+                DefaultActionToolbar(
+                    title = stringResource(id = R.string.mobile_cancel),
+                    navigationIcon = {
+                        IconNavigationBack {
+
+                        }
+                    },
+                    actionIcon = {
+                        IconButton(onClick = { }) {
+                            Icon(
+                                imageVector = Icons.Default.History,
+                                tint = iconColorTint(),
+                                contentDescription = null
+                            )
+                        }
+                    }
+                )
+            },
+            content = {
+                Content(
+                    screenState = screenState,
+                    eventReducer = eventReducer
+                )
+            },
+            floatingButton = { }
+        )
+    }
+
+    @Composable
+    private fun Content(
         screenState: ComposeViewModel.ViewState,
         eventReducer: (UIEvent) -> Unit
     ) {

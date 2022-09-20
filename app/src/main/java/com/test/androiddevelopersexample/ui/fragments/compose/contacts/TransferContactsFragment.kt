@@ -68,7 +68,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.dialogs.Mo
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.isScrollingUp
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.swipe.DefaultSwipeRefreshIndicator
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
-import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.AstroToolBar
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.DefaultToolBar
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.contacts.components.ContactItem
@@ -209,7 +209,7 @@ class TransferContactsFragment :
             state = screenState.loadState,
             lastIntention = { viewModel.lastIntention() },
             toolbar = {
-                AstroToolBar(
+                DefaultToolBar(
                     title = stringResource(id = R.string.mobile_transfer),
                 ) {
                     IconNavigationBack {
