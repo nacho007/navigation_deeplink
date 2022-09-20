@@ -106,6 +106,12 @@ internal class ComposeViewModel :
         sendAction(Action.CashBackAnimation)
     }
 
+    fun onCloseCashBackAnimation() {
+        state = state.copy(
+            cashBackAnimation = false
+        )
+    }
+
     override fun onReduceState(viewAction: Action): ViewState = when (viewAction) {
         is Action.Loading -> state.copy(
             loadState = Type.LOAD_LIGHT,

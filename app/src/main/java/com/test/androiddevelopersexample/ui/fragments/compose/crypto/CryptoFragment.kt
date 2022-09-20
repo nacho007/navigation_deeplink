@@ -107,7 +107,8 @@ class CryptoFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
         if (screenState.cashBackAnimation) {
             PromotionClaimed(
                 promotionToClaim = DomainObjectsMocks.getCryptoPromotionToClaim(),
-                cryptoImageBaseUrl = "https://getapp-test.astropaycard.com/img/crypto/"
+                cryptoImageBaseUrl = "https://getapp-test.astropaycard.com/img/crypto/",
+                onClick = { eventReducer(UIEvent.CloseCashBackAnimation) }
             )
         }
     }
@@ -116,12 +117,14 @@ class CryptoFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
         when (event) {
             is UIEvent.NewAmountToPay -> viewModel.onNewAmountToPay(event.amountToPay)
             is UIEvent.CashBackAnimation -> viewModel.onCashBackAnimation()
+            is UIEvent.CloseCashBackAnimation -> viewModel.onCloseCashBackAnimation()
         }
     }
 
     private sealed class UIEvent {
         class NewAmountToPay(val amountToPay: String?) : UIEvent()
         object CashBackAnimation : UIEvent()
+        object CloseCashBackAnimation : UIEvent()
     }
 
     @Composable
