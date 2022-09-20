@@ -114,23 +114,9 @@ fun ContentState(
                 customAnimation()
             }
         }
-
-
     }
 
-//    showLoadBlack(state == Type.LOAD_BLACK_OPACITY)
-//    animationScaffold(showContent = state == Type.ANIMATION, content = content)
-}
-
-
-@Composable
-private fun animationScaffold(
-    showContent: Boolean,
-    content: @Composable () -> Unit,
-) {
-    show(showContent = showContent) {
-        content()
-    }
+    showLoadBlack(state == Type.LOAD_BLACK_OPACITY)
 }
 
 @Composable
