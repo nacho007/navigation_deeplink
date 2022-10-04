@@ -152,7 +152,13 @@
         android:id="@+id/checkoutFragment2"
         android:name="com.test.androiddevelopersexample.ui.fragments.checkout.CheckoutFragment2"
         android:label="CheckoutFragment2"
-        tools:layout="@layout/fragment_checkout_2" />
+        tools:layout="@layout/fragment_checkout_2" >
+        <action
+            android:id="@+id/action_checkoutFragment2_to_checkoutFragment"
+            app:popUpTo="@id/checkoutFragment1"
+            app:destination="@id/checkoutFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
 
     <fragment
         android:id="@+id/astroCoinsFragment"

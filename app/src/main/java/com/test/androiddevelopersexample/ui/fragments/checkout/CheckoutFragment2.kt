@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.View
 import com.test.androiddevelopersexample.databinding.FragmentCheckout2Binding
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
+import com.test.androiddevelopersexample.ui.utils.navigate
 
 /**
  * Created by ignaciodeandreisdenis on 4/7/21.
  */
-class CheckoutFragment2 : BaseFragment<FragmentCheckout2Binding>(FragmentCheckout2Binding::inflate) {
+class CheckoutFragment2 :
+    BaseFragment<FragmentCheckout2Binding>(FragmentCheckout2Binding::inflate) {
 
     override var screenTag = "CheckoutFragment2"
 
@@ -21,7 +23,9 @@ class CheckoutFragment2 : BaseFragment<FragmentCheckout2Binding>(FragmentCheckou
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             textView4.setOnClickListener {
-
+                val action =
+                    CheckoutFragment2Directions.actionCheckoutFragment2ToCheckoutFragment()
+                navigate(action)
             }
         }
     }
