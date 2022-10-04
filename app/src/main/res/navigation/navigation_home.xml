@@ -132,7 +132,27 @@
         android:id="@+id/checkoutFragment"
         android:name="com.test.androiddevelopersexample.ui.fragments.checkout.CheckoutFragment"
         android:label="CheckoutFragment"
-        tools:layout="@layout/fragment_checkout" />
+        tools:layout="@layout/fragment_checkout" >
+        <action
+            android:id="@+id/action_checkoutFragment_to_checkoutFragment1"
+            app:destination="@id/checkoutFragment1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutFragment1"
+        android:name="com.test.androiddevelopersexample.ui.fragments.checkout.CheckoutFragment1"
+        android:label="CheckoutFragment1"
+        tools:layout="@layout/fragment_checkout_1" >
+        <action
+            android:id="@+id/action_checkoutFragment1_to_checkoutFragment2"
+            app:destination="@id/checkoutFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutFragment2"
+        android:name="com.test.androiddevelopersexample.ui.fragments.checkout.CheckoutFragment2"
+        android:label="CheckoutFragment2"
+        tools:layout="@layout/fragment_checkout_2" />
 
     <fragment
         android:id="@+id/astroCoinsFragment"

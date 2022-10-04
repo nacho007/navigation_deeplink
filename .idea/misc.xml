@@ -93,10 +93,15 @@
         <entry key="../../../layout/compose-model-1663692597930.xml" value="1.0" />
         <entry key="../../../layout/compose-model-1663692901270.xml" value="0.25" />
         <entry key="../../../layout/compose-model-1663695015579.xml" value="0.13636363636363635" />
+        <entry key="../../../layout/compose-model-1663785176875.xml" value="0.1605917667238422" />
+        <entry key="../../../layout/compose-model-1663785410473.xml" value="0.1605917667238422" />
         <entry key="app/src/main/res/drawable/svg_dollar_sign.xml" value="0.182" />
         <entry key="app/src/main/res/drawable/svg_user_profile_picture.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/svg_wallet_crypto_outline_enabled.xml" value="0.182" />
         <entry key="app/src/main/res/layout/activity_jumio.xml" value="0.17575757575757575" />
+        <entry key="app/src/main/res/layout/fragment_checkout.xml" value="0.30625" />
+        <entry key="app/src/main/res/layout/fragment_checkout_1.xml" value="0.30625" />
+        <entry key="app/src/main/res/layout/fragment_checkout_2.xml" value="0.30625" />
         <entry key="app/src/main/res/layout/fragment_compose.xml" value="0.30625" />
         <entry key="app/src/main/res/layout/fragment_wallet.xml" value="0.30625" />
         <entry key="app/src/main/res/layout/my_activity_jumio.xml" value="0.30625" />

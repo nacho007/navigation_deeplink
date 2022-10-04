@@ -156,14 +156,6 @@ class CryptoFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
                 eventReducer(UIEvent.CashBackAnimation)
             })
         }
-
-//        if (screenState.cashBackAnimation) {
-//            PromotionClaimed(
-//                promotionToClaim = DomainObjectsMocks.getCryptoPromotionToClaim(),
-//                cryptoImageBaseUrl = "https://getapp-test.astropaycard.com/img/crypto/",
-//                onClick = { eventReducer(UIEvent.CloseCashBackAnimation) }
-//            )
-//        }
     }
 
     private fun onUIEvent(event: UIEvent) {

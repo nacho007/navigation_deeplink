@@ -88,6 +88,8 @@ dependencies {
 
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
+    implementation "com.kochava.tracker:tracker:4.1.0"
+
     def lifecycle_version = "2.2.0"
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"

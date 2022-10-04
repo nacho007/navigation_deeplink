@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-
+import com.kochava.tracker.Tracker
 /**
  * Created by ignaciodeandreisdenis on 4/11/21.
  */
@@ -17,6 +17,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.e(screenTag, "onCreate")
+        val track =  Tracker.getInstance().deviceId
     }
 
     override fun onNewIntent(intent: Intent?) {
