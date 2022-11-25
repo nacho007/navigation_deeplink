@@ -113,6 +113,12 @@ internal class ComposeViewModel :
         )
     }
 
+    fun onSnackBar() {
+        state = state.copy(
+            loadState = Type.SNACKBAR
+        )
+    }
+
     override fun onReduceState(viewAction: Action): ViewState = when (viewAction) {
         is Action.Loading -> state.copy(
             loadState = Type.LOAD_LIGHT,

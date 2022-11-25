@@ -19,11 +19,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
-import androidx.compose.material.Scaffold
-import androidx.compose.material.ScaffoldState
-import androidx.compose.material.SnackbarResult
 import androidx.compose.material.rememberModalBottomSheetState
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -133,12 +129,10 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
             Navigation(it)
         }
 
-        val scaffoldState: ScaffoldState = rememberScaffoldState()
-        val coroutineScope: CoroutineScope = rememberCoroutineScope()
-
-        Scaffold(
-            scaffoldState = scaffoldState,
-            topBar = {
+        ContentState(
+            state = screenState.loadState,
+            lastIntention = { },
+            toolbar = {
                 DefaultToolBar(title = "Este es mi texto") {
                     IconNavigationBack {
                         findNavController().popBackStack()
@@ -146,140 +140,123 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                 }
             },
             content = {
-                ContentState(
-                    state = screenState.loadState,
-                    lastIntention = { },
-                    toolbar = {},
-                    content = {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .verticalScroll(rememberScrollState())
-                                .padding(all = 16.dp),
-                            verticalArrangement = Arrangement.Top,
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
+                        .padding(all = 16.dp),
+                    verticalArrangement = Arrangement.Top,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
 
-                            BodyText(
-                                text = "This is my title\nBigger than anyone",
-                                modifier = Modifier.padding(all = 16.dp),
-                                style = MaterialTheme.typography.h1
-                            )
+                    BodyText(
+                        text = "This is my title\nBigger than anyone",
+                        modifier = Modifier.padding(all = 16.dp),
+                        style = MaterialTheme.typography.h1
+                    )
 
-                            DefaultCardView {
-                                BodyText(
-                                    text = "Este es mi texto\nMore text",
-                                    modifier = Modifier.padding(all = 16.dp)
-                                )
+                    DefaultCardView {
+                        BodyText(
+                            text = "Este es mi texto\nMore text",
+                            modifier = Modifier.padding(all = 16.dp)
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.padding(all = 16.dp))
+
+                    DefaultButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        text = "SnackBars",
+                        action = {
+                            scope.launch {
+                                eventReducer(UIEvent.ShowSnackBar)
                             }
+                        }
+                    )
 
-                            Spacer(modifier = Modifier.padding(all = 16.dp))
+                    DefaultButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        text = "Crypto Input",
+                        action = {
+                            scope.launch {
+                                eventReducer(UIEvent.OpenCryptoInput)
+                            }
+                        }
+                    )
 
-                            DefaultButton(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp),
-                                text = "SnackBars",
-                                action = {
-                                    coroutineScope.launch {
-                                        val snackbarResult = scaffoldState.snackbarHostState.showSnackbar(
-                                            message = "This is your message",
-                                            actionLabel = "Do something"
-                                        )
-                                        when (snackbarResult) {
-                                            SnackbarResult.Dismissed -> {}
-                                            SnackbarResult.ActionPerformed -> {}
-                                        }
-                                    }
-//                                    scope.launch {
-//                                        eventReducer(UIEvent.ShowSnackBar)
-//                                    }
-                                }
-                            )
+                    DefaultButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        text = "Jumio",
+                        action = {
+                            scope.launch {
+                                eventReducer(UIEvent.OpenJumio)
+                            }
+                        }
+                    )
 
-                            DefaultButton(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp),
-                                text = "Crypto Input",
-                                action = {
-                                    scope.launch {
-                                        eventReducer(UIEvent.OpenCryptoInput)
-                                    }
-                                }
-                            )
-
-                            DefaultButton(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp),
-                                text = "Jumio",
-                                action = {
-                                    scope.launch {
-                                        eventReducer(UIEvent.OpenJumio)
-                                    }
-                                }
-                            )
-
-                            DefaultButton(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp),
-                                text = "Contact List",
-                                action = {
-                                    navigate(
-                                        MoneyFragmentDirections.actionMoneyFragmentToTransferContactsFragment(
-                                            transferWalletParameters = TransferWalletParameter(
-                                                amount = 200.0,
-                                                currency = "USD"
-                                            ),
-                                            transferAPCParameters = null,
-                                            flowType = FlowType.WALLET
-                                        )
-                                    )
-                                }
-                            )
-
-                            DefaultButton(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp),
-                                text = "Loaders",
-                                action = {
-                                    navigate(
-                                        MoneyFragmentDirections.actionMoneyFragmentToLoaderFragment()
-                                    )
-                                }
-                            )
-
-                            DefaultButton(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp),
-                                text = "Open Phone Bottom Sheet",
-                                action = {
-                                    scope.launch {
-                                        bottomState.show()
-                                    }
-                                }
-                            )
-
-                            DefaultButton(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp),
-                                text = "Paginated",
-                                action = {
-                                    scope.launch {
-                                        eventReducer(UIEvent.OpenPaginated)
-                                    }
-                                }
+                    DefaultButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        text = "Contact List",
+                        action = {
+                            navigate(
+                                MoneyFragmentDirections.actionMoneyFragmentToTransferContactsFragment(
+                                    transferWalletParameters = TransferWalletParameter(
+                                        amount = 200.0,
+                                        currency = "USD"
+                                    ),
+                                    transferAPCParameters = null,
+                                    flowType = FlowType.WALLET
+                                )
                             )
                         }
-                    },
-                    floatingButton = {}
-                )
-            }
+                    )
+
+                    DefaultButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        text = "Loaders",
+                        action = {
+                            navigate(
+                                MoneyFragmentDirections.actionMoneyFragmentToLoaderFragment()
+                            )
+                        }
+                    )
+
+                    DefaultButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        text = "Open Phone Bottom Sheet",
+                        action = {
+                            scope.launch {
+                                bottomState.show()
+                            }
+                        }
+                    )
+
+                    DefaultButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        text = "Paginated",
+                        action = {
+                            scope.launch {
+                                eventReducer(UIEvent.OpenPaginated)
+                            }
+                        }
+                    )
+                }
+            },
+            floatingButton = {}
         )
     }
 
@@ -295,7 +272,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
             is UIEvent.OpenPaginated -> viewModel.onPaginatedPressed()
             is UIEvent.OpenJumio -> startJumio()
             is UIEvent.OpenCryptoInput -> goToCrypto()
-            is UIEvent.ShowSnackBar -> goToCrypto()
+            is UIEvent.ShowSnackBar -> viewModel.onSnackBar()
         }
     }
 

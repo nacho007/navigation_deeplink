@@ -19,8 +19,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.FabPosition
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
+import androidx.compose.material.ScaffoldState
+import androidx.compose.material.SnackbarResult
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -40,11 +45,15 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.Body
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.DefaultToolBar
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
 import com.test.androiddevelopersexample.ui.fragments.previews.DefaultPreview
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.seconds
 
 internal const val ANIMATION_TIME = 250L
 
 enum class Type {
-    EMPTY, EMPTY_WITH_REFRESH, LOAD_BLACK_OPACITY, LOAD_LIGHT, SHOW_CONTENT, NETWORK_ERROR, ANIMATION, DEFAULT_ERROR, NONE
+    EMPTY, EMPTY_WITH_REFRESH, LOAD_BLACK_OPACITY, LOAD_LIGHT, SHOW_CONTENT, NETWORK_ERROR, ANIMATION, DEFAULT_ERROR, SNACKBAR, NONE
 }
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -68,6 +77,7 @@ fun ContentState(
         Type.NETWORK_ERROR -> false
         Type.ANIMATION -> true
         Type.DEFAULT_ERROR -> true
+        Type.SNACKBAR -> true
         Type.NONE -> false
     }
 
@@ -80,8 +90,12 @@ fun ContentState(
         Type.NETWORK_ERROR -> false
         Type.ANIMATION -> true
         Type.DEFAULT_ERROR -> false
+        Type.SNACKBAR -> true
         Type.NONE -> false
     }
+
+    val scaffoldState: ScaffoldState = rememberScaffoldState()
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
 
     Box(
         modifier = Modifier
@@ -89,6 +103,7 @@ fun ContentState(
         contentAlignment = Alignment.Center
     ) {
         Scaffold(
+            scaffoldState = scaffoldState,
             topBar = {
                 Show(
                     showContent = showToolbar,
@@ -109,6 +124,7 @@ fun ContentState(
                 ShowEmptyWithRefresh(state == Type.EMPTY_WITH_REFRESH, lastIntention)
                 ShowLoadLight(state == Type.LOAD_LIGHT)
                 ShowConnectionError(state == Type.NETWORK_ERROR, lastIntention)
+                SnackbarDemo(state == Type.SNACKBAR, scaffoldState, coroutineScope)
             },
             floatingActionButton = {
                 floatingButton()
@@ -127,6 +143,28 @@ fun ContentState(
     }
 
     ShowLoadBlack(state == Type.LOAD_BLACK_OPACITY)
+}
+
+@Composable
+fun SnackbarDemo(
+    showContent: Boolean,
+    scaffoldState: ScaffoldState,
+    coroutineScope: CoroutineScope
+) {
+    if (showContent) {
+        LaunchedEffect(coroutineScope) {
+            this.launch {
+                val snackbarResult = scaffoldState.snackbarHostState.showSnackbar(
+                    message = "This is your message",
+                    actionLabel = "Do something"
+                )
+                when (snackbarResult) {
+                    SnackbarResult.Dismissed -> {}
+                    SnackbarResult.ActionPerformed -> {}
+                }
+            }
+        }
+    }
 }
 
 @Composable
