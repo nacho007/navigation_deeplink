@@ -92,6 +92,7 @@ class ComposeFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBind
                     )
                 }
             },
+            onSnackBarDismissed = null,
             floatingButton = {}
         )
     }

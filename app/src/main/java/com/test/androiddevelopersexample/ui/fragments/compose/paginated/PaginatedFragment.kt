@@ -87,6 +87,7 @@ class PaginatedFragment :
                     eventReducer = eventReducer
                 )
             },
+            onSnackBarDismissed = null,
             floatingButton = {}
         )
     }

@@ -115,7 +115,8 @@ class CryptoFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
                     eventReducer = eventReducer
                 )
             },
-            floatingButton = { }
+            floatingButton = { },
+            onSnackBarDismissed = null,
         )
     }
 

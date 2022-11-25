@@ -46,9 +46,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.De
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
 import com.test.androiddevelopersexample.ui.fragments.previews.DefaultPreview
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.seconds
 
 internal const val ANIMATION_TIME = 250L
 
@@ -63,6 +61,7 @@ fun ContentState(
     lastIntention: IntentionOrNull,
     toolbar: @Composable () -> Unit,
     content: @Composable () -> Unit,
+    onSnackBarDismissed: (() -> Unit)?,
     customEmptyState: (@Composable () -> Unit)? = null,
     customAnimation: (@Composable () -> Unit)? = null,
     floatingButton: @Composable () -> Unit,
@@ -124,7 +123,12 @@ fun ContentState(
                 ShowEmptyWithRefresh(state == Type.EMPTY_WITH_REFRESH, lastIntention)
                 ShowLoadLight(state == Type.LOAD_LIGHT)
                 ShowConnectionError(state == Type.NETWORK_ERROR, lastIntention)
-                SnackbarDemo(state == Type.SNACKBAR, scaffoldState, coroutineScope)
+                SnackbarDemo(
+                    state == Type.SNACKBAR,
+                    onSnackBarDismissed,
+                    scaffoldState,
+                    coroutineScope
+                )
             },
             floatingActionButton = {
                 floatingButton()
@@ -148,6 +152,7 @@ fun ContentState(
 @Composable
 fun SnackbarDemo(
     showContent: Boolean,
+    onSnackBarDismissed: (() -> Unit)?,
     scaffoldState: ScaffoldState,
     coroutineScope: CoroutineScope
 ) {
@@ -159,8 +164,8 @@ fun SnackbarDemo(
                     actionLabel = "Do something"
                 )
                 when (snackbarResult) {
-                    SnackbarResult.Dismissed -> {}
-                    SnackbarResult.ActionPerformed -> {}
+                    SnackbarResult.Dismissed -> onSnackBarDismissed?.invoke()
+                    SnackbarResult.ActionPerformed -> onSnackBarDismissed?.invoke()
                 }
             }
         }
@@ -402,6 +407,7 @@ private fun ContentStatePreview() {
         ContentState(
             state = Type.NETWORK_ERROR,
             lastIntention = { },
+            onSnackBarDismissed = {},
             toolbar = {
                 DefaultToolBar(
                     title = "toolbar",

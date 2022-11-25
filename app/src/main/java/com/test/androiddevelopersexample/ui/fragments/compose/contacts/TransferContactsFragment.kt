@@ -262,7 +262,8 @@ class TransferContactsFragment :
                         )
                     }
                 }
-            }
+            },
+            onSnackBarDismissed = null,
         )
     }
 

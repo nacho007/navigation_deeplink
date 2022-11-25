@@ -120,6 +120,7 @@ class LoaderFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindi
                     }
                 }
             },
+            onSnackBarDismissed = null,
             floatingButton = {}
         )
     }

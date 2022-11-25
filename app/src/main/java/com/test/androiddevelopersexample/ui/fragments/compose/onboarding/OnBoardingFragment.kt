@@ -80,6 +80,7 @@ class OnBoardingFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeB
                                     url = viewModel.getCountryUrl()
                                 )
                             },
+                            onSnackBarDismissed = null,
                             floatingButton = {}
                         )
                     }

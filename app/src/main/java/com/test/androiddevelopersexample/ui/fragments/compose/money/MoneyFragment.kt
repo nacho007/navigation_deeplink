@@ -256,6 +256,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                     )
                 }
             },
+            onSnackBarDismissed = { viewModel.onSnackBarDismissed() },
             floatingButton = {}
         )
     }
