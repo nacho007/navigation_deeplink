@@ -1,7 +1,7 @@
 package com.test.androiddevelopersexample.ui.fragments.compose.money
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.ActivityResult
@@ -20,7 +20,10 @@ import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Scaffold
+import androidx.compose.material.ScaffoldState
+import androidx.compose.material.SnackbarResult
 import androidx.compose.material.rememberModalBottomSheetState
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -31,8 +34,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
 import com.test.androiddevelopersexample.R
@@ -52,6 +53,7 @@ import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.Ic
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.ContentState
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import com.test.androiddevelopersexample.ui.fragments.compose.contacts.FlowType
+import com.test.androiddevelopersexample.ui.fragments.previews.DefaultPreview
 import com.test.androiddevelopersexample.ui.utils.Utils
 import com.test.androiddevelopersexample.ui.utils.navigate
 import kotlinx.coroutines.CoroutineScope
@@ -118,6 +120,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
         viewModel.loadData()
     }
 
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterialApi::class)
     @Composable
     private fun Screen(
@@ -130,7 +133,11 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
             Navigation(it)
         }
 
+        val scaffoldState: ScaffoldState = rememberScaffoldState()
+        val coroutineScope: CoroutineScope = rememberCoroutineScope()
+
         Scaffold(
+            scaffoldState = scaffoldState,
             topBar = {
                 DefaultToolBar(title = "Este es mi texto") {
                     IconNavigationBack {
@@ -167,6 +174,28 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                             }
 
                             Spacer(modifier = Modifier.padding(all = 16.dp))
+
+                            DefaultButton(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 8.dp),
+                                text = "SnackBars",
+                                action = {
+                                    coroutineScope.launch {
+                                        val snackbarResult = scaffoldState.snackbarHostState.showSnackbar(
+                                            message = "This is your message",
+                                            actionLabel = "Do something"
+                                        )
+                                        when (snackbarResult) {
+                                            SnackbarResult.Dismissed -> {}
+                                            SnackbarResult.ActionPerformed -> {}
+                                        }
+                                    }
+//                                    scope.launch {
+//                                        eventReducer(UIEvent.ShowSnackBar)
+//                                    }
+                                }
+                            )
 
                             DefaultButton(
                                 modifier = Modifier
@@ -258,6 +287,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
         object OpenPaginated : UIEvent()
         object OpenJumio : UIEvent()
         object OpenCryptoInput : UIEvent()
+        object ShowSnackBar : UIEvent()
     }
 
     private fun onUIEvent(event: UIEvent) {
@@ -265,6 +295,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
             is UIEvent.OpenPaginated -> viewModel.onPaginatedPressed()
             is UIEvent.OpenJumio -> startJumio()
             is UIEvent.OpenCryptoInput -> goToCrypto()
+            is UIEvent.ShowSnackBar -> goToCrypto()
         }
     }
 
@@ -337,16 +368,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
     }
 
     @Composable
-    @Preview(
-        device = Devices.PIXEL_4,
-        uiMode = Configuration.UI_MODE_NIGHT_YES,
-        locale = "es"
-    )
-    @Preview(
-        device = Devices.PIXEL_4,
-        uiMode = Configuration.UI_MODE_NIGHT_NO,
-        locale = "es"
-    )
+    @DefaultPreview
     @OptIn(ExperimentalMaterialApi::class)
     private fun ComposeFragmentPreview() {
         val bottomSheetState =

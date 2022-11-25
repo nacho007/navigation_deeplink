@@ -1,6 +1,6 @@
 package com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state
 
-import android.content.res.Configuration
+import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -11,43 +11,50 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.FabPosition
+import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.test.androiddevelopersexample.R
 import com.test.androiddevelopersexample.theme.AstroPayTheme
+import com.test.androiddevelopersexample.theme.Grey300
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.IntentionOrNull
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.buttons.DefaultButton
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.loaders.LottieLoader
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.texts.BodyText
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.DefaultToolBar
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.toolbar.IconNavigationBack
+import com.test.androiddevelopersexample.ui.fragments.previews.DefaultPreview
 
 internal const val ANIMATION_TIME = 250L
 
 enum class Type {
-    EMPTY, EMPTY_WITH_REFRESH, LOAD_BLACK_OPACITY, LOAD_LIGHT, SHOW_CONTENT, NETWORK_ERROR, ANIMATION, NONE
+    EMPTY, EMPTY_WITH_REFRESH, LOAD_BLACK_OPACITY, LOAD_LIGHT, SHOW_CONTENT, NETWORK_ERROR, ANIMATION, DEFAULT_ERROR, NONE
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ContentState(
     state: Type,
     lastIntention: IntentionOrNull,
     toolbar: @Composable () -> Unit,
     content: @Composable () -> Unit,
+    customEmptyState: (@Composable () -> Unit)? = null,
     customAnimation: (@Composable () -> Unit)? = null,
     floatingButton: @Composable () -> Unit,
     floatingActionButtonPosition: FabPosition = FabPosition.End
@@ -60,6 +67,7 @@ fun ContentState(
         Type.SHOW_CONTENT -> true
         Type.NETWORK_ERROR -> false
         Type.ANIMATION -> true
+        Type.DEFAULT_ERROR -> true
         Type.NONE -> false
     }
 
@@ -71,6 +79,7 @@ fun ContentState(
         Type.SHOW_CONTENT -> true
         Type.NETWORK_ERROR -> false
         Type.ANIMATION -> true
+        Type.DEFAULT_ERROR -> false
         Type.NONE -> false
     }
 
@@ -81,7 +90,7 @@ fun ContentState(
     ) {
         Scaffold(
             topBar = {
-                show(
+                Show(
                     showContent = showToolbar,
                     animate = true
                 ) {
@@ -89,16 +98,17 @@ fun ContentState(
                 }
             },
             content = {
-                show(
+                Show(
                     showContent = showContent,
                     animate = true
                 ) {
                     content()
                 }
-                showEmpty(state == Type.EMPTY)
-                showEmptyWithRefresh(state == Type.EMPTY_WITH_REFRESH, lastIntention)
-                showLoadLight(state == Type.LOAD_LIGHT)
-                showConnectionError(state == Type.NETWORK_ERROR, lastIntention)
+                ShowDefaultError(state == Type.DEFAULT_ERROR, lastIntention)
+                ShowEmpty(state == Type.EMPTY, customEmptyState)
+                ShowEmptyWithRefresh(state == Type.EMPTY_WITH_REFRESH, lastIntention)
+                ShowLoadLight(state == Type.LOAD_LIGHT)
+                ShowConnectionError(state == Type.NETWORK_ERROR, lastIntention)
             },
             floatingActionButton = {
                 floatingButton()
@@ -116,12 +126,12 @@ fun ContentState(
         }
     }
 
-    showLoadBlack(state == Type.LOAD_BLACK_OPACITY)
+    ShowLoadBlack(state == Type.LOAD_BLACK_OPACITY)
 }
 
 @Composable
-private fun showEmpty(showContent: Boolean) {
-    show(showContent = showContent) {
+private fun ShowDefaultError(showContent: Boolean, lastIntention: IntentionOrNull) {
+    Show(showContent = showContent) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -130,26 +140,86 @@ private fun showEmpty(showContent: Boolean) {
                     indication = null
                 ) {},
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            LottieLoader(
-                modifier = Modifier.size(150.dp),
-                lottieResource = ASTRONAUT_ANIMATION
+            Icon(
+                modifier = Modifier.size(65.dp),
+                painter = painterResource(id = R.drawable.svg_build),
+                contentDescription = null,
+                tint = Grey300
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            BodyText(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                text = stringResource(R.string.home_error_screen_title),
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.SemiBold
             )
 
             BodyText(
-                modifier = Modifier.padding(16.dp),
-                text = stringResource(R.string.mobile_cancel),
+                modifier = Modifier.padding(horizontal = 16.dp),
+                text = stringResource(R.string.home_error_screen_subtitle),
                 fontSize = 16.sp,
                 textAlign = TextAlign.Center
             )
+
+            lastIntention?.let { lastIntention ->
+                Spacer(modifier = Modifier.height(8.dp))
+                DefaultButton(
+                    modifier = Modifier,
+                    text = stringResource(R.string.mobile_retry),
+                    action = { lastIntention() }
+                )
+            }
+
+            Spacer(modifier = Modifier.height(90.dp))
         }
     }
 }
 
 @Composable
-private fun showEmptyWithRefresh(showContent: Boolean, lastIntention: IntentionOrNull) {
-    show(showContent = showContent) {
+private fun ShowEmpty(showContent: Boolean, customEmptyState: @Composable (() -> Unit)?) {
+    Show(showContent = showContent) {
+        customEmptyState?.let { view ->
+            view()
+        } ?: run {
+            DefaultEmpty()
+        }
+    }
+}
+
+@Composable
+private fun DefaultEmpty() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null
+            ) {},
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        LottieLoader(
+            modifier = Modifier.size(150.dp),
+            lottieResource = ASTRONAUT_ANIMATION
+        )
+
+        BodyText(
+            modifier = Modifier.padding(16.dp),
+            text = stringResource(id = R.string.mobile_no_results_found),
+            fontSize = 16.sp,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Composable
+private fun ShowEmptyWithRefresh(showContent: Boolean, lastIntention: IntentionOrNull) {
+    Show(showContent = showContent) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -184,8 +254,8 @@ private fun showEmptyWithRefresh(showContent: Boolean, lastIntention: IntentionO
 }
 
 @Composable
-private fun showLoadBlack(showContent: Boolean) {
-    show(showContent = showContent) {
+private fun ShowLoadBlack(showContent: Boolean) {
+    Show(showContent = showContent) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -205,8 +275,8 @@ private fun showLoadBlack(showContent: Boolean) {
 }
 
 @Composable
-private fun showLoadLight(showContent: Boolean) {
-    show(showContent = showContent) {
+private fun ShowLoadLight(showContent: Boolean) {
+    Show(showContent = showContent) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -225,8 +295,8 @@ private fun showLoadLight(showContent: Boolean) {
 }
 
 @Composable
-private fun showConnectionError(showContent: Boolean, lastIntention: IntentionOrNull) {
-    show(showContent = showContent) {
+private fun ShowConnectionError(showContent: Boolean, lastIntention: IntentionOrNull) {
+    Show(showContent = showContent) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -261,7 +331,7 @@ private fun showConnectionError(showContent: Boolean, lastIntention: IntentionOr
 }
 
 @Composable
-private fun show(showContent: Boolean, animate: Boolean = false, content: @Composable () -> Unit) {
+private fun Show(showContent: Boolean, animate: Boolean = false, content: @Composable () -> Unit) {
     if (animate) {
         AnimatedVisibility(
             visible = showContent,
@@ -288,16 +358,7 @@ const val LOADING = "loading.json"
 
 
 @Composable
-@Preview(
-    device = Devices.PIXEL_4,
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    locale = ""
-)
-@Preview(
-    device = Devices.PIXEL_4,
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-    locale = ""
-)
+@DefaultPreview
 private fun ContentStatePreview() {
     AstroPayTheme {
         ContentState(
