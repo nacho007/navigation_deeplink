@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.test.androiddevelopersexample.ui.base.BaseAction
 import com.test.androiddevelopersexample.ui.base.BaseViewModel
 import com.test.androiddevelopersexample.ui.base.BaseViewState
+import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.SnackBarMessage
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.view_state.Type
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -115,7 +116,11 @@ internal class ComposeViewModel :
 
     fun onSnackBar() {
         state = state.copy(
-            loadState = Type.SNACKBAR
+            loadState = Type.SNACKBAR,
+            snackBarMessage = SnackBarMessage(
+                message = "This is your message",
+                actionLabel = "Do something"
+            )
         )
     }
 
@@ -145,6 +150,7 @@ internal class ComposeViewModel :
 
     internal data class ViewState(
         val loadState: Type = Type.NONE,
+        val snackBarMessage: SnackBarMessage? = null,
         val destination: Destination? = null,
         val amountToPay: String? = null,
         val cashBackAnimation: Boolean = false

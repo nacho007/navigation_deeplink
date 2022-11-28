@@ -131,6 +131,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
 
         ContentState(
             state = screenState.loadState,
+            snackBarMessage = screenState.snackBarMessage,
             lastIntention = { },
             toolbar = {
                 DefaultToolBar(title = "Este es mi texto") {

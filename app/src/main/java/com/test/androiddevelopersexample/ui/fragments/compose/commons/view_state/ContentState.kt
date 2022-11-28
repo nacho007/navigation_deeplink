@@ -61,6 +61,7 @@ fun ContentState(
     lastIntention: IntentionOrNull,
     toolbar: @Composable () -> Unit,
     content: @Composable () -> Unit,
+    snackBarMessage: SnackBarMessage? = null,
     onSnackBarDismissed: (() -> Unit)?,
     customEmptyState: (@Composable () -> Unit)? = null,
     customAnimation: (@Composable () -> Unit)? = null,
@@ -123,8 +124,9 @@ fun ContentState(
                 ShowEmptyWithRefresh(state == Type.EMPTY_WITH_REFRESH, lastIntention)
                 ShowLoadLight(state == Type.LOAD_LIGHT)
                 ShowConnectionError(state == Type.NETWORK_ERROR, lastIntention)
-                SnackbarDemo(
+                SnackBar(
                     state == Type.SNACKBAR,
+                    snackBarMessage,
                     onSnackBarDismissed,
                     scaffoldState,
                     coroutineScope
@@ -150,8 +152,9 @@ fun ContentState(
 }
 
 @Composable
-fun SnackbarDemo(
+fun SnackBar(
     showContent: Boolean,
+    snackBarMessage: SnackBarMessage?,
     onSnackBarDismissed: (() -> Unit)?,
     scaffoldState: ScaffoldState,
     coroutineScope: CoroutineScope
@@ -159,11 +162,11 @@ fun SnackbarDemo(
     if (showContent) {
         LaunchedEffect(coroutineScope) {
             this.launch {
-                val snackbarResult = scaffoldState.snackbarHostState.showSnackbar(
-                    message = "This is your message",
-                    actionLabel = "Do something"
+                val snackBarResult = scaffoldState.snackbarHostState.showSnackbar(
+                    message = snackBarMessage?.message ?: "",
+                    actionLabel = snackBarMessage?.actionLabel
                 )
-                when (snackbarResult) {
+                when (snackBarResult) {
                     SnackbarResult.Dismissed -> onSnackBarDismissed?.invoke()
                     SnackbarResult.ActionPerformed -> onSnackBarDismissed?.invoke()
                 }
@@ -394,6 +397,11 @@ private fun Show(showContent: Boolean, animate: Boolean = false, content: @Compo
         content()
     }
 }
+
+class SnackBarMessage(
+    val message: String,
+    val actionLabel: String?
+)
 
 const val ASTRONAUT_ANIMATION = "astronaut_light_theme.json"
 const val NO_INTERNET = "no_internet.json"
