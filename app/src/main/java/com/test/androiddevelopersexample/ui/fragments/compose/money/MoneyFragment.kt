@@ -188,7 +188,7 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                                     WebViewContent(
                                         modifier = Modifier.fillMaxSize(),
                                         title = "AstroPay",
-                                        url = "https://getapp-test.astropaycard.com/terms-and-conditions/crypto-terms.html"
+                                        url = "https://getapp-test.astropaycard.com/terms-and-conditions/en.html"
                                     )
                                 }
                             }

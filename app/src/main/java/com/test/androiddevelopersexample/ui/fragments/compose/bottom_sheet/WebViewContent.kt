@@ -14,11 +14,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.widget.NestedScrollView
+import kotlinx.coroutines.launch
 
 /**
  * Created by ignaciodeandreisdenis on 1/12/22.
@@ -33,6 +35,7 @@ fun WebViewContent(
     Column {
         var webView by remember { mutableStateOf<WebView?>(null) }
         val scrollState = rememberScrollState()
+        val scope = rememberCoroutineScope()
 
         var progress: Float by remember { mutableStateOf(0f) }
         var canGoBack: Boolean by remember { mutableStateOf(false) }
@@ -63,6 +66,7 @@ fun WebViewContent(
 
                     webViewClient = object : WebViewClient() {
                         override fun onPageFinished(view: WebView?, url: String?) {
+                            scope.launch { scrollState.scrollTo(0) }
                             canGoForward = view?.canGoForward() ?: false
                             canGoBack = view?.canGoBack() ?: false
                             super.onPageFinished(view, url)
