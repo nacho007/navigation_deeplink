@@ -6,11 +6,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -28,6 +32,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
@@ -38,6 +44,8 @@ import com.test.androiddevelopersexample.domain.actions.contacts.TransferWalletP
 import com.test.androiddevelopersexample.theme.AstroPayTheme
 import com.test.androiddevelopersexample.ui.fragments.base.BaseFragment
 import com.test.androiddevelopersexample.ui.fragments.compose.ComposeViewModel
+import com.test.androiddevelopersexample.ui.fragments.compose.bottom_sheet.WebViewContent
+import com.test.androiddevelopersexample.ui.fragments.compose.bottom_sheet.showAsBottomSheet
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.bottom_sheet.PhoneBottomSheet
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.bottom_sheet.PhoneBottomSheetAction
 import com.test.androiddevelopersexample.ui.fragments.compose.commons.bottom_sheet.PhoneBottomSheetViewModel
@@ -164,6 +172,28 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                     }
 
                     Spacer(modifier = Modifier.padding(all = 16.dp))
+
+                    DefaultButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        text = "Bottom Sheet WebView",
+                        action = {
+                            showAsBottomSheet() { action ->
+                                Box(
+                                    modifier = Modifier
+                                        .height(IntrinsicSize.Max)
+                                        .background(Color.White)
+                                ) {
+                                    WebViewContent(
+                                        modifier = Modifier.fillMaxSize(),
+                                        title = "AstroPay",
+                                        url = "https://stackoverflow.com/questions/73969290/webview-inside-of-the-bottom-sheet-of-the-bottomsheetscaffold-is-not-scrollable"
+                                    )
+                                }
+                            }
+                        }
+                    )
 
                     DefaultButton(
                         modifier = Modifier
