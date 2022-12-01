@@ -179,16 +179,16 @@ class MoneyFragment : BaseFragment<FragmentComposeBinding>(FragmentComposeBindin
                             .padding(vertical = 8.dp),
                         text = "Bottom Sheet WebView",
                         action = {
-                            showAsBottomSheet() { action ->
+                            showAsBottomSheet() {
                                 Box(
                                     modifier = Modifier
-                                        .height(IntrinsicSize.Max)
+                                        .fillMaxSize()
                                         .background(Color.White)
                                 ) {
                                     WebViewContent(
                                         modifier = Modifier.fillMaxSize(),
                                         title = "AstroPay",
-                                        url = "https://stackoverflow.com/questions/73969290/webview-inside-of-the-bottom-sheet-of-the-bottomsheetscaffold-is-not-scrollable"
+                                        url = "https://getapp-test.astropaycard.com/terms-and-conditions/crypto-terms.html"
                                     )
                                 }
                             }

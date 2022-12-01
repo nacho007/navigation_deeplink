@@ -6,6 +6,8 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -32,15 +34,21 @@ fun WebViewContent(
         var webView by remember { mutableStateOf<WebView?>(null) }
         val scrollState = rememberScrollState()
 
-        var progress: Int by remember { mutableStateOf(0) }
+        var progress: Float by remember { mutableStateOf(0f) }
+        var canGoBack: Boolean by remember { mutableStateOf(false) }
+        var canGoForward: Boolean by remember { mutableStateOf(false) }
 
         Header(
             title = title,
-            onClickNext = { },
-            onClickPrevious = { },
-            progress = progress.toFloat(),
-            canGoBack = false,
-            canGoForward = false,
+            onClickNext = {
+                webView?.goForward()
+            },
+            onClickPrevious = {
+                webView?.goBack()
+            },
+            progress = progress,
+            canGoBack = canGoBack,
+            canGoForward = canGoForward,
         )
 
         AndroidView(
@@ -55,19 +63,18 @@ fun WebViewContent(
 
                     webViewClient = object : WebViewClient() {
                         override fun onPageFinished(view: WebView?, url: String?) {
+                            canGoForward = view?.canGoForward() ?: false
+                            canGoBack = view?.canGoBack() ?: false
                             super.onPageFinished(view, url)
                         }
 
                         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                             super.onPageStarted(view, url, favicon)
                         }
-
-//                        override fun shouldOverrideUrlLoading(view: WebView?, url: String?) =
-//                            onHandleDeepLinks(url)
                     }
 
                     webChromeClient = MyWebViewClient(updateProgress = {
-                        progress = it
+                        progress = it.toFloat()
                     })
 
                     webView = this
@@ -79,6 +86,7 @@ fun WebViewContent(
                 }
             },
             modifier = modifier
+                .height(IntrinsicSize.Max)
                 .clipToBounds()
                 .verticalScroll(scrollState)
         )
@@ -90,17 +98,4 @@ private class MyWebViewClient(val updateProgress: (Int) -> Unit) : WebChromeClie
         updateProgress(newProgress)
         super.onProgressChanged(view, newProgress)
     }
-}
-
-private sealed class UIEvent {
-    object PageStarted : UIEvent()
-    object ClickCancel : UIEvent()
-    object ClickClose : UIEvent()
-    object ClickNextPage : UIEvent()
-    object ClickPreviousPage : UIEvent()
-    object CleanWebControl : UIEvent()
-    data class PageFinished(val canGoForward: Boolean, val canGoBack: Boolean) : UIEvent()
-    data class HandleDeepLinks(val url: String) : UIEvent()
-    data class UpdateProgress(val progress: Int) : UIEvent()
-    data class CheckedChange(val value: Boolean) : UIEvent()
 }

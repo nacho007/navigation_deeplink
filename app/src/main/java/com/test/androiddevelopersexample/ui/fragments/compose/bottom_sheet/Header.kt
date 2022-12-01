@@ -56,7 +56,7 @@ internal fun Header(
                 progress = progress,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(2.dp),
+                    .height(4.dp),
                 backgroundColor = GlobalPrimary300,
                 color = GlobalPrimary400
             )
@@ -79,7 +79,8 @@ private fun HeaderInfo(
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier
                 .weight(1f)
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = 16.dp),
+            color = Color.Black
         )
 
         Row {
